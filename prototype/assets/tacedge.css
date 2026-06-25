@@ -16,7 +16,7 @@
 :root {
   /* Build stamp — bump on each content deploy; the per-page link-versioner
      reads this and appends ?v=<build> to internal links to defeat stale caches. */
-  --build: "2026-06-26.2";
+  --build: "2026-06-26.3";
 
   /* ---- Brand palette (canonical — was split #f3efe6/#f7f5ec etc.) -------- */
   --forest:#2b4721;        /* dark green header */
