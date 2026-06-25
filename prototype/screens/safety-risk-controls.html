@@ -184,7 +184,13 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);font-size:16
 .srcnote svg{flex-shrink:0;margin-top:1px;color:var(--ink-40)}
 .srcnote b{color:var(--ink);font-weight:600}
 </style><link rel="stylesheet" href="../assets/tacedge.css">
-</head>
+<link rel="manifest" href="../manifest.json">
+<meta name="theme-color" content="#2b4721">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="TacEdge">
+<link rel="apple-touch-icon" href="../assets/icons/apple-touch-icon.png"></head>
 <body>
 <header class="topbar">
   <svg class="contour" viewBox="0 0 1400 64" preserveAspectRatio="xMaxYMid slice" aria-hidden="true">
@@ -322,4 +328,5 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);font-size:16
   document.querySelectorAll('.wrow').forEach(function(r){r.addEventListener('click',function(){show(r.dataset.code);});});
 }catch(e){}})();
 </script>
+<script>if(window.navigator.standalone){document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest("a");if(a&&a.getAttribute("href")&&a.target!=="_blank"&&a.host===location.host){e.preventDefault();location.href=a.href;}},true);}</script>
 </body></html>

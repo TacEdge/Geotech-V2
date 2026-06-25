@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <clipPath id="r"><rect width="512" height="512" rx="96"/></clipPath>
+  </defs>
+  <g clip-path="url(#r)">
+    <rect width="512" height="512" fill="#2b4721"/>
+    <g fill="none" stroke="#f3efe6" stroke-width="2" opacity="0.10">
+      <path d="M-20 150 C 120 90, 200 200, 360 130 C 460 90, 540 170, 600 130"/>
+      <path d="M-20 210 C 120 150, 200 260, 360 190 C 460 150, 540 230, 600 190"/>
+      <path d="M-20 380 C 120 320, 200 430, 360 360 C 460 320, 540 400, 600 360"/>
+      <path d="M-20 430 C 120 370, 200 480, 360 410 C 460 370, 540 450, 600 410"/>
+    </g>
+    <text x="256" y="300" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif"
+          font-weight="700" font-size="210" fill="#f3efe6" letter-spacing="-6">TE</text>
+    <rect x="150" y="338" width="212" height="6" rx="3" fill="#b2b594"/>
+  </g>
+</svg>

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <rect width="512" height="512" fill="#2b4721"/>
+  <g fill="none" stroke="#f3efe6" stroke-width="2" opacity="0.10">
+    <path d="M-20 170 C 120 120, 220 210, 360 160 C 460 125, 540 185, 600 160"/>
+    <path d="M-20 360 C 120 310, 220 400, 360 350 C 460 315, 540 375, 600 350"/>
+  </g>
+  <text x="256" y="298" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif"
+        font-weight="700" font-size="170" fill="#f3efe6" letter-spacing="-5">TE</text>
+  <rect x="176" y="328" width="160" height="5" rx="3" fill="#b2b594"/>
+</svg>

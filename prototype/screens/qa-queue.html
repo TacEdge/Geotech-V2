@@ -207,7 +207,13 @@ body{font-size:15px}
 
 </style><link rel="stylesheet" href="../assets/tacedge.css">
 <style>.qa-head{display:block}.qa-sub{color:var(--ink-60);font-size:13.5px;margin-top:4px;font-family:var(--ui)}</style>
-</head>
+<link rel="manifest" href="../manifest.json">
+<meta name="theme-color" content="#2b4721">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="TacEdge">
+<link rel="apple-touch-icon" href="../assets/icons/apple-touch-icon.png"></head>
 <body>
 
 <header class="topbar">
@@ -606,4 +612,5 @@ body{font-size:15px}
 })();
 
 </script>
+<script>if(window.navigator.standalone){document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest("a");if(a&&a.getAttribute("href")&&a.target!=="_blank"&&a.host===location.host){e.preventDefault();location.href=a.href;}},true);}</script>
 </body></html>

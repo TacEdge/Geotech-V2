@@ -218,7 +218,13 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);font-size:16
  .eh .pills{margin-left:0} .an-det{padding:16px} }
 
 </style><link rel="stylesheet" href="../assets/tacedge.css">
-</head>
+<link rel="manifest" href="../manifest.json">
+<meta name="theme-color" content="#2b4721">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="TacEdge">
+<link rel="apple-touch-icon" href="../assets/icons/apple-touch-icon.png"></head>
 <body>
 <header class="topbar">
   <svg class="contour" viewBox="0 0 1400 64" preserveAspectRatio="xMaxYMid slice" aria-hidden="true"><g fill="none" stroke="#f3efe6" stroke-width="1"><path d="M850,-20 C 980 34, 1040 12, 1180 74 C 1260 104, 1330 44, 1480 84"/><path d="M960,-40 C 1070 12, 1140 -6, 1270 56 C 1350 88, 1400 28, 1520 64"/></g></svg>
@@ -336,4 +342,5 @@ function detail(id){
   });
 })();
 </script>
+<script>if(window.navigator.standalone){document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest("a");if(a&&a.getAttribute("href")&&a.target!=="_blank"&&a.host===location.host){e.preventDefault();location.href=a.href;}},true);}</script>
 </body></html>

@@ -317,7 +317,13 @@ body{font-family:var(--ui);color:var(--ink);background:var(--stage);min-height:1
 .ponote svg{flex:0 0 auto;margin-top:1px;color:var(--ink-40)}
 </style>
 <link rel="stylesheet" href="../assets/tacedge.css">
-</head>
+<link rel="manifest" href="../manifest.json">
+<meta name="theme-color" content="#2b4721">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="TacEdge">
+<link rel="apple-touch-icon" href="../assets/icons/apple-touch-icon.png"></head>
 <body class="field">
 <div class="stage">
   <div class="app" id="app">
@@ -495,5 +501,6 @@ body{font-family:var(--ui);color:var(--ink);background:var(--stage);min-height:1
   recompute();
 })();
 </script>
+<script>if(window.navigator.standalone){document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest("a");if(a&&a.getAttribute("href")&&a.target!=="_blank"&&a.host===location.host){e.preventDefault();location.href=a.href;}},true);}</script>
 </body>
 </html>

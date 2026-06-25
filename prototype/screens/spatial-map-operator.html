@@ -192,7 +192,13 @@ body{font-family:var(--ui);color:var(--ink);background:var(--page);font-size:16p
 @media (max-width:380px){ body{font-size:15px} .zhead h1{font-size:19px} .prog .big{font-size:26px} }
 @media (prefers-reduced-motion:reduce){*{animation:none!important}#viewport{transition:none}.scrim,.zlab,.pin.offzone{transition:none}}
 </style><link rel="stylesheet" href="../assets/tacedge.css">
-</head>
+<link rel="manifest" href="../manifest.json">
+<meta name="theme-color" content="#2b4721">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="TacEdge">
+<link rel="apple-touch-icon" href="../assets/icons/apple-touch-icon.png"></head>
 <body class="field">
 <div class="wrap">
 
@@ -574,4 +580,5 @@ body{font-family:var(--ui);color:var(--ink);background:var(--page);font-size:16p
   select("B12",false);
 })();
 </script>
+<script>if(window.navigator.standalone){document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest("a");if(a&&a.getAttribute("href")&&a.target!=="_blank"&&a.host===location.host){e.preventDefault();location.href=a.href;}},true);}</script>
 </body></html>

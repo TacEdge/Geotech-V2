@@ -166,7 +166,13 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);font-size:16
  .rs{border-left:none;padding-left:0} .rel-actions{width:100%}.rb-o,.rb-p{flex:1;justify-content:center} }
 
 </style><link rel="stylesheet" href="../assets/tacedge.css">
-</head>
+<link rel="manifest" href="../manifest.json">
+<meta name="theme-color" content="#2b4721">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="TacEdge">
+<link rel="apple-touch-icon" href="../assets/icons/apple-touch-icon.png"></head>
 <body>
 
 <header class="topbar">
@@ -273,4 +279,5 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);font-size:16
     </div>
   </div>
 </div>
+<script>if(window.navigator.standalone){document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest("a");if(a&&a.getAttribute("href")&&a.target!=="_blank"&&a.host===location.host){e.preventDefault();location.href=a.href;}},true);}</script>
 </body></html>
