@@ -2,7 +2,7 @@ name: Deploy prototype to GitHub Pages
 
 on:
   push:
-    branches: [ "claude/tacedge-v2-prototype-polish-4ny12f" ]
+    branches: [ "main" ]
   workflow_dispatch:
 
 permissions:
