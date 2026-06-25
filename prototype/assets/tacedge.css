@@ -109,10 +109,17 @@ body.field {
 .te-btn-ghost { background:transparent; color:var(--ink-60); border-color:var(--line-2); }
 .te-btn-ghost:hover { color:var(--ink); border-color:var(--ink-40); }
 
-/* Buttons promoted to links during integration keep their original look */
+/* Buttons promoted to links during integration keep their original look.
+   Plain links inherit the surrounding text colour ... */
 a.tab, a.scard, a.act, a.qbtn, a.vall, a.view-link, a.btn-go, a.ago,
-a.card-foot, a.settings-link, a.iconbtn, a.sstep, a.continue-btn,
-a.save-btn, a.subqa, a.dock, a.back { text-decoration:none; color:inherit; }
+a.card-foot, a.settings-link, a.iconbtn, a.sstep, a.back {
+  text-decoration:none; color:inherit;
+}
+/* ... but converted PRIMARY (forest) buttons keep their cream text, not the
+   surrounding dark ink — otherwise their label renders black on green. */
+a.continue-btn, a.save-btn, a.subqa, a.dock {
+  text-decoration:none; color:var(--cream);
+}
 a.burger { display:flex; }
 
 /* Honour reduced-motion globally — keeps the product calm */
