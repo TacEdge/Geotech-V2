@@ -412,6 +412,26 @@ body{font-family:var(--ui);color:var(--ink);background:var(--stage);min-height:1
         <span class="heropos">Proof to 1.25&times; DL · 750 kN · tested 10:24</span>
       </div>
 
+      <!-- capture (camera-first) -->
+      <div class="sec">
+        <div class="sl">Test sheet</div>
+        <div class="capcard" id="capCard">
+          <div class="capdrop">
+            <span class="capicon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h3l1.5-2h7L17 7h3a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1z"/><circle cx="12" cy="13" r="3.5"/></svg></span>
+            <div class="captx">
+              <b>Photograph your test schedule</b>
+              <span>Record the proof test on your written schedule at the gauge, then take a photo. AI reads the figures for you to check and submit.</span>
+            </div>
+            <div class="capbtns">
+              <button class="capbtn prim" id="takePhoto"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h3l1.5-2h7L17 7h3a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1z"/><circle cx="12" cy="13" r="3.2"/></svg> Take photo</button>
+              <button class="capbtn" id="uploadPhoto"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4M7 9l5-5 5 5"/><path d="M5 20h14"/></svg> Upload</button>
+            </div>
+          </div>
+        </div>
+        <div class="capnote"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5"/><path d="M12 8v.01"/></svg> The paper sheet stays the record of truth — the photo is the source AI extracts from.</div>
+      </div>
+
+      <div id="resultArea" class="locked">
       <!-- test result (hero) -->
       <div class="sec">
         <div class="sl">Test result</div>
@@ -481,6 +501,7 @@ body{font-family:var(--ui);color:var(--ink);background:var(--stage);min-height:1
       <div class="sec">
         <div class="ponote"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg> Only verified figures can be committed. AI proposes · you verify · you confirm.</div>
       </div>
+      </div><!-- /resultArea -->
 
     </div></div>
 
@@ -488,7 +509,55 @@ body{font-family:var(--ui);color:var(--ink);background:var(--stage);min-height:1
     <div class="foot">Internal · TacEdge Geotech · PDS-TST · Anchor Test Record</div>
 </div>
 
+<style>
+#resultArea.locked{display:none}
+.capcard{background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden}
+.capdrop{display:flex;flex-direction:column;align-items:center;text-align:center;gap:13px;padding:26px 20px;border:2px dashed var(--line-2);border-radius:var(--r-lg)}
+.capicon{width:62px;height:62px;border-radius:50%;background:var(--sage-tint);color:var(--forest-2);display:grid;place-items:center}
+.capicon svg{width:30px;height:30px}
+.captx b{display:block;font-size:17px;font-weight:700;color:var(--ink);margin-bottom:5px}
+.captx span{display:block;font-size:13.5px;color:var(--ink-60);line-height:1.45;max-width:330px}
+.capbtns{display:flex;gap:10px;margin-top:4px;width:100%;justify-content:center}
+.capbtn{display:inline-flex;align-items:center;gap:8px;height:48px;padding:0 20px;border-radius:var(--r-md);border:1px solid var(--line-2);background:var(--card);color:var(--ink);font-family:var(--ui);font-size:15px;font-weight:600;cursor:pointer}
+.capbtn svg{width:18px;height:18px}
+.capbtn.prim{background:var(--forest);color:var(--cream);border-color:var(--forest)}
+.capnote{display:flex;gap:8px;align-items:flex-start;font-size:12.5px;color:var(--ink-40);margin-top:10px;padding:0 2px;line-height:1.4}
+.capnote svg{width:13px;height:13px;flex-shrink:0;margin-top:2px}
+.capdone{display:flex;align-items:center;gap:14px;padding:16px}
+.capthumb{width:54px;height:62px;flex-shrink:0;border-radius:8px;border:1px solid var(--line);background:#fff;display:grid;place-items:center;overflow:hidden}
+.capthumb svg{width:48px;height:56px}
+.capinfo{display:flex;flex-direction:column;gap:3px;min-width:0;flex:1}
+.capinfo b{font-size:15px;font-weight:700;color:var(--ink)}
+.capinfo i{font-size:12.5px;color:var(--ink-60);font-style:normal}
+.capdone.ok b{color:var(--forest-2)}
+.capprog{height:6px;border-radius:99px;background:var(--tint);overflow:hidden;margin:4px 0}
+.capprog .bar{display:block;height:100%;width:8%;background:var(--forest);border-radius:99px;animation:capload 1.4s ease forwards}
+@keyframes capload{from{width:8%}to{width:100%}}
+.capretake{height:38px;padding:0 14px;border-radius:10px;border:1px solid var(--line-2);background:var(--card);color:var(--ink-60);font-family:var(--ui);font-weight:600;font-size:13px;cursor:pointer;flex-shrink:0}
+</style>
 <script>
+(function(){
+  var capCard=document.getElementById('capCard'), resultArea=document.getElementById('resultArea');
+  if(capCard&&resultArea){
+    var INITIAL=capCard.innerHTML;
+    var SHEET='<svg viewBox="0 0 64 64" fill="none"><rect x="9" y="4" width="46" height="56" rx="3" fill="#fff" stroke="#cbd2c9"/><line x1="15" y1="16" x2="49" y2="16" stroke="#bcc3b8"/><line x1="15" y1="25" x2="49" y2="25" stroke="#bcc3b8"/><line x1="15" y1="34" x2="49" y2="34" stroke="#bcc3b8"/><line x1="15" y1="43" x2="49" y2="43" stroke="#bcc3b8"/><line x1="15" y1="52" x2="49" y2="52" stroke="#bcc3b8"/><path d="M16 13c3-2 6 1 9-1s5 1 8 0" stroke="#8a8f80" stroke-width="1.3"/><path d="M16 31c4-2 7 1 11-1" stroke="#8a8f80" stroke-width="1.3"/></svg>';
+    var finishT;
+    function reading(){
+      capCard.innerHTML='<div class="capdone"><span class="capthumb">'+SHEET+'</span><div class="capinfo"><b>Reading test sheet…</b><span class="capprog"><span class="bar"></span></span><i>AI is extracting the figures</i></div></div>';
+      clearTimeout(finishT); finishT=setTimeout(finish,1500);
+    }
+    function finish(){
+      capCard.innerHTML='<div class="capdone ok"><span class="capthumb">'+SHEET+'</span><div class="capinfo"><b>Test sheet captured</b><i>AI extracted 5 figures · check each below</i></div><button class="capretake" id="retake">Retake</button></div>';
+      resultArea.classList.remove('locked');
+      resultArea.scrollIntoView({behavior:'smooth',block:'start'});
+    }
+    function reset(){ clearTimeout(finishT); resultArea.classList.add('locked'); capCard.innerHTML=INITIAL; }
+    capCard.addEventListener('click',function(e){
+      if(e.target.closest('#takePhoto')||e.target.closest('#uploadPhoto')) reading();
+      else if(e.target.closest('#retake')) reset();
+    });
+  }
+})();
 (function(){
   var rows=[].slice.call(document.querySelectorAll('#vlist .vrow'));
   var total=rows.length, done=0;
