@@ -1,0 +1,121 @@
+/* ============================================================================
+   TacEdge Geotech V2.0 — Shared Design System
+   ----------------------------------------------------------------------------
+   ONE token set for the whole product (colour, spacing, radius, elevation),
+   with TWO deliberate type voices:
+     • Desktop voice  — Play (display) + Be Vietnam Pro (UI) + JetBrains Mono
+     • Field voice    — IBM Plex Sans (UI) + IBM Plex Mono   (body.field)
+
+   This file is linked AFTER each screen's own inline <style>, so its :root
+   token values win the cascade and re-unify colours/spacing across screens
+   that historically drifted (two creams, two inks, two type systems).
+   Each screen keeps its own layout CSS; this only normalises the shared
+   foundation and a small set of cross-screen primitives.
+   ========================================================================== */
+
+:root {
+  /* ---- Brand palette (canonical — was split #f3efe6/#f7f5ec etc.) -------- */
+  --forest:#2b4721;        /* dark green header */
+  --forest-2:#36592a;
+  --olive:#6e7d5c;
+  --olive-edge:#aeb89c;
+  --sage:#b2b594;
+  --sage-tint:#e6ebd9;
+  --cream:#f3efe6;         /* unified cream background */
+  --ink:#1b2117;           /* unified primary ink */
+  --ink-60:#5b6253;
+  --ink-40:#8a8f80;
+  --muted:#9a9d90;
+  --card:#ffffff;
+  --plan:#fbf9f3;
+  --tint:#eff1e4;
+  --stage:#dde3d2;
+
+  /* ---- Muted status colours (calm, geotechnical) ------------------------ */
+  --ochre:#b07d2b;         --ochre-tint:#f6ecd6;   /* attention / pending  */
+  --brick:#b23b2e;         --brick-tint:#f7e3df;   /* issue / blocking     */
+  --live:#9fc27e;                                  /* live / confirmed dot */
+
+  /* ---- Hairlines -------------------------------------------------------- */
+  --line:#e7e2d6;
+  --line-2:#d9d3c4;
+  --rule:#cbd2c9;
+
+  /* ---- Type voices ------------------------------------------------------ */
+  --display:'Play',Georgia,serif;
+  --ui:'Be Vietnam Pro',system-ui,-apple-system,sans-serif;        /* desktop default */
+  --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,monospace;
+
+  /* ---- Type scale ------------------------------------------------------- */
+  --fs-2xs:10px; --fs-xs:11px; --fs-sm:12px; --fs-base:14px; --fs-md:15px;
+  --fs-lg:18px;  --fs-xl:26px; --fs-2xl:30px; --fs-3xl:44px; --fs-4xl:48px;
+
+  /* ---- Radius scale ----------------------------------------------------- */
+  --r-xs:8px; --r-sm:10px; --r-md:12px; --r-lg:14px; --r-xl:20px;
+  --r-2xl:24px; --r-pill:999px;
+
+  /* ---- Spacing scale ---------------------------------------------------- */
+  --sp-1:4px; --sp-2:8px; --sp-3:12px; --sp-4:16px; --sp-5:20px;
+  --sp-6:24px; --sp-8:32px; --sp-10:40px;
+
+  /* ---- Elevation (calm, single soft shadow) ----------------------------- */
+  --shadow-sm:0 1px 2px rgba(27,33,23,.05);
+  --shadow-md:0 2px 10px rgba(27,33,23,.06);
+  --shadow-lg:0 8px 28px rgba(27,33,23,.10);
+
+  /* ---- Shared geometry -------------------------------------------------- */
+  --content-max:1400px;
+  --content-narrow:1080px;
+  --header-h:64px;
+}
+
+/* Field voice — applied to operator mobile screens via <body class="field"> */
+body.field {
+  --ui:'IBM Plex Sans',system-ui,-apple-system,sans-serif;
+  --mono:'IBM Plex Mono',ui-monospace,SFMono-Regular,monospace;
+}
+
+/* ============================================================================
+   Cross-screen primitives — opt-in helper classes (prefixed te-) so they
+   never collide with a screen's existing class names. Used by the integrated
+   shell (index launcher, nav links, standardised title block).
+   ========================================================================== */
+
+.te-link { color:inherit; text-decoration:none; }
+
+/* Standard desktop page title block (the Reporting pattern, generalised) */
+.te-pagehead { display:flex; align-items:flex-end; justify-content:space-between;
+  gap:var(--sp-4); margin:var(--sp-1) 0 var(--sp-2); }
+.te-pagehead h1 { font-family:var(--display); font-weight:700; color:var(--ink);
+  font-size:var(--fs-xl); line-height:1.1; letter-spacing:.01em; }
+.te-pagehead .te-sub { color:var(--ink-60); font-size:var(--fs-base); margin-top:4px; }
+
+/* Status pills — calm, muted, shared vocabulary */
+.te-pill { display:inline-flex; align-items:center; gap:6px; height:24px;
+  padding:0 10px; border-radius:var(--r-pill); font-size:var(--fs-sm);
+  font-weight:600; font-family:var(--ui); white-space:nowrap; }
+.te-pill.is-ok    { background:var(--sage-tint); color:var(--forest-2); }
+.te-pill.is-pend  { background:var(--ochre-tint); color:var(--ochre); }
+.te-pill.is-issue { background:var(--brick-tint); color:var(--brick); }
+.te-pill.is-muted { background:var(--tint); color:var(--ink-60); }
+
+/* Primary / secondary buttons — calm enterprise defaults */
+.te-btn { display:inline-flex; align-items:center; justify-content:center; gap:8px;
+  height:40px; padding:0 18px; border-radius:var(--r-md); border:1px solid transparent;
+  font-family:var(--ui); font-size:var(--fs-base); font-weight:600; cursor:pointer;
+  transition:background .15s ease,border-color .15s ease; }
+.te-btn-primary { background:var(--forest); color:var(--cream); }
+.te-btn-primary:hover { background:var(--forest-2); }
+.te-btn-ghost { background:transparent; color:var(--ink-60); border-color:var(--line-2); }
+.te-btn-ghost:hover { color:var(--ink); border-color:var(--ink-40); }
+
+/* Buttons promoted to links during integration keep their original look */
+a.tab, a.scard, a.act, a.qbtn, a.vall, a.view-link, a.btn-go, a.ago,
+a.card-foot, a.settings-link, a.iconbtn, a.sstep, a.continue-btn,
+a.save-btn, a.subqa, a.dock, a.back { text-decoration:none; color:inherit; }
+a.burger { display:flex; }
+
+/* Honour reduced-motion globally — keeps the product calm */
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration:.001ms !important; transition-duration:.001ms !important; }
+}
