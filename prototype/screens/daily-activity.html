@@ -456,7 +456,7 @@ body{font-family:var(--ui);color:var(--ink);background:var(--stage);min-height:1
       </svg>
       <a class="iconbtn" href="spatial-map-operator.html" aria-label="Back to today's list"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></a>
       <div class="ctx"><span class="p">Benmore • Spillway Anchoring</span><span class="z">Rock Control • today</span></div>
-      <div class="right">
+      <div class="right"><button class="iconbtn" id="fnavBtn" aria-label="Switch screen" title="Switch screen"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="3.5" width="7" height="7" rx="1.7"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.7"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.7"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.7"/></svg></button>
         <a class="iconbtn" href="incident.html" aria-label="Report incident or near-miss" title="Report incident / near-miss"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></a>
         <span class="fresh"><span class="d"></span>Live</span>
         <span class="av">SK</span>
@@ -690,5 +690,45 @@ body{font-family:var(--ui);color:var(--ink);background:var(--stage);min-height:1
 </script>
 <script>(function(){try{var b=getComputedStyle(document.documentElement).getPropertyValue("--build").replace(/[\s"']/g,"");if(!b)return;document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest("a");if(!a)return;var h=a.getAttribute("href");if(!h)return;if(/^(https?:|#|mailto:|tel:)/i.test(h))return;if(!/\.html($|[?#])/i.test(h))return;if(/[?&]v=/.test(h))return;a.setAttribute("href",h+(h.indexOf("?")<0?"?":"&")+"v="+b);},true);}catch(_){}})();</script>
 <script>if(window.navigator.standalone){document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest("a");if(a&&a.getAttribute("href")&&a.target!=="_blank"&&a.host===location.host){e.preventDefault();location.href=a.href;}},true);}</script>
+<style>
+.fnav{position:fixed;inset:0;z-index:140;display:none}
+.fnav.open{display:block}
+.fnav-ov{position:absolute;inset:0;background:rgba(27,33,23,.45)}
+.fnav-pan{position:absolute;left:0;right:0;bottom:0;margin:0 auto;max-width:480px;background:var(--cream);border-radius:18px 18px 0 0;max-height:90%;overflow:auto;padding:6px 14px 20px;box-shadow:0 -12px 44px rgba(27,33,23,.32);font-family:var(--ui)}
+.fnav-grab{width:40px;height:4px;border-radius:99px;background:var(--line-2);margin:8px auto 4px}
+.fnav-hd{display:flex;align-items:center;justify-content:space-between;font-weight:700;font-size:15px;color:var(--ink);padding:6px 4px 10px}
+.fnav-hd .x{width:30px;height:30px;display:grid;place-items:center;background:none;border:none;color:var(--ink-60);cursor:pointer}
+.fnav-list{display:flex;flex-direction:column;gap:2px}
+.fnav-list a{display:flex;align-items:center;gap:13px;padding:10px;border-radius:12px;text-decoration:none;color:var(--ink)}
+.fnav-list a:hover,.fnav-list a:active{background:var(--tint)}
+.fnav-list a.cur{background:var(--sage-tint)}
+.fnav-list a.cur .fl b{color:var(--forest-2)}
+.fnav .fi{width:38px;height:38px;flex-shrink:0;border-radius:10px;background:var(--card);border:1px solid var(--line);display:grid;place-items:center;color:var(--forest)}
+.fnav .fi svg{width:19px;height:19px}
+.fnav .fl{display:flex;flex-direction:column;line-height:1.25;min-width:0}
+.fnav .fl b{font-size:14.5px;font-weight:600}
+.fnav .fl i{font-size:12px;color:var(--ink-60);font-style:normal}
+.fnav .cur-tag{margin-left:auto;font-family:var(--mono);font-size:10px;letter-spacing:.06em;color:var(--forest-2);text-transform:uppercase}
+.fnav-list a.inc .fi{background:var(--brick-tint);border-color:#eccfca;color:var(--brick)}
+</style>
+<div class="fnav" id="fnav" role="dialog" aria-modal="true" aria-label="Switch field screen">
+  <div class="fnav-ov" id="fnavOv"></div>
+  <div class="fnav-pan">
+    <div class="fnav-grab"></div>
+    <div class="fnav-hd"><span>Go to</span><button class="x" id="fnavX" aria-label="Close"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>
+    <nav class="fnav-list">
+      <a href="spatial-map-operator.html"><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3 3 5v16l6-2 6 2 6-2V3l-6 2z"/><path d="M9 3v16M15 5v16"/></svg></span><span class="fl"><b>Spatial Map · Field</b><i>Find your anchor</i></span></a>
+      <a href="crew-sign-on.html"><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="18" rx="2"/><rect x="8" y="2" width="8" height="4" rx="1"/><path d="m9 14 2 2 4-4"/></svg></span><span class="fl"><b>Crew Sign-On</b><i>Sign on to work</i></span></a>
+      <a href="drill-log.html"><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m8 11 4 4 4-4"/><path d="M5 20h14"/></svg></span><span class="fl"><b>Drill Log</b><i>Capture drilling</i></span></a>
+      <a href="grout-log.html"><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3s6 7 6 11a6 6 0 0 1-12 0c0-4 6-11 6-11z"/></svg></span><span class="fl"><b>Grout Log</b><i>Grout &amp; variance</i></span></a>
+      <a href="anchor-test.html"><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 13a8 8 0 0 1 16 0"/><path d="M12 13l4-3"/><circle cx="12" cy="13" r="1.4"/></svg></span><span class="fl"><b>Anchor Test Record</b><i>Record test result</i></span></a>
+      <a href="daily-activity.html"><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5" width="16" height="16" rx="2"/><path d="M4 9.5h16M8 3v4M16 3v4"/></svg></span><span class="fl"><b>Daily Activity Sheet</b><i>Crew &amp; plant hours</i></span></a>
+      <a href="safety-docs.html"><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 19 6v5c0 5-3 7.6-7 9-4-1.4-7-4-7-9V6z"/><path d="m9 12 2 2 4-4"/></svg></span><span class="fl"><b>Safety Docs</b><i>JSA / SWMS</i></span></a>
+      <a href="reference-documents-operator.html"><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7a2 2 0 0 1 2-2h4l2 2h6a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/></svg></span><span class="fl"><b>Reference Documents</b><i>Project library</i></span></a>
+      <a class="inc" href="incident.html"><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4 21 19H3z"/><path d="M12 10v4"/><path d="M12 17v.01"/></svg></span><span class="fl"><b>Incident / Near-Miss</b><i>Report an event — anytime</i></span></a>
+    </nav>
+  </div>
+</div>
+<script>(function(){var f=document.getElementById('fnav'),b=document.getElementById('fnavBtn');if(!f||!b)return;function o(){f.classList.add('open');}function c(){f.classList.remove('open');}b.addEventListener('click',o);document.getElementById('fnavX').addEventListener('click',c);document.getElementById('fnavOv').addEventListener('click',c);document.addEventListener('keydown',function(e){if(e.key==='Escape')c();});var here=(location.pathname.split('/').pop()||'').replace(/\?.*/,'');[].forEach.call(f.querySelectorAll('.fnav-list a'),function(a){var k=a.getAttribute('href').replace(/\?.*/,'');if(k===here){a.classList.add('cur');a.insertAdjacentHTML('beforeend','<span class="cur-tag">You’re here</span>');a.addEventListener('click',function(e){e.preventDefault();c();});}});})();</script>
 </body>
 </html>
