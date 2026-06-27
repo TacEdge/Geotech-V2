@@ -142,7 +142,7 @@ body{font-family:var(--ui);color:var(--ink);background:var(--stage);min-height:1
 .llrow.active{background:rgba(110,125,92,.09)}
 .lldot{width:11px;height:11px;border-radius:50%;border:2px solid var(--olive-edge);flex-shrink:0;background:var(--card)}
 .llrow.active .lldot{background:var(--olive);border-color:var(--olive)}
-.llrange2{display:flex;flex-direction:column;gap:2px;min-width:98px}
+.llrange2{display:flex;flex-direction:column;gap:2px;min-width:84px}
 .llrange2 .r{font-family:var(--mono);font-size:var(--fs-base);font-weight:600;color:var(--ink)}
 .llrange2 .tm{font-family:var(--mono);font-size:var(--fs-2xs);color:var(--ink-40)}
 .lithlog.compact .tm{display:none}
@@ -272,7 +272,7 @@ body{font-family:var(--ui);color:var(--ink);background:var(--stage);min-height:1
 .mstat{display:inline-flex;align-items:center;gap:6px;font-size:var(--fs-md);font-weight:600;color:var(--forest-2)}
 .mstat .dot{width:8px;height:8px;border-radius:50%;background:var(--live)}
 .msub{font-size:var(--fs-xs);color:var(--ink-40)}
-.lithlog .llrow .llmat .nm{white-space:nowrap}
+.lithlog .llrow .llmat .nm{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
 /* === GRT refinements (screenshot) === */
 .sl.gusedrow{display:flex;align-items:center;justify-content:space-between}
 .bagtype{font-family:var(--ui);font-size:var(--fs-sm);color:var(--ink-60);font-weight:400;text-transform:none;letter-spacing:0;display:inline-flex;align-items:center;gap:5px}
@@ -470,7 +470,7 @@ body{font-family:var(--ui);color:var(--ink);background:var(--stage);min-height:1
       var S=stages[i], active=S.to===null, to=active?v:S.to;
       h+='<div class="llrow'+(active?' active':'')+'">'
         +'<span class="llspine" style="background:'+S.color+'"></span>'
-        +'<div class="llrange2"><span class="r">'+S.from+'\u2013'+to+' L'+(active?' (current)':'')+'</span></div>'
+        +'<div class="llrange2"><span class="r">'+S.from+'\u2013'+to+' L</span>'+(active?'<span class="tm">current</span>':'')+'</div>'
         +'<div class="llmat"><span class="nm">'+S.name+'</span></div>'
         +'<span class="llthk">'+S.kpa+' kPa</span>'
         +'<span class="stok"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>'
