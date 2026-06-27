@@ -147,6 +147,14 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);font-size:16
 /* --- title pill --- */
 .wid-head .title-row{display:flex;align-items:center;gap:11px}
 .title-pill{font-size:12px;font-weight:700;font-family:var(--mono);letter-spacing:.02em;color:var(--olive);background:#e7ebd9;border-radius:var(--r-pill);padding:4px 12px}
+.wtype{display:inline-flex;align-items:center;gap:9px;background:#e7ebd9;border-radius:var(--r-pill);padding:3px 5px 3px 13px}
+.wtype-k{font-size:10px;font-weight:700;font-family:var(--mono);letter-spacing:.11em;text-transform:uppercase;color:var(--olive)}
+.wtype-sel{font-family:var(--ui);font-size:12.5px;font-weight:700;color:var(--forest);background:var(--card);border:1px solid var(--olive-edge);border-radius:var(--r-pill);padding:5px 28px 5px 13px;cursor:pointer;-webkit-appearance:none;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 20 20' fill='none' stroke='%232b4721' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 8l5 5 5-5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center}
+.mw-body{padding:16px 18px}
+.mw-presetrow{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:8px}
+.mw-plabel{font-size:13.5px;color:var(--ink-60)}
+.mw-presetrow .wtype-sel{font-size:13px;background-color:var(--plan)}
+.kvv .hi{color:var(--ochre)}
 
 /* --- detail head: in-use badge + warning --- */
 .d-badge{font-size:11px;font-weight:700;font-family:var(--ui);padding:3px 11px;border-radius:var(--r-pill);white-space:nowrap}
@@ -226,8 +234,8 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);font-size:16
 <div class="content2">
   <div class="wid-head">
     <div>
-      <div class="title-row"><div class="wid-title">Work Item Design</div><span class="title-pill">Anchor</span></div>
-      <div class="wid-sub">Define the reusable anchor designs (specifications) used on this project.</div>
+      <div class="title-row"><div class="wid-title">Work Item Design</div><label class="wtype" title="Work item type for this project"><span class="wtype-k">Work type</span><select class="wtype-sel" id="workType"><option value="anchor" selected>Ground anchor</option><option value="soil-nail">Soil nail</option><option value="micropile">Micropile</option><option value="rock-bolt">Rock bolt</option><option value="sda">Self-drilling anchor</option></select></label></div>
+      <div class="wid-sub" id="widSub">Define the reusable ground anchor designs (specifications) used on this project.</div>
       <div class="wid-info"><svg width="15" height="15" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="8"/><path d="M10 9v4.5"/><circle cx="10" cy="6.4" r=".9" fill="currentColor" stroke="none"/></svg> Values are sourced from the engineer-issued specifications.</div>
     </div>
     <button class="save-btn">Save</button>
@@ -264,6 +272,19 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);font-size:16
       <div class="ct-grid">
         <div class="card"><div class="card-h">Construction parameters</div><div class="kv-rows"><div class="kv-row"><span class="kk">Tendon / bar</span><span class="kvv">4 × 15.2 mm strand</span></div><div class="kv-row"><span class="kk">Bar specification</span><span class="kvv">Grade 1770</span></div><div class="kv-row"><span class="kk">Hole diameter</span><span class="kvv">127 mm</span></div><div class="kv-row"><span class="kk">Grout specification</span><span class="kvv">Class G cement · w/c 0.45</span></div><div class="kv-row"><span class="kk">Drill method</span><span class="kvv">Rotary drill</span></div><div class="kv-row notes"><span class="kk">Notes</span><span class="kvv">Standard anchor for spillway face conditions.</span></div></div></div>
         <div class="card"><div class="card-h">Testing</div><div class="kv-rows"><div class="kv-row"><span class="kk">Test regime</span><span class="kvv">Proof 1.25× WL · 3 cycles</span></div></div><div class="test-box"><svg width="15" height="15" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="8"/><path d="M10 9v4.5"/><circle cx="10" cy="6.4" r=".9" fill="currentColor" stroke="none"/></svg> Testing criteria are defined in the <a>Testing Standards</a> step.</div></div>
+      </div>
+      <div class="card">
+        <div class="card-h">Material &amp; wastage <span class="cc-muted">Drives the field grout log</span></div>
+        <div class="mw-body">
+          <div class="mw-presetrow"><span class="mw-plabel">Wastage preset</span><select class="wtype-sel" id="wastePreset"><option value="1.35" selected>Bagged grout, rotary-drilled (×1.35)</option><option value="1.5">Pumped grout, cased hole (×1.50)</option><option value="3.0">Self-drilling anchor (200–400%)</option><option value="custom">Custom…</option></select></div>
+          <div class="kv-rows">
+            <div class="kv-row"><span class="kk">Material</span><span class="kvv">25 kg bags · Class G cement</span></div>
+            <div class="kv-row"><span class="kk">Theoretical usage</span><span class="kvv">38 L per anchor</span></div>
+            <div class="kv-row"><span class="kk">Wastage allowance</span><span class="kvv" id="wasteVal">×1.35</span></div>
+            <div class="kv-row"><span class="kk">Over-allowance result</span><span class="kvv"><span class="hi" id="wasteFlag">&gt; ×1.35 flagged for QA</span></span></div>
+          </div>
+          <div class="test-box"><svg width="15" height="15" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="8"/><path d="M10 9v4.5"/><circle cx="10" cy="6.4" r=".9" fill="currentColor" stroke="none"/></svg> Operators do no maths. The grout log auto-checks each anchor against this allowance and shows <b>within</b> or <b>over allowance</b> in the field.</div>
+        </div>
       </div>
       <div class="card">
         <div class="card-h">Used by <span class="cc-muted">Linked from the Work Plan</span></div>
@@ -409,6 +430,30 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);font-size:16
       document.querySelectorAll('.wrow').forEach(function(r){r.classList.toggle('sel',r.dataset.code===code);});
     }
     document.querySelectorAll('.wrow').forEach(function(r){r.addEventListener('click',function(){show(r.dataset.code);});});
+
+    var WT={
+      'anchor':{noun:'ground anchor',preset:'1.35'},
+      'soil-nail':{noun:'soil nail',preset:'1.5'},
+      'micropile':{noun:'micropile',preset:'1.5'},
+      'rock-bolt':{noun:'rock bolt',preset:'1.35'},
+      'sda':{noun:'self-drilling anchor',preset:'3.0'}
+    };
+    var PRESET={
+      '1.35':{val:'×1.35',flag:'&gt; ×1.35 flagged for QA'},
+      '1.5':{val:'×1.50',flag:'&gt; ×1.50 flagged for QA'},
+      '3.0':{val:'×2.0 – ×4.0',flag:'&gt; ×4.0 flagged for QA'},
+      'custom':{val:'Custom',flag:'Set your own threshold'}
+    };
+    var wt=document.getElementById('workType'), wp=document.getElementById('wastePreset'),
+        wv=document.getElementById('wasteVal'), wf=document.getElementById('wasteFlag'),
+        ws=document.getElementById('widSub');
+    function applyPreset(k){ var p=PRESET[k]||PRESET['1.35']; if(wv)wv.textContent=p.val; if(wf)wf.innerHTML=p.flag; }
+    if(wt){ wt.addEventListener('change',function(){
+      var d=WT[wt.value]||WT['anchor'];
+      if(ws) ws.textContent='Define the reusable '+d.noun+' designs (specifications) used on this project.';
+      if(wp){ wp.value=d.preset; applyPreset(d.preset); }
+    }); }
+    if(wp){ wp.addEventListener('change',function(){ applyPreset(wp.value); }); }
   }catch(e){}
 })();
 </script>

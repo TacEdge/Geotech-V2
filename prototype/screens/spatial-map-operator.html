@@ -203,6 +203,22 @@ body{font-family:var(--ui);color:var(--ink);background:var(--stage);font-size:16
 .nextup .who{font-weight:600;font-size:14px;margin-top:1px}
 .nextup .who .mono{color:var(--forest)}
 .nextup .go{margin-left:auto;color:var(--olive);display:flex}
+/* find anchor — foam-proof large targets, no fine gestures (B-5) */
+.findbtn{margin-top:11px;height:50px;border:1.5px solid var(--line-2);border-radius:10px;background:var(--card);
+  color:var(--ink);font-family:var(--ui);font-size:15px;font-weight:600;cursor:pointer;display:flex;
+  align-items:center;justify-content:center;gap:9px}
+.findbtn:active{background:var(--cream)}
+.findbtn svg{color:var(--olive)}
+.findin{width:100%;height:50px;border:1.5px solid var(--line-2);border-radius:11px;padding:0 15px;
+  font-family:var(--ui);font-size:16px;color:var(--ink);background:var(--card);margin:4px 0 6px;outline:none}
+.findin:focus{border-color:var(--olive)}
+.findz{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-40);margin:14px 4px 8px}
+.findrow{display:flex;align-items:center;gap:13px;width:100%;min-height:60px;padding:12px 13px;border:1px solid var(--line);
+  border-radius:12px;background:var(--card);margin-bottom:8px;cursor:pointer;text-align:left;font-family:var(--ui)}
+.findrow:active{background:var(--tint)}
+.findrow .fid{font-family:var(--mono);font-weight:700;font-size:19px;color:var(--forest);min-width:52px}
+.findrow .fgr{font-family:var(--mono);font-size:13px;color:var(--ink-60);background:var(--tint);border-radius:var(--r-pill);padding:4px 11px}
+.findrow .fst{margin-left:auto;font-size:13.5px;color:var(--ink-60)}
 
 /* legend */
 .legend{display:flex;flex-wrap:wrap;gap:9px 15px;padding:13px 15px}
@@ -390,6 +406,7 @@ body{font-family:var(--ui);color:var(--ink);background:var(--stage);font-size:16
           <svg width="20" height="20" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="11" cy="11" r="8.5"/><path d="M11 10v5" stroke-linecap="round"/><circle cx="11" cy="7.2" r=".9" fill="currentColor" stroke="none"/></svg>
         </button>
       </div>
+      <button class="findbtn" id="findBtn"><svg width="19" height="19" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="9.5" cy="9.5" r="6.5"/><path d="M14.5 14.5L19 19"/></svg> Find an anchor on the grid</button>
       <div class="nextup" id="nextUp">
         <div>
           <div class="lab">Next to start</div>
@@ -460,6 +477,18 @@ body{font-family:var(--ui);color:var(--ink);background:var(--stage);font-size:16
 ];
   var byId = {}; ANCHORS.forEach(function(a){byId[a.id]=a;});
 
+  // Derive a simple per-zone grid reference (column letter + row number) from
+  // each pin's position, so any work item can be located on the grid (B-4).
+  (function(){
+    var byZone={}; ANCHORS.forEach(function(a){(byZone[a.zone]=byZone[a.zone]||[]).push(a);});
+    function uniq(vals){ var u=[]; vals.slice().sort(function(p,q){return p-q;}).forEach(function(v){ if(!u.some(function(x){return Math.abs(x-v)<30;})) u.push(v); }); return u; }
+    function nearest(u,v){ var bi=0,bd=1e9; u.forEach(function(x,i){var d=Math.abs(x-v); if(d<bd){bd=d;bi=i;}}); return bi; }
+    Object.keys(byZone).forEach(function(z){
+      var arr=byZone[z], ux=uniq(arr.map(function(a){return a.x;})), uy=uniq(arr.map(function(a){return a.y;}));
+      arr.forEach(function(a){ a.grid=String.fromCharCode(65+nearest(ux,a.x))+(nearest(uy,a.y)+1); });
+    });
+  })();
+
   var STATUS = {
     complete:{label:"Done",pill:"pl-complete"},
     active:{label:"In progress",pill:"pl-active"},
@@ -514,7 +543,7 @@ body{font-family:var(--ui);color:var(--ink);background:var(--stage);font-size:16
     selZone.textContent=a.zone+(a.zone==="Spillway Face"?" · Zone B":"");
     selStage.textContent=stageText(a);
     selPill.className="sel-pill "+st.pill; selPillT.textContent=st.label;
-    selMeta.innerHTML=metaRows(a);
+    selMeta.innerHTML='<div class="r"><span class="k">Grid reference</span><span class="v">'+(a.grid||"—")+'</span></div>'+metaRows(a);
     var c=cta(a); selCta.textContent=c.t; selCta.className="btn-p"+(c.c?(" "+c.c):"");
     if(scroll) selCard.scrollIntoView({behavior:"smooth",block:"nearest"});
   }
@@ -593,6 +622,9 @@ body{font-family:var(--ui);color:var(--ink);background:var(--stage);font-size:16
     setTimeout(function(){selCta.textContent=t;},1100);
   });
 
+  // expose internals so the find-anchor picker (wired after its markup) can drive the map
+  window.__spm={ANCHORS:ANCHORS,byId:byId,STATUS:STATUS,select:select,setZone:setZone};
+
   apply(true);
   select("B12",false);
 })();
@@ -638,5 +670,43 @@ body{font-family:var(--ui);color:var(--ink);background:var(--stage);font-size:16
     </nav>
   </div>
 </div>
+<div class="fnav" id="findDrawer" role="dialog" aria-modal="true" aria-label="Find an anchor">
+  <div class="fnav-ov" id="findOv"></div>
+  <div class="fnav-pan">
+    <div class="fnav-grab"></div>
+    <div class="fnav-hd"><span>Find an anchor</span><button class="x" id="findX" aria-label="Close"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>
+    <input class="findin" id="findIn" placeholder="Type a number, e.g. B14 or grid C2" autocomplete="off" autocapitalize="characters">
+    <div id="findList"></div>
+  </div>
+</div>
+<script>(function(){
+  var api=window.__spm; if(!api) return;
+  var findBtn=document.getElementById("findBtn"),findDrawer=document.getElementById("findDrawer"),
+      findOv=document.getElementById("findOv"),findX=document.getElementById("findX"),
+      findIn=document.getElementById("findIn"),findList=document.getElementById("findList");
+  if(!findBtn||!findDrawer) return;
+  function buildFind(q){
+    q=(q||"").trim().toUpperCase().replace(/\s+/g,"");
+    var html="",lastZone=null,n=0;
+    api.ANCHORS.forEach(function(a){
+      if(q && a.id.toUpperCase().indexOf(q)<0 && (a.grid||"").toUpperCase().indexOf(q)<0) return;
+      n++;
+      if(a.zone!==lastZone){ html+='<div class="findz">'+a.zone+'</div>'; lastZone=a.zone; }
+      html+='<button class="findrow" data-id="'+a.id+'"><span class="fid">'+a.id+'</span><span class="fgr">Grid '+(a.grid||"—")+'</span><span class="fst">'+api.STATUS[a.ph].label+'</span></button>';
+    });
+    findList.innerHTML=n?html:'<div class="findz">No anchor matches that</div>';
+    [].forEach.call(findList.querySelectorAll(".findrow"),function(r){ r.addEventListener("click",function(){
+      var id=r.getAttribute("data-id"),a=api.byId[id];
+      closeFind(); api.setZone(!!(a&&a.zone==="Spillway Face")); api.select(id,true);
+    }); });
+  }
+  function openFind(){ findDrawer.classList.add("open"); findIn.value=""; buildFind(""); }
+  function closeFind(){ findDrawer.classList.remove("open"); }
+  findBtn.addEventListener("click",openFind);
+  if(findOv) findOv.addEventListener("click",closeFind);
+  if(findX) findX.addEventListener("click",closeFind);
+  if(findIn) findIn.addEventListener("input",function(){ buildFind(findIn.value); });
+  document.addEventListener("keydown",function(e){ if(e.key==="Escape") closeFind(); });
+})();</script>
 <script>(function(){var f=document.getElementById('fnav'),b=document.getElementById('fnavBtn');if(!f||!b)return;function o(){f.classList.add('open');}function c(){f.classList.remove('open');}b.addEventListener('click',o);document.getElementById('fnavX').addEventListener('click',c);document.getElementById('fnavOv').addEventListener('click',c);document.addEventListener('keydown',function(e){if(e.key==='Escape')c();});var here=(location.pathname.split('/').pop()||'').replace(/\?.*/,'');[].forEach.call(f.querySelectorAll('.fnav-list a'),function(a){var k=a.getAttribute('href').replace(/\?.*/,'');if(k===here){a.classList.add('cur');a.insertAdjacentHTML('beforeend','<span class="cur-tag">You’re here</span>');a.addEventListener('click',function(e){e.preventDefault();c();});}});})();</script>
 </body></html>
