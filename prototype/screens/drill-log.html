@@ -307,7 +307,7 @@ body{font-family:var(--ui);color:var(--ink);background:var(--stage);min-height:1
         </g>
       </svg>
       <a class="iconbtn" href="../index.html" aria-label="Back to home" title="Back to home"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></a>
-      <div class="ctx"><span class="p">Benmore • Spillway Anchoring</span><span class="z">Rock Contract 1 • Today</span></div>
+      <div class="ctx"><span class="p">Benmore • Spillway Anchoring</span><span class="z">Rock Control • Today</span></div>
       <div class="right"><button class="iconbtn" id="fnavBtn" aria-label="Switch screen" title="Switch screen"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="3.5" width="7" height="7" rx="1.7"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.7"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.7"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.7"/></svg></button>
         <a class="iconbtn" href="incident.html" aria-label="Report incident or near-miss" title="Report incident / near-miss"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></a>
         <span class="fresh"><span class="d"></span>Live</span>
@@ -318,7 +318,7 @@ body{font-family:var(--ui);color:var(--ink);background:var(--stage);min-height:1
     <!-- gate satisfied -->
     <div class="signed">
       <span class="tick"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>
-      <span>Signed on <b>06:42</b> – cleared to drill</span><span class="jsa">JSA-118 ACK</span>
+      <span>Signed on <b>06:42</b> &middot; cleared to drill</span><span class="jsa">JSA-118 ACK</span>
     </div>
 
     <div class="scroll"><div class="pad">
@@ -374,7 +374,7 @@ body{font-family:var(--ui);color:var(--ink);background:var(--stage);min-height:1
       <!-- lithology log -->
       <div class="sec">
         <div class="sl">Lithology log <span class="sub">Base of active layer follows depth.</span><button class="act open" id="viewToggle"><span id="vtLabel">0 intervals</span><svg class="chev" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 15l-6-6-6 6"/></svg></button></div>
-        <div class="lithlog" id="lithlog"><div class="llempty">No lithology recorded yet — drill down, then tap a material to log the first layer.</div></div>
+        <div class="lithlog" id="lithlog"><div class="llempty">No lithology recorded yet. Drill down, then tap a material to log the first layer.</div></div>
       </div>
 
       <!-- design context (secondary) -->
@@ -442,7 +442,7 @@ body{font-family:var(--ui);color:var(--ink);background:var(--stage);min-height:1
   function sw(m,sz){return '<span class="sw '+sz+'" data-mat="'+slug(m)+'"></span>';}
   function tick(){return '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>';}
 
-  var layers=[];            /* start of drilling — no lithology logged yet */
+  var layers=[];            /* start of drilling, no lithology logged yet */
   var pickMat='Greywacke';
 
   function recompute(){
@@ -585,7 +585,7 @@ body{font-family:var(--ui);color:var(--ink);background:var(--stage);min-height:1
       <a href="daily-activity.html"><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5" width="16" height="16" rx="2"/><path d="M4 9.5h16M8 3v4M16 3v4"/></svg></span><span class="fl"><b>Daily Activity Sheet</b><i>Crew &amp; plant hours</i></span></a>
       <a href="safety-docs.html"><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 19 6v5c0 5-3 7.6-7 9-4-1.4-7-4-7-9V6z"/><path d="m9 12 2 2 4-4"/></svg></span><span class="fl"><b>Safety Docs</b><i>JSA / SWMS</i></span></a>
       <a href="reference-documents-operator.html"><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7a2 2 0 0 1 2-2h4l2 2h6a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/></svg></span><span class="fl"><b>Reference Documents</b><i>Project library</i></span></a>
-      <a class="inc" href="incident.html"><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4 21 19H3z"/><path d="M12 10v4"/><path d="M12 17v.01"/></svg></span><span class="fl"><b>Incident / Near-Miss</b><i>Report an event — anytime</i></span></a>
+      <a class="inc" href="incident.html"><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4 21 19H3z"/><path d="M12 10v4"/><path d="M12 17v.01"/></svg></span><span class="fl"><b>Incident / Near-Miss</b><i>Report an event, anytime</i></span></a>
     </nav>
   </div>
 </div>

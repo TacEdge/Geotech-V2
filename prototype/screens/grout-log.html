@@ -384,10 +384,10 @@ body{font-family:var(--ui);color:var(--ink);background:var(--stage);min-height:1
             </div>
             <div class="gdiv"></div>
             <div class="gcol">
-              <div class="gck">Variance</div>
-              <div class="gpct" id="grtPct">124<span class="pp">%</span></div>
-              <div class="gover" id="grtOver">+9 L</div>
-              <div class="gck2">over theoretical</div>
+              <div class="gck">Overbreak</div>
+              <div class="gpct" id="grtPct">&times;1.24</div>
+              <div class="gover" id="grtOver" style="color:var(--forest-2)">Within allowance</div>
+              <div class="gck2" id="grtAllow">vs &times;1.35 setup allowance</div>
             </div>
           </div>
           <div class="qsep"></div>
@@ -429,6 +429,7 @@ body{font-family:var(--ui);color:var(--ink);background:var(--stage);min-height:1
           <div class="c"><span class="k">Grout mix</span><span class="v">GP-2</span></div>
           <div class="c"><span class="k">W:C ratio</span><span class="v">0.42</span></div>
           <div class="c"><span class="k">Theoretical volume</span><span class="v">38 L</span></div>
+          <div class="c"><span class="k">Wastage allowance</span><span class="v">&times;1.35</span></div>
           <div class="c"><span class="k">Target pressure</span><span class="v">500 kPa</span></div>
           <div class="c"><span class="k">Bond length</span><span class="v">6.0 m</span></div>
           <div class="c"><span class="k">Batch</span><span class="v">B-118</span></div>
@@ -453,7 +454,7 @@ body{font-family:var(--ui);color:var(--ink);background:var(--stage);min-height:1
 
 <script>
 (function(){
-  var YIELD=47/6, THEO=38;
+  var YIELD=47/6, THEO=38, WASTE=1.35;   // WASTE = wastage / overbreak allowance, from project setup preset
   var bagsEl=document.getElementById('bagsVal'), volEl=document.getElementById('grtVol'),
       pctEl=document.getElementById('grtPct'), ovEl=document.getElementById('grtOver');
   var bags=6, undoStack=[];
@@ -482,8 +483,13 @@ body{font-family:var(--ui);color:var(--ink);background:var(--stage);min-height:1
   function recompute(){
     bagsEl.textContent=fmtBags(bags);
     var v=vol(); volEl.textContent=v;
-    pctEl.innerHTML=Math.round(v/THEO*100)+'<span class="pp">%</span>';
-    var over=v-THEO; ovEl.textContent=(over>=0?'+':'')+over+' L';
+    var ratio=v/THEO;                                  // overbreak = placed / theoretical
+    pctEl.innerHTML='×'+ratio.toFixed(2);         // shown as an overbreak ratio
+    var within=ratio<=WASTE+1e-9;
+    ovEl.textContent=within?'Within allowance':'Over allowance';
+    ovEl.style.color=within?'var(--forest-2)':'var(--ochre)';
+    var al=document.getElementById('grtAllow');
+    if(al) al.textContent='vs ×'+WASTE.toFixed(2)+' setup allowance';
     renderStages(v);
   }
   document.getElementById('qadj').addEventListener('click',function(e){
@@ -538,7 +544,7 @@ body{font-family:var(--ui);color:var(--ink);background:var(--stage);min-height:1
       <a href="daily-activity.html"><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5" width="16" height="16" rx="2"/><path d="M4 9.5h16M8 3v4M16 3v4"/></svg></span><span class="fl"><b>Daily Activity Sheet</b><i>Crew &amp; plant hours</i></span></a>
       <a href="safety-docs.html"><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 19 6v5c0 5-3 7.6-7 9-4-1.4-7-4-7-9V6z"/><path d="m9 12 2 2 4-4"/></svg></span><span class="fl"><b>Safety Docs</b><i>JSA / SWMS</i></span></a>
       <a href="reference-documents-operator.html"><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7a2 2 0 0 1 2-2h4l2 2h6a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/></svg></span><span class="fl"><b>Reference Documents</b><i>Project library</i></span></a>
-      <a class="inc" href="incident.html"><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4 21 19H3z"/><path d="M12 10v4"/><path d="M12 17v.01"/></svg></span><span class="fl"><b>Incident / Near-Miss</b><i>Report an event — anytime</i></span></a>
+      <a class="inc" href="incident.html"><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4 21 19H3z"/><path d="M12 10v4"/><path d="M12 17v.01"/></svg></span><span class="fl"><b>Incident / Near-Miss</b><i>Report an event, anytime</i></span></a>
     </nav>
   </div>
 </div>

@@ -416,6 +416,14 @@ body{font-family:var(--ui);color:var(--ink);background:var(--stage);min-height:1
 .ehin.sm{width:52px}
 .ehnum{display:flex;align-items:center;gap:7px}
 .ehu{font-size:var(--fs-sm);color:var(--ink-40)}
+.ehstep{display:inline-flex;align-items:stretch;border:1.5px solid var(--line-2);border-radius:var(--r-sm);background:var(--cream);overflow:hidden}
+.ehb{width:40px;min-height:42px;border:none;background:transparent;color:var(--forest);font-size:23px;font-weight:700;line-height:1;display:flex;align-items:center;justify-content:center;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.ehb:active{background:var(--tint)}
+.ehb:disabled{color:var(--ink-40);opacity:.4;cursor:default}
+.ehb:first-child{border-right:1px solid var(--line)}
+.ehb:last-child{border-left:1px solid var(--line)}
+.ehval{min-width:62px;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-weight:700;font-size:var(--fs-base);color:var(--ink);padding:0 4px}
+.ehval.sm{min-width:46px}
 .ehrow.calc{background:var(--tint)}
 .ehcalc{font-family:var(--mono);font-weight:700;font-size:var(--fs-base);color:var(--ink)}
 .ehcalc.strong{font-size:var(--fs-lg)}
@@ -562,11 +570,11 @@ body{font-family:var(--ui);color:var(--ink);background:var(--stage);min-height:1
             <div class="essl">Hours breakdown <span class="essi"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></span></div>
             <div class="esnote2">Edit only if different from the standard day.</div>
             <div class="ehgrid">
-              <div class="ehrow"><span class="ehic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><span class="ehlab">Start time</span><input class="ehin" id="ehStart" value="06:00"></div>
-              <div class="ehrow"><span class="ehic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><span class="ehlab">Finish time</span><input class="ehin" id="ehFinish" value="18:00"></div>
-              <div class="ehrow"><span class="ehic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></span><span class="ehlab">Break <span class="ehsub">(unpaid)</span></span><span class="ehnum"><input class="ehin sm" id="ehBreak" value="0.5"><span class="ehu">h</span></span></div>
-              <div class="ehrow"><span class="ehic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="6" width="15" height="12" rx="2"/><path d="M16 10h4l3 3v3a2 2 0 0 1-2 2h-1"/><circle cx="6" cy="19" r="2"/><circle cx="19" cy="19" r="2"/></svg></span><span class="ehlab">Travel <span class="ehsub">(to / from site)</span></span><span class="ehnum"><input class="ehin sm" id="ehTravel" value="0.0"><span class="ehu">h</span></span></div>
-              <div class="ehrow"><span class="ehic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h12M6 22h12M6 2c0 5 6 6 6 10 0-4 6-5 6-10M6 22c0-5 6-6 6-10 0 4 6 5 6 10"/></svg></span><span class="ehlab">Standby</span><span class="ehnum"><input class="ehin sm" id="ehStandby" value="0.0"><span class="ehu">h</span></span></div>
+              <div class="ehrow"><span class="ehic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><span class="ehlab">Start time</span><span class="ehstep" data-mode="time" data-step="15"><button class="ehb" type="button" data-d="-1">&minus;</button><span class="ehval" id="ehStart">06:00</span><button class="ehb" type="button" data-d="1">+</button></span></div>
+              <div class="ehrow"><span class="ehic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><span class="ehlab">Finish time</span><span class="ehstep" data-mode="time" data-step="15"><button class="ehb" type="button" data-d="-1">&minus;</button><span class="ehval" id="ehFinish">18:00</span><button class="ehb" type="button" data-d="1">+</button></span></div>
+              <div class="ehrow"><span class="ehic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></span><span class="ehlab">Break <span class="ehsub">(unpaid)</span></span><span class="ehnum"><span class="ehstep" data-mode="hr" data-step="0.25" data-min="0"><button class="ehb" type="button" data-d="-1">&minus;</button><span class="ehval sm" id="ehBreak">0.5</span><button class="ehb" type="button" data-d="1">+</button></span><span class="ehu">h</span></span></div>
+              <div class="ehrow"><span class="ehic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="6" width="15" height="12" rx="2"/><path d="M16 10h4l3 3v3a2 2 0 0 1-2 2h-1"/><circle cx="6" cy="19" r="2"/><circle cx="19" cy="19" r="2"/></svg></span><span class="ehlab">Travel <span class="ehsub">(to / from site)</span></span><span class="ehnum"><span class="ehstep" data-mode="hr" data-step="0.25" data-min="0"><button class="ehb" type="button" data-d="-1">&minus;</button><span class="ehval sm" id="ehTravel">0.0</span><button class="ehb" type="button" data-d="1">+</button></span><span class="ehu">h</span></span></div>
+              <div class="ehrow"><span class="ehic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h12M6 22h12M6 2c0 5 6 6 6 10 0-4 6-5 6-10M6 22c0-5 6-6 6-10 0 4 6 5 6 10"/></svg></span><span class="ehlab">Standby</span><span class="ehnum"><span class="ehstep" data-mode="hr" data-step="0.25" data-min="0"><button class="ehb" type="button" data-d="-1">&minus;</button><span class="ehval sm" id="ehStandby">0.0</span><button class="ehb" type="button" data-d="1">+</button></span><span class="ehu">h</span></span></div>
               <div class="ehrow calc"><span class="ehic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 1-5 5L4 17v3h3l5.7-5.7a4 4 0 0 0 5-5l-2.5 2.5-2.3-.4-.4-2.3 2.6-2.6z"/></svg></span><span class="ehlab">Work hours <span class="ehsub">(calculated)</span></span><span class="ehcalc"><span id="ehWork">9.5</span> h</span></div>
               <div class="ehrow calc"><span class="ehic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><span class="ehlab">Total hours <span class="ehsub">(calculated)</span></span><span class="ehcalc strong"><span id="ehTotal">9.5</span> h</span></div>
             </div>
@@ -596,7 +604,7 @@ body{font-family:var(--ui);color:var(--ink);background:var(--stage);min-height:1
 
 <script>
 (function(){
-  function fmt(n){return (Math.round(n*10)/10).toFixed(1);}
+  function fmt(n){n=Math.round(n*4)/4; return (n%1===0)?n.toFixed(1):String(n);}
   function nowHM(){var d=new Date();return ('0'+d.getHours()).slice(-2)+':'+('0'+d.getMinutes()).slice(-2);}
   function toMin(t){var p=(t||'').split(':'); if(p.length<2) return 0; return (parseInt(p[0],10)||0)*60+(parseInt(p[1],10)||0);}
   var STD={start:'06:00',finish:'18:00',brk:0.5,travel:0.0,standby:0.0,total:9.5};
@@ -612,7 +620,8 @@ body{font-family:var(--ui);color:var(--ink);background:var(--stage);min-height:1
   }
 
   var sheet=document.getElementById('esheet'), curRow=null, base=null;
-  function setVal(id,v){document.getElementById(id).value=v;}
+  function setVal(id,v){document.getElementById(id).textContent=v;}
+  function gv(id){return (document.getElementById(id).textContent||'').trim();}
   function openSheet(row){
     curRow=row;
     document.getElementById('esName').textContent=row.dataset.name;
@@ -632,16 +641,33 @@ body{font-family:var(--ui);color:var(--ink);background:var(--stage);min-height:1
   }
   function closeSheet(){ sheet.classList.remove('open'); sheet.setAttribute('aria-hidden','true'); curRow=null; }
   function calc(){
-    var span=(toMin(document.getElementById('ehFinish').value)-toMin(document.getElementById('ehStart').value))/60;
-    var brk=parseFloat(document.getElementById('ehBreak').value)||0;
-    var tr=parseFloat(document.getElementById('ehTravel').value)||0;
-    var sb=parseFloat(document.getElementById('ehStandby').value)||0;
+    var span=(toMin(gv('ehFinish'))-toMin(gv('ehStart')))/60;
+    var brk=parseFloat(gv('ehBreak'))||0;
+    var tr=parseFloat(gv('ehTravel'))||0;
+    var sb=parseFloat(gv('ehStandby'))||0;
     var work=Math.max(0, base.work + ((span-brk)-(base.span-base.brk)));
     var total=work+tr+sb;
     document.getElementById('ehWork').textContent=fmt(work);
     document.getElementById('ehTotal').textContent=fmt(total);
   }
-  ['ehStart','ehFinish','ehBreak','ehTravel','ehStandby'].forEach(function(id){ document.getElementById(id).addEventListener('input',calc); });
+  function stepEl(st,dir){
+    var mode=st.getAttribute('data-mode'), step=parseFloat(st.getAttribute('data-step'));
+    var val=st.querySelector('.ehval');
+    if(mode==='time'){
+      var m=toMin(val.textContent)+dir*step; m=Math.max(0,Math.min(24*60,m));
+      val.textContent=('0'+Math.floor(m/60)).slice(-2)+':'+('0'+(m%60)).slice(-2);
+    } else {
+      var mn=parseFloat(st.getAttribute('data-min')); if(isNaN(mn)) mn=0;
+      var n=Math.max(mn,(parseFloat(val.textContent)||0)+dir*step);
+      val.textContent=fmt(n);
+    }
+    calc();
+  }
+  [].forEach.call(document.querySelectorAll('.ehstep'),function(st){
+    [].forEach.call(st.querySelectorAll('.ehb'),function(b){
+      b.addEventListener('click',function(){ stepEl(st, parseInt(b.getAttribute('data-d'),10)); });
+    });
+  });
   var note=document.getElementById('esNote');
   note.addEventListener('input',function(){document.getElementById('esNoteCount').textContent=note.value.length+' / 200';});
   document.getElementById('esSave').addEventListener('click',function(){
@@ -725,7 +751,7 @@ body{font-family:var(--ui);color:var(--ink);background:var(--stage);min-height:1
       <a href="daily-activity.html"><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5" width="16" height="16" rx="2"/><path d="M4 9.5h16M8 3v4M16 3v4"/></svg></span><span class="fl"><b>Daily Activity Sheet</b><i>Crew &amp; plant hours</i></span></a>
       <a href="safety-docs.html"><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 19 6v5c0 5-3 7.6-7 9-4-1.4-7-4-7-9V6z"/><path d="m9 12 2 2 4-4"/></svg></span><span class="fl"><b>Safety Docs</b><i>JSA / SWMS</i></span></a>
       <a href="reference-documents-operator.html"><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7a2 2 0 0 1 2-2h4l2 2h6a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/></svg></span><span class="fl"><b>Reference Documents</b><i>Project library</i></span></a>
-      <a class="inc" href="incident.html"><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4 21 19H3z"/><path d="M12 10v4"/><path d="M12 17v.01"/></svg></span><span class="fl"><b>Incident / Near-Miss</b><i>Report an event — anytime</i></span></a>
+      <a class="inc" href="incident.html"><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4 21 19H3z"/><path d="M12 10v4"/><path d="M12 17v.01"/></svg></span><span class="fl"><b>Incident / Near-Miss</b><i>Report an event, anytime</i></span></a>
     </nav>
   </div>
 </div>
