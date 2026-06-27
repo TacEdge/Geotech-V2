@@ -209,6 +209,64 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);font-size:16
 .ackbtn:hover{background:var(--forest-2)}
 .ackbtn[disabled]{background:var(--sage-tint);color:var(--forest);cursor:default}
 
+/* view toggle (segmented control) */
+.vtoggle{display:inline-flex;align-items:center;gap:0;background:var(--plan);border:1px solid var(--line);
+ border-radius:11px;padding:3px}
+.vtoggle button{appearance:none;border:none;background:transparent;cursor:pointer;font-family:var(--ui);
+ font-size:13px;font-weight:600;color:var(--ink-60);padding:7px 16px;border-radius:8px;display:inline-flex;align-items:center;gap:7px;line-height:1}
+.vtoggle button svg{width:14px;height:14px}
+.vtoggle button:hover{color:var(--ink)}
+.vtoggle button.on{background:var(--forest);color:var(--cream)}
+.vtoggle button.on:hover{color:var(--cream)}
+
+/* raw-data view */
+.rawwrap{display:grid;grid-template-columns:1fr 344px;gap:16px;align-items:start}
+.rawwrap>*{min-width:0}
+.rawnote{display:flex;align-items:flex-start;gap:9px;font-size:12.5px;color:var(--ink-60);
+ background:var(--sage-tint);border:1px solid #d3ddbf;border-radius:11px;padding:11px 14px;margin-bottom:14px}
+.rawnote svg{flex-shrink:0;color:var(--olive);margin-top:1px;width:15px;height:15px}
+.rawnote b{color:var(--ink)}
+.rawcard{padding:0;overflow:hidden}
+.rawcard .rh{padding:16px 20px 14px;border-bottom:1px solid var(--line);display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.rawcard .rh .t{font-size:15px;font-weight:700}
+.rawcard .rh .s{font-family:var(--mono);font-size:11px;letter-spacing:.04em;color:var(--ink-40)}
+.rawscroll{overflow-x:auto}
+table.rawtab{border-collapse:collapse;width:100%;font-family:var(--mono);font-size:12px;white-space:nowrap}
+table.rawtab th{text-align:right;font-weight:600;color:var(--ink-40);text-transform:uppercase;letter-spacing:.04em;
+ font-size:9.5px;padding:11px 10px;border-bottom:1px solid var(--line-2);background:var(--plan);position:sticky;top:0}
+table.rawtab th:first-child,table.rawtab td:first-child{text-align:left;padding-left:20px}
+table.rawtab td:last-child,table.rawtab th:last-child{padding-right:20px}
+table.rawtab td{text-align:right;padding:9px 10px;border-bottom:1px solid var(--line);color:var(--ink);font-feature-settings:"tnum" 1}
+table.rawtab tr:last-child td{border-bottom:none}
+table.rawtab tbody tr:hover td{background:var(--sage-tint)}
+table.rawtab td.anc{font-weight:700;color:var(--forest)}
+table.rawtab td.res{color:var(--forest-2);font-weight:600}
+.rawmeta{padding:13px 20px;border-top:1px solid var(--line);font-family:var(--mono);font-size:11px;color:var(--ink-40);
+ display:flex;gap:18px;flex-wrap:wrap}
+.rawmeta b{color:var(--ink-60);font-weight:600}
+
+/* test-performance plots */
+.tpcard{padding:20px 22px 22px}
+.tp-h{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:4px}
+.tp-h .t{font-size:16px;font-weight:700}
+.tp-h .s{font-family:var(--mono);font-size:11px;letter-spacing:.04em;color:var(--ink-40)}
+.tp-sub{font-size:12.5px;color:var(--ink-60);margin-bottom:16px}
+.tp-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.tp-grid>figure{margin:0;background:var(--plan);border:1px solid var(--line);border-radius:12px;padding:14px 14px 12px;min-width:0}
+.tp-grid figure svg{display:block;width:100%;height:auto}
+.tp-cap{font-size:12px;color:var(--ink-60);margin-top:8px;line-height:1.4}
+.tp-cap b{color:var(--ink);font-weight:600}
+.plt-grid{stroke:var(--line);stroke-width:1}
+.plt-axis{stroke:var(--ink-40);stroke-width:1.2}
+.plt-tick{font-family:var(--mono);font-size:9px;fill:var(--ink-40)}
+.plt-tlab{font-family:var(--mono);font-size:9.5px;fill:var(--ink-60);font-weight:600}
+.plt-line{fill:none;stroke:var(--forest);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
+.plt-line2{fill:none;stroke:var(--olive);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
+.plt-thr{stroke:var(--ochre);stroke-width:1.4;stroke-dasharray:5 4}
+.plt-thrlab{font-family:var(--mono);font-size:9px;fill:var(--ochre);font-weight:600}
+.plt-dot{fill:var(--forest)}
+@media (max-width:1080px){ .rawwrap{grid-template-columns:1fr} .tp-grid{grid-template-columns:1fr} }
+
 @media (max-width:1080px){ body{overflow-x:hidden} .egrid{grid-template-columns:1fr} .rail{position:static}
  .an-body{grid-template-columns:1fr} .an-list{max-height:none;border-right:none;border-bottom:1px solid var(--line)} }
 @media (max-width:760px){ .estrip{padding:10px 14px;flex-wrap:wrap} .ad-metrics{grid-template-columns:1fr 1fr}
@@ -250,11 +308,16 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);font-size:16
       <div class="sub">Benmore · Rock Control · released to WSP New Zealand</div>
     </div>
     <div class="pills">
+      <div class="vtoggle" role="tablist" aria-label="View mode">
+        <button id="vt-sum" class="on" role="tab" aria-selected="true"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5h14M3 10h14M3 15h9"/></svg>Summary</button>
+        <button id="vt-raw" role="tab" aria-selected="false"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3.5" width="14" height="13" rx="1.5"/><path d="M3 8h14M8 3.5v13"/></svg>Raw data</button>
+      </div>
       <div class="pill2"><div><div class="k">Released</div><div class="v">14 of 54 anchors</div></div><svg width=17 height=17 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.5 2.5 5-5.5"/></svg></div>
       <div class="pill2"><div><div class="k">Latest release</div><div class="v">Release 004 · 12 May</div></div><svg width="18" height="18" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2.5h7l4.5 4.5V19.5H6z"/><path d="M13 2.5v4.5h4.5"/></svg></div>
     </div>
   </div>
 
+  <div id="view-summary">
   <div class="egrid">
     <div class="ecol">
       <div class="card prog">
@@ -298,6 +361,127 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);font-size:16
       <button class="ackbtn" id="ackBtn"><svg width=18 height=18 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.5 2.5 5-5.5"/></svg> Acknowledge receipt</button>
     </div>
   </div>
+
+  <div class="card tpcard" style="margin-top:16px">
+    <div class="tp-h"><div class="t">Anchor test performance · B17</div><div class="s">Proof load 1.33 × DL · 235 kN hold</div></div>
+    <div class="tp-sub">Plots rendered from the released test record. Acceptance per AS&nbsp;5100 / on-site testing schedule · creep &lt; 1.0&nbsp;mm over the final log cycle.</div>
+    <div class="tp-grid">
+      <figure>
+        <svg viewBox="0 0 340 190" role="img" aria-label="Creep displacement versus time">
+          <!-- gridlines Y -->
+          <g class="plt-grid">
+            <line x1="46" y1="156" x2="318" y2="156"/>
+            <line x1="46" y1="122.5" x2="318" y2="122.5"/>
+            <line x1="46" y1="89" x2="318" y2="89"/>
+            <line x1="46" y1="55.5" x2="318" y2="55.5"/>
+            <line x1="46" y1="22" x2="318" y2="22"/>
+          </g>
+          <!-- axes -->
+          <line class="plt-axis" x1="46" y1="22" x2="46" y2="156"/>
+          <line class="plt-axis" x1="46" y1="156" x2="318" y2="156"/>
+          <!-- x ticks -->
+          <g class="plt-tick" text-anchor="middle">
+            <text x="46" y="169">0</text><text x="114" y="169">15</text><text x="182" y="169">30</text><text x="250" y="169">45</text><text x="318" y="169">60</text>
+          </g>
+          <!-- y ticks -->
+          <g class="plt-tick" text-anchor="end">
+            <text x="41" y="159">0</text><text x="41" y="125.5">0.5</text><text x="41" y="92">1.0</text><text x="41" y="58.5">1.5</text><text x="41" y="25">2.0</text>
+          </g>
+          <!-- acceptance threshold -->
+          <line class="plt-thr" x1="46" y1="55.5" x2="318" y2="55.5"/>
+          <text class="plt-thrlab" x="314" y="51" text-anchor="end">Acceptance limit 1.5 mm</text>
+          <!-- data path -->
+          <path class="plt-line" d="M 46.0,156.0 L 50.5,146.2 L 55.1,137.6 L 59.6,130.2 L 64.1,123.6 L 68.7,117.9 L 80.0,106.3 L 91.3,97.8 L 114.0,86.9 L 136.7,81.1 L 182.0,76.2 L 227.3,74.7 L 272.7,74.1 L 318.0,73.9"/>
+          <g class="plt-dot"><circle cx="46" cy="156" r="2"/><circle cx="68.7" cy="117.9" r="2"/><circle cx="91.3" cy="97.8" r="2"/><circle cx="136.7" cy="81.1" r="2"/><circle cx="227.3" cy="74.7" r="2"/><circle cx="318" cy="73.9" r="2"/></g>
+          <!-- axis labels -->
+          <text class="plt-tlab" x="182" y="186" text-anchor="middle">Hold time (min)</text>
+          <text class="plt-tlab" x="16" y="89" text-anchor="middle" transform="rotate(-90 16 89)">Displacement (mm)</text>
+        </svg>
+        <div class="tp-cap"><b>Creep at proof load.</b> Displacement flattens to 1.16&nbsp;mm and stabilises well inside the 1.5&nbsp;mm acceptance line · creep accepted.</div>
+      </figure>
+      <figure>
+        <svg viewBox="0 0 340 190" role="img" aria-label="Displacement versus log time">
+          <!-- gridlines Y -->
+          <g class="plt-grid">
+            <line x1="50" y1="156" x2="318" y2="156"/>
+            <line x1="50" y1="111.3" x2="318" y2="111.3"/>
+            <line x1="50" y1="66.7" x2="318" y2="66.7"/>
+            <line x1="50" y1="22" x2="318" y2="22"/>
+          </g>
+          <!-- log minor x gridlines -->
+          <g class="plt-grid" opacity="0.6">
+            <line x1="90.3" y1="22" x2="90.3" y2="156"/><line x1="113.9" y1="22" x2="113.9" y2="156"/><line x1="130.7" y1="22" x2="130.7" y2="156"/><line x1="143.7" y1="22" x2="143.7" y2="156"/><line x1="154.3" y1="22" x2="154.3" y2="156"/><line x1="163.2" y1="22" x2="163.2" y2="156"/><line x1="171" y1="22" x2="171" y2="156"/><line x1="177.9" y1="22" x2="177.9" y2="156"/>
+            <line x1="224.3" y1="22" x2="224.3" y2="156"/><line x1="247.9" y1="22" x2="247.9" y2="156"/><line x1="264.7" y1="22" x2="264.7" y2="156"/><line x1="277.7" y1="22" x2="277.7" y2="156"/><line x1="288.3" y1="22" x2="288.3" y2="156"/><line x1="297.2" y1="22" x2="297.2" y2="156"/><line x1="305" y1="22" x2="305" y2="156"/><line x1="311.9" y1="22" x2="311.9" y2="156"/>
+          </g>
+          <!-- major decade x lines -->
+          <g class="plt-grid"><line x1="50" y1="22" x2="50" y2="156"/><line x1="184" y1="22" x2="184" y2="156"/><line x1="318" y1="22" x2="318" y2="156"/></g>
+          <!-- axes -->
+          <line class="plt-axis" x1="50" y1="22" x2="50" y2="156"/>
+          <line class="plt-axis" x1="50" y1="156" x2="318" y2="156"/>
+          <!-- x ticks (log) -->
+          <g class="plt-tick" text-anchor="middle">
+            <text x="50" y="169">1</text><text x="184" y="169">10</text><text x="318" y="169">100</text>
+          </g>
+          <!-- y ticks -->
+          <g class="plt-tick" text-anchor="end">
+            <text x="45" y="159">0</text><text x="45" y="114.3">1.0</text><text x="45" y="69.7">2.0</text><text x="45" y="25">3.0</text>
+          </g>
+          <!-- data path -->
+          <path class="plt-line2" d="M 50.0,140.4 L 73.6,133.4 L 90.3,128.5 L 113.9,121.6 L 143.7,112.9 L 163.2,107.1 L 184.0,101.0 L 207.6,94.0 L 224.3,89.0 L 247.9,82.0 L 277.7,73.1 L 297.2,67.2 L 318.0,60.9"/>
+          <g class="plt-dot" style="fill:var(--olive)"><circle cx="50" cy="140.4" r="2"/><circle cx="113.9" cy="121.6" r="2"/><circle cx="184" cy="101" r="2"/><circle cx="247.9" cy="82" r="2"/><circle cx="318" cy="60.9" r="2"/></g>
+          <!-- axis labels -->
+          <text class="plt-tlab" x="184" y="186" text-anchor="middle">Time (min, log scale)</text>
+          <text class="plt-tlab" x="16" y="89" text-anchor="middle" transform="rotate(-90 16 89)">Displacement (mm)</text>
+        </svg>
+        <div class="tp-cap"><b>Displacement vs log time.</b> Near-linear settlement against log(time) across the 1, 10, 100&nbsp;min cycles · slope decays, no run-away movement.</div>
+      </figure>
+    </div>
+  </div>
+
+  </div><!-- /view-summary -->
+
+  <div id="view-raw" style="display:none">
+    <div class="rawnote"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2.5l6 2.2v4.6c0 3.7-2.5 6.6-6 8.2-3.5-1.6-6-4.5-6-8.2V4.7z"/><path d="M7.5 10l1.8 1.8L13 8"/></svg><span>This is the <b>raw captured data behind the summary</b> · the figures recorded at the gauge for each released anchor, exactly as released. No rounding or curation beyond the released record.</span></div>
+    <div class="rawwrap">
+      <div class="card rawcard">
+        <div class="rh"><div class="t">Released anchor test data</div><div class="s">14 anchors · released set R001–R004</div></div>
+        <div class="rawscroll">
+          <table class="rawtab">
+            <thead><tr>
+              <th>Anchor</th><th>Design depth (m)</th><th>Final depth (m)</th><th>Proof load (kN)</th><th>Lock-off (kN)</th><th>Residual mvt (mm)</th><th>Creep (mm)</th><th>Test date</th><th>Result</th>
+            </tr></thead>
+            <tbody>
+              <tr><td class="anc">B01</td><td>17.30</td><td>17.42</td><td>235.0</td><td>176.0</td><td>0.84</td><td>0.92</td><td>22-04-2026</td><td class="res">Pass</td></tr>
+              <tr><td class="anc">B02</td><td>16.80</td><td>16.91</td><td>235.0</td><td>176.0</td><td>0.79</td><td>0.88</td><td>22-04-2026</td><td class="res">Pass</td></tr>
+              <tr><td class="anc">B03</td><td>17.00</td><td>17.13</td><td>235.0</td><td>176.0</td><td>0.91</td><td>1.04</td><td>22-04-2026</td><td class="res">Pass</td></tr>
+              <tr><td class="anc">B04</td><td>17.90</td><td>17.81</td><td>240.0</td><td>180.0</td><td>0.73</td><td>0.81</td><td>29-04-2026</td><td class="res">Pass</td></tr>
+              <tr><td class="anc">B05</td><td>18.00</td><td>18.02</td><td>240.0</td><td>180.0</td><td>0.88</td><td>0.97</td><td>29-04-2026</td><td class="res">Pass</td></tr>
+              <tr><td class="anc">B06</td><td>17.10</td><td>17.24</td><td>235.0</td><td>176.0</td><td>0.81</td><td>0.90</td><td>29-04-2026</td><td class="res">Pass</td></tr>
+              <tr><td class="anc">B08</td><td>16.80</td><td>16.72</td><td>235.0</td><td>176.0</td><td>0.69</td><td>0.77</td><td>06-05-2026</td><td class="res">Pass</td></tr>
+              <tr><td class="anc">B17</td><td>17.50</td><td>17.63</td><td>235.0</td><td>176.0</td><td>0.86</td><td>1.16</td><td>06-05-2026</td><td class="res">Pass</td></tr>
+              <tr><td class="anc">B19</td><td>16.10</td><td>16.24</td><td>230.0</td><td>172.0</td><td>0.77</td><td>0.85</td><td>29-04-2026</td><td class="res">Pass</td></tr>
+              <tr><td class="anc">B20</td><td>16.00</td><td>16.03</td><td>230.0</td><td>172.0</td><td>0.74</td><td>0.83</td><td>06-05-2026</td><td class="res">Pass</td></tr>
+              <tr><td class="anc">B28</td><td>16.00</td><td>16.11</td><td>230.0</td><td>172.0</td><td>0.80</td><td>0.89</td><td>11-05-2026</td><td class="res">Pass</td></tr>
+              <tr><td class="anc">B31</td><td>17.00</td><td>17.22</td><td>235.0</td><td>176.0</td><td>0.93</td><td>1.07</td><td>11-05-2026</td><td class="res">Pass</td></tr>
+              <tr><td class="anc">P01</td><td>12.00</td><td>12.13</td><td>205.0</td><td>154.0</td><td>0.62</td><td>0.71</td><td>06-05-2026</td><td class="res">Pass</td></tr>
+              <tr><td class="anc">P02</td><td>12.00</td><td>12.04</td><td>205.0</td><td>154.0</td><td>0.58</td><td>0.66</td><td>11-05-2026</td><td class="res">Pass</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="rawmeta"><span><b>Source</b> · gauge capture, Rock Control</span><span><b>Units</b> · m / kN / mm</span><span><b>Acceptance</b> · creep &lt; 1.5 mm</span><span><b>Rows</b> · 14 of 14 released</span></div>
+      </div>
+      <div class="rail">
+        <div class="panel">
+          <div class="p-h">About this export</div>
+          <div class="tn" style="display:flex;gap:9px;align-items:flex-start;font-size:13px;color:var(--ink-60)"><svg width="15" height="15" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;color:var(--olive);margin-top:2px"><path d="M4 3.5h8l4 4v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4.5a1 1 0 0 1 1-1z"/><path d="M12 3.5v4h4M6.5 11h7M6.5 14h7"/></svg><span>Every figure shown is taken directly from the released record. The summary view presents the same data, curated for review.</span></div>
+        </div>
+        <div class="panel">
+          <div class="p-h">Download</div>
+          <div class="rep-row"><span class="rep-ic"><svg width="18" height="18" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2.5h7l4.5 4.5V19.5H6z"/><path d="M13 2.5v4.5h4.5"/></svg></span><div class="rep-main"><div class="rep-l1"><span class="rep-id">Anchor test data</span><span class="rep-tag acc">CSV</span></div><div class="rep-meta">14 rows · released set</div></div><span class="rep-dl" title="Download CSV"><svg width="19" height="19" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 10l5 5 5-5M11 4v11"/></svg></span></div>
+        </div>
+      </div>
+    </div>
+  </div><!-- /view-raw -->
 </div>
 
 <script>
@@ -340,6 +524,17 @@ function detail(id){
     b.addEventListener('click',function(){sel(b.getAttribute('data-id'));});
   });
   sel('B17');
+  var vsum=document.getElementById('view-summary'),vraw=document.getElementById('view-raw');
+  var btnSum=document.getElementById('vt-sum'),btnRaw=document.getElementById('vt-raw');
+  function setView(raw){
+    vsum.style.display=raw?'none':'';
+    vraw.style.display=raw?'':'none';
+    btnRaw.classList.toggle('on',raw); btnSum.classList.toggle('on',!raw);
+    btnRaw.setAttribute('aria-selected',raw?'true':'false');
+    btnSum.setAttribute('aria-selected',raw?'false':'true');
+  }
+  btnSum.addEventListener('click',function(){setView(false);});
+  btnRaw.addEventListener('click',function(){setView(true);});
   var ack=document.getElementById('ackBtn');
   ack.addEventListener('click',function(){
     if(ack.disabled) return;

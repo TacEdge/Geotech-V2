@@ -130,6 +130,9 @@ body{font-size:15px}
 .d-pill{font-size:13px;font-weight:600;padding:6px 13px;border-radius:99px}
 .d-pill.pl-ready{background:var(--sage-tint);color:var(--forest)}
 .d-pill.pl-attn{background:var(--ochre-tint);color:#8a5f1e}
+.d-pill.pl-prov{background:var(--ochre-tint);color:#8a5f1e;border:1px solid #e3c98a}
+.d-pill.pl-approved{background:var(--forest);color:var(--cream)}
+.d-approved-by{font-family:var(--mono);font-size:12px;color:var(--ink-60);margin-left:2px}
 .d-sub{display:flex;align-items:center;gap:7px;font-size:14px;color:var(--ink-60);margin-top:11px}
 .d-sub b{color:var(--ink);font-weight:600}
 .d-sub .pin{display:flex;color:var(--olive)}.d-sub .pin svg{width:16px;height:16px}
@@ -239,14 +242,14 @@ body{font-size:15px}
 
 <div class="content2">
   <div class="qa-head">
-    <div class="qa-title">QA Queue <span class="badge">8</span></div>
-    <div class="qa-sub">Review submitted records — confirm, or reopen with a reason.</div>
+    <div class="qa-title">QA Queue <span class="badge" id="qa-total">8</span></div>
+    <div class="qa-sub">Review submitted records, confirm or reopen with a reason. Results stay provisional until a PM approves them here.</div>
   </div>
 
   <div class="qa-grid">
     <div class="queue">
   <section class="q-sec" id="grp-ready">
-    <div class="q-sec-h">Ready to confirm <span class="q-sec-c">5</span></div>
+    <div class="q-sec-h">Ready to confirm <span class="q-sec-c" id="cnt-ready">5</span></div>
     <button class="q-item bd-ready is-sel" data-target="B17">
       <div class="qi-top"><span class="qi-id">B17</span><span class="qi-pill ready">Ready</span></div>
       <div class="qi-zone">Spillway Face · J. Smith · 2h ago</div>
@@ -270,19 +273,19 @@ body{font-size:15px}
     </button>
   </section>
   <section class="q-sec" id="grp-attn">
-    <div class="q-sec-h">Needs attention <span class="q-sec-c">3</span></div>
-    <button class="q-item bd-attn" data-target="B11">
+    <div class="q-sec-h">Needs attention <span class="q-sec-c" id="cnt-attn">3</span></div>
+    <button class="q-item bd-attn" data-target="B11" data-gap="Missing photo">
       <div class="qi-top"><span class="qi-id">B11</span><span class="qi-pill attn">Missing photo</span></div>
       <div class="qi-zone">Spillway Face · R. Patel · 4h ago</div>
       <div class="qi-ev"><span class="ev-dots"><span class="ev-d" style="background:#6e7d5c"></span><span class="ev-d" style="background:#6e7d5c"></span><span class="ev-d" style="background:#6e7d5c"></span><span class="ev-d" style="background:#6e7d5c"></span><span class="ev-d" style="background:#d9d3c4"></span></span><span class="ev-lab">4/5 evidence</span></div>
-    </button><button class="q-item bd-attn" data-target="B21">
-      <div class="qi-top"><span class="qi-id">B21</span><span class="qi-pill attn">Missing test result</span></div>
+    </button><button class="q-item bd-attn" data-target="B21" data-gap="Unsigned test sheet">
+      <div class="qi-top"><span class="qi-id">B21</span><span class="qi-pill attn">Unsigned test sheet</span></div>
       <div class="qi-zone">Stilling Basin · K. Olsen · 6h ago</div>
       <div class="qi-ev"><span class="ev-dots"><span class="ev-d" style="background:#6e7d5c"></span><span class="ev-d" style="background:#6e7d5c"></span><span class="ev-d" style="background:#6e7d5c"></span><span class="ev-d" style="background:#6e7d5c"></span><span class="ev-d" style="background:#d9d3c4"></span></span><span class="ev-lab">4/5 evidence</span></div>
-    </button><button class="q-item bd-attn" data-target="P05">
-      <div class="qi-top"><span class="qi-id">P05</span><span class="qi-pill attn">Missing sign-off</span></div>
+    </button><button class="q-item bd-attn" data-target="P05" data-gap="Missing lithology">
+      <div class="qi-top"><span class="qi-id">P05</span><span class="qi-pill attn">Missing lithology</span></div>
       <div class="qi-zone">Crest Gallery · D. Brown · 3h ago</div>
-      <div class="qi-ev"><span class="ev-dots"><span class="ev-d" style="background:#6e7d5c"></span><span class="ev-d" style="background:#6e7d5c"></span><span class="ev-d" style="background:#6e7d5c"></span><span class="ev-d" style="background:#d9d3c4"></span><span class="ev-d" style="background:#d9d3c4"></span></span><span class="ev-lab">3/5 evidence</span></div>
+      <div class="qi-ev"><span class="ev-dots"><span class="ev-d" style="background:#6e7d5c"></span><span class="ev-d" style="background:#6e7d5c"></span><span class="ev-d" style="background:#6e7d5c"></span><span class="ev-d" style="background:#6e7d5c"></span><span class="ev-d" style="background:#d9d3c4"></span></span><span class="ev-lab">4/5 evidence</span></div>
     </button>
   </section>
   <div class="reopen-note">Reopened records will appear here when available.</div>
@@ -292,7 +295,8 @@ body{font-size:15px}
   <div class="d-scroll">
     <div class="d-head">
       <div class="d-id">B17</div>
-      <span class="d-pill pl-ready">Ready to confirm</span>
+      <span class="d-pill pl-prov" data-prov>Provisional</span>
+      <span class="d-pill pl-ready" data-status>Ready to confirm</span>
     </div>
     <div class="d-sub"><span class="pin"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M10 18s6-5.2 6-10A6 6 0 0 0 4 8c0 4.8 6 10 6 10Z"/><circle cx="10" cy="8" r="2.1"/></svg></span>Spillway Face · Submitted by <b>J. Smith</b> · 2h ago</div>
     <div class="d-metrics"><div class="mx"><div class="mx-k">Design depth</div><div class="mx-v">17.5 m</div></div><div class="mx"><div class="mx-k">Actual depth</div><div class="mx-v">17.6 m</div></div><div class="mx"><div class="mx-k">Variance</div><div class="mx-v">+0.1 m</div></div><div class="mx"><div class="mx-k">Grout</div><div class="mx-v">Within spec</div></div><div class="mx"><div class="mx-k">Test result</div><div class="mx-v">Pass</div></div><div class="mx"><div class="mx-k">Lithology</div><div class="mx-v">Greywacke</div></div></div>
@@ -321,13 +325,14 @@ body{font-size:15px}
       </section>
     </div>
   </div>
-  <div class="d-actions"><button class="da-o">Reopen with reason</button><button class="da-p">Confirm record</button></div>
+  <div class="d-actions"><button class="da-o">Reopen with reason</button><button class="da-p" data-approve="B17">Approve record</button></div>
 </div>
 <div class="detail" id="d-B13" data-id="B13" hidden>
   <div class="d-scroll">
     <div class="d-head">
       <div class="d-id">B13</div>
-      <span class="d-pill pl-ready">Ready to confirm</span>
+      <span class="d-pill pl-prov" data-prov>Provisional</span>
+      <span class="d-pill pl-ready" data-status>Ready to confirm</span>
     </div>
     <div class="d-sub"><span class="pin"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M10 18s6-5.2 6-10A6 6 0 0 0 4 8c0 4.8 6 10 6 10Z"/><circle cx="10" cy="8" r="2.1"/></svg></span>Spillway Face · Submitted by <b>M. Tane</b> · 5h ago</div>
     <div class="d-metrics"><div class="mx"><div class="mx-k">Design depth</div><div class="mx-v">18.2 m</div></div><div class="mx"><div class="mx-k">Actual depth</div><div class="mx-v">18.0 m</div></div><div class="mx"><div class="mx-k">Variance</div><div class="mx-v warn">-0.2 m</div></div><div class="mx"><div class="mx-k">Grout</div><div class="mx-v">Within spec</div></div><div class="mx"><div class="mx-k">Test result</div><div class="mx-v">Pass</div></div><div class="mx"><div class="mx-k">Lithology</div><div class="mx-v">Schist</div></div></div>
@@ -356,13 +361,14 @@ body{font-size:15px}
       </section>
     </div>
   </div>
-  <div class="d-actions"><button class="da-o">Reopen with reason</button><button class="da-p">Confirm record</button></div>
+  <div class="d-actions"><button class="da-o">Reopen with reason</button><button class="da-p" data-approve="B13">Approve record</button></div>
 </div>
 <div class="detail" id="d-B28" data-id="B28" hidden>
   <div class="d-scroll">
     <div class="d-head">
       <div class="d-id">B28</div>
-      <span class="d-pill pl-ready">Ready to confirm</span>
+      <span class="d-pill pl-prov" data-prov>Provisional</span>
+      <span class="d-pill pl-ready" data-status>Ready to confirm</span>
     </div>
     <div class="d-sub"><span class="pin"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M10 18s6-5.2 6-10A6 6 0 0 0 4 8c0 4.8 6 10 6 10Z"/><circle cx="10" cy="8" r="2.1"/></svg></span>Stilling Basin · Submitted by <b>J. Smith</b> · 1d ago</div>
     <div class="d-metrics"><div class="mx"><div class="mx-k">Design depth</div><div class="mx-v">16.0 m</div></div><div class="mx"><div class="mx-k">Actual depth</div><div class="mx-v">16.1 m</div></div><div class="mx"><div class="mx-k">Variance</div><div class="mx-v">+0.1 m</div></div><div class="mx"><div class="mx-k">Grout</div><div class="mx-v">Within spec</div></div><div class="mx"><div class="mx-k">Test result</div><div class="mx-v">Pass</div></div><div class="mx"><div class="mx-k">Lithology</div><div class="mx-v">Greywacke</div></div></div>
@@ -391,13 +397,14 @@ body{font-size:15px}
       </section>
     </div>
   </div>
-  <div class="d-actions"><button class="da-o">Reopen with reason</button><button class="da-p">Confirm record</button></div>
+  <div class="d-actions"><button class="da-o">Reopen with reason</button><button class="da-p" data-approve="B28">Approve record</button></div>
 </div>
 <div class="detail" id="d-B31" data-id="B31" hidden>
   <div class="d-scroll">
     <div class="d-head">
       <div class="d-id">B31</div>
-      <span class="d-pill pl-ready">Ready to confirm</span>
+      <span class="d-pill pl-prov" data-prov>Provisional</span>
+      <span class="d-pill pl-ready" data-status>Ready to confirm</span>
     </div>
     <div class="d-sub"><span class="pin"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M10 18s6-5.2 6-10A6 6 0 0 0 4 8c0 4.8 6 10 6 10Z"/><circle cx="10" cy="8" r="2.1"/></svg></span>Stilling Basin · Submitted by <b>D. Brown</b> · 1d ago</div>
     <div class="d-metrics"><div class="mx"><div class="mx-k">Design depth</div><div class="mx-v">17.0 m</div></div><div class="mx"><div class="mx-k">Actual depth</div><div class="mx-v">17.2 m</div></div><div class="mx"><div class="mx-k">Variance</div><div class="mx-v warn">+0.2 m</div></div><div class="mx"><div class="mx-k">Grout</div><div class="mx-v">Within spec</div></div><div class="mx"><div class="mx-k">Test result</div><div class="mx-v">Pass</div></div><div class="mx"><div class="mx-k">Lithology</div><div class="mx-v">Greywacke</div></div></div>
@@ -426,13 +433,14 @@ body{font-size:15px}
       </section>
     </div>
   </div>
-  <div class="d-actions"><button class="da-o">Reopen with reason</button><button class="da-p">Confirm record</button></div>
+  <div class="d-actions"><button class="da-o">Reopen with reason</button><button class="da-p" data-approve="B31">Approve record</button></div>
 </div>
 <div class="detail" id="d-B40" data-id="B40" hidden>
   <div class="d-scroll">
     <div class="d-head">
       <div class="d-id">B40</div>
-      <span class="d-pill pl-ready">Ready to confirm</span>
+      <span class="d-pill pl-prov" data-prov>Provisional</span>
+      <span class="d-pill pl-ready" data-status>Ready to confirm</span>
     </div>
     <div class="d-sub"><span class="pin"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M10 18s6-5.2 6-10A6 6 0 0 0 4 8c0 4.8 6 10 6 10Z"/><circle cx="10" cy="8" r="2.1"/></svg></span>Left Abutment · Submitted by <b>A. Ngata</b> · 7h ago</div>
     <div class="d-metrics"><div class="mx"><div class="mx-k">Design depth</div><div class="mx-v">14.6 m</div></div><div class="mx"><div class="mx-k">Actual depth</div><div class="mx-v">14.6 m</div></div><div class="mx"><div class="mx-k">Variance</div><div class="mx-v">0.0 m</div></div><div class="mx"><div class="mx-k">Grout</div><div class="mx-v">Within spec</div></div><div class="mx"><div class="mx-k">Test result</div><div class="mx-v">Pass</div></div><div class="mx"><div class="mx-k">Lithology</div><div class="mx-v">Schist</div></div></div>
@@ -461,20 +469,21 @@ body{font-size:15px}
       </section>
     </div>
   </div>
-  <div class="d-actions"><button class="da-o">Reopen with reason</button><button class="da-p">Confirm record</button></div>
+  <div class="d-actions"><button class="da-o">Reopen with reason</button><button class="da-p" data-approve="B40">Approve record</button></div>
 </div>
 <div class="detail" id="d-B11" data-id="B11" hidden>
   <div class="d-scroll">
     <div class="d-head">
       <div class="d-id">B11</div>
-      <span class="d-pill pl-attn">Missing photo</span>
+      <span class="d-pill pl-prov" data-prov>Provisional</span>
+      <span class="d-pill pl-attn" data-status>Missing photo</span>
     </div>
     <div class="d-sub"><span class="pin"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M10 18s6-5.2 6-10A6 6 0 0 0 4 8c0 4.8 6 10 6 10Z"/><circle cx="10" cy="8" r="2.1"/></svg></span>Spillway Face · Submitted by <b>R. Patel</b> · 4h ago</div>
     <div class="d-metrics"><div class="mx"><div class="mx-k">Design depth</div><div class="mx-v">16.8 m</div></div><div class="mx"><div class="mx-k">Actual depth</div><div class="mx-v">16.9 m</div></div><div class="mx"><div class="mx-k">Variance</div><div class="mx-v">+0.1 m</div></div><div class="mx"><div class="mx-k">Grout</div><div class="mx-v">Within spec</div></div><div class="mx"><div class="mx-k">Test result</div><div class="mx-v">Pass</div></div><div class="mx"><div class="mx-k">Lithology</div><div class="mx-v">Greywacke</div></div></div>
     <div class="d-cols">
       <section class="reqcard">
         <div class="rc-h"><span class="rc-t">Requirements</span><span class="rc-c">4 / 5 met</span></div>
-        <div class="rc-list"><div class="rq"><span class="rq-ck ok"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"/></svg></span><span class="rq-l">Drill log complete</span><span class="rq-v">Complete</span></div><div class="rq"><span class="rq-ck ok"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"/></svg></span><span class="rq-l">Depth recorded</span><span class="rq-v">16.9 m</span></div><div class="rq unmet"><span class="rq-ck no"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3 18 17H2z"/><path d="M10 8.5v4"/><circle cx="10" cy="14.6" r=".3" fill="currentColor"/></svg></span><span class="rq-l">Photos attached</span><span class="rq-v warn">1 of 2</span></div><div class="rq"><span class="rq-ck ok"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"/></svg></span><span class="rq-l">Test result</span><span class="rq-v">Pass</span></div><div class="rq"><span class="rq-ck ok"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"/></svg></span><span class="rq-l">Operator sign-off</span><span class="rq-v">R. Patel</span></div></div>
+        <div class="rc-list"><div class="rq"><span class="rq-ck ok"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"/></svg></span><span class="rq-l">Drill log complete</span><span class="rq-v">Complete</span></div><div class="rq"><span class="rq-ck ok"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"/></svg></span><span class="rq-l">Depth recorded</span><span class="rq-v">16.9 m</span></div><div class="rq unmet" data-req="photo"><span class="rq-ck no"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3 18 17H2z"/><path d="M10 8.5v4"/><circle cx="10" cy="14.6" r=".3" fill="currentColor"/></svg></span><span class="rq-l">Photos attached</span><span class="rq-v warn">1 of 2</span></div><div class="rq"><span class="rq-ck ok"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"/></svg></span><span class="rq-l">Test result</span><span class="rq-v">Pass</span></div><div class="rq"><span class="rq-ck ok"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"/></svg></span><span class="rq-l">Operator sign-off</span><span class="rq-v">R. Patel</span></div></div>
       </section>
       <section class="evcard">
         <div class="ev-tabs" role="tablist">
@@ -496,20 +505,21 @@ body{font-size:15px}
       </section>
     </div>
   </div>
-  <div class="d-actions"><button class="da-o strong">Reopen with reason</button><button class="da-p" disabled title="Resolve outstanding evidence first">Confirm record</button></div>
+  <div class="d-actions"><button class="da-o" data-resolve="B11" data-req="photo">Attach photo</button><button class="da-o strong">Reopen with reason</button><button class="da-p" data-approve="B11" disabled title="Resolve outstanding evidence first">Approve record</button></div>
 </div>
 <div class="detail" id="d-B21" data-id="B21" hidden>
   <div class="d-scroll">
     <div class="d-head">
       <div class="d-id">B21</div>
-      <span class="d-pill pl-attn">Missing test result</span>
+      <span class="d-pill pl-prov" data-prov>Provisional</span>
+      <span class="d-pill pl-attn" data-status>Unsigned test sheet</span>
     </div>
     <div class="d-sub"><span class="pin"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M10 18s6-5.2 6-10A6 6 0 0 0 4 8c0 4.8 6 10 6 10Z"/><circle cx="10" cy="8" r="2.1"/></svg></span>Stilling Basin · Submitted by <b>K. Olsen</b> · 6h ago</div>
-    <div class="d-metrics"><div class="mx"><div class="mx-k">Design depth</div><div class="mx-v">15.4 m</div></div><div class="mx"><div class="mx-k">Actual depth</div><div class="mx-v">15.6 m</div></div><div class="mx"><div class="mx-k">Variance</div><div class="mx-v warn">+0.2 m</div></div><div class="mx"><div class="mx-k">Grout</div><div class="mx-v">Within spec</div></div><div class="mx"><div class="mx-k">Test result</div><div class="mx-v warn">Awaiting</div></div><div class="mx"><div class="mx-k">Lithology</div><div class="mx-v">Greywacke</div></div></div>
+    <div class="d-metrics"><div class="mx"><div class="mx-k">Design depth</div><div class="mx-v">15.4 m</div></div><div class="mx"><div class="mx-k">Actual depth</div><div class="mx-v">15.6 m</div></div><div class="mx"><div class="mx-k">Variance</div><div class="mx-v warn">+0.2 m</div></div><div class="mx"><div class="mx-k">Grout</div><div class="mx-v">Within spec</div></div><div class="mx"><div class="mx-k">Test sheet</div><div class="mx-v warn">Unsigned</div></div><div class="mx"><div class="mx-k">Lithology</div><div class="mx-v">Greywacke</div></div></div>
     <div class="d-cols">
       <section class="reqcard">
         <div class="rc-h"><span class="rc-t">Requirements</span><span class="rc-c">4 / 5 met</span></div>
-        <div class="rc-list"><div class="rq"><span class="rq-ck ok"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"/></svg></span><span class="rq-l">Drill log complete</span><span class="rq-v">Complete</span></div><div class="rq"><span class="rq-ck ok"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"/></svg></span><span class="rq-l">Depth recorded</span><span class="rq-v">15.6 m</span></div><div class="rq"><span class="rq-ck ok"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"/></svg></span><span class="rq-l">Photos attached</span><span class="rq-v">2 photos</span></div><div class="rq unmet"><span class="rq-ck no"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3 18 17H2z"/><path d="M10 8.5v4"/><circle cx="10" cy="14.6" r=".3" fill="currentColor"/></svg></span><span class="rq-l">Test result</span><span class="rq-v warn">Awaiting</span></div><div class="rq"><span class="rq-ck ok"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"/></svg></span><span class="rq-l">Operator sign-off</span><span class="rq-v">K. Olsen</span></div></div>
+        <div class="rc-list"><div class="rq"><span class="rq-ck ok"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"/></svg></span><span class="rq-l">Drill log complete</span><span class="rq-v">Complete</span></div><div class="rq"><span class="rq-ck ok"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"/></svg></span><span class="rq-l">Depth recorded</span><span class="rq-v">15.6 m</span></div><div class="rq"><span class="rq-ck ok"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"/></svg></span><span class="rq-l">Photos attached</span><span class="rq-v">2 photos</span></div><div class="rq unmet" data-req="testsheet"><span class="rq-ck no"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3 18 17H2z"/><path d="M10 8.5v4"/><circle cx="10" cy="14.6" r=".3" fill="currentColor"/></svg></span><span class="rq-l">Test sheet signed</span><span class="rq-v warn">Unsigned</span></div><div class="rq"><span class="rq-ck ok"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"/></svg></span><span class="rq-l">Operator sign-off</span><span class="rq-v">K. Olsen</span></div></div>
       </section>
       <section class="evcard">
         <div class="ev-tabs" role="tablist">
@@ -531,20 +541,21 @@ body{font-size:15px}
       </section>
     </div>
   </div>
-  <div class="d-actions"><button class="da-o strong">Reopen with reason</button><button class="da-p" disabled title="Resolve outstanding evidence first">Confirm record</button></div>
+  <div class="d-actions"><button class="da-o" data-resolve="B21" data-req="testsheet">Mark test sheet signed</button><button class="da-o strong">Reopen with reason</button><button class="da-p" data-approve="B21" disabled title="Resolve outstanding evidence first">Approve record</button></div>
 </div>
 <div class="detail" id="d-P05" data-id="P05" hidden>
   <div class="d-scroll">
     <div class="d-head">
       <div class="d-id">P05</div>
-      <span class="d-pill pl-attn">Missing sign-off</span>
+      <span class="d-pill pl-prov" data-prov>Provisional</span>
+      <span class="d-pill pl-attn" data-status>Missing lithology</span>
     </div>
     <div class="d-sub"><span class="pin"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M10 18s6-5.2 6-10A6 6 0 0 0 4 8c0 4.8 6 10 6 10Z"/><circle cx="10" cy="8" r="2.1"/></svg></span>Crest Gallery · Submitted by <b>D. Brown</b> · 3h ago</div>
-    <div class="d-metrics"><div class="mx"><div class="mx-k">Design depth</div><div class="mx-v">12.0 m</div></div><div class="mx"><div class="mx-k">Actual depth</div><div class="mx-v">12.1 m</div></div><div class="mx"><div class="mx-k">Variance</div><div class="mx-v">+0.1 m</div></div><div class="mx"><div class="mx-k">Grout</div><div class="mx-v">Within spec</div></div><div class="mx"><div class="mx-k">Test result</div><div class="mx-v warn">Awaiting</div></div><div class="mx"><div class="mx-k">Lithology</div><div class="mx-v">Greywacke</div></div></div>
+    <div class="d-metrics"><div class="mx"><div class="mx-k">Design depth</div><div class="mx-v">12.0 m</div></div><div class="mx"><div class="mx-k">Actual depth</div><div class="mx-v">12.1 m</div></div><div class="mx"><div class="mx-k">Variance</div><div class="mx-v">+0.1 m</div></div><div class="mx"><div class="mx-k">Grout</div><div class="mx-v">Within spec</div></div><div class="mx"><div class="mx-k">Test result</div><div class="mx-v">Pass</div></div><div class="mx"><div class="mx-k">Lithology</div><div class="mx-v warn">Awaiting</div></div></div>
     <div class="d-cols">
       <section class="reqcard">
-        <div class="rc-h"><span class="rc-t">Requirements</span><span class="rc-c">3 / 5 met</span></div>
-        <div class="rc-list"><div class="rq"><span class="rq-ck ok"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"/></svg></span><span class="rq-l">Drill log complete</span><span class="rq-v">Complete</span></div><div class="rq"><span class="rq-ck ok"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"/></svg></span><span class="rq-l">Depth recorded</span><span class="rq-v">12.1 m</span></div><div class="rq"><span class="rq-ck ok"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"/></svg></span><span class="rq-l">Photos attached</span><span class="rq-v">2 photos</span></div><div class="rq unmet"><span class="rq-ck no"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3 18 17H2z"/><path d="M10 8.5v4"/><circle cx="10" cy="14.6" r=".3" fill="currentColor"/></svg></span><span class="rq-l">Test result</span><span class="rq-v warn">Awaiting</span></div><div class="rq unmet"><span class="rq-ck no"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3 18 17H2z"/><path d="M10 8.5v4"/><circle cx="10" cy="14.6" r=".3" fill="currentColor"/></svg></span><span class="rq-l">Operator sign-off</span><span class="rq-v warn">Not signed</span></div></div>
+        <div class="rc-h"><span class="rc-t">Requirements</span><span class="rc-c">4 / 5 met</span></div>
+        <div class="rc-list"><div class="rq"><span class="rq-ck ok"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"/></svg></span><span class="rq-l">Drill log complete</span><span class="rq-v">Complete</span></div><div class="rq"><span class="rq-ck ok"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"/></svg></span><span class="rq-l">Depth recorded</span><span class="rq-v">12.1 m</span></div><div class="rq"><span class="rq-ck ok"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"/></svg></span><span class="rq-l">Photos attached</span><span class="rq-v">2 photos</span></div><div class="rq"><span class="rq-ck ok"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"/></svg></span><span class="rq-l">Test result</span><span class="rq-v">Pass</span></div><div class="rq unmet" data-req="lith"><span class="rq-ck no"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3 18 17H2z"/><path d="M10 8.5v4"/><circle cx="10" cy="14.6" r=".3" fill="currentColor"/></svg></span><span class="rq-l">Lithology logged</span><span class="rq-v warn">Awaiting</span></div></div>
       </section>
       <section class="evcard">
         <div class="ev-tabs" role="tablist">
@@ -566,7 +577,7 @@ body{font-size:15px}
       </section>
     </div>
   </div>
-  <div class="d-actions"><button class="da-o strong">Reopen with reason</button><button class="da-p" disabled title="Resolve outstanding evidence first">Confirm record</button></div>
+  <div class="d-actions"><button class="da-o" data-resolve="P05" data-req="lith">Add lithology</button><button class="da-o strong">Reopen with reason</button><button class="da-p" data-approve="P05" disabled title="Resolve outstanding evidence first">Approve record</button></div>
 </div>
     </div>
   </div>
@@ -609,6 +620,96 @@ body{font-size:15px}
       } else if(queue){ queue.scrollTo({top:queue.scrollHeight,behavior:"smooth"}); }
     });
   });
+
+  // ---- counts ----
+  function setCount(el,n){ if(el) el.textContent=String(n); }
+  function recount(){
+    var attn=document.querySelectorAll("#grp-attn .q-item").length;
+    var ready=document.querySelectorAll("#grp-ready .q-item").length;
+    setCount(document.getElementById("cnt-attn"),attn);
+    setCount(document.getElementById("cnt-ready"),ready);
+    setCount(document.getElementById("qa-total"),attn+ready);
+  }
+
+  // ---- resolve a gap on a flagged anchor ----
+  function resolveGap(id){
+    var detail=document.querySelector('.detail[data-id="'+id+'"]');
+    var qitem=document.querySelector('.q-item[data-target="'+id+'"]');
+    if(!detail||!qitem) return;
+
+    // 1. mark the outstanding requirement row met
+    detail.querySelectorAll(".rq.unmet").forEach(function(rq){
+      rq.classList.remove("unmet");
+      var ck=rq.querySelector(".rq-ck");
+      if(ck){ ck.classList.remove("no"); ck.classList.add("ok");
+        ck.innerHTML='<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"/></svg>'; }
+      var v=rq.querySelector(".rq-v"); if(v){ v.classList.remove("warn"); v.textContent="Complete"; }
+    });
+    var rcc=detail.querySelector(".rc-c"); if(rcc) rcc.textContent="5 / 5 met";
+    detail.querySelectorAll(".d-metrics .mx-v.warn").forEach(function(m){ m.classList.remove("warn"); m.textContent=(m.textContent.toLowerCase().indexOf("unsign")>-1?"Signed":"Logged"); });
+
+    // 2. flip the detail status pill from attn -> ready
+    var status=detail.querySelector("[data-status]");
+    if(status){ status.classList.remove("pl-attn"); status.classList.add("pl-ready"); status.textContent="Ready to confirm"; }
+
+    // 3. enable the approve button, remove the now-done resolve button
+    var approve=detail.querySelector("[data-approve]");
+    if(approve){ approve.disabled=false; approve.removeAttribute("title"); }
+    var resolveBtn=detail.querySelector("[data-resolve]");
+    if(resolveBtn) resolveBtn.remove();
+
+    // 4. flip the queue row pill, evidence dots, and move it to "Ready to confirm"
+    qitem.classList.remove("bd-attn"); qitem.classList.add("bd-ready"); qitem.removeAttribute("data-gap");
+    var pill=qitem.querySelector(".qi-pill");
+    if(pill){ pill.classList.remove("attn"); pill.classList.add("ready"); pill.textContent="Ready"; }
+    qitem.querySelectorAll(".ev-d").forEach(function(d){ d.style.background="#6e7d5c"; });
+    var lab=qitem.querySelector(".ev-lab"); if(lab) lab.textContent="5/5 evidence";
+    var ready=document.getElementById("grp-ready");
+    if(ready) ready.appendChild(qitem);
+
+    recount();
+  }
+
+  // ---- approve (confirm) a record: provisional -> approved ----
+  var approvedSeq=0;
+  function approveRecord(id){
+    var detail=document.querySelector('.detail[data-id="'+id+'"]');
+    var qitem=document.querySelector('.q-item[data-target="'+id+'"]');
+    if(!detail) return;
+    var btn=detail.querySelector("[data-approve]");
+    if(btn&&btn.disabled) return;
+
+    // provisional -> approved on the detail head
+    var prov=detail.querySelector("[data-prov]");
+    if(prov){ prov.classList.remove("pl-prov"); prov.classList.add("pl-approved"); prov.textContent="Approved"; }
+    var status=detail.querySelector("[data-status]");
+    var t=new Date(); var hh=("0"+t.getHours()).slice(-2), mm=("0"+t.getMinutes()).slice(-2);
+    var stamp="Approved "+hh+":"+mm+" by Tim R";
+    if(status){ status.classList.remove("pl-attn","pl-ready"); status.classList.add("pl-ready");
+      status.outerHTML='<span class="d-approved-by" data-status>'+stamp+'</span>'; }
+
+    // lock the action bar
+    if(btn){ btn.disabled=true; btn.textContent="Approved"; btn.removeAttribute("title"); }
+    var resolveBtn=detail.querySelector("[data-resolve]");
+    if(resolveBtn) resolveBtn.remove();
+
+    // remove from the live queue
+    if(qitem){ qitem.parentNode.removeChild(qitem); }
+    recount();
+
+    // pick the next queue item, if any
+    var next=document.querySelector(".queue .q-item");
+    if(next){ next.click(); }
+  }
+
+  // ---- delegate clicks on resolve / approve buttons ----
+  document.querySelectorAll("[data-resolve]").forEach(function(b){
+    b.addEventListener("click",function(){ resolveGap(b.getAttribute("data-resolve")); });
+  });
+  document.querySelectorAll("[data-approve]").forEach(function(b){
+    b.addEventListener("click",function(){ approveRecord(b.getAttribute("data-approve")); });
+  });
+  recount();
 })();
 
 </script>
