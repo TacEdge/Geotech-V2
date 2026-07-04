@@ -87,12 +87,12 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);font-size:16
 .pin:hover .pdot{r:16} .pin.sel .pdot{r:16} .pin.sel .ring{opacity:1} .pin.sel .plab{font-size:19px}
 .pin.p-issue .ring{opacity:1}
 .pin.dim{opacity:.16;pointer-events:none}
-.p-planned .pdot{fill:#b2b594}.p-planned .ring{stroke:#b2b594}
-.p-active .pdot{fill:#6e7d5c}.p-active .ring{stroke:#6e7d5c}
+.p-planned .pdot{fill:#cfd3c3}.p-planned .ring{stroke:#9a9d90}
+.p-active .pdot{fill:#8ba06f}.p-active .ring{stroke:#8ba06f}
 .p-onhold .pdot{fill:#b07d2b}.p-onhold .ring{stroke:#b07d2b}
 .p-issue .pdot{fill:#b23b2e}.p-issue .ring{stroke:#b23b2e}
 .p-complete .pdot{fill:#2b4721}.p-complete .ring{stroke:#2b4721}
-.p-closed .pdot{fill:#9a9d90}.p-closed .ring{stroke:#9a9d90}
+.p-closed .pdot{fill:#cfd3c3}.p-closed .ring{stroke:#9a9d90}
 .zlab{font-family:var(--mono);font-size:18px;letter-spacing:3px;fill:#fdf8ef;paint-order:stroke;stroke:rgba(12,16,10,.85);stroke-width:3.4px;stroke-linejoin:round;opacity:.95}
 #gridref .gl{stroke:rgba(252,242,232,.22);stroke-width:1}
 #gridref .glab{font-family:var(--mono);font-weight:700;font-size:15px;fill:rgba(252,242,232,.5);text-anchor:middle;paint-order:stroke;stroke:rgba(12,16,10,.55);stroke-width:2.6px;stroke-linejoin:round}
@@ -143,6 +143,22 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);font-size:16
 
 .sel-issue{font-size:14px;color:var(--ink);margin-top:8px}
 .sel-issue b{color:var(--brick);font-weight:700;margin-right:4px}
+/* --- minimalist pass --- */
+.tb-div{width:1px;align-self:stretch;background:var(--line);margin:2px 4px}
+.viewtog{display:inline-flex;background:var(--tint);border-radius:99px;padding:3px;gap:2px}
+.viewtog .vt{border:none;background:none;border-radius:99px;padding:7px 16px;font-family:var(--ui);font-size:13.5px;font-weight:600;color:var(--ink-60);cursor:pointer}
+.viewtog .vt.on{background:var(--forest);color:var(--cream)}
+.fchip.active .dot{box-shadow:0 0 0 1.5px rgba(255,255,255,.5)}
+.sel-reason{font-size:14px;font-weight:600;color:var(--brick);margin-top:6px}
+.sel-sec{padding:14px 0 2px;border-top:1px solid var(--line);margin-top:4px}
+.sel-sec:first-of-type{margin-top:14px}
+.sel-sec-t{font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-40);margin-bottom:4px}
+.sel-sec .sel-row{border-top:none;padding:7px 0}
+.up-row{display:flex;align-items:center;gap:12px;padding:12px 18px;border-top:1px solid var(--line)}
+.up-row .up-id{font-family:var(--mono);font-weight:700;font-size:14px;color:var(--ink);min-width:38px}
+.up-row .up-z{flex:1;font-size:13.5px;color:var(--ink-60)}
+.up-row .up-plot{border:1px solid var(--line-2);background:var(--card);color:var(--ink);font-family:var(--ui);font-size:12.5px;font-weight:600;border-radius:7px;padding:6px 14px;cursor:pointer}
+.up-row .up-plot:hover{border-color:var(--olive);background:var(--plan)}
 .hd-collapse{width:100%;background:none;border:none;cursor:pointer;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-60);padding:14px 18px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between}
 .hd-collapse:hover{color:var(--ink)}
 .hd-collapse .chev{display:flex;color:var(--ink-40);transition:transform .15s}
@@ -198,7 +214,7 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);font-size:16
 <div class="content2">
  <div class="stage">
   <div class="mapcol">
-    <div class="filterbar"><button class="fchip active" data-f="all">All Anchors</button><button class="fchip" data-f="issues"><span class="dot" style="background:#b23b2e"></span>Issues <span class="ct">3</span></button><button class="fchip" data-f="qa"><span class="dot" style="background:#b07d2b"></span>QA <span class="ct">8</span></button><button class="fchip" data-f="active"><span class="dot" style="background:#2b4721"></span>Active <span class="ct">13</span></button><button class="fchip" data-f="unplotted"><span class="dot" style="background:#9a9d90"></span>Unplotted <span class="ct">2</span></button><button class="fchip toggle" id="gridtoggle" aria-pressed="true"><svg class="gico" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="1" y="1" width="12" height="12" rx="1"/><path d="M5 1v12M9 1v12M1 5h12M1 9h12"/></svg>Grid</button><span class="findbox"><svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="7" cy="7" r="4.5"/><path d="M10.4 10.4 14 14"/></svg><input id="findinput" type="text" placeholder="Find anchor" maxlength="4" aria-label="Find anchor by id"></span><span class="ftotal">54 anchors total</span></div>
+    <div class="filterbar"><button class="fchip active" data-f="all">All</button><button class="fchip" data-f="issues"><span class="dot" style="background:#b23b2e"></span>Issues <span class="ct">3</span></button><button class="fchip" data-f="qa"><span class="dot" style="background:#b07d2b"></span>QA <span class="ct">8</span></button><button class="fchip" data-f="active"><span class="dot" style="background:#2b4721"></span>Active <span class="ct">13</span></button><button class="fchip" data-f="unplotted"><span class="dot" style="background:#9a9d90"></span>Unplotted <span class="ct">2</span></button><span class="tb-div"></span><div class="viewtog"><button class="vt on" data-view="map">Map</button><button class="vt" data-view="grid" id="gridtoggle">Grid</button></div><span class="tb-div"></span><span class="findbox"><svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="7" cy="7" r="4.5"/><path d="M10.4 10.4 14 14"/></svg><input id="findinput" type="text" placeholder="Find anchor" maxlength="4" aria-label="Find anchor by id"></span><span class="ftotal">54 anchors</span></div>
 
     <div class="mapwrap">
       <svg class="map" viewBox="0 0 1280 853" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Site photo with anchors plotted by work phase">
@@ -212,10 +228,9 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);font-size:16
         <button id="zin" aria-label="Zoom in">+</button><button id="zout" aria-label="Zoom out">&#8722;</button>
         <button id="zfit" aria-label="Recenter"><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="10" cy="10" r="4"/><path d="M10 1.5v3M10 15.5v3M1.5 10h3M15.5 10h3"/></svg></button>
       </div>
-      <div class="ov maplegend"><span class="lg"><span class="d" style="background:#b2b594"></span>Planned</span><span class="lg"><span class="d" style="background:#6e7d5c"></span>Active</span><span class="lg"><span class="d" style="background:#b07d2b"></span>On-hold</span><span class="lg"><span class="d" style="background:#b23b2e"></span>Issue</span><span class="lg"><span class="d" style="background:#2b4721"></span>Complete</span><span class="lg"><span class="d" style="background:#9a9d90"></span>Closed</span></div>
+      <div class="ov maplegend"><span class="lg"><span class="d" style="background:#cfd3c3"></span>Planned</span><span class="lg"><span class="d" style="background:#8ba06f"></span>Drilled</span><span class="lg"><span class="d" style="background:#b07d2b"></span>For Test</span><span class="lg"><span class="d" style="background:#2b4721"></span>Tested</span><span class="lg"><span class="d" style="background:#b23b2e"></span>Redrill / Issue</span></div>
     </div>
 
-    <div class="tip"><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="10" cy="10" r="8"/><path d="M10 9v4.5" stroke-linecap="round"/><circle cx="10" cy="6.4" r=".9" fill="currentColor" stroke="none"/></svg> <span><b>Tip:</b> Use the filters above to focus the map on what matters most.</span></div>
   </div>
 
   <aside class="rail">
@@ -227,12 +242,16 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);font-size:16
           <span class="sel-pill" style="background:var(--brick-tint);color:var(--brick)"><span class="d" style="background:var(--brick)"></span>Issue</span>
         </div>
         <div class="sel-zone">Stilling Basin</div>
-        <div class="sel-issue"><b>Issue:</b> Redrill Required</div>
-        <div class="sel-rows">
-          <div class="sel-row"><span class="k">Work Phase</span><span class="v">Drilling</span></div>
-          <div class="sel-row"><span class="k">Review State</span><span class="v" style="color:var(--ochre)">Submitted for QA</span></div>
-          <div class="sel-row"><span class="k">Assigned Crew</span><span class="v">Team 2</span></div>
-          <div class="sel-row"><span class="k">Last Updated</span><span class="v">12 May 2026</span></div>
+        <div class="sel-reason">Redrill required</div>
+        <div class="sel-sec">
+          <div class="sel-sec-t">Status</div>
+          <div class="sel-row"><span class="k">Work phase</span><span class="v">Drilling</span></div>
+          <div class="sel-row"><span class="k">Review state</span><span class="v" style="color:var(--ochre)">Submitted for QA</span></div>
+        </div>
+        <div class="sel-sec">
+          <div class="sel-sec-t">Assignment</div>
+          <div class="sel-row"><span class="k">Assigned crew</span><span class="v">Team 2</span></div>
+          <div class="sel-row"><span class="k">Last updated</span><span class="v">12 May 2026</span></div>
         </div>
         <div class="sel-acts">
           <button class="btn-p">Open Drill Log <span>&#8594;</span></button>
@@ -242,8 +261,8 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);font-size:16
     </div>
 
     <div class="panel" id="setuppanel">
-      <button class="hd-collapse" id="setuptoggle">Setup Actions (2) <span class="chev"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8l5 5 5-5"/></svg></span></button>
-      <div class="setup-body"><div class="sa-row"><svg class="warn" width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="#b07d2b" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3 2.5 17h15z"/><path d="M10 8.5v3.3"/><circle cx="10" cy="14.4" r=".75" fill="#b07d2b" stroke="none"/></svg><div class="sa-info"><div class="sa-l"><b>B41</b> Left Abutment</div><div class="sa-sub">Position not plotted</div></div><button class="up-plot">Plot</button></div><div class="sa-row"><svg class="warn" width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="#b07d2b" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3 2.5 17h15z"/><path d="M10 8.5v3.3"/><circle cx="10" cy="14.4" r=".75" fill="#b07d2b" stroke="none"/></svg><div class="sa-info"><div class="sa-l"><b>B42</b> Left Abutment</div><div class="sa-sub">Position not plotted</div></div><button class="up-plot">Plot</button></div></div>
+      <button class="hd-collapse" id="setuptoggle">Unplotted anchors (2) <span class="chev"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8l5 5 5-5"/></svg></span></button>
+      <div class="setup-body"><div class="up-row"><span class="up-id">B41</span><span class="up-z">Left Abutment</span><button class="up-plot">Plot</button></div><div class="up-row"><span class="up-id">B42</span><span class="up-z">Left Abutment</span><button class="up-plot">Plot</button></div></div>
     </div>
   </aside>
  </div>
@@ -252,10 +271,10 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);font-size:16
 <script>
 (function(){
   try{
-    var PL={planned:['Planned','#b2b594'],active:['Active','#6e7d5c'],onhold:['On-hold','#b07d2b'],issue:['Issue','#b23b2e'],complete:['Complete','#2b4721'],closed:['Closed','#9a9d90']};
+    var PL={planned:['Planned','#9a9d90'],active:['Drilled','#8ba06f'],onhold:['For Test','#b07d2b'],issue:['Issue','#b23b2e'],complete:['Tested','#2b4721'],closed:['Planned','#9a9d90']};
     var WORK={planned:'Scheduled',active:'Drilling',onhold:'On hold',issue:'Drilling',complete:'Complete',closed:'Closed'};
     var STCOL={planned:'var(--ink-60)',active:'var(--forest)',onhold:'var(--ochre)',issue:'var(--brick)',complete:'var(--forest)',closed:'var(--ink-40)'};
-    var QA=["B11", "B13", "B17", "B21", "B28", "B31", "B40", "P05"], ISS=["B07", "B23", "B31"], REASON={"B07": "Test Failure", "B23": "Redrill Required", "B31": "Incident Submitted"};
+    var QA=["B11", "B13", "B17", "B21", "B28", "B31", "B40", "P05"], ISS=["B07", "B23", "B31"], REASON={"B07": "Test failure", "B23": "Redrill required", "B31": "Incident submitted"};
     var DATES=['12 May 2026','10 May 2026','14 May 2026','9 May 2026','15 May 2026','11 May 2026','13 May 2026'];
     var selbd=document.getElementById('selbd');
     function num(id){return parseInt(id.replace(/\D/g,''),10);}
@@ -294,14 +313,16 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);font-size:16
        '<div class="sel-top"><div><div class="sel-id" data-phase="'+ph+'">'+id+'</div></div>'+
        '<span class="sel-pill" style="background:'+pl[0]+';color:'+pl[1]+'"><span class="d" style="background:'+PL[ph][1]+'"></span>'+PL[ph][0]+'</span></div>'+
        '<div class="sel-zone">'+d.zone+'</div>'+
-       (reason?'<div class="sel-issue"><b>Issue:</b> '+reason+'</div>':'')+
-       '<div class="sel-rows">'+
-        row('Grid ref','<span style="font-family:var(--mono);letter-spacing:.5px">'+gridRef(g)+'</span>')+
-        row('Work Phase',WORK[ph])+
-        row('Review State',rv[0],rv[1])+
-        row('Assigned Crew',crew(id))+
-        row('Last Updated',updated(id,ph))+
-       '</div><div class="sel-acts"><button class="btn-p">Open Drill Log <span>&#8594;</span></button>'+
+       (reason?'<div class="sel-reason">'+reason+'</div>':'')+
+       '<div class="sel-sec"><div class="sel-sec-t">Status</div>'+
+        row('Work phase',WORK[ph])+
+        row('Review state',rv[0],rv[1])+
+       '</div>'+
+       '<div class="sel-sec"><div class="sel-sec-t">Assignment</div>'+
+        row('Assigned crew',crew(id))+
+        row('Last updated',updated(id,ph))+
+       '</div>'+
+       '<div class="sel-acts"><button class="btn-p">Open Drill Log <span>&#8594;</span></button>'+
        '<button class="btn-o">Open Status Board <span>&#8594;</span></button></div>';
     }
     document.querySelectorAll('.pin').forEach(function(g){g.addEventListener('click',function(){select(g);});});
@@ -328,10 +349,14 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);font-size:16
     var sp=document.getElementById('setuppanel'), stog=document.getElementById('setuptoggle');
     if(stog) stog.addEventListener('click',function(){sp.classList.toggle('collapsed');});
 
-    var mapsvg=document.querySelector('svg.map'), gtog=document.getElementById('gridtoggle');
-    if(gtog) gtog.addEventListener('click',function(){
-      var on=mapsvg.classList.toggle('nogrid')===false;
-      gtog.classList.toggle('off',!on); gtog.setAttribute('aria-pressed',on?'true':'false');
+    var mapsvg=document.querySelector('svg.map');
+    if(mapsvg) mapsvg.classList.add('nogrid'); // default Map view: clean photo, no survey grid
+    document.querySelectorAll('.viewtog .vt').forEach(function(b){
+      b.addEventListener('click',function(){
+        document.querySelectorAll('.viewtog .vt').forEach(function(x){x.classList.remove('on');});
+        b.classList.add('on');
+        if(mapsvg) mapsvg.classList.toggle('nogrid', b.dataset.view==='map');
+      });
     });
 
     var fin=document.getElementById('findinput');
