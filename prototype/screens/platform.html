@@ -66,68 +66,103 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);font-size:va
 .foot{margin-top:30px;padding-top:16px;border-top:1px solid var(--line);color:var(--ink-40);font-size:13px}
 @media(max-width:640px){.head{flex-direction:column;align-items:flex-start}}
 
-/* ---- Configurable Engine (Batch D) ---- */
-.pf-switch{display:inline-flex;background:var(--tint);border-radius:var(--r-pill);padding:4px;gap:3px;margin-bottom:8px}
-.pf-sb{display:inline-flex;align-items:center;gap:9px;font-family:var(--ui);font-size:14px;font-weight:600;color:var(--ink-60);background:transparent;border:none;border-radius:var(--r-pill);padding:9px 18px;cursor:pointer}
-.pf-sb .dot{width:9px;height:9px;border-radius:50%;background:currentColor;opacity:.55}
-.pf-sb.on{background:var(--card);color:var(--forest);box-shadow:var(--shadow-sm)}
-.pf-sb.on .dot{opacity:1}
-.pf-switch-note{font-size:13px;color:var(--ink-60);margin-bottom:24px}
-.pf-switch-note b{color:var(--ink)}
+/* ---- Configurable Engine ---- */
+/* section rule label */
+.sec-label{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-40);font-weight:700;margin-bottom:14px;display:flex;align-items:center;gap:13px}
+.sec-label::after{content:"";flex:1;height:1px;background:var(--line)}
 
-.pf-pipe{display:flex;align-items:stretch;gap:0;background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);box-shadow:var(--shadow-sm);overflow:hidden;margin-bottom:26px}
-.pf-stage{flex:1;padding:15px 16px;border-right:1px solid var(--line);min-width:0}
-.pf-stage:last-child{border-right:none}
-.pf-stage .k{font-family:var(--mono);font-size:var(--fs-2xs);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-40)}
-.pf-stage .v{font-weight:700;font-size:14.5px;color:var(--ink);margin-top:5px}
-.pf-stage .d{font-size:12px;color:var(--ink-60);margin-top:3px}
-.pf-stage.shared{background:var(--plan)}
-.pf-stage.config{box-shadow:inset 4px 0 0 var(--accent,var(--forest))}
+/* work-type selector */
+.wt-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-bottom:24px}
+.wt-card{display:flex;flex-direction:column;align-items:center;gap:9px;background:var(--card);border:1.5px solid var(--line);border-radius:var(--r-lg);padding:16px 9px 14px;cursor:pointer;text-align:center;box-shadow:var(--shadow-sm);font-family:var(--ui);transition:border-color .15s ease,box-shadow .15s ease,transform .15s ease}
+.wt-card:hover{border-color:var(--olive-edge);box-shadow:var(--shadow-md);transform:translateY(-1px)}
+.wt-card:focus-visible{outline:2px solid var(--forest);outline-offset:2px}
+.wt-card[aria-pressed="true"]{border-color:var(--forest);box-shadow:0 0 0 3px rgba(43,71,33,.12),var(--shadow-sm)}
+.wt-ic{width:42px;height:42px;border-radius:50%;color:var(--forest);display:grid;place-items:center;transition:background .15s ease,color .15s ease}
+.wt-ic svg{width:24px;height:24px}
+.wt-card[aria-pressed="true"] .wt-ic{background:var(--forest);color:var(--cream)}
+.wt-lb{font-size:12.5px;font-weight:600;color:var(--ink);line-height:1.22}
+.wt-card[aria-pressed="true"] .wt-lb{color:var(--forest);font-weight:700}
 
-.pf-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.pf-card{background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);box-shadow:var(--shadow-sm);padding:20px 22px}
-.pf-card.full{grid-column:1 / -1}
-.pf-ch{display:flex;align-items:center;gap:10px;margin-bottom:4px}
-.pf-ch h2{font-family:var(--display);font-size:18px;font-weight:700;color:var(--ink)}
-.pf-ch .tagcfg{margin-left:auto;font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent,var(--forest));background:var(--accent-tint,var(--sage-tint));border-radius:var(--r-pill);padding:3px 10px}
-.pf-ch .tagshared{margin-left:auto;font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-40);background:var(--tint);border-radius:var(--r-pill);padding:3px 10px}
-.pf-csub{font-size:12.5px;color:var(--ink-60);margin-bottom:14px}
-.pf-kv{display:flex;justify-content:space-between;gap:14px;padding:11px 0;border-top:1px solid var(--line);font-size:14px}
-.pf-kv:first-of-type{border-top:none}
-.pf-kv .k{color:var(--ink-60)}
-.pf-kv .v{font-family:var(--mono);font-weight:600;color:var(--ink);text-align:right}
-.pf-kv .v.hi{color:var(--accent,var(--forest))}
+/* selected work-type panel */
+.wt-panel{display:flex;align-items:flex-start;gap:17px;background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);box-shadow:var(--shadow-sm);padding:20px 22px;margin-bottom:34px}
+.wt-panel .pic{width:48px;height:48px;flex-shrink:0;border-radius:13px;background:var(--sage-tint);color:var(--forest);display:grid;place-items:center}
+.wt-panel .pic svg{width:27px;height:27px}
+.wt-panel .pbody{min-width:0;flex:1}
+.wt-panel h2{font-family:var(--display);font-size:21px;font-weight:700;color:var(--ink);line-height:1.14}
+.wt-panel .pdesc{font-size:13.5px;color:var(--ink-60);margin-top:6px;max-width:580px}
+.wt-tpl-label{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-40);margin:15px 0 9px}
+.wt-chips{display:flex;flex-wrap:wrap;gap:8px}
+.wt-chip{display:inline-flex;align-items:center;height:28px;padding:0 13px;border-radius:var(--r-pill);background:var(--tint);color:var(--ink);font-size:12.5px;font-weight:600}
 
-.pf-screens{display:flex;flex-direction:column;gap:9px}
-.pf-srow{display:flex;align-items:center;gap:13px;padding:12px 14px;border:1px solid var(--line);border-radius:var(--r-md);background:var(--plan)}
-.pf-srow .sn{width:26px;height:26px;flex-shrink:0;border-radius:7px;background:var(--card);border:1px solid var(--line);display:grid;place-items:center;font-family:var(--mono);font-size:12px;font-weight:700;color:var(--ink-40)}
-.pf-srow .sl{font-weight:700;font-size:14.5px;color:var(--ink)}
-.pf-srow .score{font-family:var(--mono);font-size:11px;color:var(--ink-40)}
-.pf-srow .snote{font-size:12.5px;color:var(--ink-60);margin-top:1px}
-.pf-srow .arrow{margin-left:auto;color:var(--accent,var(--forest));font-family:var(--mono);font-size:12px;font-weight:700;white-space:nowrap}
+/* lifecycle strip (common to every work type, always static) */
+.life{display:flex;background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);box-shadow:var(--shadow-sm);overflow:hidden;margin-bottom:34px}
+.life-step{flex:1;padding:15px 15px;border-right:1px solid var(--line);min-width:0}
+.life-step:last-child{border-right:none}
+.life-step .lh{display:flex;align-items:center;gap:8px}
+.life-step .lic{color:var(--forest);display:grid;place-items:center;flex-shrink:0}
+.life-step .lic svg{width:17px;height:17px}
+.life-step .ln{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--ink-40)}
+.life-step .lt{font-weight:700;font-size:14px;color:var(--ink)}
+.life-step .d{font-size:11.5px;color:var(--ink-60);margin-top:7px;line-height:1.35}
 
-.pf-field{background:var(--ink);border-radius:var(--r-lg);padding:0;overflow:hidden;font-family:'IBM Plex Sans',var(--ui)}
-.pf-field .pf-fbar{background:var(--forest);color:var(--cream);padding:13px 16px;display:flex;align-items:center;gap:11px}
-.pf-field .pf-fav{width:30px;height:30px;border-radius:50%;background:var(--olive);display:grid;place-items:center;font-family:'IBM Plex Mono',var(--mono);font-size:11px;font-weight:700;color:var(--cream)}
-.pf-field .pf-fttl{font-weight:600;font-size:14px}
-.pf-field .pf-fsub{font-size:11.5px;color:var(--sage)}
-.pf-field .pf-fbody{background:var(--cream);padding:18px 16px 16px}
-.pf-field .pf-fid{font-family:'IBM Plex Mono',var(--mono);font-size:34px;font-weight:700;color:var(--forest);line-height:1}
-.pf-field .pf-fstage{font-size:14px;color:var(--ink);margin-top:6px;font-weight:500}
-.pf-field .pf-fzone{font-family:'IBM Plex Mono',var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-40);margin-top:8px}
-.pf-field .pf-fcta{margin-top:16px;height:48px;border-radius:10px;background:var(--forest);color:var(--cream);display:flex;align-items:center;justify-content:center;gap:9px;font-family:'IBM Plex Sans',var(--ui);font-size:15px;font-weight:600}
-.pf-d2note{font-size:12.5px;color:var(--ink-60);margin-top:13px;line-height:1.5}
+/* configured-by-work-type cards */
+.cfg-eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.05em;color:var(--forest-2);font-weight:600;margin-bottom:14px}
+.cfg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:34px}
+.cfg-card{display:flex;flex-direction:column;background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);box-shadow:var(--shadow-sm);padding:18px 20px 16px}
+.cfg-card h3{font-family:var(--display);font-size:16px;font-weight:700;color:var(--ink);margin-bottom:3px}
+.cfg-card .csub{font-size:12px;color:var(--ink-60);margin-bottom:13px}
+.cfg-row{display:flex;justify-content:space-between;gap:14px;padding:9px 0;border-top:1px solid var(--line);font-size:13px}
+.cfg-row:first-of-type{border-top:none}
+.cfg-row .k{color:var(--ink-60)}
+.cfg-row .v{font-family:var(--mono);font-weight:600;color:var(--ink);text-align:right}
+.cfg-mod{display:flex;gap:10px;padding:9px 0;border-top:1px solid var(--line)}
+.cfg-mod:first-of-type{border-top:none}
+.cfg-mod .tick{color:var(--forest);flex-shrink:0;margin-top:1px}
+.cfg-mod .tick svg{width:18px;height:18px}
+.cfg-mod .ml{font-weight:600;font-size:13px;color:var(--ink);line-height:1.25}
+.cfg-mod .mn{font-size:12px;color:var(--ink-60);margin-top:1px}
+.cfg-foot{margin-top:auto;padding-top:14px}
+.cfg-link{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:600;color:var(--forest-2);text-decoration:none}
+.cfg-link svg{width:13px;height:13px}
+.cfg-link.quiet{color:var(--ink-40);font-weight:500;cursor:default}
 
-.pf-code{background:#1f2419;border-radius:var(--r-md);padding:16px 18px;overflow:auto;max-height:330px}
-.pf-code pre{font-family:var(--mono);font-size:12px;line-height:1.55;color:#dfe6d3;white-space:pre;margin:0}
-.pf-exrow{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
-.pf-exb{display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 16px;border-radius:var(--r-md);font-family:var(--ui);font-size:13.5px;font-weight:600;cursor:pointer;border:1px solid var(--line-2);background:var(--card);color:var(--ink)}
-.pf-exb.primary{background:var(--forest);color:var(--cream);border-color:transparent}
-.pf-exb.primary:hover{background:var(--forest-2)}
-.pf-exb.is-ok{background:var(--sage-tint);color:var(--forest-2);border-color:transparent}
-.pf-d3note{font-size:12.5px;color:var(--ink-60);margin-top:12px;line-height:1.55}
-.pf-d3note b{color:var(--ink)}
-@media(max-width:860px){.pf-grid{grid-template-columns:1fr}.pf-pipe{flex-wrap:wrap}.pf-stage{flex:1 1 40%;border-bottom:1px solid var(--line)}}
+/* capture matrix */
+.mx-head{margin-bottom:14px}
+.mx-head h2{font-family:var(--display);font-size:19px;font-weight:700;color:var(--ink)}
+.mx-head .mxs{font-size:13px;color:var(--ink-60);margin-top:5px;max-width:640px}
+.mx{display:grid;grid-template-columns:repeat(6,1fr);gap:11px;background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);box-shadow:var(--shadow-sm);padding:16px;margin-bottom:34px}
+.mx-col{border-radius:var(--r-md);padding:12px 12px 13px;transition:background .15s ease}
+.mx-col.on{background:var(--sage-tint)}
+.mx-col .mxt{display:flex;align-items:center;gap:7px;font-size:12px;font-weight:700;color:var(--ink);line-height:1.15;min-height:30px;margin-bottom:10px}
+.mx-col .mxt .mxic{color:var(--forest);flex-shrink:0;display:grid;place-items:center}
+.mx-col .mxt .mxic svg{width:15px;height:15px}
+.mx-cell{font-family:var(--mono);font-size:10.5px;color:var(--ink-60);background:var(--tint);border-radius:6px;padding:6px 8px;margin-top:6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mx-col.on .mx-cell{background:rgba(43,71,33,.10);color:var(--forest-2)}
+.mx-cell.more{background:none;color:var(--ink-40);padding:7px 2px 0}
+
+/* one job record band */
+.band{display:flex;align-items:center;gap:22px;background:var(--plan);border:1px solid var(--line);border-radius:var(--r-lg);padding:22px 24px;margin-bottom:6px}
+.band .bt{flex:1;min-width:0}
+.band h2{font-family:var(--display);font-size:19px;font-weight:700;color:var(--ink)}
+.band p{font-size:13.5px;color:var(--ink-60);margin-top:5px;max-width:640px}
+.band .bact{display:flex;align-items:center;gap:18px;flex-shrink:0}
+.exbtn{display:inline-flex;align-items:center;gap:8px;height:44px;padding:0 20px;border-radius:var(--r-md);background:var(--forest);color:var(--cream);border:1px solid transparent;font-family:var(--ui);font-size:14px;font-weight:600;cursor:pointer;transition:background .15s ease}
+.exbtn:hover{background:var(--forest-2)}
+.exbtn.is-ok{background:var(--sage-tint);color:var(--forest-2)}
+.jsonlink{background:none;border:none;font-family:var(--ui);font-size:13px;font-weight:600;color:var(--forest-2);cursor:pointer;text-decoration:underline;text-underline-offset:3px;padding:0}
+.jsonlink.is-ok{color:var(--forest-2);text-decoration:none}
+
+@media(max-width:860px){
+  .wt-grid{grid-template-columns:repeat(3,1fr)}
+  .cfg-grid{grid-template-columns:1fr}
+  .life{flex-wrap:wrap}.life-step{flex:1 1 33%;border-bottom:1px solid var(--line)}
+  .mx{grid-template-columns:repeat(3,1fr)}
+}
+@media(max-width:560px){
+  .wt-grid{grid-template-columns:repeat(2,1fr)}
+  .mx{grid-template-columns:repeat(2,1fr)}
+  .band{flex-direction:column;align-items:flex-start}
+}
 </style>
 <link rel="stylesheet" href="../assets/tacedge.css">
 <link rel="manifest" href="../manifest.json">
@@ -152,7 +187,7 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);font-size:va
     <div class="head">
       <div>
         <h1>One configurable engine</h1>
-        <div class="sub">The same four operator screens and the QA, reporting and closeout pipeline serve every work type. A new work type is configuration, not a new build.</div>
+        <div class="sub">Pick a work type. The engine loads the right templates, capture modules and QA rules. The workflow stays the same.</div>
       </div>
       <a class="newbtn" href="projects.html">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 4l-8 8 8 8"/></svg>
@@ -161,125 +196,181 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);font-size:va
     </div>
 
     <div class="eyebrow">Work type</div>
-    <div class="pf-switch" id="pfSwitch" role="tablist" aria-label="Work type"></div>
-    <div class="pf-switch-note">Switching work type changes <b>labels, materials, wastage presets and the specification</b>. It does not change a single screen. <span id="pfActive"></span></div>
+    <div class="wt-grid" id="wtGrid" role="group" aria-label="Select a work type"></div>
 
-    <div class="pf-pipe" id="pfPipe"></div>
+    <div class="wt-panel" id="wtPanel" aria-live="polite"></div>
 
-    <div class="pf-grid">
-      <div class="pf-card">
-        <div class="pf-ch"><h2>Work item &amp; specification</h2><span class="tagcfg">Config</span></div>
-        <div class="pf-csub">Defined once at setup, sourced from the engineer's documents.</div>
-        <div id="pfItem"></div>
+    <div class="sec-label">Common to every work type</div>
+    <div class="life">
+      <div class="life-step">
+        <div class="lh"><span class="lic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg></span><span class="ln">1</span><span class="lt">Setup</span></div>
+        <div class="d">zones, templates, standards</div></div>
+      <div class="life-step">
+        <div class="lh"><span class="lic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 11-8 11s-8-5-8-11a8 8 0 0116 0z"/><circle cx="12" cy="10" r="2.5"/></svg></span><span class="ln">2</span><span class="lt">Plan</span></div>
+        <div class="d">place and commit work items</div></div>
+      <div class="life-step">
+        <div class="lh"><span class="lic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 3h6v3H9z"/><path d="M9 11h6M9 15h4"/></svg></span><span class="ln">3</span><span class="lt">Capture</span></div>
+        <div class="d">field records and evidence</div></div>
+      <div class="life-step">
+        <div class="lh"><span class="lic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4-3 7-7 8-4-1-7-4-7-8V6z"/><path d="M9 12l2 2 4-4"/></svg></span><span class="ln">4</span><span class="lt">QA</span></div>
+        <div class="d">confirm or reopen</div></div>
+      <div class="life-step">
+        <div class="lh"><span class="lic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4"/><path d="M10 14v3M13 12v5M16 15v2"/></svg></span><span class="ln">5</span><span class="lt">Report</span></div>
+        <div class="d">release confirmed work</div></div>
+      <div class="life-step">
+        <div class="lh"><span class="lic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/></svg></span><span class="ln">6</span><span class="lt">Closeout</span></div>
+        <div class="d">final handover gate</div></div>
+    </div>
+
+    <div class="sec-label">Configured by work type</div>
+    <div class="cfg-eyebrow" id="cfgEyebrow"></div>
+    <div class="cfg-grid">
+      <div class="cfg-card">
+        <h3>Work item template</h3>
+        <div class="csub">Defined once at setup, sourced from the engineer's documents.</div>
+        <div id="cfgTemplate"></div>
+        <div class="cfg-foot"><a class="cfg-link" href="work-item-design.html">View template details
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
       </div>
-      <div class="pf-card">
-        <div class="pf-ch"><h2>Materials &amp; wastage preset</h2><span class="tagcfg">Config</span></div>
-        <div class="pf-csub">Drives the field material-log variance. The operator does no maths.</div>
-        <div id="pfMat"></div>
+      <div class="cfg-card">
+        <h3>Materials and QA presets</h3>
+        <div class="csub">Drives the field variance checks. The operator does no maths.</div>
+        <div id="cfgPresets"></div>
+        <div class="cfg-foot"><a class="cfg-link" href="testing-standards.html">View QA presets
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
       </div>
-      <div class="pf-card full">
-        <div class="pf-ch"><h2>The same screens, no forks</h2><span class="tagshared">Shared core</span></div>
-        <div class="pf-csub">Four operator screens, one codebase. The label and the captured noun come from config; the workflow never changes. Setup, QA, reporting and closeout are identical for every work type.</div>
-        <div class="pf-screens" id="pfScreens"></div>
-      </div>
-      <div class="pf-card">
-        <div class="pf-ch"><h2>What the operator sees</h2><span class="tagshared">Field tier</span></div>
-        <div class="pf-csub">Configuration never reaches the crew as complexity.</div>
-        <div class="pf-field" id="pfField"></div>
-        <div class="pf-d2note" id="pfD2"></div>
-      </div>
-      <div class="pf-card">
-        <div class="pf-ch"><h2>One source of truth</h2><span class="tagshared">Data</span></div>
-        <div class="pf-csub">Every screen reads from this one job object.</div>
-        <div class="pf-code"><pre id="pfCode"></pre></div>
-        <div class="pf-exrow">
-          <button class="pf-exb primary" id="pfExJson"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M8 11l4 4 4-4M5 21h14"/></svg> Export job (JSON)</button>
-          <button class="pf-exb" id="pfExXls"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M9 8l6 8M15 8l-6 8"/></svg> Export to Excel</button>
-        </div>
-        <div class="pf-d3note">The job serialises from <b>one place</b>. A future export to Excel or an external PM / asset system reads this same seam, with no UI scraping. Architecture only, no connectors built.</div>
+      <div class="cfg-card">
+        <h3>Field capture modules</h3>
+        <div class="csub">Only the modules this work type needs load in the field.</div>
+        <div id="cfgModules"></div>
+        <div class="cfg-foot" id="cfgModFoot"></div>
       </div>
     </div>
 
-    <div class="foot">Two work types already run on this core: Benmore (anchoring) and Aviemore (rock bolting) in <a href="projects.html" style="color:var(--forest-2);font-weight:600">Projects</a>. Adding screw piling was a config entry, not a new screen.</div>
+    <div class="mx-head">
+      <h2>Same lifecycle, configured capture</h2>
+      <div class="mxs">Every work type runs the same six steps. Each one loads only the capture modules it needs.</div>
+    </div>
+    <div class="mx" id="mxGrid"></div>
+
+    <div class="band">
+      <div class="bt">
+        <h2>One job record</h2>
+        <p>Every screen reads and writes one job record. Export to Excel, a PDF report pack, or JSON for other systems.</p>
+      </div>
+      <div class="bact">
+        <button class="exbtn" id="pfExXls"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M9 8l6 8M15 8l-6 8"/></svg> Export to Excel</button>
+        <button class="jsonlink" id="pfExJson">Job data (JSON)</button>
+      </div>
+    </div>
+
+    <div class="foot">Benmore (ground anchors) and Aviemore (rock bolts) already run on this engine: two templates, one work type, no new code. Adding a work type like screw piling is a configuration entry, not a rebuild. <a href="projects.html" style="color:var(--forest-2);font-weight:600">Projects</a>.</div>
   </main>
 
+  <!-- Shared job record: kept for the export seam (JSON download / Excel toast). -->
   <script src="../assets/work-types.js"></script>
-  <script>
-  (function(){
-    if(!window.TE) return;
-    var WT=TE.WORK_TYPES, order=['anchor','rockBolt','screwPile'];
-    var tints={anchor:'var(--sage-tint)',rockBolt:'#e3e8d6',screwPile:'var(--ochre-tint)'};
-    var okSvg='<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>';
-    var sw=document.getElementById('pfSwitch');
+  <!-- Page config: the ONLY source of work-type labels below the selector. -->
+  <script type="module">
+  import { WORK_TYPES } from '../js/worktypes.js';
 
-    function kv(k,v,cls){return '<div class="pf-kv"><span class="k">'+k+'</span><span class="v'+(cls?(' '+cls):'')+'">'+v+'</span></div>';}
-    function stage(k,v,d,cls){return '<div class="pf-stage '+cls+'"><div class="k">'+k+'</div><div class="v">'+v+'</div><div class="d">'+d+'</div></div>';}
-    function cap(s){return s.charAt(0).toUpperCase()+s.slice(1);}
+  var ICONS={
+    anchor:'<circle cx="12" cy="5" r="2"/><path d="M12 7v13M5 12a7 7 0 0014 0M4 12H3M21 12h-2"/>',
+    drill:'<path d="M12 3v10M8 9l4 4 4-4"/><rect x="7" y="16" width="10" height="4" rx="1"/>',
+    spray:'<rect x="8" y="8" width="8" height="12" rx="2"/><path d="M10 8V5h4v3"/><path d="M18 5h2M18 8h2M18 11h2"/>',
+    mesh:'<rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18M15 3v18"/>',
+    drop:'<path d="M12 3s6 7 6 11a6 6 0 01-12 0c0-4 6-11 6-11z"/>',
+    piles:'<path d="M6 3v13M12 3v13M18 3v13M3 16h18M5 20h14"/>'
+  };
+  var TICK='<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="currentColor"/><path d="M8 12.5l2.4 2.4 5.2-5.6" fill="none" stroke="#fcf2e8" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  var ARROW='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+  function svg(name){return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">'+(ICONS[name]||'')+'</svg>';}
+  function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
 
-    order.forEach(function(k){
-      var b=document.createElement('button'); b.className='pf-sb'; b.setAttribute('data-wt',k); b.setAttribute('role','tab');
-      b.innerHTML='<span class="dot" style="color:'+WT[k].accent+'"></span>'+WT[k].label;
-      b.addEventListener('click',function(){render(k);});
-      sw.appendChild(b);
+  var KEYS=Object.keys(WORK_TYPES);
+  var DEFAULT='anchoring';
+  var grid=document.getElementById('wtGrid');
+  var current=DEFAULT;
+
+  /* selector cards (buttons, aria-pressed) */
+  KEYS.forEach(function(k){
+    var c=WORK_TYPES[k];
+    var b=document.createElement('button');
+    b.type='button'; b.className='wt-card'; b.setAttribute('data-wt',k);
+    b.setAttribute('aria-pressed', k===current?'true':'false');
+    b.innerHTML='<span class="wt-ic">'+svg(c.icon)+'</span>'+
+                '<span class="wt-lb">'+esc(c.label)+'</span>';
+    b.addEventListener('click',function(){select(k);});
+    grid.appendChild(b);
+  });
+
+  /* build the six matrix columns once; only the highlight changes on select */
+  var mx=document.getElementById('mxGrid');
+  mx.innerHTML=KEYS.map(function(k){
+    var c=WORK_TYPES[k];
+    var cells=c.matrixChips.map(function(chip){return '<div class="mx-cell">'+esc(chip)+'</div>';}).join('')+
+              '<div class="mx-cell more">+ more</div>';
+    return '<div class="mx-col" data-wt="'+k+'"><div class="mxt"><span class="mxic">'+svg(c.icon)+'</span>'+esc(c.label)+'</div>'+cells+'</div>';
+  }).join('');
+
+  function rows(list){
+    return list.map(function(r){
+      return '<div class="cfg-row"><span class="k">'+esc(r[0])+'</span><span class="v">'+esc(r[1])+'</span></div>';
+    }).join('');
+  }
+
+  function select(k){
+    if(!WORK_TYPES[k]) return;
+    current=k;
+    var c=WORK_TYPES[k];
+
+    /* selector state */
+    [].forEach.call(grid.querySelectorAll('.wt-card'),function(b){
+      b.setAttribute('aria-pressed', b.getAttribute('data-wt')===k?'true':'false');
     });
 
-    function render(k){
-      var c=TE.setWorkType(k);
-      document.documentElement.style.setProperty('--accent',c.accent);
-      document.documentElement.style.setProperty('--accent-tint',tints[k]||'var(--sage-tint)');
-      [].forEach.call(sw.querySelectorAll('.pf-sb'),function(b){b.classList.toggle('on',b.getAttribute('data-wt')===k);});
-      document.getElementById('pfActive').textContent='Showing '+c.label+'.';
+    /* selected work-type panel */
+    document.getElementById('wtPanel').innerHTML=
+      '<span class="pic">'+svg(c.icon)+'</span>'+
+      '<div class="pbody"><h2>'+esc(c.label)+'</h2><div class="pdesc">'+esc(c.description)+'</div>'+
+      '<div class="wt-tpl-label">Templates</div><div class="wt-chips">'+
+      c.templates.map(function(t){return '<span class="wt-chip">'+esc(t)+'</span>';}).join('')+
+      '</div></div>';
 
-      document.getElementById('pfPipe').innerHTML=
-        stage('Setup','6 steps','layout, designs, plan, standards','shared')+
-        stage('Field capture','4 screens','capturing '+c.item.plural,'config')+
-        stage('QA gate','provisional → approved','a PM approves every '+c.item.singular,'shared')+
-        stage('Reporting','blocked on flags','PDF + Excel, PM signoff','shared')+
-        stage('Closeout','handover gate','no '+c.item.singular+' bypasses it','shared');
+    /* configured-by-work-type */
+    document.getElementById('cfgEyebrow').textContent='Example · '+c.exampleTemplate.name;
+    document.getElementById('cfgTemplate').innerHTML=rows(c.exampleTemplate.rows);
+    document.getElementById('cfgPresets').innerHTML=rows(c.presets);
+    document.getElementById('cfgModules').innerHTML=c.modules.map(function(m){
+      return '<div class="cfg-mod"><span class="tick">'+TICK+'</span><div><div class="ml">'+esc(m[0])+'</div><div class="mn">'+esc(m[1])+'</div></div></div>';
+    }).join('');
 
-      document.getElementById('pfItem').innerHTML=
-        kv('Work item',c.item.singular+' ('+c.item.idPrefix+'-series)','hi')+
-        kv('Specification',c.spec.name)+
-        kv('Revision',c.spec.rev)+
-        kv('Design depth',c.design.depth)+
-        kv('Working load',c.design.load)+
-        kv('Test regime',c.design.testRegime);
-
-      var w=c.wastage;
-      document.getElementById('pfMat').innerHTML=
-        kv('Material',c.material.name)+
-        kv('Unit',c.material.unit)+
-        kv('Theoretical',c.material.theoretical)+
-        kv('Wastage preset',w.label)+
-        kv('Allowance',w.display+(w.range?(' ('+w.range+')'):''),'hi')+
-        kv('Flagged for QA',w.flagAt);
-
-      document.getElementById('pfScreens').innerHTML=c.fieldScreens.map(function(s,i){
-        var changed=s.label!==s.core;
-        return '<div class="pf-srow"><span class="sn">'+(i+1)+'</span><div><div class="sl">'+s.label+'</div><div class="snote">'+s.note+'</div></div><span class="arrow">'+(changed?('renamed from '+s.core):'unchanged')+'</span></div>';
-      }).join('');
-
-      var idEx=c.item.idPrefix+(k==='anchor'?'12':'07');
-      var verb=(k==='screwPile')?'Install':'Drill';
-      document.getElementById('pfField').innerHTML=
-        '<div class="pf-fbar"><span class="pf-fav">SK</span><div><div class="pf-fttl">Benmore · '+c.label+'</div><div class="pf-fsub">Rock Control · Today</div></div></div>'+
-        '<div class="pf-fbody"><div class="pf-fid">'+idEx+'</div><div class="pf-fstage">'+verb+' stage 2 of 3 · cleared to '+verb.toLowerCase()+'</div><div class="pf-fzone">'+cap(c.item.singular)+' · Spillway Face</div><div class="pf-fcta">Continue '+verb.toLowerCase()+'ing</div></div>';
-      document.getElementById('pfD2').innerHTML='The crew sees a '+c.item.singular+', big buttons and one next action. No work-type menu, no preset, no specification. It looks built just for '+c.label.toLowerCase()+'.';
-
-      document.getElementById('pfCode').textContent=TE.serialise();
+    /* module details link: only the piling screw-pile module has a live preview */
+    var foot=document.getElementById('cfgModFoot');
+    if(k==='piling'){
+      foot.innerHTML='<a class="cfg-link" href="module-preview.html">View module details '+ARROW+'</a>';
+    }else{
+      foot.innerHTML='<span class="cfg-link quiet">Module details</span>';
     }
 
-    document.getElementById('pfExJson').addEventListener('click',function(){
-      var b=this,data=TE.serialise();
-      try{var blob=new Blob([data],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=TE.JOB.id+'.json';document.body.appendChild(a);a.click();a.remove();setTimeout(function(){URL.revokeObjectURL(url);},1000);}catch(e){}
-      b.classList.add('is-ok');var t=b.innerHTML;b.innerHTML=okSvg+' JSON exported';setTimeout(function(){b.classList.remove('is-ok');b.innerHTML=t;},1700);
+    /* matrix highlight */
+    [].forEach.call(mx.querySelectorAll('.mx-col'),function(col){
+      col.classList.toggle('on', col.getAttribute('data-wt')===k);
     });
-    document.getElementById('pfExXls').addEventListener('click',function(){
-      var b=this;b.classList.add('is-ok');var t=b.innerHTML;b.innerHTML=okSvg+' '+TE.JOB.id+'.xlsx ready';setTimeout(function(){b.classList.remove('is-ok');b.innerHTML=t;},1900);
-    });
+  }
 
-    render('anchor');
-  })();
+  /* export seam: preserve previous behaviour (JSON download, Excel toast) */
+  var okSvg='<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>';
+  var jobId=(window.TE&&TE.JOB)?TE.JOB.id:'BEN-SPW-2026';
+  document.getElementById('pfExJson').addEventListener('click',function(){
+    var b=this,data=(window.TE?TE.serialise():'{}');
+    try{var blob=new Blob([data],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=jobId+'.json';document.body.appendChild(a);a.click();a.remove();setTimeout(function(){URL.revokeObjectURL(url);},1000);}catch(e){}
+    b.classList.add('is-ok');var t=b.textContent;b.textContent='JSON exported';setTimeout(function(){b.classList.remove('is-ok');b.textContent=t;},1700);
+  });
+  document.getElementById('pfExXls').addEventListener('click',function(){
+    var b=this;b.classList.add('is-ok');var t=b.innerHTML;b.innerHTML=okSvg+' '+jobId+'.xlsx ready';setTimeout(function(){b.classList.remove('is-ok');b.innerHTML=t;},1900);
+  });
+
+  select(DEFAULT);
   </script>
   <script>(function(){try{var b=getComputedStyle(document.documentElement).getPropertyValue("--build").replace(/[\s"']/g,"");if(!b)return;document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest("a");if(!a)return;var h=a.getAttribute("href");if(!h)return;if(/^(https?:|#|mailto:|tel:)/i.test(h))return;if(!/\.html($|[?#])/i.test(h))return;if(/[?&]v=/.test(h))return;a.setAttribute("href",h+(h.indexOf("?")<0?"?":"&")+"v="+b);},true);}catch(_){}})();</script>
   <script>if(window.navigator.standalone){document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest("a");if(a&&a.getAttribute("href")&&a.target!=="_blank"&&a.host===location.host){e.preventDefault();location.href=a.href;}},true);}</script>
