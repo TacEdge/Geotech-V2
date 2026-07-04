@@ -321,6 +321,8 @@ body{font-family:var(--ui);color:var(--ink);background:var(--stage);min-height:1
 .datenav{margin-left:auto;display:flex;gap:7px}
 .datenav button{width:38px;height:38px;border-radius:var(--r-sm);border:1.5px solid var(--line-2);background:var(--card);color:var(--ink-60);display:grid;place-items:center;cursor:pointer}
 .datenav button:active{background:var(--sage-tint)}
+.datenav button.pickdate{width:auto;height:38px;display:inline-flex;align-items:center;gap:7px;padding:0 13px;white-space:nowrap;font-family:var(--ui);font-size:var(--fs-sm);font-weight:600;color:var(--ink-60)}
+.datenav button.pickdate svg{flex:0 0 auto}
 .totcard{display:flex;gap:1px;background:var(--olive-edge);border:1px solid var(--olive-edge);border-radius:var(--r-lg);overflow:hidden}
 .totcell{flex:1;background:var(--sage-tint);padding:14px 13px;display:flex;flex-direction:column;gap:3px}
 .totcell.main{background:rgba(54,89,42,.10)}
@@ -389,6 +391,21 @@ body{font-family:var(--ui);color:var(--ink);background:var(--stage);min-height:1
 .btn.subqa .bchev{flex:0 0 auto;opacity:.85}
 .ponote{display:flex;align-items:flex-start;gap:9px;font-size:var(--fs-sm);color:var(--ink-40);line-height:1.4;padding:0 2px}
 .ponote svg{flex:0 0 auto;margin-top:1px;color:var(--ink-40)}
+.sumcards{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+.sumcard{background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);padding:15px 16px;display:flex;flex-direction:column;gap:8px}
+.sumcard .sk{display:inline-flex;align-items:center;gap:8px;font-size:var(--fs-sm);font-weight:600;color:var(--ink-60)}
+.sumcard .sk svg{color:var(--ink-40);flex:0 0 auto}
+.sumcard .sv{font-family:var(--ui);font-weight:700;font-size:var(--fs-2xl);color:var(--ink);line-height:1}
+.sumcard .sv i{font-style:normal;font-weight:500;font-size:var(--fs-md);color:var(--ink-40)}
+.dstatus.std{display:none}
+.pstat{flex:0 0 auto;font-size:var(--fs-xs);font-weight:700;padding:6px 13px;border-radius:var(--r-pill);white-space:nowrap;border:1px solid transparent}
+.pstat.used{color:var(--forest-2);background:var(--sage-tint);border-color:#cdd5b9}
+.pstat.standby{color:#7a5a1e;background:var(--ochre-tint);border-color:#eadbb8}
+.pstat.notused{color:var(--ink-60);background:var(--tint);border-color:var(--line-2)}
+.pstat.faulted{color:var(--brick);background:var(--brick-tint);border-color:#eccfc8}
+.pstatsel{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.psopt{padding:13px;border:1.5px solid var(--line-2);border-radius:var(--r-md);background:var(--card);font-family:var(--ui);font-weight:600;font-size:var(--fs-base);color:var(--ink-60);cursor:pointer}
+.psopt.on{border-color:var(--forest);color:var(--forest);background:rgba(54,89,42,.06);box-shadow:inset 0 0 0 1px var(--forest)}
 /* edit drawer */
 .esheet{position:absolute;inset:0;z-index:50;display:none}
 .esheet.open{display:block}
@@ -464,17 +481,15 @@ body{font-family:var(--ui);color:var(--ink);background:var(--stage);min-height:1
       </svg>
       <a class="iconbtn" href="../index.html" aria-label="Back to home" title="Back to home"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></a>
       <div class="ctx"><span class="p">Benmore • Spillway Anchoring</span><span class="z">Rock Control • today</span></div>
-      <div class="right"><button class="iconbtn" id="fnavBtn" aria-label="Switch screen" title="Switch screen"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="3.5" width="7" height="7" rx="1.7"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.7"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.7"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.7"/></svg></button>
-        <a class="iconbtn" href="incident.html" aria-label="Report incident or near-miss" title="Report incident / near-miss"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></a>
-        <span class="fresh"><span class="d"></span>Live</span>
+      <div class="right"><span class="fresh"><span class="d"></span>Live</span>
         <span class="av">SK</span>
       </div>
     </header>
 
     <!-- gate satisfied -->
     <div class="signed info" id="gate">
-      <span class="tick"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6v6l4 2"/><circle cx="12" cy="12" r="9"/></svg></span>
-      <span id="gateTx">Hours auto-totalled • edits are tracked</span><span class="jsa">DAY SHEET <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></span>
+      <span class="tick"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></span>
+      <span id="gateTx">Draft · edits tracked</span>
     </div>
 
     <div class="scroll"><div class="pad">
@@ -486,18 +501,15 @@ body{font-family:var(--ui);color:var(--ink);background:var(--stage);min-height:1
           <span class="ttl">Wed 12 Mar</span>
           <div class="datenav"><button aria-label="Previous day"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button><button aria-label="Next day"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></button><button class="pickdate"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> Pick date</button></div>
         </div>
-        <span class="sub2">Day shift • Rock Control • Benmore</span>
-        <div class="dstatusrow"><span class="draftpill"><span class="dd"></span>Draft</span> Not submitted · Edits tracked</div>
+        <span class="sub2">Day shift · Rock Control · Benmore</span>
       </div>
 
       <!-- totals (auto) -->
       <div class="sec">
-        <div class="totcard">
-          <div class="totcell"><span class="tk"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg> Crew hours</span><span class="tv" id="totCrew">54.5</span><span class="tu">hours</span></div>
-          <div class="totcell"><span class="tk"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="6" width="15" height="12" rx="2"/><path d="M16 10h4l3 3v3a2 2 0 0 1-2 2h-1"/><circle cx="6" cy="19" r="2"/><circle cx="19" cy="19" r="2"/></svg> Plant hours</span><span class="tv" id="totPlant">34.0</span><span class="tu">hours</span></div>
-          <div class="totcell main"><span class="tk"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> Total hours</span><span class="tv" id="totAll">88.5</span><span class="tu">hours</span></div>
+        <div class="sumcards">
+          <div class="sumcard"><span class="sk"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M3 20a6 6 0 0 1 12 0"/><path d="M16 6a3 3 0 0 1 0 6"/><path d="M18.5 20a5 5 0 0 0-3-4.6"/></svg>Crew hours</span><span class="sv"><b id="totCrew">54.5</b> <i>h</i></span></div>
+          <div class="sumcard"><span class="sk"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="7" width="14" height="11" rx="2"/><path d="M15 11h4l3 3v3a1 1 0 0 1-1 1h-1"/><circle cx="6" cy="19" r="1.8"/><circle cx="18" cy="19" r="1.8"/></svg>Plant used</span><span class="sv"><b id="totPlantCount">4</b> <i>items</i></span></div>
         </div>
-        <div class="autonote"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg> Totals update automatically as you add or edit hours.</div>
       </div>
 
       <!-- standard day -->
@@ -505,9 +517,9 @@ body{font-family:var(--ui);color:var(--ink);background:var(--stage);min-height:1
         <div class="stdcard">
           <div class="stdtop">
             <span class="stdico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
-            <div class="stdinfo"><span class="stdttl">Standard day (applied)</span><span class="stdsub">06:00 – 18:00 • Break 0.5h • Travel 0h • Standby 0h</span></div>
+            <div class="stdinfo"><span class="stdttl">Standard day applied</span><span class="stdsub">06:00–18:00 · break 0.5 h · travel 0 h · standby 0 h</span></div>
           </div>
-          <button class="applystd" id="applyStd"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg> Apply standard day to all crew</button>
+          <button class="applystd" id="applyStd"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg> Apply to all crew</button>
         </div>
       </div>
 
@@ -515,14 +527,12 @@ body{font-family:var(--ui);color:var(--ink);background:var(--stage);min-height:1
       <div class="sec">
         <div class="dsec">
           <div class="dsh"><span class="dt"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg> Crew</span><button class="addr" id="addCrew"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Add crew member</button></div>
-          <div class="dshint"><span>Total hours shown.</span><span>Tap a row to view or edit details.</span></div>
           <div id="crewList">
             <button class="drow2" data-name="Tane Wiremu" data-role="Drill supervisor" data-total="9.5" data-status="standard"><span class="dav">TW</span><div class="dinfo"><span class="dn">Tane Wiremu</span><span class="dr">Drill supervisor</span><span class="dstatus std">Standard day applied</span></div><span class="dtotbox"><span class="dtv">9.5</span></span><span class="dtoth">h</span><span class="dchev"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></span></button>
             <button class="drow2" data-name="Sam King" data-role="Driller" data-total="9.5" data-status="standard"><span class="dav">SK</span><div class="dinfo"><span class="dn">Sam King</span><span class="dr">Driller</span><span class="dstatus std">Standard day applied</span></div><span class="dtotbox"><span class="dtv">9.5</span></span><span class="dtoth">h</span><span class="dchev"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></span></button>
             <button class="drow2" data-name="Mere Albert" data-role="Grouting tech" data-total="9.0" data-status="standard"><span class="dav">MA</span><div class="dinfo"><span class="dn">Mere Albert</span><span class="dr">Grouting tech</span><span class="dstatus std">Standard day applied</span></div><span class="dtotbox"><span class="dtv">9.0</span></span><span class="dtoth">h</span><span class="dchev"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></span></button>
             <button class="drow2" data-name="Josh Pereira" data-role="Offsider" data-total="9.5" data-status="standard"><span class="dav">JP</span><div class="dinfo"><span class="dn">Josh Pereira</span><span class="dr">Offsider</span><span class="dstatus std">Standard day applied</span></div><span class="dtotbox"><span class="dtv">9.5</span></span><span class="dtoth">h</span><span class="dchev"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></span></button>
             <button class="drow2" data-name="Hana Ngata" data-role="Safety observer" data-total="9.0" data-status="standard"><span class="dav">HN</span><div class="dinfo"><span class="dn">Hana Ngata</span><span class="dr">Safety observer</span><span class="dstatus std">Standard day applied</span></div><span class="dtotbox"><span class="dtv">9.0</span></span><span class="dtoth">h</span><span class="dchev"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></span></button>
-            <button class="drow2" data-name="Riki Solomon" data-role="Plant operator" data-total="8.0" data-status="edited"><span class="dav">RS</span><div class="dinfo"><span class="dn">Riki Solomon</span><span class="dr">Plant operator</span><span class="dstatus edited">Edited 09:12 · by Riki Solomon</span></div><span class="dtotbox"><span class="dtv">8.0</span></span><span class="dtoth">h</span><span class="dchev"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></span></button>
           </div>
           <div class="dsub"><span class="dsl">Crew total</span><span class="dsv" id="crewSub">54.5 h</span></div>
         </div>
@@ -532,14 +542,13 @@ body{font-family:var(--ui);color:var(--ink);background:var(--stage);min-height:1
       <div class="sec">
         <div class="dsec">
           <div class="dsh"><span class="dt"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="6" width="15" height="12" rx="2"/><path d="M16 10h4l3 3v3a2 2 0 0 1-2 2h-1"/><circle cx="6" cy="19" r="2"/><circle cx="19" cy="19" r="2"/></svg> Plant</span><button class="addr" id="addPlant"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Add plant item</button></div>
-          <div class="dshint"><span>Total hours shown.</span><span>Tap a row to view or edit details.</span></div>
           <div id="plantList">
-            <button class="drow2" data-name="Excavator 21 t" data-role="CAT 320" data-total="8.5" data-status="standard"><span class="dpi"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="6" width="15" height="12" rx="2"/><path d="M16 10h4l3 3v3a2 2 0 0 1-2 2h-1"/><circle cx="6" cy="19" r="2"/><circle cx="19" cy="19" r="2"/></svg></span><div class="dinfo"><span class="dn">Excavator 21 t</span><span class="dr">CAT 320</span><span class="dstatus std">Standard day applied</span></div><span class="dtotbox"><span class="dtv">8.5</span></span><span class="dtoth">h</span><span class="dchev"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></span></button>
-            <button class="drow2" data-name="Drill rig" data-role="Klemm 806" data-total="9.0" data-status="standard"><span class="dpi"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="6" width="15" height="12" rx="2"/><path d="M16 10h4l3 3v3a2 2 0 0 1-2 2h-1"/><circle cx="6" cy="19" r="2"/><circle cx="19" cy="19" r="2"/></svg></span><div class="dinfo"><span class="dn">Drill rig</span><span class="dr">Klemm 806</span><span class="dstatus std">Standard day applied</span></div><span class="dtotbox"><span class="dtv">9.0</span></span><span class="dtoth">h</span><span class="dchev"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></span></button>
-            <button class="drow2" data-name="Grout pump" data-role="Putzmeister SP 11" data-total="8.5" data-status="standard"><span class="dpi"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="6" width="15" height="12" rx="2"/><path d="M16 10h4l3 3v3a2 2 0 0 1-2 2h-1"/><circle cx="6" cy="19" r="2"/><circle cx="19" cy="19" r="2"/></svg></span><div class="dinfo"><span class="dn">Grout pump</span><span class="dr">Putzmeister SP 11</span><span class="dstatus std">Standard day applied</span></div><span class="dtotbox"><span class="dtv">8.5</span></span><span class="dtoth">h</span><span class="dchev"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></span></button>
-            <button class="drow2" data-name="Light tower" data-role="Atlas Copco HiLight" data-total="8.0" data-status="standard"><span class="dpi"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="6" width="15" height="12" rx="2"/><path d="M16 10h4l3 3v3a2 2 0 0 1-2 2h-1"/><circle cx="6" cy="19" r="2"/><circle cx="19" cy="19" r="2"/></svg></span><div class="dinfo"><span class="dn">Light tower</span><span class="dr">Atlas Copco HiLight</span><span class="dstatus std">Standard day applied</span></div><span class="dtotbox"><span class="dtv">8.0</span></span><span class="dtoth">h</span><span class="dchev"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></span></button>
+            <button class="drow2" data-name="Excavator 21 t" data-role="CAT 320" data-pstatus="used"><span class="dpi"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="6" width="15" height="12" rx="2"/><path d="M16 10h4l3 3v3a2 2 0 0 1-2 2h-1"/><circle cx="6" cy="19" r="2"/><circle cx="19" cy="19" r="2"/></svg></span><div class="dinfo"><span class="dn">Excavator 21 t</span><span class="dr">CAT 320</span></div><span class="pstat used">Used</span><span class="dchev"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></span></button>
+            <button class="drow2" data-name="Drill rig" data-role="Klemm 806" data-pstatus="used"><span class="dpi"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="6" width="15" height="12" rx="2"/><path d="M16 10h4l3 3v3a2 2 0 0 1-2 2h-1"/><circle cx="6" cy="19" r="2"/><circle cx="19" cy="19" r="2"/></svg></span><div class="dinfo"><span class="dn">Drill rig</span><span class="dr">Klemm 806</span></div><span class="pstat used">Used</span><span class="dchev"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></span></button>
+            <button class="drow2" data-name="Grout pump" data-role="Putzmeister SP 11" data-pstatus="used"><span class="dpi"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="6" width="15" height="12" rx="2"/><path d="M16 10h4l3 3v3a2 2 0 0 1-2 2h-1"/><circle cx="6" cy="19" r="2"/><circle cx="19" cy="19" r="2"/></svg></span><div class="dinfo"><span class="dn">Grout pump</span><span class="dr">Putzmeister SP 11</span></div><span class="pstat used">Used</span><span class="dchev"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></span></button>
+            <button class="drow2" data-name="Light tower" data-role="Atlas Copco HiLight" data-pstatus="standby"><span class="dpi"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="6" width="15" height="12" rx="2"/><path d="M16 10h4l3 3v3a2 2 0 0 1-2 2h-1"/><circle cx="6" cy="19" r="2"/><circle cx="19" cy="19" r="2"/></svg></span><div class="dinfo"><span class="dn">Light tower</span><span class="dr">Atlas Copco HiLight</span></div><span class="pstat standby">Standby</span><span class="dchev"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></span></button>
           </div>
-          <div class="dsub"><span class="dsl">Plant total</span><span class="dsv" id="plantSub">34.0 h</span></div>
+          <div class="dsub"><span class="dsl">Plant used today</span><span class="dsv" id="plantSub">4 items</span></div>
         </div>
       </div>
 
@@ -550,7 +559,7 @@ body{font-family:var(--ui);color:var(--ink);background:var(--stage);min-height:1
 
       <!-- footer note + view previous -->
       <div class="sec">
-        <div class="ponote"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg> Submitted sheets are locked and kept for audit. You can export a PDF at any time.</div>
+        <div class="ponote"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg> Submitted sheets are locked for audit.</div>
         <button class="dasview">View previous day sheets <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></button>
       </div>
 
@@ -598,8 +607,41 @@ body{font-family:var(--ui);color:var(--ink);background:var(--stage);min-height:1
         </div>
       </div>
     </div>
+
+    <!-- plant status drawer -->
+    <div class="esheet" id="psheet" aria-hidden="true">
+      <div class="esov" id="psOv"></div>
+      <div class="espanel">
+        <div class="eshead">
+          <div class="esid"><span class="esn" id="psName">Excavator 21 t</span><span class="esr" id="psRole">CAT 320</span></div>
+          <button class="esx" id="psX"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+        </div>
+        <div class="esbody">
+          <div class="essec">
+            <div class="essl">Status today</div>
+            <div class="pstatsel" id="psSel">
+              <button type="button" class="psopt" data-v="used">Used</button>
+              <button type="button" class="psopt" data-v="notused">Not used</button>
+              <button type="button" class="psopt" data-v="standby">Standby</button>
+              <button type="button" class="psopt" data-v="faulted">Faulted</button>
+            </div>
+          </div>
+          <div class="essec" id="psFaultSec" hidden>
+            <div class="essl">Fault / issue</div>
+            <div class="esnotebox"><textarea id="psFault" maxlength="200" placeholder="Describe the fault or issue…"></textarea></div>
+          </div>
+          <div class="essec">
+            <div class="essl">Notes <span class="essub2">(optional)</span></div>
+            <div class="esnotebox"><textarea id="psNote" maxlength="200" placeholder="Add a note…"></textarea></div>
+          </div>
+        </div>
+        <div class="esfoot">
+          <button class="btn esghost" id="psCancel">Cancel</button>
+          <button class="btn prim" id="psSave">Save status</button>
+        </div>
+      </div>
+    </div>
   </div>
-    <div class="foot">Internal · TacEdge Geotech · PDS-DAS · Daily Activity Sheet</div>
 </div>
 
 <script>
@@ -609,14 +651,12 @@ body{font-family:var(--ui);color:var(--ink);background:var(--stage);min-height:1
   function toMin(t){var p=(t||'').split(':'); if(p.length<2) return 0; return (parseInt(p[0],10)||0)*60+(parseInt(p[1],10)||0);}
   var STD={start:'06:00',finish:'18:00',brk:0.5,travel:0.0,standby:0.0,total:9.5};
 
-  function recompute(){
-    var c=0; [].forEach.call(document.querySelectorAll('#crewList .drow2'),function(r){c+=parseFloat(r.dataset.total)||0;});
-    var p=0; [].forEach.call(document.querySelectorAll('#plantList .drow2'),function(r){p+=parseFloat(r.dataset.total)||0;});
-    document.getElementById('crewSub').textContent=fmt(c)+' h';
-    document.getElementById('plantSub').textContent=fmt(p)+' h';
-    document.getElementById('totCrew').textContent=fmt(c);
-    document.getElementById('totPlant').textContent=fmt(p);
-    document.getElementById('totAll').textContent=fmt(c+p);
+  function recompute(){}
+  var PLABEL={used:'Used',notused:'Not used',standby:'Standby',faulted:'Faulted'};
+  function updatePlantCount(){
+    var n=0; [].forEach.call(document.querySelectorAll('#plantList .drow2'),function(r){ if(r.dataset.pstatus!=='notused') n++; });
+    var ps=document.getElementById('plantSub'); if(ps) ps.textContent=n+' items';
+    var tc=document.getElementById('totPlantCount'); if(tc) tc.textContent=String(n);
   }
 
   var sheet=document.getElementById('esheet'), curRow=null, base=null;
@@ -682,7 +722,38 @@ body{font-family:var(--ui);color:var(--ink);background:var(--stage);min-height:1
   document.getElementById('esX').addEventListener('click',closeSheet);
   document.getElementById('esOv').addEventListener('click',closeSheet);
 
-  function bindRows(){ [].forEach.call(document.querySelectorAll('.drow2'),function(r){ if(!r._b){ r._b=1; r.addEventListener('click',function(){openSheet(r);}); } }); }
+  function bindRows(){ [].forEach.call(document.querySelectorAll('.drow2'),function(r){ if(!r._b){ r._b=1; if(r.closest('#plantList')){ r.addEventListener('click',function(){openPlant(r);}); } else { r.addEventListener('click',function(){openSheet(r);}); } } }); }
+
+  var psheet=document.getElementById('psheet'), psRow=null;
+  function openPlant(row){
+    psRow=row;
+    document.getElementById('psName').textContent=row.dataset.name;
+    document.getElementById('psRole').textContent=row.dataset.role;
+    var cur=row.dataset.pstatus||'used';
+    [].forEach.call(document.querySelectorAll('#psSel .psopt'),function(o){ o.classList.toggle('on', o.getAttribute('data-v')===cur); });
+    document.getElementById('psFaultSec').hidden=(cur!=='faulted');
+    document.getElementById('psFault').value=''; document.getElementById('psNote').value='';
+    psheet.classList.add('open'); psheet.setAttribute('aria-hidden','false');
+  }
+  function closePlant(){ psheet.classList.remove('open'); psheet.setAttribute('aria-hidden','true'); psRow=null; }
+  document.getElementById('psSel').addEventListener('click',function(e){
+    var o=e.target.closest('.psopt'); if(!o) return;
+    [].forEach.call(document.querySelectorAll('#psSel .psopt'),function(x){ x.classList.remove('on'); });
+    o.classList.add('on');
+    document.getElementById('psFaultSec').hidden=(o.getAttribute('data-v')!=='faulted');
+  });
+  document.getElementById('psSave').addEventListener('click',function(){
+    if(!psRow) return;
+    var on=document.querySelector('#psSel .psopt.on'); var v=on?on.getAttribute('data-v'):'used';
+    psRow.dataset.pstatus=v;
+    var pill=psRow.querySelector('.pstat'); if(pill){ pill.className='pstat '+v; pill.textContent=PLABEL[v]||v; }
+    updatePlantCount();
+    closePlant();
+  });
+  document.getElementById('psCancel').addEventListener('click',closePlant);
+  document.getElementById('psX').addEventListener('click',closePlant);
+  document.getElementById('psOv').addEventListener('click',closePlant);
+
   bindRows();
 
   document.getElementById('applyStd').addEventListener('click',function(){
@@ -697,9 +768,16 @@ body{font-family:var(--ui);color:var(--ink);background:var(--stage);min-height:1
   function addRow(listId, kind){
     var list=document.getElementById(listId);
     var b=document.createElement('button'); b.className='drow2';
-    b.dataset.name=(kind==='crew'?'New crew member':'New plant item'); b.dataset.role=(kind==='crew'?'Added on site':'Added on site'); b.dataset.total=fmt(STD.total); b.dataset.status='standard';
-    var badge=kind==='crew'?'<span class="dav">+</span>':'<span class="dpi">'+document.querySelector('#plantList .dpi').innerHTML+'</span>';
-    b.innerHTML=badge+'<div class="dinfo"><span class="dn">'+b.dataset.name+'</span><span class="dr">'+b.dataset.role+' '+nowHM()+'</span><span class="dstatus std">Standard day applied</span></div><span class="dtotbox"><span class="dtv">'+fmt(STD.total)+'</span></span><span class="dtoth">h</span><span class="dchev">'+document.querySelector('.drow2 .dchev').innerHTML+'</span>';
+    var chev=document.querySelector('.drow2 .dchev').innerHTML;
+    if(kind==='plant'){
+      b.dataset.name='New plant item'; b.dataset.role='Added on site'; b.dataset.pstatus='used';
+      var pico=document.querySelector('#plantList .dpi').innerHTML;
+      b.innerHTML='<span class="dpi">'+pico+'</span><div class="dinfo"><span class="dn">'+b.dataset.name+'</span><span class="dr">'+b.dataset.role+' '+nowHM()+'</span></div><span class="pstat used">Used</span><span class="dchev">'+chev+'</span>';
+      list.appendChild(b); bindRows(); updatePlantCount();
+      return;
+    }
+    b.dataset.name='New crew member'; b.dataset.role='Added on site'; b.dataset.total=fmt(STD.total); b.dataset.status='standard';
+    b.innerHTML='<span class="dav">+</span><div class="dinfo"><span class="dn">'+b.dataset.name+'</span><span class="dr">'+b.dataset.role+' '+nowHM()+'</span><span class="dstatus std">Standard day applied</span></div><span class="dtotbox"><span class="dtv">'+fmt(STD.total)+'</span></span><span class="dtoth">h</span><span class="dchev">'+chev+'</span>';
     list.appendChild(b); bindRows(); recompute();
   }
   document.getElementById('addCrew').addEventListener('click',function(){addRow('crewList','crew');});
