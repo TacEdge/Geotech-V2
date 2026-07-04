@@ -347,6 +347,20 @@ body{font-family:var(--ui);color:var(--ink);background:var(--stage);min-height:1
 .crow.you .cav{background:var(--forest);color:var(--cream)}
 .ponote{display:flex;align-items:flex-start;gap:9px;font-size:var(--fs-sm);color:var(--ink-40);line-height:1.4;padding:0 2px}
 .ponote svg{flex:0 0 auto;margin-top:1px;color:var(--ink-40)}
+/* crew status — collapsed card + expandable list */
+.crewcard{display:flex;align-items:center;gap:13px;width:100%;text-align:left;background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);padding:15px 16px;cursor:pointer;font-family:var(--ui)}
+.crewcard:active{background:var(--tint)}
+.cc-ic{color:var(--forest);display:flex;flex:0 0 auto}
+.cc-main{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.cc-t{font-size:var(--fs-base);font-weight:700;color:var(--ink)}
+.cc-s{font-size:var(--fs-sm);color:var(--ink-60)}
+.cc-iss{color:var(--ochre);font-weight:600}
+.cc-chev{color:var(--ink-40);display:flex;flex:0 0 auto;transition:transform .15s}
+.crewcard.open .cc-chev{transform:rotate(180deg)}
+.crewlist{margin-top:10px;border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden;background:var(--card)}
+.crewlist .crow{padding:13px 15px}
+.crewlist .crow:first-child{border-top:none}
+.crewlist .cn{flex:1}
 </style>
 <link rel="stylesheet" href="../assets/tacedge.css">
 <link rel="manifest" href="../manifest.json">
@@ -371,9 +385,7 @@ body{font-family:var(--ui);color:var(--ink);background:var(--stage);min-height:1
       </svg>
       <a class="iconbtn" href="../index.html" aria-label="Back to home" title="Back to home"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></a>
       <div class="ctx"><span class="p">Benmore • Spillway Anchoring</span><span class="z">Rock Control • Today</span></div>
-      <div class="right"><button class="iconbtn" id="fnavBtn" aria-label="Switch screen" title="Switch screen"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="3.5" width="7" height="7" rx="1.7"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.7"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.7"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.7"/></svg></button>
-        <a class="iconbtn" href="incident.html" aria-label="Report incident or near-miss" title="Report incident / near-miss"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></a>
-        <span class="fresh"><span class="d"></span>Live</span>
+      <div class="right"><span class="fresh"><span class="d"></span>Live</span>
         <span class="av">SK</span>
       </div>
     </header>
@@ -388,7 +400,7 @@ body{font-family:var(--ui);color:var(--ink);background:var(--stage);min-height:1
             <span class="soava" id="soAva"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span class="sobadge" id="soBadge"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg></span></span>
             <div class="sotext">
               <div class="sotitle" id="soTitle">You are not signed on</div>
-              <div class="sosub" id="soSub">Sign on to unlock drilling activities.</div>
+              <div class="sosub" id="soSub">Complete the checks below to unlock drilling.</div>
             </div>
           </div>
           <div class="sosep"></div>
@@ -400,7 +412,7 @@ body{font-family:var(--ui);color:var(--ink);background:var(--stage);min-height:1
       <div class="sec">
         <div class="sl">Safety briefing</div>
         <div class="jsac">
-          <div class="jsah"><span class="ji"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span><span class="jn">JSA-118</span><span class="jd">Spillway anchoring</span><span class="rev">Reviewed by 4 of 6</span></div>
+          <div class="jsah"><span class="ji"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span><span class="jn">JSA-118</span><span class="jd">Spillway anchoring</span></div>
           <div class="hzwrap">
             <span class="hz"><span class="hd"></span>Working at height</span>
             <span class="hz"><span class="hd"></span>Rotating plant</span>
@@ -421,50 +433,35 @@ body{font-family:var(--ui);color:var(--ink);background:var(--stage);min-height:1
 
       <!-- sign-on CTA (inline) -->
       <div class="sec">
-        <button class="btn prim signcta" id="signOn" disabled><span class="lk"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span><span class="bt"><span class="bt1">Sign on and unlock drilling</span><span class="bt2">Personal sign-on • attributed to you only</span></span></button>
+        <button class="btn prim signcta" id="signOn" disabled><span class="lk"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span><span class="bt"><span class="bt1">Sign on and unlock drilling</span><span class="bt2" id="ctaSub">Complete the checks above to continue.</span></span></button>
       </div>
 
-      <!-- today's sign-on -->
+      <!-- crew status (collapsed) -->
       <div class="sec">
-        <div class="sl">Today's sign-on</div>
-        <div class="dcard tcard" id="todayCard">
-          <div class="dhead">
-            <div class="dh-l">
-              <div class="dh-val"><span class="n" id="cCount">4</span><span class="u">of 6</span><span class="cwl">crew signed on</span></div>
-              <div class="des" id="cSub">2 still to sign on</div>
-            </div>
-            <div class="dh-r">
-              <div class="pct" id="cPct">67<span class="pp">%</span></div>
-              <div class="ov" id="cIssue">1 issue to review</div>
-            </div>
-            <span class="tchev"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></span>
-          </div>
-          <div style="margin-top:14px"><div class="pbar"><span class="pf" id="cBar" style="width:67%"></span></div></div>
-        </div>
-      </div>
-
-      <!-- crew on this task -->
-      <div class="sec">
-        <div class="sl">Crew on this task</div>
-        <div class="lithlog" id="crew">
-          <div class="crow"><span class="cav">TW</span><div class="cinfo"><span class="cn">Tane Wiremu</span><span class="cr">Drill supervisor</span></div><span class="cstat ok"><span class="d"></span>Signed 06:38</span></div>
-          <div class="crow you" id="youRow"><span class="cav">SK</span><div class="cinfo"><span class="cn">Sam King • you</span><span class="cr">Driller</span></div><span class="cstat pend col" id="youStat"><span class="d"></span><span class="cscol"><span class="cs1">Not signed on</span><span class="cs2">Action required</span></span></span><span class="cchev" id="youChev"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></span></div>
-          <div class="crow"><span class="cav">MA</span><div class="cinfo"><span class="cn">Mere Albert</span><span class="cr">Grouting tech</span></div><span class="cstat ok"><span class="d"></span>Signed 06:41</span></div>
-          <div class="crow"><span class="cav">JP</span><div class="cinfo"><span class="cn">Josh Pereira</span><span class="cr">Offsider</span></div><span class="cstat ok"><span class="d"></span>Signed 06:44</span></div>
-          <div class="crow"><span class="cav">HN</span><div class="cinfo"><span class="cn">Hana Ngata</span><span class="cr">Safety observer</span></div><span class="cstat ok"><span class="d"></span>Signed 06:40</span></div>
-          <div class="crow"><span class="cav">RT</span><div class="cinfo"><span class="cn">Riki Te Awa</span><span class="cr">Plant operator</span></div><span class="cstat pend"><span class="d"></span>Not signed on</span><span class="cchev"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></span></div>
+        <div class="sl">Crew status</div>
+        <button class="crewcard" id="crewToggle" aria-expanded="false">
+          <span class="cc-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M3 20a6 6 0 0 1 12 0"/><path d="M16 6a3 3 0 0 1 0 6"/><path d="M18.5 20a5 5 0 0 0-3-4.6"/></svg></span>
+          <span class="cc-main"><span class="cc-t">Crew sign-on</span><span class="cc-s"><span id="crewCount">4 of 6</span> signed on <span class="cc-iss" id="crewIssue">· 1 issue</span></span></span>
+          <span class="cc-chev"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+        </button>
+        <div class="crewlist" id="crewList" hidden>
+          <div class="crow"><span class="cn">Tane Wiremu</span><span class="cstat ok"><span class="d"></span>Signed 06:38</span></div>
+          <div class="crow you" id="youRow"><span class="cn">Sam King · you</span><span class="cstat pend" id="youStat"><span class="d"></span>Not signed on</span></div>
+          <div class="crow"><span class="cn">Mere Albert</span><span class="cstat ok"><span class="d"></span>Signed 06:41</span></div>
+          <div class="crow"><span class="cn">Josh Pereira</span><span class="cstat ok"><span class="d"></span>Signed 06:44</span></div>
+          <div class="crow"><span class="cn">Hana Ngata</span><span class="cstat ok"><span class="d"></span>Signed 06:40</span></div>
+          <div class="crow"><span class="cn">Riki Te Awa</span><span class="cstat pend"><span class="d"></span>Not signed on</span></div>
         </div>
       </div>
 
       <!-- personal note -->
       <div class="sec">
-        <div class="ponote"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg> Your sign-on is personal and attributable. No sign-on on behalf of others.</div>
+        <div class="ponote"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg> Sign-on is personal. Do not sign on for others.</div>
       </div>
 
     </div></div>
 
   </div>
-    <div class="foot">Internal · TacEdge Geotech · PDS-CSO · Crew Sign-On</div>
 </div>
 
 <script>
@@ -473,27 +470,28 @@ body{font-family:var(--ui);color:var(--ink);background:var(--stage);min-height:1
   var chk='<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>';
   var ack=document.getElementById('ackRow'), fitr=document.getElementById('fitRow'), cta=document.getElementById('signOn');
   var acked=false, fit=false, signed=false;
-  function refresh(){ cta.disabled = !acked || !fit || signed; }
+  function refresh(){ var dis = !acked || !fit || signed; cta.disabled = dis; var s=document.getElementById('ctaSub'); if(s) s.style.display = dis ? '' : 'none'; }
   ack.addEventListener('click',function(){ if(signed) return; acked=!acked; ack.classList.toggle('on',acked); refresh(); });
   fitr.addEventListener('click',function(){ if(signed) return; fit=!fit; fitr.classList.toggle('on',fit); refresh(); });
+  // crew status expand / collapse
+  var ctog=document.getElementById('crewToggle'), clist=document.getElementById('crewList');
+  if(ctog&&clist)ctog.addEventListener('click',function(){
+    var open=clist.hasAttribute('hidden');
+    if(open){clist.removeAttribute('hidden');}else{clist.setAttribute('hidden','');}
+    ctog.setAttribute('aria-expanded',open?'true':'false');
+    ctog.classList.toggle('open',open);
+  });
   cta.addEventListener('click',function(){
     if(cta.disabled) return;
     signed=true; refresh(); var hm=nowHM();
-    var ys=document.getElementById('youStat'); ys.className='cstat ok'; ys.innerHTML='<span class="d"></span>Signed '+hm;
-    var yc=document.getElementById('youChev'); if(yc) yc.remove();
+    var ys=document.getElementById('youStat'); if(ys){ ys.className='cstat ok'; ys.innerHTML='<span class="d"></span>Signed '+hm; }
     var yr=document.getElementById('youRow'); if(yr) yr.classList.remove('you');
-    var n=5, pct=Math.round(n/6*100);
-    document.getElementById('cCount').textContent=n;
-    document.getElementById('cPct').innerHTML=pct+'<span class="pp">%</span>';
-    document.getElementById('cBar').style.width=pct+'%';
-    document.getElementById('cSub').textContent='1 still to sign on';
+    var cc=document.getElementById('crewCount'); if(cc) cc.textContent='5 of 6';
     var so=document.getElementById('soCard'); so.className='sostat on';
     document.getElementById('soTitle').textContent='You are signed on';
     document.getElementById('soSub').textContent='Cleared to work · JSA-118 acknowledged · fit for work confirmed · '+hm;
     document.getElementById('soBadge').innerHTML=chk;
     cta.innerHTML='<span class="lk">'+chk+'</span><span class="bt"><span class="bt1">You are signed on</span><span class="bt2">Cleared to work • '+hm+'</span></span>';
-    var strip=document.getElementById('gate');
-    if(strip){ strip.className='signed'; document.getElementById('gateTx').innerHTML='Signed on <b>'+hm+'</b>, cleared to drill'; document.getElementById('gateIcon').innerHTML=chk; var jt=strip.querySelector('.jsa'); if(jt) jt.textContent='JSA-118 ACK'; }
   });
   refresh();
 })();
