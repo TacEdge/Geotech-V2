@@ -222,8 +222,19 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);font-size:16
 .zd-cols span:nth-child(2){width:74px}
 .zd-cols span:nth-child(3){width:54px;text-align:right}
 
-/* floating selected-anchor card */
-.sel-card{right:16px;bottom:62px;width:452px;max-width:calc(100% - 28px);background:var(--card);border:1px solid var(--line-2);border-radius:var(--r-md);box-shadow:0 8px 30px rgba(0,0,0,.32);overflow:hidden}
+/* floating selected-anchor card — compact single column */
+.sel-card{left:50%;transform:translateX(-50%);bottom:58px;width:340px;max-width:calc(100% - 28px);background:var(--card);border:1px solid var(--line-2);border-radius:var(--r-md);box-shadow:0 8px 30px rgba(0,0,0,.32);overflow:hidden}
+.sc-top{display:flex;align-items:center;gap:10px;padding:13px 16px 9px}
+.sc-x{margin-left:auto;color:var(--ink-40);background:none;border:none;cursor:pointer;display:flex;padding:2px}
+.sc-x:hover{color:var(--ink)}
+.sc-info{padding:0 16px 12px;display:flex;flex-direction:column;gap:6px;border-bottom:1px solid var(--line)}
+.sc-zone{display:flex;align-items:center;gap:8px;font-size:13.5px;font-weight:600;color:var(--ink)}
+.sc-zone .sb-sw{width:13px;height:13px;border-radius:3px;flex-shrink:0}
+.sc-des{font-size:12.5px;color:var(--ink-60)}
+.sc-src{font-size:12.5px;color:var(--ink-40)}
+.sc-src .mono{font-family:var(--mono);color:var(--ink-60)}
+.sel-card .sc-acts{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:12px 16px;width:auto}
+.sel-card .sc-btn{height:38px}
 .sc-head{display:flex;align-items:center;padding:12px 16px;border-bottom:1px solid var(--line)}
 .sc-title{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-60);font-weight:700}
 .sc-clear{margin-left:auto;display:flex;align-items:center;gap:6px;font-family:var(--ui);font-size:12.5px;font-weight:600;color:var(--ink-40);background:none;border:none;cursor:pointer}
@@ -249,6 +260,13 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);font-size:16
 .ss-item.ok .ss-stack{display:flex;flex-direction:column;line-height:1.25}
 .ss-item.ok .ss-stack small{font-weight:500;color:var(--ink-60);font-size:12px}
 .plan-note a{color:var(--forest);font-weight:600;text-decoration:underline;cursor:pointer;display:inline-flex;align-items:center;gap:4px}
+.saved-pill{display:inline-flex;align-items:center;gap:7px;height:42px;padding:0 16px;border-radius:99px;background:var(--sage-tint);color:var(--forest-2);font-family:var(--ui);font-size:13px;font-weight:600;white-space:nowrap}
+.saved-pill svg{color:var(--forest)}
+.sum-src{display:flex;align-items:center;gap:10px;margin-top:16px;padding-top:14px;border-top:1px solid var(--line);font-size:12.5px;color:var(--ink-60);flex-wrap:wrap}
+.sum-src-l{flex:1;min-width:0}
+.sum-src-l b{font-weight:600;color:var(--ink)}
+.sum-src-acts{display:flex;gap:14px}
+.sum-src .lnk{font-family:var(--ui);font-size:12.5px;font-weight:600;color:var(--forest);background:none;border:none;cursor:pointer;text-decoration:underline;padding:0}
 
 @media (max-width:1000px){ body{overflow-x:hidden} .plan-grid{grid-template-columns:1fr} .rail{position:static} }
 @media (max-width:560px){ .ai-banner{flex-wrap:wrap}.ai-txt{flex:1 1 100%} }
@@ -293,11 +311,11 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);font-size:16
   <div class="plan-head">
     <div>
       <div class="plan-title">Work Plan</div>
-      <div class="plan-sub">Place the planned anchors into zones and assign designs. AI proposes from your PDF plan; you review and commit.</div>
+      <div class="plan-sub">Define planned anchors, zones and assigned designs.</div>
     </div>
     <div class="head-acts">
       <button class="btn-import"><svg width="17" height="17" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13V4M6 8l4-4 4 4M4 16h12"/></svg> Import PDF plan</button>
-      <button class="save-btn"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:6px"><path d="M4 4h9l3 3v9H4z"/><path d="M7 4v4h5"/><rect x="7" y="11" width="6" height="5"/></svg>Save draft</button>
+      <span class="saved-pill"><svg width="15" height="15" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"/></svg> Saved 2 min ago</span>
     </div>
   </div>
 
@@ -306,12 +324,11 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);font-size:16
       <div class="ai-banner" id="aibanner">
         <span class="ai-ic"><svg width="19" height="19" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2.5l1.7 4.8 4.8 1.7-4.8 1.7L10 15.5l-1.7-4.8L3.5 9l4.8-1.7z"/><path d="M16 3l.6 1.7L18.3 5.3 16.6 6 16 7.6l-.6-1.6L13.7 5.3l1.7-.6z"/></svg></span>
         <div class="ai-txt">
-          <div class="ai-1">AI proposed this plan from benmore_plan.pdf</div>
-          <div class="ai-2">54 anchors across 4 zones · 0 unresolved. Nothing is committed until you review and commit.</div>
+          <div class="ai-1">AI proposal from benmore_plan.pdf</div>
+          <div class="ai-2">54 anchors · 4 zones · 0 unresolved</div>
         </div>
         <span class="ai-done-tag"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"/></svg> Proposal committed</span>
         <button class="ai-adjust">Adjust proposal</button>
-        <button class="ai-approve" id="approveBtn"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"/></svg> Review &amp; Commit Plan</button>
       </div>
 
       <div class="mapwrap">
@@ -321,10 +338,6 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);font-size:16
         </svg>
         <div class="ov zoomctl"><button aria-label="Zoom in">+</button><button aria-label="Zoom out">&#8722;</button></div>
         <div class="ov locatectl"><button aria-label="Recenter"><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="4"/><path d="M10 1.5v3M10 15.5v3M1.5 10h3M15.5 10h3"/></svg></button></div>
-        <div class="ov tools">
-          <button class="tbtn"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M10 4v3M10 4l3-1.5M10 4L7 2.5"/></svg> Place anchor <svg width="13" height="13" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8l5 5 5-5"/></svg></button>
-          <button class="tbtn alt"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="9" r="5"/><path d="M13 13l4 4"/></svg> Fit view</button>
-        </div>
         <div class="ov blegend">
           <span class="bl-z"><i style="background:#6e8b3d"></i>Spillway Face</span>
           <span class="bl-z"><i style="background:#2f9089"></i>Stilling Basin</span>
@@ -335,28 +348,23 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);font-size:16
           <span class="bl-z"><i class="solid"></i>Committed</span>
         </div>
         <div class="ov sel-card" id="selCard">
-          <div class="sc-head"><span class="sc-title">Selected anchor</span><button class="sc-clear" id="clrSel">Clear selection <svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 5l10 10M15 5L5 15"/></svg></button></div>
-          <div class="sc-body">
-            <div class="sc-l">
-              <div class="sc-id-row"><span class="sc-id" id="sbId">B15</span><span class="sc-badge">Proposed</span></div>
-              <div class="sc-rows">
-                <div class="sc-row"><span class="sc-k">Zone</span><span class="sc-v"><span class="sb-sw" id="sbSw" style="background:#6e8b3d"></span><span id="sbZone">Spillway Face</span></span></div>
-                <div class="sc-row"><span class="sc-k">Design</span><span class="sc-v mono" id="sbDesLine">GA-17S · Spillway Standard</span></div>
-                <div class="sc-row"><span class="sc-k">Easting</span><span class="sc-v mono" id="sbEast">241,576.95 m</span></div>
-                <div class="sc-row"><span class="sc-k">Northing</span><span class="sc-v mono" id="sbNorth">6,024,816.69 m</span></div>
-                <div class="sc-row"><span class="sc-k">Source</span><span class="sc-v mono" id="sbSource">benmore_plan.pdf</span></div>
-              </div>
-            </div>
-            <div class="sc-acts">
-              <button class="sc-btn"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3v14M3 10h14M10 3L7.5 5.5M10 3l2.5 2.5M10 17l-2.5-2.5M10 17l2.5-2.5M3 10l2.5-2.5M3 10l2.5 2.5M17 10l-2.5-2.5M17 10l-2.5 2.5"/></svg> Move anchor</button>
-              <button class="sc-btn"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M15.5 8A6 6 0 1 0 16 11"/><path d="M15.5 3.5V8H11"/></svg> Change design</button>
-              <button class="sc-btn"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M10 4v12M4 10h12"/></svg> Add note</button>
-              <button class="sc-btn danger"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h12M8 6V4h4v2M6 6l1 10h6l1-10"/></svg> Delete anchor</button>
-            </div>
+          <div class="sc-top">
+            <span class="sc-id" id="sbId">B15</span><span class="sc-badge">Proposed</span>
+            <button class="sc-x" id="clrSel" aria-label="Close"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 5l10 10M15 5L5 15"/></svg></button>
+          </div>
+          <div class="sc-info">
+            <div class="sc-zone"><span class="sb-sw" id="sbSw" style="background:#6e8b3d"></span><span id="sbZone">Spillway Face</span></div>
+            <div class="sc-des mono" id="sbDesLine">GA-17S · Spillway Standard</div>
+            <div class="sc-src">Source: <span class="mono" id="sbSource">benmore_plan.pdf</span></div>
+          </div>
+          <div class="sc-acts">
+            <button class="sc-btn"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3v14M3 10h14M10 3L7.5 5.5M10 3l2.5 2.5M10 17l-2.5-2.5M10 17l2.5-2.5M3 10l2.5-2.5M3 10l2.5 2.5M17 10l-2.5-2.5M17 10l-2.5 2.5"/></svg> Move</button>
+            <button class="sc-btn"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M15.5 8A6 6 0 1 0 16 11"/><path d="M15.5 3.5V8H11"/></svg> Change design</button>
+            <button class="sc-btn"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M10 4v12M4 10h12"/></svg> Add note</button>
+            <button class="sc-btn danger"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h12M8 6V4h4v2M6 6l1 10h6l1-10"/></svg> Delete</button>
           </div>
         </div>
       </div>
-      <div class="tip"><svg width="15" height="15" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="8"/><path d="M10 9v4.5"/><circle cx="10" cy="6.4" r=".9" fill="currentColor" stroke="none"/></svg> <span><b>Tip:</b> Click an anchor to view and edit details. Shift + click to select multiple anchors.</span></div>
     </div>
 
     <aside class="rail">
@@ -364,8 +372,9 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);font-size:16
         <div class="panel-h"><span class="pt">Plan summary</span></div>
         <div class="sum">
           <div class="sum-big"><span class="sb-n">54</span><span class="sb-t">/ 54</span></div>
-          <div class="sum-label">Planned anchors (proposed)</div>
-          <div class="sum-sub">Across 4 zones · All designs assigned</div>
+          <div class="sum-label">Proposed anchors</div>
+          <div class="sum-sub">4 zones · all designs assigned</div>
+          <div class="sum-src"><span class="sum-src-l">Source: <b>benmore_plan.pdf</b></span><span class="sum-src-acts"><button class="lnk">View</button><button class="lnk">Replace</button></span></div>
         </div>
       </div>
 
@@ -375,15 +384,6 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);font-size:16
         <button class="zrow" data-zone="spillway"><span class="zsw" style="background:#6e8b3d"></span><span class="zn">Spillway Face</span><span class="zdes">GA-17S</span><span class="zct"><b>18</b> / 18</span></button><button class="zrow" data-zone="stilling"><span class="zsw" style="background:#2f9089"></span><span class="zn">Stilling Basin</span><span class="zdes">GA-16</span><span class="zct"><b>14</b> / 14</span></button><button class="zrow" data-zone="left"><span class="zsw" style="background:#cf8e2c"></span><span class="zn">Left Abutment</span><span class="zdes">LA-14</span><span class="zct"><b>10</b> / 10</span></button><button class="zrow" data-zone="crest"><span class="zsw" style="background:#46663a"></span><span class="zn">Crest Gallery</span><span class="zdes">CP-12</span><span class="zct"><b>12</b> / 12</span></button>
       </div>
 
-      <div class="panel">
-        <div class="panel-h"><span class="pt">Source plan</span></div>
-        <div class="src">
-          <span class="src-ic"><svg width="19" height="19" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 2.5h7l3 3V17a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1z"/><path d="M7 11h6M7 14h4M7 8h3"/></svg></span>
-          <div class="src-info"><div class="src-1">benmore_plan.pdf</div><div class="src-2">Imported 12 May 2026 · AI proposal</div></div>
-          <button class="src-btn">View</button>
-        </div>
-        <div class="src-foot"><svg width="15" height="15" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13V4M6 8l4-4 4 4M4 16h12"/></svg> Re-import or replace plan</div>
-      </div>
     </aside>
   </div>
 
@@ -392,7 +392,6 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);font-size:16
     <div class="ss-item ok" id="footStatus"><svg width="17" height="17" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"/></svg> 54 anchors proposed · all designs assigned · 0 unresolved</div>
     <button class="continue-btn" id="contBtn"><svg width="17" height="17" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"/></svg> Review &amp; Commit Plan</button>
   </div>
-  <div class="plan-note"><svg width="15" height="15" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="8"/><path d="M10 9v4.5"/><circle cx="10" cy="6.4" r=".9" fill="currentColor" stroke="none"/></svg> Once committed, these anchors become the operator&#39;s day list and the Status Board&#39;s pins.</div>
 </div>
 
 <script>
@@ -400,18 +399,17 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);font-size:16
   try{
     var zones=document.getElementById('zones'), banner=document.getElementById('aibanner'),
         cont=document.getElementById('contBtn'), foot=document.getElementById('footStatus');
-    var ap=document.getElementById('approveBtn');
-    if(ap)ap.addEventListener('click',function(){
+    function commit(){
       zones.classList.add('approved'); banner.classList.add('done');
       if(foot)foot.innerHTML='<svg width=\"17\" height=\"17\" viewBox=\"0 0 20 20\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M4 10.5l4 4 8-9\"/></svg> 54 of 54 anchors committed';
-    });
+    }
+    if(cont)cont.addEventListener('click',commit);
     var PD={"15": {"id": "B15", "zone": "Spillway Face", "zcol": "#6e8b3d", "design": "GA-17S", "dname": "Spillway Standard", "test": "Proof 1.25\u00d7 WL \u00b7 3 cycles", "e": "241,576.95", "n": "6,024,816.69"}, "16": {"id": "B16", "zone": "Spillway Face", "zcol": "#6e8b3d", "design": "GA-17S", "dname": "Spillway Standard", "test": "Proof 1.25\u00d7 WL \u00b7 3 cycles", "e": "241,578.08", "n": "6,024,817.74"}, "17": {"id": "B17", "zone": "Spillway Face", "zcol": "#6e8b3d", "design": "GA-17S", "dname": "Spillway Standard", "test": "Proof 1.25\u00d7 WL \u00b7 3 cycles", "e": "241,579.21", "n": "6,024,818.78"}, "18": {"id": "B18", "zone": "Spillway Face", "zcol": "#6e8b3d", "design": "GA-17S", "dname": "Spillway Standard", "test": "Proof 1.25\u00d7 WL \u00b7 3 cycles", "e": "241,580.34", "n": "6,024,819.83"}, "19": {"id": "B19", "zone": "Spillway Face", "zcol": "#6e8b3d", "design": "GA-17S", "dname": "Spillway Standard", "test": "Proof 1.25\u00d7 WL \u00b7 3 cycles", "e": "241,581.47", "n": "6,024,820.87"}, "20": {"id": "B20", "zone": "Spillway Face", "zcol": "#6e8b3d", "design": "GA-17S", "dname": "Spillway Standard", "test": "Proof 1.25\u00d7 WL \u00b7 3 cycles", "e": "241,582.60", "n": "6,024,821.92"}, "21": {"id": "B21", "zone": "Spillway Face", "zcol": "#6e8b3d", "design": "GA-17S", "dname": "Spillway Standard", "test": "Proof 1.25\u00d7 WL \u00b7 3 cycles", "e": "241,583.73", "n": "6,024,822.97"}, "22": {"id": "B22", "zone": "Spillway Face", "zcol": "#6e8b3d", "design": "GA-17S", "dname": "Spillway Standard", "test": "Proof 1.25\u00d7 WL \u00b7 3 cycles", "e": "241,584.86", "n": "6,024,824.01"}, "23": {"id": "B23", "zone": "Spillway Face", "zcol": "#6e8b3d", "design": "GA-17S", "dname": "Spillway Standard", "test": "Proof 1.25\u00d7 WL \u00b7 3 cycles", "e": "241,585.99", "n": "6,024,825.06"}, "24": {"id": "B24", "zone": "Spillway Face", "zcol": "#6e8b3d", "design": "GA-17S", "dname": "Spillway Standard", "test": "Proof 1.25\u00d7 WL \u00b7 3 cycles", "e": "241,587.12", "n": "6,024,826.10"}, "25": {"id": "B25", "zone": "Spillway Face", "zcol": "#6e8b3d", "design": "GA-17S", "dname": "Spillway Standard", "test": "Proof 1.25\u00d7 WL \u00b7 3 cycles", "e": "241,588.25", "n": "6,024,827.15"}, "26": {"id": "B26", "zone": "Spillway Face", "zcol": "#6e8b3d", "design": "GA-17S", "dname": "Spillway Standard", "test": "Proof 1.25\u00d7 WL \u00b7 3 cycles", "e": "241,589.38", "n": "6,024,828.20"}, "27": {"id": "B27", "zone": "Spillway Face", "zcol": "#6e8b3d", "design": "GA-17S", "dname": "Spillway Standard", "test": "Proof 1.25\u00d7 WL \u00b7 3 cycles", "e": "241,590.51", "n": "6,024,829.24"}, "28": {"id": "B28", "zone": "Spillway Face", "zcol": "#6e8b3d", "design": "GA-17S", "dname": "Spillway Standard", "test": "Proof 1.25\u00d7 WL \u00b7 3 cycles", "e": "241,591.64", "n": "6,024,830.29"}, "29": {"id": "B29", "zone": "Spillway Face", "zcol": "#6e8b3d", "design": "GA-17S", "dname": "Spillway Standard", "test": "Proof 1.25\u00d7 WL \u00b7 3 cycles", "e": "241,592.77", "n": "6,024,831.33"}, "30": {"id": "B30", "zone": "Spillway Face", "zcol": "#6e8b3d", "design": "GA-17S", "dname": "Spillway Standard", "test": "Proof 1.25\u00d7 WL \u00b7 3 cycles", "e": "241,593.90", "n": "6,024,832.38"}, "31": {"id": "B31", "zone": "Spillway Face", "zcol": "#6e8b3d", "design": "GA-17S", "dname": "Spillway Standard", "test": "Proof 1.25\u00d7 WL \u00b7 3 cycles", "e": "241,595.03", "n": "6,024,833.43"}, "32": {"id": "B32", "zone": "Spillway Face", "zcol": "#6e8b3d", "design": "GA-17S", "dname": "Spillway Standard", "test": "Proof 1.25\u00d7 WL \u00b7 3 cycles", "e": "241,596.16", "n": "6,024,834.47"}, "1": {"id": "B01", "zone": "Stilling Basin", "zcol": "#2f9089", "design": "GA-16", "dname": "Stilling Basin", "test": "Proof 1.25\u00d7 WL \u00b7 3 cycles", "e": "241,561.13", "n": "6,024,802.05"}, "2": {"id": "B02", "zone": "Stilling Basin", "zcol": "#2f9089", "design": "GA-16", "dname": "Stilling Basin", "test": "Proof 1.25\u00d7 WL \u00b7 3 cycles", "e": "241,562.26", "n": "6,024,803.09"}, "3": {"id": "B03", "zone": "Stilling Basin", "zcol": "#2f9089", "design": "GA-16", "dname": "Stilling Basin", "test": "Proof 1.25\u00d7 WL \u00b7 3 cycles", "e": "241,563.39", "n": "6,024,804.14"}, "4": {"id": "B04", "zone": "Stilling Basin", "zcol": "#2f9089", "design": "GA-16", "dname": "Stilling Basin", "test": "Proof 1.25\u00d7 WL \u00b7 3 cycles", "e": "241,564.52", "n": "6,024,805.18"}, "5": {"id": "B05", "zone": "Stilling Basin", "zcol": "#2f9089", "design": "GA-16", "dname": "Stilling Basin", "test": "Proof 1.25\u00d7 WL \u00b7 3 cycles", "e": "241,565.65", "n": "6,024,806.23"}, "6": {"id": "B06", "zone": "Stilling Basin", "zcol": "#2f9089", "design": "GA-16", "dname": "Stilling Basin", "test": "Proof 1.25\u00d7 WL \u00b7 3 cycles", "e": "241,566.78", "n": "6,024,807.28"}, "7": {"id": "B07", "zone": "Stilling Basin", "zcol": "#2f9089", "design": "GA-16", "dname": "Stilling Basin", "test": "Proof 1.25\u00d7 WL \u00b7 3 cycles", "e": "241,567.91", "n": "6,024,808.32"}, "8": {"id": "B08", "zone": "Stilling Basin", "zcol": "#2f9089", "design": "GA-16", "dname": "Stilling Basin", "test": "Proof 1.25\u00d7 WL \u00b7 3 cycles", "e": "241,569.04", "n": "6,024,809.37"}, "9": {"id": "B09", "zone": "Stilling Basin", "zcol": "#2f9089", "design": "GA-16", "dname": "Stilling Basin", "test": "Proof 1.25\u00d7 WL \u00b7 3 cycles", "e": "241,570.17", "n": "6,024,810.41"}, "10": {"id": "B10", "zone": "Stilling Basin", "zcol": "#2f9089", "design": "GA-16", "dname": "Stilling Basin", "test": "Proof 1.25\u00d7 WL \u00b7 3 cycles", "e": "241,571.30", "n": "6,024,811.46"}, "11": {"id": "B11", "zone": "Stilling Basin", "zcol": "#2f9089", "design": "GA-16", "dname": "Stilling Basin", "test": "Proof 1.25\u00d7 WL \u00b7 3 cycles", "e": "241,572.43", "n": "6,024,812.51"}, "12": {"id": "B12", "zone": "Stilling Basin", "zcol": "#2f9089", "design": "GA-16", "dname": "Stilling Basin", "test": "Proof 1.25\u00d7 WL \u00b7 3 cycles", "e": "241,573.56", "n": "6,024,813.55"}, "13": {"id": "B13", "zone": "Stilling Basin", "zcol": "#2f9089", "design": "GA-16", "dname": "Stilling Basin", "test": "Proof 1.25\u00d7 WL \u00b7 3 cycles", "e": "241,574.69", "n": "6,024,814.60"}, "14": {"id": "B14", "zone": "Stilling Basin", "zcol": "#2f9089", "design": "GA-16", "dname": "Stilling Basin", "test": "Proof 1.25\u00d7 WL \u00b7 3 cycles", "e": "241,575.82", "n": "6,024,815.64"}, "33": {"id": "B33", "zone": "Left Abutment", "zcol": "#cf8e2c", "design": "LA-14", "dname": "Left Abutment", "test": "Proof 1.25\u00d7 WL \u00b7 2 cycles", "e": "241,597.29", "n": "6,024,835.52"}, "34": {"id": "B34", "zone": "Left Abutment", "zcol": "#cf8e2c", "design": "LA-14", "dname": "Left Abutment", "test": "Proof 1.25\u00d7 WL \u00b7 2 cycles", "e": "241,598.42", "n": "6,024,836.56"}, "35": {"id": "B35", "zone": "Left Abutment", "zcol": "#cf8e2c", "design": "LA-14", "dname": "Left Abutment", "test": "Proof 1.25\u00d7 WL \u00b7 2 cycles", "e": "241,599.55", "n": "6,024,837.61"}, "36": {"id": "B36", "zone": "Left Abutment", "zcol": "#cf8e2c", "design": "LA-14", "dname": "Left Abutment", "test": "Proof 1.25\u00d7 WL \u00b7 2 cycles", "e": "241,600.68", "n": "6,024,838.66"}, "37": {"id": "B37", "zone": "Left Abutment", "zcol": "#cf8e2c", "design": "LA-14", "dname": "Left Abutment", "test": "Proof 1.25\u00d7 WL \u00b7 2 cycles", "e": "241,601.81", "n": "6,024,839.70"}, "38": {"id": "B38", "zone": "Left Abutment", "zcol": "#cf8e2c", "design": "LA-14", "dname": "Left Abutment", "test": "Proof 1.25\u00d7 WL \u00b7 2 cycles", "e": "241,602.94", "n": "6,024,840.75"}, "39": {"id": "B39", "zone": "Left Abutment", "zcol": "#cf8e2c", "design": "LA-14", "dname": "Left Abutment", "test": "Proof 1.25\u00d7 WL \u00b7 2 cycles", "e": "241,604.07", "n": "6,024,841.79"}, "40": {"id": "B40", "zone": "Left Abutment", "zcol": "#cf8e2c", "design": "LA-14", "dname": "Left Abutment", "test": "Proof 1.25\u00d7 WL \u00b7 2 cycles", "e": "241,605.20", "n": "6,024,842.84"}, "41": {"id": "B41", "zone": "Left Abutment", "zcol": "#cf8e2c", "design": "LA-14", "dname": "Left Abutment", "test": "Proof 1.25\u00d7 WL \u00b7 2 cycles", "e": "241,606.33", "n": "6,024,843.89"}, "42": {"id": "B42", "zone": "Left Abutment", "zcol": "#cf8e2c", "design": "LA-14", "dname": "Left Abutment", "test": "Proof 1.25\u00d7 WL \u00b7 2 cycles", "e": "241,607.46", "n": "6,024,844.93"}, "43": {"id": "P43", "zone": "Crest Gallery", "zcol": "#46663a", "design": "CP-12", "dname": "Crest Pile", "test": "Proof 1.5\u00d7 WL \u00b7 single cycle", "e": "241,608.59", "n": "6,024,845.98"}, "44": {"id": "P44", "zone": "Crest Gallery", "zcol": "#46663a", "design": "CP-12", "dname": "Crest Pile", "test": "Proof 1.5\u00d7 WL \u00b7 single cycle", "e": "241,609.72", "n": "6,024,847.02"}, "45": {"id": "P45", "zone": "Crest Gallery", "zcol": "#46663a", "design": "CP-12", "dname": "Crest Pile", "test": "Proof 1.5\u00d7 WL \u00b7 single cycle", "e": "241,610.85", "n": "6,024,848.07"}, "46": {"id": "P46", "zone": "Crest Gallery", "zcol": "#46663a", "design": "CP-12", "dname": "Crest Pile", "test": "Proof 1.5\u00d7 WL \u00b7 single cycle", "e": "241,611.98", "n": "6,024,849.12"}, "47": {"id": "P47", "zone": "Crest Gallery", "zcol": "#46663a", "design": "CP-12", "dname": "Crest Pile", "test": "Proof 1.5\u00d7 WL \u00b7 single cycle", "e": "241,613.11", "n": "6,024,850.16"}, "48": {"id": "P48", "zone": "Crest Gallery", "zcol": "#46663a", "design": "CP-12", "dname": "Crest Pile", "test": "Proof 1.5\u00d7 WL \u00b7 single cycle", "e": "241,614.24", "n": "6,024,851.21"}, "49": {"id": "P49", "zone": "Crest Gallery", "zcol": "#46663a", "design": "CP-12", "dname": "Crest Pile", "test": "Proof 1.5\u00d7 WL \u00b7 single cycle", "e": "241,615.37", "n": "6,024,852.25"}, "50": {"id": "P50", "zone": "Crest Gallery", "zcol": "#46663a", "design": "CP-12", "dname": "Crest Pile", "test": "Proof 1.5\u00d7 WL \u00b7 single cycle", "e": "241,616.50", "n": "6,024,853.30"}, "51": {"id": "P51", "zone": "Crest Gallery", "zcol": "#46663a", "design": "CP-12", "dname": "Crest Pile", "test": "Proof 1.5\u00d7 WL \u00b7 single cycle", "e": "241,617.63", "n": "6,024,854.35"}, "52": {"id": "P52", "zone": "Crest Gallery", "zcol": "#46663a", "design": "CP-12", "dname": "Crest Pile", "test": "Proof 1.5\u00d7 WL \u00b7 single cycle", "e": "241,618.76", "n": "6,024,855.39"}, "53": {"id": "P53", "zone": "Crest Gallery", "zcol": "#46663a", "design": "CP-12", "dname": "Crest Pile", "test": "Proof 1.5\u00d7 WL \u00b7 single cycle", "e": "241,619.89", "n": "6,024,856.44"}, "54": {"id": "P54", "zone": "Crest Gallery", "zcol": "#46663a", "design": "CP-12", "dname": "Crest Pile", "test": "Proof 1.5\u00d7 WL \u00b7 single cycle", "e": "241,621.02", "n": "6,024,857.48"}};
     function selPin(num){
       document.querySelectorAll('.pin').forEach(function(p){ var on=(+p.dataset.num===num); p.classList.toggle('sel',on); if(on)p.parentNode.appendChild(p); });
       var d=PD[String(num)]; if(!d)return;
       var set=function(id,v){var e=document.getElementById(id); if(e)e.textContent=v;};
       set('sbId',d.id); set('sbZone',d.zone); set('sbDesLine',d.design+' · '+d.dname);
-      set('sbEast',d.e+' m'); set('sbNorth',d.n+' m');
       var sw=document.getElementById('sbSw'); if(sw)sw.style.background=d.zcol;
       var card=document.getElementById('selCard'); if(card)card.style.display='block';
     }
@@ -420,7 +418,6 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);font-size:16
       document.querySelectorAll('.pin').forEach(function(p){p.classList.remove('sel');});
       var card=document.getElementById('selCard'); if(card)card.style.display='none';
     });
-    if(cont&&ap)cont.addEventListener('click',function(){ap.click();});
     selPin(15);
     var sel=null;
     document.querySelectorAll('.zrow').forEach(function(r){
