@@ -129,6 +129,33 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);min-height:1
 .bempty{padding:18px 16px;border:1px dashed var(--line-2);border-radius:var(--r-md);font-size:var(--fs-sm);color:var(--ink-40);text-align:center;display:none}
 .bempty.on{display:block}
 
+/* document search */
+.docsearch{display:flex;align-items:center;gap:10px;padding:0 14px;border:1.5px solid var(--line-2);border-radius:var(--r-md);background:var(--card);margin:0 0 14px}
+.docsearch svg{flex-shrink:0;color:var(--ink-40)}
+.docsearch input{flex:1;border:none;background:none;font-family:var(--ui);font-size:var(--fs-base);color:var(--ink);padding:12px 0;min-width:0}
+.docsearch input:focus{outline:none}
+.docsearch input::placeholder{color:var(--ink-40)}
+.docsearch .clr{border:none;background:none;color:var(--ink-40);cursor:pointer;padding:6px;display:none}
+.docsearch .clr.on{display:inline-flex}
+
+/* category filter chips */
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 24px}
+.chip{padding:7px 14px;border:1px solid var(--line-2);border-radius:var(--r-pill);background:var(--tint);color:var(--ink-60);font-family:var(--ui);font-size:var(--fs-sm);font-weight:500;cursor:pointer;white-space:nowrap}
+.chip:hover{border-color:var(--olive);color:var(--forest)}
+.chip.on{background:var(--forest);border-color:var(--forest);color:var(--cream)}
+.chip.on:hover{color:var(--cream)}
+
+/* two-column category grid */
+.catgrid{display:grid;grid-template-columns:1fr 1fr;gap:0 24px;align-items:start}
+.catcol{min-width:0}
+@media(max-width:900px){.catgrid{grid-template-columns:1fr;gap:0}}
+
+/* material traceability, distinct block below the grid */
+#batchSec{margin-top:6px;padding-top:24px;border-top:1px solid var(--line)}
+#batchSec .batchlist{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+#batchSec .batch{align-items:flex-start}
+@media(max-width:900px){#batchSec .batchlist{grid-template-columns:1fr}}
+
 </style>
 <link rel="stylesheet" href="../assets/tacedge.css">
 <link rel="manifest" href="../manifest.json">
@@ -153,17 +180,34 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);min-height:1
   <div class="doc-head">
     <div>
       <div class="doc-title">Reference Documents</div>
-      <div class="doc-sub">Upload and categorise the drawings, specifications, lift plans and certificates this project runs on. Set up at project creation, documents are available from day one. The PM uploads and curates, the field opens the relevant subset on site, read-only and offline.</div>
+      <div class="doc-sub">Approved drawings, specifications, certificates and site documents for this project.</div>
     </div>
     <button class="save-btn"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg> Upload &amp; categorise</button>
   </div>
 
-  <div class="metaline" id="metaline">10 documents · 6 categories · last updated 27 Jun 2026</div>
+  <div class="metaline" id="metaline">10 documents · 6 categories · updated 27 Jun 2026</div>
 
-  <div class="setupchip"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/></svg><span><b>Set up at project creation.</b> Documents are available from day one. The PM uploads and curates, the field sees the relevant offline subset.</span></div>
+  <div class="docsearch">
+    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+    <input type="text" id="docSearch" placeholder="Search documents" aria-label="Search documents" autocomplete="off">
+    <button class="clr" id="docClr" aria-label="Clear search"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+  </div>
 
-      <div class="cat">
-        <div class="cat-h"><span class="ct">Drawings</span><span class="cc">3</span><button class="add"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Add</button></div>
+  <div class="chips" role="tablist" aria-label="Filter by category">
+    <button class="chip on" data-filter="all">All</button>
+    <button class="chip" data-filter="drawings">Drawings</button>
+    <button class="chip" data-filter="site">Site instructions</button>
+    <button class="chip" data-filter="lift">Lift plans</button>
+    <button class="chip" data-filter="spec">Specifications</button>
+    <button class="chip" data-filter="cert">Certificates</button>
+    <button class="chip" data-filter="batch">Batches</button>
+  </div>
+
+  <div class="catgrid">
+    <div class="catcol">
+
+      <div class="cat" data-cat="drawings">
+        <div class="cat-h"><span class="ct">Drawings</span><span class="cc">3</span></div>
         <div class="doclist">
           <div class="doc"><span class="dic"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h20v14H2z"/><path d="M2 8h20M7 17v4M17 17v4M7 21h10"/></svg></span><div class="dbody"><span class="dttl">GA drawing · Spillway anchoring layout</span><span class="dmeta"><span class="ftype">PDF</span> · 4.2 MB · added 12 May 2026 · Tim R.</span></div><div class="doc-acts"><button class="open-b">Open</button><button class="more-b" aria-label="More actions"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" stroke="none"><circle cx="12" cy="5" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="12" cy="19" r="1.5"/></svg></button></div></div>
           <div class="doc"><span class="dic"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h20v14H2z"/><path d="M2 8h20M7 17v4M17 17v4M7 21h10"/></svg></span><div class="dbody"><span class="dttl">Section A-A · anchor details</span><span class="dmeta"><span class="ftype">PDF</span> · 1.8 MB · added 12 May 2026 · Tim R.</span></div><div class="doc-acts"><button class="open-b">Open</button><button class="more-b" aria-label="More actions"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" stroke="none"><circle cx="12" cy="5" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="12" cy="19" r="1.5"/></svg></button></div></div>
@@ -171,46 +215,54 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);min-height:1
         </div>
       </div>
 
-      <div class="cat">
-        <div class="cat-h"><span class="ct">Site instructions</span><span class="cc">2</span><button class="add"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Add</button></div>
+      <div class="cat" data-cat="lift">
+        <div class="cat-h"><span class="ct">Lift plans</span><span class="cc">1</span></div>
+        <div class="doclist">
+          <div class="doc"><span class="dic"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h20v14H2z"/><path d="M2 8h20M7 17v4M17 17v4M7 21h10"/></svg></span><div class="dbody"><span class="dttl">Lift plan · drill rig positioning</span><span class="dmeta"><span class="ftype">PDF</span> · 2.1 MB · added 14 May 2026 · Tim R.</span></div><div class="doc-acts"><button class="open-b">Open</button><button class="more-b" aria-label="More actions"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" stroke="none"><circle cx="12" cy="5" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="12" cy="19" r="1.5"/></svg></button></div></div>
+        </div>
+      </div>
+
+      <div class="cat" data-cat="cert">
+        <div class="cat-h"><span class="ct">Mill certificates</span><span class="cc">1</span></div>
+        <div class="doclist">
+          <div class="doc"><span class="dic"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 13h6M9 17h4"/></svg></span><div class="dbody"><span class="dttl">Mill certificate · Bar batch BX-2291</span><span class="dmeta"><span class="ftype">PDF</span> · 0.5 MB · added 24 Jun 2026 · Tim R.</span></div><div class="doc-acts"><button class="open-b">View</button><button class="more-b" aria-label="More actions"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" stroke="none"><circle cx="12" cy="5" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="12" cy="19" r="1.5"/></svg></button></div></div>
+        </div>
+      </div>
+
+    </div>
+    <div class="catcol">
+
+      <div class="cat" data-cat="site">
+        <div class="cat-h"><span class="ct">Site instructions</span><span class="cc">2</span></div>
         <div class="doclist">
           <div class="doc"><span class="dic"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></span><div class="dbody"><span class="dttl">SI-07 · Revised anchor sequence</span><span class="dmeta"><span class="ftype">PDF</span> · 0.3 MB · added 20 May 2026 · Tim R.</span></div><div class="doc-acts"><button class="open-b">Open</button><button class="more-b" aria-label="More actions"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" stroke="none"><circle cx="12" cy="5" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="12" cy="19" r="1.5"/></svg></button></div></div>
           <div class="doc"><span class="dic"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></span><div class="dbody"><span class="dttl">SI-09 · Spillway face access</span><span class="dmeta"><span class="ftype">PDF</span> · 0.4 MB · added 23 May 2026 · Tim R.</span></div><div class="doc-acts"><button class="open-b">Open</button><button class="more-b" aria-label="More actions"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" stroke="none"><circle cx="12" cy="5" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="12" cy="19" r="1.5"/></svg></button></div></div>
         </div>
       </div>
 
-      <div class="cat">
-        <div class="cat-h"><span class="ct">Lift plans</span><span class="cc">1</span><button class="add"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Add</button></div>
-        <div class="doclist">
-          <div class="doc"><span class="dic"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h20v14H2z"/><path d="M2 8h20M7 17v4M17 17v4M7 21h10"/></svg></span><div class="dbody"><span class="dttl">Lift plan · drill rig positioning</span><span class="dmeta"><span class="ftype">PDF</span> · 2.1 MB · added 14 May 2026 · Tim R.</span></div><div class="doc-acts"><button class="open-b">Open</button><button class="more-b" aria-label="More actions"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" stroke="none"><circle cx="12" cy="5" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="12" cy="19" r="1.5"/></svg></button></div></div>
-        </div>
-      </div>
-
-      <div class="cat">
-        <div class="cat-h"><span class="ct">Engineer specifications</span><span class="cc">2</span><button class="add"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Add</button></div>
+      <div class="cat" data-cat="spec">
+        <div class="cat-h"><span class="ct">Engineer specifications</span><span class="cc">2</span></div>
         <div class="doclist">
           <div class="doc"><span class="dic"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></span><div class="dbody"><span class="dttl">WSP-A2 anchor specification</span><span class="dmeta"><span class="ftype">PDF</span> · 1.2 MB · added 12 May 2026 · N. Hayes (WSP)</span></div><div class="doc-acts"><button class="open-b">Open</button><button class="more-b" aria-label="More actions"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" stroke="none"><circle cx="12" cy="5" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="12" cy="19" r="1.5"/></svg></button></div></div>
           <div class="doc"><span class="dic"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></span><div class="dbody"><span class="dttl">Geotechnical factual report</span><span class="dmeta"><span class="ftype">PDF</span> · 8.6 MB · added 08 May 2026 · N. Hayes (WSP)</span></div><div class="doc-acts"><button class="open-b">Open</button><button class="more-b" aria-label="More actions"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" stroke="none"><circle cx="12" cy="5" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="12" cy="19" r="1.5"/></svg></button></div></div>
         </div>
       </div>
 
-      <div class="cat">
-        <div class="cat-h"><span class="ct">Mill certificates</span><span class="cc">1</span><button class="add"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Add</button></div>
-        <div class="doclist">
-          <div class="doc"><span class="dic"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 13h6M9 17h4"/></svg></span><div class="dbody"><span class="dttl">Mill certificate · Bar batch BX-2291</span><span class="dmeta"><span class="ftype">PDF</span> · 0.5 MB · added 24 Jun 2026 · Tim R.</span></div><div class="doc-acts"><button class="open-b">View</button><button class="more-b" aria-label="More actions"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" stroke="none"><circle cx="12" cy="5" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="12" cy="19" r="1.5"/></svg></button></div></div>
-        </div>
-      </div>
-
-      <div class="cat">
-        <div class="cat-h"><span class="ct">Standard specifications</span><span class="cc">1</span><button class="add"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Add</button></div>
+      <div class="cat" data-cat="spec">
+        <div class="cat-h"><span class="ct">Standard specifications</span><span class="cc">1</span></div>
         <div class="doclist">
           <div class="doc"><span class="dic"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 13h6M9 17h4"/></svg></span><div class="dbody"><span class="dttl">NZS 3109 · Concrete construction</span><span class="dmeta"><span class="ftype">PDF</span> · 2.4 MB · added 12 May 2026 · Tim R.</span></div><div class="doc-acts"><button class="open-b">View</button><button class="more-b" aria-label="More actions"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" stroke="none"><circle cx="12" cy="5" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="12" cy="19" r="1.5"/></svg></button></div></div>
         </div>
       </div>
 
-  <div class="cat" id="batchSec">
-    <div class="cat-h"><span class="ct">Batch traceability</span><span class="cc">2</span></div>
-    <div class="bsub" style="font-size:var(--fs-sm);color:var(--ink-40);margin:-4px 0 12px">Material delivered to site, searchable by batch number. Each batch links to its photo and mill certificate.</div>
+    </div>
+  </div>
+
+  <div class="bempty" id="docEmpty">No documents match your search.</div>
+
+  <div class="cat" id="batchSec" data-cat="batch">
+    <div class="cat-h"><span class="ct">Material traceability</span><span class="cc">2</span></div>
+    <div class="bsub" style="font-size:var(--fs-sm);color:var(--ink-40);margin:-4px 0 12px">Search delivered material batches and linked certificates.</div>
     <div class="bsearch">
       <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
       <input type="text" id="batchSearch" placeholder="Search by batch number, e.g. BX-2291" aria-label="Search by batch number" autocomplete="off">
@@ -231,8 +283,6 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);min-height:1
     <div class="bempty" id="batchEmpty">No material matches that batch number.</div>
   </div>
 
-  <div class="docnote"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg><div>A project folder, not a document system: no version control, approval workflow or in-app editing. Acknowledgement and the drilling gate stay with <b>Safety Docs</b> (sign-on); this folder never gates work.</div></div>
-  <div class="autosave"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/><path d="M9 13l2 2 4-4"/></svg> Changes save automatically.</div>
 </div>
 <script>
 /* C-7 - mock upload & retrieve */
@@ -278,7 +328,7 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);min-height:1
         btn.disabled=false; btn.style.opacity='';
         // bump global meta counts
         var ml=document.getElementById('metaline');
-        if(ml){ var n=(parseInt((ml.textContent.match(/^(\d+)/)||[])[1],10)||0)+1; ml.textContent=n+' documents · 6 categories · last updated 27 Jun 2026'; }
+        if(ml){ var n=(parseInt((ml.textContent.match(/^(\d+)/)||[])[1],10)||0)+1; ml.textContent=n+' documents · 6 categories · updated 27 Jun 2026'; }
       },650);
     });
   });
@@ -307,6 +357,55 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);min-height:1
   [].forEach.call(document.querySelectorAll('#batchList .cert'),function(a){
     a.addEventListener('click',function(e){ e.preventDefault(); });
   });
+
+  /* C-9 - document search + category filter chips */
+  var dsInput=document.getElementById('docSearch');
+  var dsClr=document.getElementById('docClr');
+  var dsEmpty=document.getElementById('docEmpty');
+  var batchSec=document.getElementById('batchSec');
+  var chips=[].slice.call(document.querySelectorAll('.chip'));
+  var activeChip='all';
+  function chipMatches(el){
+    if(activeChip==='all') return true;
+    return (el.getAttribute('data-cat')||'')===activeChip;
+  }
+  function applyDocFilters(){
+    var q=((dsInput&&dsInput.value)||'').trim().toLowerCase();
+    var anyDocSection=false;
+    [].forEach.call(document.querySelectorAll('.catgrid .cat'),function(cat){
+      var chipOk=chipMatches(cat);
+      var catName=((cat.querySelector('.ct')||{}).textContent||'');
+      var anyRow=false;
+      [].forEach.call(cat.querySelectorAll('.doc'),function(row){
+        var ttl=((row.querySelector('.dttl')||{}).textContent||'');
+        var meta=((row.querySelector('.dmeta')||{}).textContent||'');
+        var hay=(ttl+' '+meta+' '+catName).toLowerCase();
+        var rowOk=!q||hay.indexOf(q)>-1;
+        row.style.display=rowOk?'':'none';
+        if(rowOk) anyRow=true;
+      });
+      var showCat=chipOk&&anyRow;
+      cat.style.display=showCat?'':'none';
+      if(showCat) anyDocSection=true;
+    });
+    // material traceability: chip-controlled only (has its own batch search)
+    var batchVisible=false;
+    if(batchSec){ batchVisible=chipMatches(batchSec); batchSec.style.display=batchVisible?'':'none'; }
+    if(dsClr) dsClr.classList.toggle('on',!!q);
+    if(dsEmpty) dsEmpty.classList.toggle('on',!anyDocSection&&!batchVisible);
+  }
+  chips.forEach(function(ch){
+    ch.addEventListener('click',function(){
+      chips.forEach(function(c){ c.classList.remove('on'); });
+      ch.classList.add('on');
+      activeChip=ch.getAttribute('data-filter')||'all';
+      applyDocFilters();
+    });
+  });
+  if(dsInput){
+    dsInput.addEventListener('input',applyDocFilters);
+    dsClr.addEventListener('click',function(){ dsInput.value=''; applyDocFilters(); dsInput.focus(); });
+  }
 })();
 </script>
 <script>(function(){try{var b=getComputedStyle(document.documentElement).getPropertyValue("--build").replace(/[\s"']/g,"");if(!b)return;document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest("a");if(!a)return;var h=a.getAttribute("href");if(!h)return;if(/^(https?:|#|mailto:|tel:)/i.test(h))return;if(!/\.html($|[?#])/i.test(h))return;if(/[?&]v=/.test(h))return;a.setAttribute("href",h+(h.indexOf("?")<0?"?":"&")+"v="+b);},true);}catch(_){}})();</script>
