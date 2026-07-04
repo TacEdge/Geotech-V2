@@ -72,8 +72,8 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);font-size:16
 .ts-head{display:flex;align-items:flex-start;gap:16px;flex-wrap:wrap;margin-bottom:16px}
 .ts-title{font-family:var(--display);font-weight:700;font-size:24px;color:var(--ink)}
 .ts-sub{font-size:13.5px;color:var(--ink-60);margin-top:4px;max-width:680px}
-.save-btn{margin-left:auto;height:42px;padding:0 22px;border:none;border-radius:9px;background:var(--forest);color:var(--cream);font-family:var(--ui);font-size:14px;font-weight:600;cursor:pointer}
-.save-btn:hover{background:var(--forest-2)}
+.saved-pill{margin-left:auto;display:inline-flex;align-items:center;gap:7px;height:32px;padding:0 14px;border-radius:99px;background:var(--sage-tint);color:var(--forest-2);font-family:var(--ui);font-size:13px;font-weight:600;white-space:nowrap}
+.saved-pill svg{color:var(--forest)}
 
 .ts-grid{display:grid;grid-template-columns:400px minmax(0,1fr);gap:16px;align-items:start}
 .ts-grid>*{min-width:0}
@@ -230,20 +230,19 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);font-size:16
 <div class="content2">
   <div class="ts-head">
     <div>
-      <div class="title-row"><div class="ts-title">Testing Standards</div><span class="std-pill">PDS-STD</span></div>
-      <div class="ts-sub">Set the pass criteria that define a passing anchor test.<br>The Anchor Test Record evaluates captured results against these automatically, every time.</div>
+      <div class="title-row"><div class="ts-title">Testing Standards</div></div>
+      <div class="ts-sub">Define automatic pass/fail criteria for field test records.</div>
     </div>
-    <button class="save-btn">Save</button>
+    <span class="saved-pill"><svg width="15" height="15" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"/></svg> Saved 2 min ago</span>
   </div>
 
   <div class="ts-grid">
     <div class="leftcol">
       <div class="libpanel">
-        <div class="lib-h"><span class="pt">Testing standards</span><span class="pc">3</span>
-          <button class="new-d"><svg width="15" height="15" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M10 4v12M4 10h12"/></svg> Add standard</button></div>
+        <div class="lib-h"><span class="pt">Test standards</span><span class="pc">· 3</span>
+          <button class="new-d"><svg width="15" height="15" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M10 4v12M4 10h12"/></svg> Add test standard</button></div>
         <button class="wrow sel" data-code="TS-A"><span class="wsw" style="color:#6e8b3d"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="7"/><circle cx="10" cy="10" r="3"/></svg></span><div class="wmain"><div class="wcode-row"><span class="wcode">TS-A</span><span class="wbadge inuse">Active</span></div><div class="wname">Permanent ground anchor proof test</div><div class="wsum">Proof 1.25× WL · 3 designs</div></div><span class="wmenu"><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="4.5" r="1.3" fill="currentColor" stroke="none"/><circle cx="10" cy="10" r="1.3" fill="currentColor" stroke="none"/><circle cx="10" cy="15.5" r="1.3" fill="currentColor" stroke="none"/></svg></span></button><button class="wrow" data-code="TS-B"><span class="wsw" style="color:#2f9089"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="7"/><circle cx="10" cy="10" r="3"/></svg></span><div class="wmain"><div class="wcode-row"><span class="wcode">TS-B</span><span class="wbadge draft">Draft</span></div><div class="wname">High-load anchor proof test</div><div class="wsum">Proof 1.5× WL · 1 design</div></div><span class="wmenu"><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="4.5" r="1.3" fill="currentColor" stroke="none"/><circle cx="10" cy="10" r="1.3" fill="currentColor" stroke="none"/><circle cx="10" cy="15.5" r="1.3" fill="currentColor" stroke="none"/></svg></span></button><button class="wrow" data-code="TS-C"><span class="wsw" style="color:#cf8e2c"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="7"/><circle cx="10" cy="10" r="3"/></svg></span><div class="wmain"><div class="wcode-row"><span class="wcode">TS-C</span><span class="wbadge inuse">Active</span></div><div class="wname">Micropile load test</div><div class="wsum">Proof 1.5× WL · 1 design</div></div><span class="wmenu"><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="4.5" r="1.3" fill="currentColor" stroke="none"/><circle cx="10" cy="10" r="1.3" fill="currentColor" stroke="none"/><circle cx="10" cy="15.5" r="1.3" fill="currentColor" stroke="none"/></svg></span></button>
       </div>
-      <div class="list-note"><svg width="15" height="15" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="8"/><path d="M10 9v4.5"/><circle cx="10" cy="6.4" r=".9" fill="currentColor" stroke="none"/></svg> Set the pass bar once. Every test is judged against it automatically, with no manual pass / fail calls in the field.</div>
     </div>
     <div class="detailwrap"><div class="detail" id="d-TS-A" data-code="TS-A">
       <div class="d-head">
@@ -252,14 +251,13 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);font-size:16
           <div class="d-name">Permanent ground anchor proof test</div>
         </div>
         <div class="d-acts"><button class="btn-o"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="6.5" y="6.5" width="10" height="11" rx="1.5"/><path d="M3.5 13.5V4a1 1 0 0 1 1-1h8.5"/></svg> Duplicate</button>
-          <button class="btn-o edit"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3l3 3-9 9-4 1 1-4z"/></svg> Edit standard</button></div>
+          <button class="btn-o edit"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3l3 3-9 9-4 1 1-4z"/></svg> Edit criteria</button></div>
       </div>
       <div class="meta-bar"><div class="mb-cell"><span class="mb-ic"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="4.5" width="13" height="12" rx="1.5"/><path d="M3.5 8h13M7 3v3M13 3v3"/></svg></span><div><div class="mb-k">Engineer source</div><div class="mb-v">WSP testing schedule</div><div class="mb-s">Rev B · 12 May 2026</div></div></div><div class="mb-cell"><span class="mb-ic"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 16h12M4 16V8M16 16V8M10 3l6 5H4z"/><path d="M7.5 11v3M12.5 11v3"/></svg></span><div><div class="mb-k">Governing standard</div><div class="mb-v">TS-A2</div><div class="mb-s">Project specification</div></div></div></div>
       <div class="card">
         <div class="card-h"><svg width="14" height="14" class="ch-ic" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="7"/><circle cx="10" cy="10" r="3"/></svg> Pass criteria</div>
         <div class="crit-rows"><div class="crit"><div class="ct-l"><div class="ct-name">Proof load</div><div class=ct-cond>Load reached and held</div></div><div class="ct-val">1.25 × working load</div></div><div class="crit"><div class="ct-l"><div class="ct-name">Load hold</div><div class=ct-cond>Sustained at proof load</div></div><div class="ct-val">10 minutes</div></div><div class="crit"><div class="ct-l"><div class="ct-name">Creep · final log cycle</div><div class=ct-cond>Measured 1–10 min</div></div><div class="ct-val">≤ 1.0 mm</div></div><div class="crit"><div class="ct-l"><div class="ct-name">Residual movement</div></div><div class="ct-val">≤ 10% of elastic extension</div></div><div class="crit"><div class="ct-l"><div class="ct-name">Lock-off load</div></div><div class="ct-val">1.0 × working load</div></div></div>
-        <div class="accept"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"/></svg> <span>All criteria met → Pass · any unmet → Fail (raises test-fail exception)</span></div>
-        <div class="crit-note"><svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="8"/><path d="M10 9v4.5"/><circle cx="10" cy="6.4" r=".9" fill="currentColor" stroke="none"/></svg> The Anchor Test Record evaluates captured results against these automatically, and the field never re-decides a pass or fail.</div>
+        <div class="accept"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"/></svg> <span>All criteria met → Pass. Any unmet → Fail.</span></div>
       </div>
       <div class="card">
         <div class="card-h">Applies to <span class="cc ap-meta">3 designs · 42 planned anchors</span></div>
@@ -272,14 +270,13 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);font-size:16
           <div class="d-name">High-load anchor proof test</div>
         </div>
         <div class="d-acts"><button class="btn-o"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="6.5" y="6.5" width="10" height="11" rx="1.5"/><path d="M3.5 13.5V4a1 1 0 0 1 1-1h8.5"/></svg> Duplicate</button>
-          <button class="btn-o edit"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3l3 3-9 9-4 1 1-4z"/></svg> Edit standard</button></div>
+          <button class="btn-o edit"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3l3 3-9 9-4 1 1-4z"/></svg> Edit criteria</button></div>
       </div>
       <div class="meta-bar"><div class="mb-cell"><span class="mb-ic"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="4.5" width="13" height="12" rx="1.5"/><path d="M3.5 8h13M7 3v3M13 3v3"/></svg></span><div><div class="mb-k">Engineer source</div><div class="mb-v">WSP testing schedule</div><div class="mb-s">Rev B · 12 May 2026</div></div></div><div class="mb-cell"><span class="mb-ic"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 16h12M4 16V8M16 16V8M10 3l6 5H4z"/><path d="M7.5 11v3M12.5 11v3"/></svg></span><div><div class="mb-k">Governing standard</div><div class="mb-v">TS-B1</div><div class="mb-s">Project specification</div></div></div></div>
       <div class="card">
         <div class="card-h"><svg width="14" height="14" class="ch-ic" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="7"/><circle cx="10" cy="10" r="3"/></svg> Pass criteria</div>
         <div class="crit-rows"><div class="crit"><div class="ct-l"><div class="ct-name">Proof load</div><div class=ct-cond>Load reached and held</div></div><div class="ct-val">1.5 × working load</div></div><div class="crit"><div class="ct-l"><div class="ct-name">Load hold</div><div class=ct-cond>Sustained at proof load</div></div><div class="ct-val">15 minutes</div></div><div class="crit"><div class="ct-l"><div class="ct-name">Creep · final log cycle</div><div class=ct-cond>Measured 1–15 min</div></div><div class="ct-val">≤ 0.8 mm</div></div><div class="crit"><div class="ct-l"><div class="ct-name">Lock-off load</div></div><div class="ct-val">1.1 × working load</div></div></div>
-        <div class="accept"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"/></svg> <span>All criteria met → Pass · any unmet → Fail (raises test-fail exception)</span></div>
-        <div class="crit-note"><svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="8"/><path d="M10 9v4.5"/><circle cx="10" cy="6.4" r=".9" fill="currentColor" stroke="none"/></svg> The Anchor Test Record evaluates captured results against these automatically, and the field never re-decides a pass or fail.</div>
+        <div class="accept"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"/></svg> <span>All criteria met → Pass. Any unmet → Fail.</span></div>
       </div>
       <div class="card">
         <div class="card-h">Applies to <span class="cc ap-meta">1 design · 2 planned anchors</span></div>
@@ -292,14 +289,13 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);font-size:16
           <div class="d-name">Micropile load test</div>
         </div>
         <div class="d-acts"><button class="btn-o"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="6.5" y="6.5" width="10" height="11" rx="1.5"/><path d="M3.5 13.5V4a1 1 0 0 1 1-1h8.5"/></svg> Duplicate</button>
-          <button class="btn-o edit"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3l3 3-9 9-4 1 1-4z"/></svg> Edit standard</button></div>
+          <button class="btn-o edit"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3l3 3-9 9-4 1 1-4z"/></svg> Edit criteria</button></div>
       </div>
       <div class="meta-bar"><div class="mb-cell"><span class="mb-ic"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="4.5" width="13" height="12" rx="1.5"/><path d="M3.5 8h13M7 3v3M13 3v3"/></svg></span><div><div class="mb-k">Engineer source</div><div class="mb-v">WSP testing schedule</div><div class="mb-s">Rev B · 12 May 2026</div></div></div><div class="mb-cell"><span class="mb-ic"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 16h12M4 16V8M16 16V8M10 3l6 5H4z"/><path d="M7.5 11v3M12.5 11v3"/></svg></span><div><div class="mb-k">Governing standard</div><div class="mb-v">TS-C1</div><div class="mb-s">Project specification</div></div></div></div>
       <div class="card">
         <div class="card-h"><svg width="14" height="14" class="ch-ic" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="7"/><circle cx="10" cy="10" r="3"/></svg> Pass criteria</div>
         <div class="crit-rows"><div class="crit"><div class="ct-l"><div class="ct-name">Proof load</div><div class=ct-cond>Maintained load test</div></div><div class="ct-val">1.5 × working load</div></div><div class="crit"><div class="ct-l"><div class="ct-name">Load hold</div></div><div class="ct-val">10 minutes</div></div><div class="crit"><div class="ct-l"><div class="ct-name">Settlement at proof load</div></div><div class="ct-val">≤ 5.0 mm</div></div><div class="crit"><div class="ct-l"><div class="ct-name">Residual settlement</div></div><div class="ct-val">≤ 2.0 mm</div></div></div>
-        <div class="accept"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"/></svg> <span>All criteria met → Pass · any unmet → Fail (raises test-fail exception)</span></div>
-        <div class="crit-note"><svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="8"/><path d="M10 9v4.5"/><circle cx="10" cy="6.4" r=".9" fill="currentColor" stroke="none"/></svg> The Anchor Test Record evaluates captured results against these automatically, and the field never re-decides a pass or fail.</div>
+        <div class="accept"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"/></svg> <span>All criteria met → Pass. Any unmet → Fail.</span></div>
       </div>
       <div class="card">
         <div class="card-h">Applies to <span class="cc ap-meta">1 design · 12 planned anchors</span></div>
@@ -309,10 +305,9 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);font-size:16
   </div>
 
   <div class="ts-foot">
-    <div class="ss-item"><svg width="17" height="17" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"/></svg> 3 testing standards defined · all mapped to designs · pass logic set</div>
+    <div class="ss-item ok"><svg width="17" height="17" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"/></svg> 3 testing standards defined · all mapped to designs · pass logic set</div>
     <a class="continue-btn" href="evidence-qa.html">Continue to Evidence &amp; QA <svg width="17" height="17" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10h11M11 5l5 5-5 5"/></svg></a>
   </div>
-  <div class="ts-note"><svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="8"/><path d="M10 9v4.5"/><circle cx="10" cy="6.4" r=".9" fill="currentColor" stroke="none"/></svg> Standards are inherited read-only by operators in the Anchor Test Record. Changing a standard does not affect historical test outcomes. <a>Learn more <svg width="13" height="13" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4h5v5"/><path d="M16 4l-7 7"/><path d="M14 11.5V16H4V6h4.5"/></svg></a></div>
 </div>
 
 <script>
