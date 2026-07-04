@@ -172,6 +172,33 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);font-size:16
 .pg span{font-size:15px}
 .pg-n{font-family:var(--mono);font-size:12.5px;color:var(--ink-40)} .pg-n b{color:var(--ink)}
 
+/* ---------- minimalist pass: status line + attention row ---------- */
+.leftcol{display:flex;flex-direction:column;gap:14px}
+.leftcol .te-pagehead{margin:0}
+.statusline{display:flex;flex-wrap:wrap;align-items:baseline;gap:7px;font-size:14px;color:var(--ink-60)}
+.statusline .s-pct{font-family:var(--display);font-weight:700;font-size:20px;color:var(--forest)}
+.statusline .s-n{font-weight:700;color:var(--ink)}
+.statusline .s-n.qa{color:var(--ochre)}
+.statusline .s-n.iss{color:var(--brick)}
+.statusline .s-sep{color:var(--ink-40);margin:0 2px}
+.attrow{display:flex;flex-wrap:wrap;align-items:center;gap:8px 18px;background:var(--card);border:1px solid #eccfc8;border-left:3px solid var(--brick);border-radius:10px;padding:11px 16px}
+.att-lead{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:700;color:var(--brick)}
+.att-i{display:inline-flex;align-items:center;gap:8px;background:none;border:none;cursor:pointer;font-family:var(--ui);font-size:13.5px;color:var(--ink);padding:2px 0}
+.att-i .ad{width:8px;height:8px;border-radius:50%;background:var(--brick);flex-shrink:0}
+.att-i b{font-family:var(--mono);font-weight:700}
+.att-i .az{color:var(--ink-40)}
+.att-i:hover{color:var(--brick)}
+.board{margin-top:0}
+/* exception marker: small red dot, only where exceptional (e.g. B31 incident) */
+.exc{position:absolute;right:6px;bottom:6px;width:14px;height:14px;border-radius:50%;background:var(--brick);color:#fff;font-family:var(--mono);font-weight:700;font-size:9px;display:grid;place-items:center;box-shadow:0 0 0 2px var(--sage-tint)}
+/* selected anchor panel: id + pill on one row, zone beneath */
+.sa-top{display:block;margin-bottom:18px}
+.sa-idrow{display:flex;align-items:center;gap:14px}
+.sa-zone{margin-top:8px}
+.sa-row .v.ok{color:var(--forest-2)}
+/* restrained selection: red outline for an issue tile */
+.tile.p-issue.sel{box-shadow:0 0 0 2px var(--brick)}
+
 /* ---------- responsive ---------- */
 @media (max-width:1080px){
  body{overflow-x:hidden}
@@ -245,32 +272,26 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);font-size:16
 </nav>
 
 <div class="content">
-
-  <div class="te-pagehead"><div><h1>Status Board</h1><div class="te-sub">Project status across every zone, at a glance.</div></div></div>
-
-  <section class="metrics">
-    <div class="m-pct">
-      <span class="big">26<sup>%</sup></span>
-      <span class="lab">Project Complete</span>
-      <span class="sub">14 of 54 anchors confirmed</span>
-    </div>
-    <div class="m-track"><span style="width:26%"></span></div>
-    <div class="m-div"></div>
-    <div class="m-stat active"><span class="n">13</span><span class="t">Drilled</span></div>
-    <div class="m-div"></div>
-    <div class="m-stat qa"><span class="n">8</span><span class="t">QA</span></div>
-    <div class="m-div"></div>
-    <div class="m-stat issue"><span class="n">2</span><span class="t">Issues</span></div>
-  </section>
-
   <div class="cols">
     <div class="leftcol">
-      <section class="attention">
-        <div class="att-hd">Attention Required</div>
-        <div class="att-row"><div class="att-item"><span class="att-dot"></span><div><div class="att-l"><b>B07</b> Test Failure</div><div class="att-z">Spillway Face</div></div></div><div class="att-item"><span class="att-dot"></span><div><div class="att-l"><b>B23</b> Redrill Required</div><div class="att-z">Stilling Basin</div></div></div><div class="att-item"><span class="att-dot"></span><div><div class="att-l"><b>B31</b> Incident Submitted</div><div class="att-z">Stilling Basin</div></div></div></div>
-      </section>
+      <div class="te-pagehead"><div><h1>Status Board</h1></div></div>
 
-      <section class="board" style="margin-top:18px">
+      <div class="statusline">
+        <span class="s-pct">26%</span> <span class="s-lab">complete</span>
+        <span class="s-sep">·</span> <span class="s-n">14</span> of 54 confirmed
+        <span class="s-sep">·</span> <span class="s-n">13</span> Drilled
+        <span class="s-sep">·</span> <span class="s-n qa">8</span> QA
+        <span class="s-sep">·</span> <span class="s-n iss">2</span> Issues
+      </div>
+
+      <div class="attrow">
+        <span class="att-lead"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4 21 19H3z"/><path d="M12 10v4"/><path d="M12 16.6v.01"/></svg> Attention required:</span>
+        <button class="att-i" data-id="B07"><span class="ad"></span><b>B07</b> Test failure <span class="az">(Spillway Face)</span></button>
+        <button class="att-i" data-id="B23"><span class="ad"></span><b>B23</b> Redrill required <span class="az">(Stilling Basin)</span></button>
+        <button class="att-i" data-id="B31"><span class="ad"></span><b>B31</b> Incident submitted <span class="az">(Stilling Basin)</span></button>
+      </div>
+
+      <section class="board">
         <section class="zone">
   <div class="zhd">
     <span class="znm">Spillway Face</span>
@@ -279,7 +300,7 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);font-size:16
     <span class="zct">18 items · 8 tested</span>
     <button class="zchev" aria-label="Collapse zone">&#94;</button>
   </div>
-  <div class="grid"><button class="tile p-complete" data-id="B01" aria-label="B01 Tested"><span class="tid">B01</span><span class="tph">TESTED</span><span class="fresh f-fresh"></span><span class="rev r-conf"></span></button><button class="tile p-complete" data-id="B02" aria-label="B02 Tested"><span class="tid">B02</span><span class="tph">TESTED</span><span class="fresh f-fresh"></span><span class="rev r-conf"></span></button><button class="tile p-complete" data-id="B03" aria-label="B03 Tested"><span class="tid">B03</span><span class="tph">TESTED</span><span class="fresh f-fresh"></span><span class="rev r-conf"></span></button><button class="tile p-complete" data-id="B04" aria-label="B04 Tested"><span class="tid">B04</span><span class="tph">TESTED</span><span class="fresh f-ageing"></span><span class="rev r-conf"></span></button><button class="tile p-complete" data-id="B05" aria-label="B05 Tested"><span class="tid">B05</span><span class="tph">TESTED</span><span class="fresh f-fresh"></span><span class="rev r-conf"></span></button><button class="tile p-complete" data-id="B06" aria-label="B06 Tested"><span class="tid">B06</span><span class="tph">TESTED</span><span class="fresh f-fresh"></span><span class="rev r-conf"></span></button><button class="tile p-issue" data-id="B07" aria-label="B07 Requires-Redrill"><span class="tid">B07</span><span class="tph">REDRILL</span><span class="fresh f-stale"></span><span class="rev r-reop"></span><span class="exc">T</span></button><button class="tile p-complete" data-id="B08" aria-label="B08 Tested"><span class="tid">B08</span><span class="tph">TESTED</span><span class="fresh f-fresh"></span><span class="rev r-conf"></span></button><button class="tile p-active" data-id="B09" aria-label="B09 Drilled"><span class="tid">B09</span><span class="tph">DRILLED</span><span class="fresh f-fresh"></span><span class="rev r-prog"></span></button><button class="tile p-active" data-id="B10" aria-label="B10 Drilled"><span class="tid">B10</span><span class="tph">DRILLED</span><span class="fresh f-fresh"></span><span class="rev r-prog"></span></button><button class="tile p-active" data-id="B11" aria-label="B11 Drilled"><span class="tid">B11</span><span class="tph">DRILLED</span><span class="fresh f-fresh"></span><span class="rev r-sub"></span></button><button class="tile p-active" data-id="B12" aria-label="B12 Drilled"><span class="tid">B12</span><span class="tph">DRILLED</span><span class="fresh f-fresh"></span><span class="rev r-prog"></span></button><button class="tile p-onhold" data-id="B13" aria-label="B13 For Testing"><span class="tid">B13</span><span class="tph">FOR TEST</span><span class="fresh f-ageing"></span><span class="rev r-sub"></span></button><button class="tile p-planned" data-id="B14" aria-label="B14 Planned"><span class="tid">B14</span><span class="tph">PLANNED</span><span class="fresh f-fresh"></span></button><button class="tile p-planned" data-id="B15" aria-label="B15 Planned"><span class="tid">B15</span><span class="tph">PLANNED</span><span class="fresh f-fresh"></span></button><button class="tile p-planned" data-id="B16" aria-label="B16 Planned"><span class="tid">B16</span><span class="tph">PLANNED</span><span class="fresh f-fresh"></span></button><button class="tile p-complete" data-id="B17" aria-label="B17 Tested"><span class="tid">B17</span><span class="tph">TESTED</span><span class="fresh f-ageing"></span><span class="rev r-sub"></span></button><button class="tile p-active" data-id="B18" aria-label="B18 Drilled"><span class="tid">B18</span><span class="tph">DRILLED</span><span class="fresh f-fresh"></span><span class="rev r-prog"></span></button></div>
+  <div class="grid"><button class="tile p-complete" data-id="B01" aria-label="B01 Tested"><span class="tid">B01</span><span class="tph">TESTED</span></button><button class="tile p-complete" data-id="B02" aria-label="B02 Tested"><span class="tid">B02</span><span class="tph">TESTED</span></button><button class="tile p-complete" data-id="B03" aria-label="B03 Tested"><span class="tid">B03</span><span class="tph">TESTED</span></button><button class="tile p-complete" data-id="B04" aria-label="B04 Tested"><span class="tid">B04</span><span class="tph">TESTED</span></button><button class="tile p-complete" data-id="B05" aria-label="B05 Tested"><span class="tid">B05</span><span class="tph">TESTED</span></button><button class="tile p-complete" data-id="B06" aria-label="B06 Tested"><span class="tid">B06</span><span class="tph">TESTED</span></button><button class="tile p-issue" data-id="B07" aria-label="B07 Requires-Redrill"><span class="tid">B07</span><span class="tph">REDRILL</span></button><button class="tile p-complete" data-id="B08" aria-label="B08 Tested"><span class="tid">B08</span><span class="tph">TESTED</span></button><button class="tile p-active" data-id="B09" aria-label="B09 Drilled"><span class="tid">B09</span><span class="tph">DRILLED</span></button><button class="tile p-active" data-id="B10" aria-label="B10 Drilled"><span class="tid">B10</span><span class="tph">DRILLED</span></button><button class="tile p-active" data-id="B11" aria-label="B11 Drilled"><span class="tid">B11</span><span class="tph">DRILLED</span></button><button class="tile p-active" data-id="B12" aria-label="B12 Drilled"><span class="tid">B12</span><span class="tph">DRILLED</span></button><button class="tile p-onhold" data-id="B13" aria-label="B13 For Testing"><span class="tid">B13</span><span class="tph">FOR TEST</span></button><button class="tile p-planned" data-id="B14" aria-label="B14 Planned"><span class="tid">B14</span><span class="tph">PLANNED</span></button><button class="tile p-planned" data-id="B15" aria-label="B15 Planned"><span class="tid">B15</span><span class="tph">PLANNED</span></button><button class="tile p-planned" data-id="B16" aria-label="B16 Planned"><span class="tid">B16</span><span class="tph">PLANNED</span></button><button class="tile p-complete" data-id="B17" aria-label="B17 Tested"><span class="tid">B17</span><span class="tph">TESTED</span></button><button class="tile p-active" data-id="B18" aria-label="B18 Drilled"><span class="tid">B18</span><span class="tph">DRILLED</span></button></div>
 </section>
 <section class="zone">
   <div class="zhd">
@@ -289,7 +310,7 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);font-size:16
     <span class="zct">14 items · 3 tested</span>
     <button class="zchev" aria-label="Collapse zone">&#94;</button>
   </div>
-  <div class="grid"><button class="tile p-complete" data-id="B19" aria-label="B19 Tested"><span class="tid">B19</span><span class="tph">TESTED</span><span class="fresh f-fresh"></span><span class="rev r-conf"></span></button><button class="tile p-complete" data-id="B20" aria-label="B20 Tested"><span class="tid">B20</span><span class="tph">TESTED</span><span class="fresh f-fresh"></span><span class="rev r-conf"></span></button><button class="tile p-active" data-id="B21" aria-label="B21 Drilled"><span class="tid">B21</span><span class="tph">DRILLED</span><span class="fresh f-fresh"></span><span class="rev r-sub"></span></button><button class="tile p-active" data-id="B22" aria-label="B22 Drilled"><span class="tid">B22</span><span class="tph">DRILLED</span><span class="fresh f-fresh"></span><span class="rev r-prog"></span></button><button class="tile p-issue" data-id="B23" aria-label="B23 Requires-Redrill"><span class="tid">B23</span><span class="tph">REDRILL</span><span class="fresh f-stale"></span><span class="rev r-reop"></span><span class="exc">R</span></button><button class="tile p-onhold" data-id="B24" aria-label="B24 For Testing"><span class="tid">B24</span><span class="tph">FOR TEST</span><span class="fresh f-ageing"></span></button><button class="tile p-planned" data-id="B25" aria-label="B25 Planned"><span class="tid">B25</span><span class="tph">PLANNED</span><span class="fresh f-fresh"></span></button><button class="tile p-planned" data-id="B26" aria-label="B26 Planned"><span class="tid">B26</span><span class="tph">PLANNED</span><span class="fresh f-fresh"></span></button><button class="tile p-active" data-id="B27" aria-label="B27 Drilled"><span class="tid">B27</span><span class="tph">DRILLED</span><span class="fresh f-fresh"></span><span class="rev r-prog"></span></button><button class="tile p-complete" data-id="B28" aria-label="B28 Tested"><span class="tid">B28</span><span class="tph">TESTED</span><span class="fresh f-ageing"></span><span class="rev r-sub"></span></button><button class="tile p-planned" data-id="B29" aria-label="B29 Planned"><span class="tid">B29</span><span class="tph">PLANNED</span><span class="fresh f-fresh"></span></button><button class="tile p-planned" data-id="B30" aria-label="B30 Planned"><span class="tid">B30</span><span class="tph">PLANNED</span><span class="fresh f-fresh"></span></button><button class="tile p-active" data-id="B31" aria-label="B31 Drilled"><span class="tid">B31</span><span class="tph">DRILLED</span><span class="fresh f-fresh"></span><span class="rev r-sub"></span><span class="exc">!</span></button><button class="tile p-planned" data-id="B32" aria-label="B32 Planned"><span class="tid">B32</span><span class="tph">PLANNED</span><span class="fresh f-fresh"></span></button></div>
+  <div class="grid"><button class="tile p-complete" data-id="B19" aria-label="B19 Tested"><span class="tid">B19</span><span class="tph">TESTED</span></button><button class="tile p-complete" data-id="B20" aria-label="B20 Tested"><span class="tid">B20</span><span class="tph">TESTED</span></button><button class="tile p-active" data-id="B21" aria-label="B21 Drilled"><span class="tid">B21</span><span class="tph">DRILLED</span></button><button class="tile p-active" data-id="B22" aria-label="B22 Drilled"><span class="tid">B22</span><span class="tph">DRILLED</span></button><button class="tile p-issue" data-id="B23" aria-label="B23 Requires-Redrill"><span class="tid">B23</span><span class="tph">REDRILL</span></button><button class="tile p-onhold" data-id="B24" aria-label="B24 For Testing"><span class="tid">B24</span><span class="tph">FOR TEST</span></button><button class="tile p-planned" data-id="B25" aria-label="B25 Planned"><span class="tid">B25</span><span class="tph">PLANNED</span></button><button class="tile p-planned" data-id="B26" aria-label="B26 Planned"><span class="tid">B26</span><span class="tph">PLANNED</span></button><button class="tile p-active" data-id="B27" aria-label="B27 Drilled"><span class="tid">B27</span><span class="tph">DRILLED</span></button><button class="tile p-complete" data-id="B28" aria-label="B28 Tested"><span class="tid">B28</span><span class="tph">TESTED</span></button><button class="tile p-planned" data-id="B29" aria-label="B29 Planned"><span class="tid">B29</span><span class="tph">PLANNED</span></button><button class="tile p-planned" data-id="B30" aria-label="B30 Planned"><span class="tid">B30</span><span class="tph">PLANNED</span></button><button class="tile p-active" data-id="B31" aria-label="B31 Drilled"><span class="tid">B31</span><span class="tph">DRILLED</span><span class="exc">!</span></button><button class="tile p-planned" data-id="B32" aria-label="B32 Planned"><span class="tid">B32</span><span class="tph">PLANNED</span></button></div>
 </section>
 <section class="zone">
   <div class="zhd">
@@ -299,7 +320,7 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);font-size:16
     <span class="zct">10 items · 0 tested</span>
     <button class="zchev" aria-label="Collapse zone">&#94;</button>
   </div>
-  <div class="grid"><button class="tile p-active" data-id="B33" aria-label="B33 Drilled"><span class="tid">B33</span><span class="tph">DRILLED</span><span class="fresh f-fresh"></span><span class="rev r-prog"></span></button><button class="tile p-planned" data-id="B34" aria-label="B34 Planned"><span class="tid">B34</span><span class="tph">PLANNED</span><span class="fresh f-fresh"></span></button><button class="tile p-planned" data-id="B35" aria-label="B35 Planned"><span class="tid">B35</span><span class="tph">PLANNED</span><span class="fresh f-fresh"></span></button><button class="tile p-planned" data-id="B36" aria-label="B36 Planned"><span class="tid">B36</span><span class="tph">PLANNED</span><span class="fresh f-fresh"></span></button><button class="tile p-onhold" data-id="B37" aria-label="B37 For Testing"><span class="tid">B37</span><span class="tph">FOR TEST</span><span class="fresh f-ageing"></span></button><button class="tile p-planned" data-id="B38" aria-label="B38 Planned"><span class="tid">B38</span><span class="tph">PLANNED</span><span class="fresh f-fresh"></span></button><button class="tile p-planned" data-id="B39" aria-label="B39 Planned"><span class="tid">B39</span><span class="tph">PLANNED</span><span class="fresh f-fresh"></span></button><button class="tile p-active" data-id="B40" aria-label="B40 Drilled"><span class="tid">B40</span><span class="tph">DRILLED</span><span class="fresh f-fresh"></span><span class="rev r-sub"></span></button><button class="tile p-planned" data-id="B41" aria-label="B41 Planned"><span class="tid">B41</span><span class="tph">PLANNED</span><span class="fresh f-fresh"></span></button><button class="tile p-planned" data-id="B42" aria-label="B42 Planned"><span class="tid">B42</span><span class="tph">PLANNED</span><span class="fresh f-fresh"></span></button></div>
+  <div class="grid"><button class="tile p-active" data-id="B33" aria-label="B33 Drilled"><span class="tid">B33</span><span class="tph">DRILLED</span></button><button class="tile p-planned" data-id="B34" aria-label="B34 Planned"><span class="tid">B34</span><span class="tph">PLANNED</span></button><button class="tile p-planned" data-id="B35" aria-label="B35 Planned"><span class="tid">B35</span><span class="tph">PLANNED</span></button><button class="tile p-planned" data-id="B36" aria-label="B36 Planned"><span class="tid">B36</span><span class="tph">PLANNED</span></button><button class="tile p-onhold" data-id="B37" aria-label="B37 For Testing"><span class="tid">B37</span><span class="tph">FOR TEST</span></button><button class="tile p-planned" data-id="B38" aria-label="B38 Planned"><span class="tid">B38</span><span class="tph">PLANNED</span></button><button class="tile p-planned" data-id="B39" aria-label="B39 Planned"><span class="tid">B39</span><span class="tph">PLANNED</span></button><button class="tile p-active" data-id="B40" aria-label="B40 Drilled"><span class="tid">B40</span><span class="tph">DRILLED</span></button><button class="tile p-planned" data-id="B41" aria-label="B41 Planned"><span class="tid">B41</span><span class="tph">PLANNED</span></button><button class="tile p-planned" data-id="B42" aria-label="B42 Planned"><span class="tid">B42</span><span class="tph">PLANNED</span></button></div>
 </section>
 <section class="zone">
   <div class="zhd">
@@ -309,7 +330,7 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);font-size:16
     <span class="zct">12 items · 5 tested</span>
     <button class="zchev" aria-label="Collapse zone">&#94;</button>
   </div>
-  <div class="grid"><button class="tile p-complete" data-id="P01" aria-label="P01 Tested"><span class="tid">P01</span><span class="tph">TESTED</span><span class="fresh f-fresh"></span><span class="rev r-conf"></span></button><button class="tile p-complete" data-id="P02" aria-label="P02 Tested"><span class="tid">P02</span><span class="tph">TESTED</span><span class="fresh f-fresh"></span><span class="rev r-conf"></span></button><button class="tile p-complete" data-id="P03" aria-label="P03 Tested"><span class="tid">P03</span><span class="tph">TESTED</span><span class="fresh f-ageing"></span><span class="rev r-conf"></span></button><button class="tile p-active" data-id="P04" aria-label="P04 Drilled"><span class="tid">P04</span><span class="tph">DRILLED</span><span class="fresh f-fresh"></span><span class="rev r-prog"></span></button><button class="tile p-active" data-id="P05" aria-label="P05 Drilled"><span class="tid">P05</span><span class="tph">DRILLED</span><span class="fresh f-fresh"></span><span class="rev r-sub"></span></button><button class="tile p-onhold" data-id="P06" aria-label="P06 For Testing"><span class="tid">P06</span><span class="tph">FOR TEST</span><span class="fresh f-ageing"></span></button><button class="tile p-planned" data-id="P07" aria-label="P07 Planned"><span class="tid">P07</span><span class="tph">PLANNED</span><span class="fresh f-fresh"></span></button><button class="tile p-planned" data-id="P08" aria-label="P08 Planned"><span class="tid">P08</span><span class="tph">PLANNED</span><span class="fresh f-fresh"></span></button><button class="tile p-complete" data-id="P09" aria-label="P09 Tested"><span class="tid">P09</span><span class="tph">TESTED</span><span class="fresh f-fresh"></span></button><button class="tile p-complete" data-id="P10" aria-label="P10 Tested"><span class="tid">P10</span><span class="tph">TESTED</span><span class="fresh f-fresh"></span></button><button class="tile p-planned" data-id="P11" aria-label="P11 Planned"><span class="tid">P11</span><span class="tph">PLANNED</span><span class="fresh f-fresh"></span></button><button class="tile p-planned" data-id="P12" aria-label="P12 Planned"><span class="tid">P12</span><span class="tph">PLANNED</span><span class="fresh f-fresh"></span></button></div>
+  <div class="grid"><button class="tile p-complete" data-id="P01" aria-label="P01 Tested"><span class="tid">P01</span><span class="tph">TESTED</span></button><button class="tile p-complete" data-id="P02" aria-label="P02 Tested"><span class="tid">P02</span><span class="tph">TESTED</span></button><button class="tile p-complete" data-id="P03" aria-label="P03 Tested"><span class="tid">P03</span><span class="tph">TESTED</span></button><button class="tile p-active" data-id="P04" aria-label="P04 Drilled"><span class="tid">P04</span><span class="tph">DRILLED</span></button><button class="tile p-active" data-id="P05" aria-label="P05 Drilled"><span class="tid">P05</span><span class="tph">DRILLED</span></button><button class="tile p-onhold" data-id="P06" aria-label="P06 For Testing"><span class="tid">P06</span><span class="tph">FOR TEST</span></button><button class="tile p-planned" data-id="P07" aria-label="P07 Planned"><span class="tid">P07</span><span class="tph">PLANNED</span></button><button class="tile p-planned" data-id="P08" aria-label="P08 Planned"><span class="tid">P08</span><span class="tph">PLANNED</span></button><button class="tile p-complete" data-id="P09" aria-label="P09 Tested"><span class="tid">P09</span><span class="tph">TESTED</span></button><button class="tile p-complete" data-id="P10" aria-label="P10 Tested"><span class="tid">P10</span><span class="tph">TESTED</span></button><button class="tile p-planned" data-id="P11" aria-label="P11 Planned"><span class="tid">P11</span><span class="tph">PLANNED</span></button><button class="tile p-planned" data-id="P12" aria-label="P12 Planned"><span class="tid">P12</span><span class="tph">PLANNED</span></button></div>
 </section>
         <div class="legend">
           <span class="lg"><span class="sw" style="background:var(--plan)"></span>Planned</span>
@@ -325,24 +346,22 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);font-size:16
       <div class="sa-hd"><span class="t">Selected Anchor</span><button class="sa-x" aria-label="Close">&#10005;</button></div>
       <div class="sa-body" id="saBody">
   <div class="sa-top">
-    <div>
-      <div class="sa-id" data-phase="issue">B23</div>
-      <div class="sa-zone">Stilling Basin</div>
-      <div class="sa-reason">Redrill Required</div>
-    </div>
-    <span class="sa-pill pill-issue">REQUIRES-REDRILL</span>
+    <div class="sa-idrow"><span class="sa-id" data-phase="issue">B23</span><span class="sa-pill pill-issue">REQUIRES REDRILL</span></div>
+    <div class="sa-zone">Stilling Basin</div>
   </div>
   <div class="sa-sec">
-    <div class="sa-row"><span class="k">Work phase</span><span class="v">Drilling</span></div>
+    <div class="sa-sec-t">Depth</div>
     <div class="sa-row"><span class="k">Design depth</span><span class="v">18.0 m</span></div>
     <div class="sa-row"><span class="k">Actual depth</span><span class="v">19.2 m</span></div>
     <div class="sa-row"><span class="k">Variance</span><span class="v bad">+1.2 m</span></div>
   </div>
   <div class="sa-sec">
-    <div class="sa-row"><span class="k">Last update</span><span class="v">2 hrs ago</span></div>
+    <div class="sa-sec-t">Status</div>
+    <div class="sa-row"><span class="k">Work phase</span><span class="v">Drilling</span></div>
+    <div class="sa-row"><span class="k">Review state</span><span class="v amber">Submitted for QA</span></div>
     <div class="sa-row"><span class="k">Captured by</span><span class="v">J. Smith</span></div>
     <div class="sa-row"><span class="k">Crew</span><span class="v">Team 2</span></div>
-    <div class="sa-row"><span class="k">Review state</span><span class="v amber">Submitted for QA</span></div>
+    <div class="sa-row"><span class="k">Last update</span><span class="v">2 hrs ago</span></div>
   </div>
   <div class="sa-sec"><div class="sa-sec-t">Findings</div><ul class="sa-find"><li>Depth variance</li><li>Requires redrill</li></ul></div>
   <div class="sa-actions">
@@ -371,25 +390,25 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);font-size:16
       var li=f.split('|').map(function(x){return '<li>'+esc(x)+'</li>';}).join('');
       return '<div class="sa-sec"><div class="sa-sec-t">Findings</div><ul class="sa-find">'+li+'</ul></div>';
     }
+    function revCls(r){ return /confirm/i.test(r)?'ok':(/(submit|reopen|qa)/i.test(r)?'amber':''); }
     function render(id){
       var a=D[id]; if(!a) return;
       body.innerHTML=
-       '<div class="sa-top"><div>'
-        +'<div class="sa-id" data-phase="'+a.phase+'">'+a.id+'</div>'
+       '<div class="sa-top">'
+        +'<div class="sa-idrow"><span class="sa-id" data-phase="'+a.phase+'">'+a.id+'</span><span class="sa-pill '+PILL[a.phase]+'">'+esc(a.phaseName).toUpperCase().replace(/-/g,' ')+'</span></div>'
         +'<div class="sa-zone">'+esc(a.zone)+'</div>'
-        +(a.reason?'<div class="sa-reason">'+esc(a.reason)+'</div>':'')
-       +'</div><span class="sa-pill '+PILL[a.phase]+'">'+esc(a.phaseName).toUpperCase()+'</span></div>'
-       +'<div class="sa-sec">'
-        +'<div class="sa-row"><span class="k">Work phase</span><span class="v">'+esc(a.work)+'</span></div>'
+       +'</div>'
+       +'<div class="sa-sec"><div class="sa-sec-t">Depth</div>'
         +'<div class="sa-row"><span class="k">Design depth</span><span class="v">'+esc(a.design)+'</span></div>'
         +'<div class="sa-row"><span class="k">Actual depth</span><span class="v">'+esc(a.actual)+'</span></div>'
         +'<div class="sa-row"><span class="k">Variance</span><span class="v '+(a.varBad?'bad':'')+'">'+esc(a.variance)+'</span></div>'
        +'</div>'
-       +'<div class="sa-sec">'
-        +'<div class="sa-row"><span class="k">Last update</span><span class="v">'+esc(a.updated)+'</span></div>'
+       +'<div class="sa-sec"><div class="sa-sec-t">Status</div>'
+        +'<div class="sa-row"><span class="k">Work phase</span><span class="v">'+esc(a.work)+'</span></div>'
+        +'<div class="sa-row"><span class="k">Review state</span><span class="v '+revCls(a.review)+'">'+esc(a.review)+'</span></div>'
         +'<div class="sa-row"><span class="k">Captured by</span><span class="v">'+esc(a.by)+'</span></div>'
         +'<div class="sa-row"><span class="k">Crew</span><span class="v">'+esc(a.crew)+'</span></div>'
-        +'<div class="sa-row"><span class="k">Review state</span><span class="v amber">'+esc(a.review)+'</span></div>'
+        +'<div class="sa-row"><span class="k">Last update</span><span class="v">'+esc(a.updated)+'</span></div>'
        +'</div>'
        +findings(a.findings)
        +'<div class="sa-actions">'
@@ -409,6 +428,13 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);font-size:16
     document.querySelectorAll('.tile').forEach(function(t){
       t.addEventListener('click',function(){select(t.dataset.id);});
     });
+    document.querySelectorAll('.att-i').forEach(function(b){
+      b.addEventListener('click',function(){
+        var id=b.dataset.id; select(id);
+        var t=document.querySelector('.tile[data-id="'+id+'"]');
+        if(t){ var z=t.closest('.zone'); if(z)z.classList.remove('collapsed'); t.scrollIntoView({behavior:'smooth',block:'center'}); }
+      });
+    });
     // pager + zone collapse (delegated)
     document.addEventListener('click',function(e){
       var pg=e.target.closest('.pg');
@@ -419,8 +445,8 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);font-size:16
       var ch=e.target.closest('.zchev');
       if(ch){ch.closest('.zone').classList.toggle('collapsed');}
     });
-    // mark default selected tile
-    var def=document.querySelector('.tile[data-id="B23"]'); if(def)def.classList.add('sel');
+    // select the default anchor (renders the panel, highlights the tile)
+    select('B23');
   }catch(e){/* static board + default panel remain fully visible */}
 })();
 </script>
