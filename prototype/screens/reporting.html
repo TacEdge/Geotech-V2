@@ -51,10 +51,10 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);font-size:16
 .settings-link:hover{color:var(--forest)}
 .content2{padding:18px 24px 34px;max-width:1440px;margin:0 auto;width:100%}
 .rpt-head{display:flex;align-items:flex-start;gap:16px;flex-wrap:wrap;margin-bottom:18px}
-.rpt-period{margin-left:auto;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-.pill2{display:flex;align-items:center;gap:14px;padding:9px 16px;border:1px solid var(--line-2);border-radius:10px;background:var(--card)}
+.rpt-period{margin-left:auto;display:flex;align-items:center;gap:28px;flex-wrap:wrap}
+.pill2{display:flex;align-items:center;gap:10px;padding:0}
 .pill2 .k{font-family:var(--mono);font-size:10px;letter-spacing:.1em;color:var(--ink-40);text-transform:uppercase}
-.pill2 .v{color:var(--ink);font-weight:600;font-size:14px;margin-top:3px}
+.pill2 .v{color:var(--ink);font-weight:700;font-size:14px;margin-top:2px}
 .pill2 svg{color:var(--ink-40);flex-shrink:0}
 .rpt-grid{display:grid;grid-template-columns:1fr 364px;gap:16px;align-items:start}
 .rpt-grid>*{min-width:0}
@@ -126,8 +126,9 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);font-size:16
 .rel-note svg{flex-shrink:0;color:var(--olive)}
 
 /* RIGHT rail */
+.rel-col{display:flex;flex-direction:column;min-width:0}
 .rail{display:flex;flex-direction:column;gap:16px;position:sticky;top:16px}
-.panel{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 19px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 17px;box-shadow:var(--shadow-sm)}
 .p-h{display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:15px;font-weight:700;margin-bottom:6px}
 .p-link{font-size:12.5px;font-weight:600;color:var(--forest);cursor:pointer;display:inline-flex;align-items:center;gap:6px}
 .p-link svg{width:13px;height:13px}
@@ -194,11 +195,24 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);font-size:16
 .flag .f-cleared{font-size:12.5px;font-weight:600;color:var(--forest-2);display:inline-flex;align-items:center;gap:6px;flex-shrink:0}
 .flag .f-cleared svg{width:15px;height:15px}
 
-/* ===== C-4 exports ===== */
-.exports{margin-top:22px;border:1px solid var(--line);border-radius:13px;padding:16px 18px}
-.exports .ex-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:13px}
-.exports .ex-t{font-size:15px;font-weight:700}
-.exports .ex-sub{font-size:12.5px;color:var(--ink-40)}
+/* ===== C-4 exports · compact changes + exports bar ===== */
+.cbar{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:20px;padding-top:18px;border-top:1px solid var(--line)}
+.cbar-t{font-size:13.5px;font-weight:700;color:var(--ink)}
+.cbar-stats{display:flex;align-items:center;gap:15px}
+.cstat{display:inline-flex;align-items:center;gap:7px;font-size:13px;color:var(--ink-60)}
+.cstat .cd{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.cbar-link{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:var(--forest);cursor:pointer}
+.cbar-link svg{width:13px;height:13px}
+.cbar-exports{margin-left:auto;position:relative}
+.cbar-exbtn{display:inline-flex;align-items:center;gap:8px;height:38px;padding:0 15px;border:1px solid var(--line-2);
+ border-radius:9px;background:var(--card);color:var(--ink-60);font-family:var(--ui);font-size:13px;font-weight:600;cursor:pointer}
+.cbar-exbtn:hover{border-color:var(--olive);color:var(--ink)}
+.cbar-exbtn .chev{transition:transform .18s;color:var(--ink-40)}
+.cbar-exbtn.is-open .chev{transform:rotate(180deg)}
+.ex-menu{position:absolute;top:calc(100% + 8px);right:0;width:288px;background:var(--card);border:1px solid var(--line-2);
+ border-radius:12px;box-shadow:var(--shadow-sm);padding:12px;display:none;flex-direction:column;gap:9px;z-index:20}
+.ex-menu.is-on{display:flex}
+.ex-menu .ex-b{width:100%;justify-content:flex-start}
 .ex-btns{display:flex;gap:10px;flex-wrap:wrap}
 .ex-b{display:flex;align-items:center;gap:9px;height:42px;padding:0 16px;border:1px solid var(--line-2);
  border-radius:9px;background:var(--card);color:var(--ink);font-family:var(--ui);font-size:13.5px;font-weight:600;cursor:pointer}
@@ -279,15 +293,15 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);font-size:16
   <div class="rpt-head">
     <div class="rpt-h-l">
       <div class="rpt-title">Reporting</div>
-      <div class="rpt-sub">Assemble and release confirmed work to the engineer</div>
     </div>
     <div class="rpt-period">
-      <div class="pill2"><div class="p2-txt"><div class="k">Period</div><div class="v">Cumulative to 12 May 2026</div></div><svg width="17" height="17" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="13" height="12" rx="1.5"/><path d="M3.5 8.5h13M7 3.5v3M13 3.5v3"/></svg></div>
-      <div class="pill2"><div class="p2-txt"><div class="k">Confirmed</div><div class="v">14 of 54 anchors</div></div><svg width="17" height="17" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="8"/><path d="M10 9v4.5"/><circle cx="10" cy="6.4" r=".9" fill="currentColor" stroke="none"/></svg></div>
+      <div class="pill2"><svg width="17" height="17" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="13" height="12" rx="1.5"/><path d="M3.5 8.5h13M7 3.5v3M13 3.5v3"/></svg><div class="p2-txt"><div class="k">Period</div><div class="v">Cumulative to 12 May 2026</div></div></div>
+      <div class="pill2"><svg width="17" height="17" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="8"/><path d="M10 9v4.5"/><circle cx="10" cy="6.4" r=".9" fill="currentColor" stroke="none"/></svg><div class="p2-txt"><div class="k">Confirmed</div><div class="v">14 of 54 anchors</div></div></div>
     </div>
   </div>
 
   <div class="rpt-grid">
+    <div class="rel-col">
     <div class="release">
       <div id="gate" class="gate is-blocked">
         <span class="g-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5 2.5 20h19z"/><path d="M12 9.5v4.5"/><circle cx="12" cy="17.3" r=".9" fill="currentColor" stroke="none"/></svg></span>
@@ -296,11 +310,11 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);font-size:16
           <div class="g-sub" id="gateSub">Clear all critical QA flags before this release can be generated.</div>
           <div class="flags" id="flagList">
             <div class="flag" data-flag="B11">
-              <span class="f-id">B11</span><span class="f-reason">missing photo</span><span class="f-crit">Critical</span>
+              <span class="f-id">B11</span><span class="f-reason">Missing photo</span><span class="f-crit">Critical</span>
               <button class="f-resolve" data-resolve="B11">Resolve</button>
             </div>
             <div class="flag" data-flag="B21">
-              <span class="f-id">B21</span><span class="f-reason">unsigned test sheet</span><span class="f-crit">Critical</span>
+              <span class="f-id">B21</span><span class="f-reason">Unsigned test sheet</span><span class="f-crit">Critical</span>
               <button class="f-resolve" data-resolve="B21">Resolve</button>
             </div>
           </div>
@@ -316,7 +330,7 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);font-size:16
 
       <div class="rel-summary">
         <div class="rs"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.5 2.5 5-5.5"/></svg></span><div class="big"><b>14</b> confirmed anchors<div class="rs-sub">selected · ready to release</div></div></div>
-        <div class="rs"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.4"/><path d="M5.5 19a6.5 6.5 0 0 1 13 0"/></svg></span><div><div class="rs-k">To</div><div class="rs-v">WSP · N. Hayes (Engineer)</div></div></div>
+        <div class="rs"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.4"/><path d="M5.5 19a6.5 6.5 0 0 1 13 0"/></svg></span><div><div class="rs-k">Recipient</div><div class="rs-v">WSP · N. Hayes</div><div class="rs-sub">Engineer</div></div></div>
         <div class="rs"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="3.4"/><path d="M12 1.5v3.5M12 19v3.5M1.5 12h3.5M19 12h3.5"/></svg></span><div><div class="rs-k">Purpose</div><div class="rs-v">Design verification</div></div></div>
         <div class="rs"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2.5h7l5 5v14H6z"/><path d="M13 2.5v5h5"/><path d="M8.5 13h7M8.5 16.5h7"/></svg></span><div><div class="rs-k">Format</div><div class="rs-v">PDF report + data package</div></div></div>
       </div>
@@ -341,31 +355,30 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);font-size:16
       </div>
       </div>
 
-      <div class="exports">
-        <div class="ex-head">
-          <span class="ex-t">Export report set</span>
-          <span class="ex-sub">Drill logs · test results · progress summary</span>
+      <div class="cbar">
+        <span class="cbar-t">Changes since last release</span>
+        <span class="cbar-stats">
+          <span class="cstat"><span class="cd" style="background:var(--z1)"></span>8 new</span>
+          <span class="cstat"><span class="cd" style="background:var(--ochre)"></span>3 updated</span>
+          <span class="cstat"><span class="cd" style="background:var(--brick)"></span>1 reopened</span>
+        </span>
+        <a class="cbar-link">View change details <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-3M12 4h4v4M16 4l-7 7"/></svg></a>
+        <div class="cbar-exports">
+          <button class="cbar-exbtn" id="exToggle">Additional exports <svg class="chev" width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 7.5l5 5 5-5"/></svg></button>
+          <div class="ex-menu" id="exMenu">
+            <button class="ex-b" id="exPdf" data-kind="pdf"><svg width="17" height="17" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2.5h7l4.5 4.5V19.5H6z"/><path d="M13 2.5v4.5h4.5"/><path d="M8.5 13h5M8.5 16h5"/></svg> Export PDF</button>
+            <button class="ex-b" id="exXlsx" data-kind="xlsx"><svg width="17" height="17" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="3.5" width="15" height="15" rx="2"/><path d="M3.5 8.5h15M9 8.5v10M14 8.5v10"/></svg> Export Excel</button>
+            <button class="ex-b" id="exPkg" data-kind="pkg"><svg width="17" height="17" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M11 2.5 3.5 6.5v9L11 19.5l7.5-4V6.5z"/><path d="M3.5 6.5 11 10.5l7.5-4M11 10.5v9"/></svg> Data package</button>
+            <div class="ex-status" id="exStatus"></div>
+          </div>
         </div>
-        <div class="ex-btns">
-          <button class="ex-b" id="exPdf" data-kind="pdf"><svg width="17" height="17" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2.5h7l4.5 4.5V19.5H6z"/><path d="M13 2.5v4.5h4.5"/><path d="M8.5 13h5M8.5 16h5"/></svg> Export PDF</button>
-          <button class="ex-b" id="exXlsx" data-kind="xlsx"><svg width="17" height="17" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="3.5" width="15" height="15" rx="2"/><path d="M3.5 8.5h15M9 8.5v10M14 8.5v10"/></svg> Export Excel</button>
-          <button class="ex-b" id="exPkg" data-kind="pkg"><svg width="17" height="17" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M11 2.5 3.5 6.5v9L11 19.5l7.5-4V6.5z"/><path d="M3.5 6.5 11 10.5l7.5-4M11 10.5v9"/></svg> Data package</button>
-        </div>
-        <div class="ex-status" id="exStatus"></div>
       </div>
+    </div>
 
-      <div class="rel-note"><svg width="17" height="17" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="8"/><path d="M10 9v4.5"/><circle cx="10" cy="6.4" r=".8" fill="currentColor" stroke="none"/></svg> Only confirmed records are eligible for release. This release is logged and timestamped.</div>
+    <div class="rel-note"><svg width="17" height="17" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="8"/><path d="M10 9v4.5"/><circle cx="10" cy="6.4" r=".8" fill="currentColor" stroke="none"/></svg> Only confirmed records are eligible for release. This release is logged and timestamped.</div>
     </div>
 
     <div class="rail">
-      <div class="panel changes">
-        <div class="p-h">Changes since last release (7 May)</div>
-        <div class="ch-row"><span class="cd" style="background:var(--z1)"></span>New since last release<span class="cn">8</span></div>
-        <div class="ch-row"><span class="cd" style="background:var(--ochre)"></span>Updated since last release<span class="cn">3</span></div>
-        <div class="ch-row"><span class="cd" style="background:var(--brick)"></span>Reopened since last release<span class="cn">1</span></div>
-        <a class="ch-link">View change details <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-3M12 4h4v4M16 4l-7 7"/></svg></a>
-      </div>
-
       <div class="panel sched">
         <div class="p-h">Scheduled reports</div>
         <div class="sc-row">
@@ -426,8 +439,7 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);font-size:16
       gate.classList.remove("is-clear");gate.classList.add("is-blocked");
       gate.querySelector(".g-ic").innerHTML='<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5 2.5 20h19z"/><path d="M12 9.5v4.5"/><circle cx="12" cy="17.3" r=".9" fill="currentColor" stroke="none"/></svg>';
       gateTitle.textContent="Reporting blocked: "+n+" critical flag"+(n>1?"s":"")+" open";
-      var reasons=[];for(var k in open){if(open[k])reasons.push(k+" "+REASONS[k]);}
-      gateSub.textContent="Clear all critical QA flags before this release can be generated. Open: "+reasons.join(", ")+".";
+      gateSub.textContent="Clear all critical QA flags before this release can be generated.";
       genBtn.disabled=true;genBtn.title="Clear all critical flags to release";
     }else{
       gate.classList.remove("is-blocked");gate.classList.add("is-clear");
@@ -490,6 +502,21 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);font-size:16
     });
   }
   wireExport("exPdf");wireExport("exXlsx");wireExport("exPkg");
+
+  // additional exports disclosure
+  var exToggle=document.getElementById("exToggle");
+  var exMenu=document.getElementById("exMenu");
+  if(exToggle&&exMenu){
+    exToggle.addEventListener("click",function(e){
+      e.stopPropagation();
+      exToggle.classList.toggle("is-open");exMenu.classList.toggle("is-on");
+    });
+    document.addEventListener("click",function(e){
+      if(!e.target.closest||!e.target.closest(".cbar-exports")){
+        exToggle.classList.remove("is-open");exMenu.classList.remove("is-on");
+      }
+    });
+  }
 
   // ===== C-6 scheduled weekly + PM signoff gate =====
   var scSign=document.getElementById("scSign");
