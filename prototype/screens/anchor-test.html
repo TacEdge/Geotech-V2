@@ -386,9 +386,7 @@ body{font-family:var(--ui);color:var(--ink);background:var(--stage);min-height:1
       </svg>
       <a class="iconbtn" href="../index.html" aria-label="Back to home" title="Back to home"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></a>
       <div class="ctx"><span class="p">Benmore · Spillway Anchoring</span><span class="z">Rock Control · today</span></div>
-      <div class="right"><button class="iconbtn" id="fnavBtn" aria-label="Switch screen" title="Switch screen"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="3.5" width="7" height="7" rx="1.7"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.7"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.7"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.7"/></svg></button>
-        <a class="iconbtn" href="incident.html" aria-label="Report incident or near-miss" title="Report incident / near-miss"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></a>
-        <span class="fresh"><span class="d"></span>Live</span>
+      <div class="right"><span class="fresh"><span class="d"></span>Live</span>
         <span class="av">SK</span>
       </div>
     </header>
@@ -396,20 +394,19 @@ body{font-family:var(--ui);color:var(--ink);background:var(--stage);min-height:1
     <!-- gate satisfied -->
     <div class="signed">
       <span class="tick"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>
-      <span>Signed on <b>06:42</b> · cleared to work</span><span class="jsa">JSA-118 ACK</span>
+      <span>Signed on <b>06:42</b> · cleared to work</span><span class="jsa">JSA-118 acknowledged</span>
     </div>
 
     <div class="scroll"><div class="pad">
 
       <!-- identity -->
       <div class="hero">
-        <span class="eye">SPILLWAY FACE · ZONE B</span>
         <div class="idrow">
           <span class="idref">B12</span>
-          <span class="idmeta"><span class="wtype">Anchor</span><span class="stage-l">Acceptance test</span><span class="phase"><span class="pd"></span>Active</span></span>
-          <button class="vad">View anchor details <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></button>
+          <span class="idmeta"><span class="wtype">Spillway Face <span class="stg">· Acceptance test</span></span><span class="phase"><span class="pd"></span>Active</span></span>
+          <button class="vad">View anchor details <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>
         </div>
-        <span class="heropos">Proof to 1.25&times; DL · 750 kN · tested 10:24</span>
+        <span class="heropos">Proof 1.25&times; DL · 750 kN · tested 10:24</span>
       </div>
 
       <!-- capture (camera-first) -->
@@ -419,8 +416,8 @@ body{font-family:var(--ui);color:var(--ink);background:var(--stage);min-height:1
           <div class="capdrop">
             <span class="capicon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h3l1.5-2h7L17 7h3a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1z"/><circle cx="12" cy="13" r="3.5"/></svg></span>
             <div class="captx">
-              <b>Photograph your test schedule</b>
-              <span>Record the proof test on your written schedule at the gauge, then take a photo. AI reads the figures for you to check and submit.</span>
+              <b>Capture test sheet</b>
+              <span>Take a clear photo of the completed test sheet.<br>The system will read the values for review.</span>
             </div>
             <div class="capbtns">
               <button class="capbtn prim" id="takePhoto"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h3l1.5-2h7L17 7h3a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1z"/><circle cx="12" cy="13" r="3.2"/></svg> Take photo</button>
@@ -428,7 +425,7 @@ body{font-family:var(--ui);color:var(--ink);background:var(--stage);min-height:1
             </div>
           </div>
         </div>
-        <div class="capnote"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5"/><path d="M12 8v.01"/></svg> The paper sheet stays the record of truth; the photo is the source AI extracts from.</div>
+        <div class="capnote"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5"/><path d="M12 8v.01"/></svg> Signed test sheet remains the source record.</div>
       </div>
 
       <div id="resultArea" class="locked">
@@ -506,7 +503,6 @@ body{font-family:var(--ui);color:var(--ink);background:var(--stage);min-height:1
     </div></div>
 
   </div>
-    <div class="foot">Internal · TacEdge Geotech · PDS-TST · Anchor Test Record</div>
 </div>
 
 <style>
@@ -521,6 +517,7 @@ body{font-family:var(--ui);color:var(--ink);background:var(--stage);min-height:1
 .capbtn{display:inline-flex;align-items:center;gap:8px;height:48px;padding:0 20px;border-radius:var(--r-md);border:1px solid var(--line-2);background:var(--card);color:var(--ink);font-family:var(--ui);font-size:15px;font-weight:600;cursor:pointer}
 .capbtn svg{width:18px;height:18px}
 .capbtn.prim{background:var(--forest);color:var(--cream);border-color:var(--forest)}
+.idmeta .wtype .stg{font-weight:400;color:var(--ink-40)}
 .capnote{display:flex;gap:8px;align-items:flex-start;font-size:12.5px;color:var(--ink-40);margin-top:10px;padding:0 2px;line-height:1.4}
 .capnote svg{width:13px;height:13px;flex-shrink:0;margin-top:2px}
 .capdone{display:flex;align-items:center;gap:14px;padding:16px}
