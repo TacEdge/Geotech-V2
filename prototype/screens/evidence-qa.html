@@ -72,8 +72,8 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);font-size:16
 .eq-head{display:flex;align-items:flex-start;gap:16px;flex-wrap:wrap;margin-bottom:16px}
 .eq-title{font-family:var(--display);font-weight:700;font-size:24px;color:var(--ink)}
 .eq-sub{font-size:13.5px;color:var(--ink-60);margin-top:4px;max-width:700px}
-.save-btn{margin-left:auto;height:42px;padding:0 22px;border:none;border-radius:9px;background:var(--forest);color:var(--cream);font-family:var(--ui);font-size:14px;font-weight:600;cursor:pointer}
-.save-btn:hover{background:var(--forest-2)}
+.saved-pill{margin-left:auto;display:inline-flex;align-items:center;gap:7px;height:32px;padding:0 14px;border-radius:99px;background:var(--sage-tint);color:var(--forest-2);font-family:var(--ui);font-size:13px;font-weight:600;white-space:nowrap}
+.saved-pill svg{color:var(--forest)}
 
 .eq-grid{display:grid;grid-template-columns:400px 1fr;gap:16px;align-items:start}
 .eq-grid>*{min-width:0}
@@ -147,6 +147,7 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);font-size:16
 .qs-preview:hover{border-color:var(--olive)}
 .eq-foot{display:flex;align-items:center;gap:12px;flex-wrap:wrap;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-top:16px}
 .ss-item{display:flex;align-items:center;gap:9px;font-size:13px;color:var(--ink-60)}
+.ss-item.ok{color:var(--forest);font-weight:600}
 .eq-foot .ss-item svg{color:var(--forest)}
 .ss-sep{width:1px;height:18px;background:var(--line);margin:0 8px}
 .continue-btn{margin-left:auto;display:flex;align-items:center;gap:9px;height:46px;padding:0 22px;border:none;border-radius:9px;background:var(--forest);color:var(--cream);font-family:var(--ui);font-size:14.5px;font-weight:600;cursor:pointer}
@@ -189,23 +190,23 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);font-size:16
 
 <nav class="setup-bar">
   <span class="setup-label">PROJECT SETUP</span>
-  <div class="steps"><a class="sstep done" href="layout.html"><span class="sn"><svg width="13" height="13" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"/></svg></span> Layout</a><span class="sarrow">&#8594;</span><a class="sstep done" href="work-item-design.html"><span class="sn"><svg width="13" height="13" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"/></svg></span> Work Item Design</a><span class="sarrow">&#8594;</span><a class="sstep done" href="work-plan.html"><span class="sn"><svg width="13" height="13" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"/></svg></span> Work Plan</a><span class="sarrow">&#8594;</span><a class="sstep done" href="testing-standards.html"><span class="sn"><svg width="13" height="13" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"/></svg></span> Testing Standards</a><span class="sarrow">&#8594;</span><a class="sstep active" href="evidence-qa.html"><span class="sn">5</span> Evidence & QA</a><span class="sarrow">&#8594;</span><a class="sstep done" href="safety-risk-controls.html"><span class="sn"><svg width="13" height="13" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"/></svg></span> Safety & Risk</a></div>
+  <div class="steps"><a class="sstep done" href="layout.html"><span class="sn"><svg width="13" height="13" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"/></svg></span> Layout</a><span class="sarrow">&#8594;</span><a class="sstep done" href="work-item-design.html"><span class="sn"><svg width="13" height="13" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"/></svg></span> Work Item Design</a><span class="sarrow">&#8594;</span><a class="sstep done" href="work-plan.html"><span class="sn"><svg width="13" height="13" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"/></svg></span> Work Plan</a><span class="sarrow">&#8594;</span><a class="sstep done" href="testing-standards.html"><span class="sn"><svg width="13" height="13" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"/></svg></span> Testing Standards</a><span class="sarrow">&#8594;</span><a class="sstep active" href="evidence-qa.html"><span class="sn">5</span> Evidence & QA</a><span class="sarrow">&#8594;</span><a class="sstep" href="safety-risk-controls.html"><span class="sn">6</span> Safety & Risk</a></div>
   <button class="settings-link"><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="2.6"/><path d="M10 2.5v2.4M10 16.1v2.4M2.5 10h2.4M16.1 10h2.4M4.8 4.8l1.7 1.7M14.5 14.5l1.7 1.7M16.2 4.8l-1.7 1.7M6.5 14.5l-1.7 1.7"/></svg> Project settings</button>
 </nav>
 
 <div class="content2">
   <div class="eq-head">
     <div>
-      <div class="eq-title">Evidence & QA Requirements</div>
-      <div class="eq-sub">Define what must be captured or completed before a record can be confirmed. The QA queue enforces these rules automatically.</div>
+      <div class="eq-title">Evidence &amp; QA</div>
+      <div class="eq-sub">Define what must be captured before records can be confirmed.</div>
     </div>
-    <button class="save-btn">Save</button>
+    <span class="saved-pill"><svg width="15" height="15" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"/></svg> Saved 2 min ago</span>
   </div>
 
   <div class="eq-grid">
     <div class="leftcol">
       <div class="libpanel">
-        <div class="lib-h"><span class="pt">QA requirements</span><span class="pc">5</span>
+        <div class="lib-h"><span class="pt">QA requirements</span><span class="pc">· 5</span>
           <button class="new-d"><svg width="15" height="15" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M10 4v12M4 10h12"/></svg> Add requirement</button></div>
         <button class="wrow sel" data-code="EV-1"><span class="wsw" style="color:#6e7d5c"><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="14" height="10" rx="2"/><circle cx="10" cy="11" r="2.6"/><path d="M7 6l1.1-2h3.8L13 6"/></svg></span><div class="wmain"><div class="wcode-row"><span class="wname2">Drill-complete photo</span><span class="wbadge req">Required</span></div><div class="wsum">Photo · Blocks confirmation</div></div><span class="wmenu"><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="4.5" r="1.3" fill="currentColor" stroke="none"/><circle cx="10" cy="10" r="1.3" fill="currentColor" stroke="none"/><circle cx="10" cy="15.5" r="1.3" fill="currentColor" stroke="none"/></svg></span></button><button class="wrow" data-code="EV-2"><span class="wsw" style="color:#6e8b3d"><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 11h3.2l2-5.5 3 9.5 2.2-6 1.3 2H17.5"/></svg></span><div class="wmain"><div class="wcode-row"><span class="wname2">Anchor test result</span><span class="wbadge req">Required</span></div><div class="wsum">Test result · Blocks confirmation</div></div><span class="wmenu"><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="4.5" r="1.3" fill="currentColor" stroke="none"/><circle cx="10" cy="10" r="1.3" fill="currentColor" stroke="none"/><circle cx="10" cy="15.5" r="1.3" fill="currentColor" stroke="none"/></svg></span></button><button class="wrow" data-code="EV-3"><span class="wsw" style="color:#6e7d5c"><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="14" height="10" rx="2"/><circle cx="10" cy="11" r="2.6"/><path d="M7 6l1.1-2h3.8L13 6"/></svg></span><div class="wmain"><div class="wcode-row"><span class="wname2">Grout record photo</span><span class="wbadge req">Required</span></div><div class="wsum">Photo · Blocks confirmation</div></div><span class="wmenu"><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="4.5" r="1.3" fill="currentColor" stroke="none"/><circle cx="10" cy="10" r="1.3" fill="currentColor" stroke="none"/><circle cx="10" cy="15.5" r="1.3" fill="currentColor" stroke="none"/></svg></span></button><button class="wrow" data-code="EV-4"><span class="wsw" style="color:#2b4721"><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 16.5s1.8-1 3.5-1 2.8 1 4.5 1 3.5-1.5 3.5-1.5"/><path d="M5.5 13l6.5-6.5 2 2L7.5 15l-3 1z"/></svg></span><div class="wmain"><div class="wcode-row"><span class="wname2">Operator sign-off</span><span class="wbadge req">Required</span></div><div class="wsum">Sign-off · Blocks confirmation</div></div><span class="wmenu"><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="4.5" r="1.3" fill="currentColor" stroke="none"/><circle cx="10" cy="10" r="1.3" fill="currentColor" stroke="none"/><circle cx="10" cy="15.5" r="1.3" fill="currentColor" stroke="none"/></svg></span></button><button class="wrow" data-code="EV-5"><span class="wsw" style="color:#2b4721"><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 16.5s1.8-1 3.5-1 2.8 1 4.5 1 3.5-1.5 3.5-1.5"/><path d="M5.5 13l6.5-6.5 2 2L7.5 15l-3 1z"/></svg></span><div class="wmain"><div class="wcode-row"><span class="wname2">Engineer witness / sign-off</span><span class="wbadge cond">Conditional</span></div><div class="wsum">Sign-off · Conditional check</div></div><span class="wmenu"><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="4.5" r="1.3" fill="currentColor" stroke="none"/><circle cx="10" cy="10" r="1.3" fill="currentColor" stroke="none"/><circle cx="10" cy="15.5" r="1.3" fill="currentColor" stroke="none"/></svg></span></button>
       </div>
@@ -216,7 +217,7 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);font-size:16
           <div class="d-code-row"><span class="d-icon" style="color:#6e7d5c"><svg width="22" height="22" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="14" height="10" rx="2"/><circle cx="10" cy="11" r="2.6"/><path d="M7 6l1.1-2h3.8L13 6"/></svg></span>
             <span class="d-code">Drill-complete photo</span></div>
           <div class="d-tags"><span class="d-type">Photo</span><span class="wbadge req">Required</span>
-            <span class="d-status">Status: Required (Blocks confirmation)</span></div>
+            <span class="d-status">Blocks confirmation</span></div>
         </div>
         <div class="d-acts"><button class="btn-o"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="6.5" y="6.5" width="10" height="11" rx="1.5"/><path d="M3.5 13.5V4a1 1 0 0 1 1-1h8.5"/></svg> Duplicate</button>
           <button class="btn-o edit"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3l3 3-9 9-4 1 1-4z"/></svg> Edit requirement</button></div>
@@ -224,10 +225,10 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);font-size:16
       <div class="card">
         <div class="card-h">Requirement</div>
         <div class="req-spec">At least one clear photo of the completed drill hole and collar, captured before grouting.</div>
-        <div class="crit-rows"><div class="crit2"><span class="c2k">Minimum</span><span class="c2v">1 photo</span></div><div class="crit2"><span class="c2k">Subject</span><span class="c2v">Drilled collar, in frame and in focus</span></div><div class="crit2"><span class="c2k">Capture</span><span class="c2v">Geotagged on the operator device</span></div><div class="crit2"><span class="c2k">When</span><span class="c2v">Before grouting commences</span></div></div>
+        <div class="crit-rows"><div class="crit2"><span class="c2k">Minimum</span><span class="c2v">1 photo</span></div><div class="crit2"><span class="c2k">Subject</span><span class="c2v">Drilled collar, in frame and in focus</span></div><div class="crit2"><span class="c2k">Capture</span><span class="c2v">Geotagged on operator device</span></div><div class="crit2"><span class="c2k">When</span><span class="c2v">Before grouting commences</span></div></div>
       </div>
       <div class="card">
-        <div class="card-h">Applies to <span class="ap-meta"><span class="ap-filters"><svg width="13" height="13" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5h14l-5.2 6.2V16l-3.6 1.8v-6.6z"/></svg> 2 filters</span><button class="ap-edit"><svg width="13" height="13" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3l3 3-9 9-4 1 1-4z"/></svg> Edit</button></span></div>
+        <div class="card-h">Applies to <span class="ap-meta"><button class="ap-edit"><svg width="13" height="13" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3l3 3-9 9-4 1 1-4z"/></svg> Edit filters</button></span></div>
         <div class="ap-cols">
           <div class="ap-col"><div class="ap-k">Designs</div><span class="apc k-design">All anchor designs</span></div>
           <div class="ap-col"><div class="ap-k">Operations</div><span class="apc k-work">Drilling & anchoring</span></div>
@@ -235,8 +236,8 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);font-size:16
         </div>
       </div>
       <div class="card">
-        <div class="card-h">Rationale · client expectation</div>
-        <div class="rat">The client and WSP expect a photographic record that each hole was drilled to plan before grouting hides the evidence.</div>
+        <div class="card-h">Reason</div>
+        <div class="rat">Client/WSP require a photographic record before grouting hides the evidence.</div>
       </div>
     </div><div class="detail" id="d-EV-2" style="display:none" data-code="EV-2">
       <div class="d-head">
@@ -244,7 +245,7 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);font-size:16
           <div class="d-code-row"><span class="d-icon" style="color:#6e8b3d"><svg width="22" height="22" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 11h3.2l2-5.5 3 9.5 2.2-6 1.3 2H17.5"/></svg></span>
             <span class="d-code">Anchor test result</span></div>
           <div class="d-tags"><span class="d-type">Test result</span><span class="wbadge req">Required</span>
-            <span class="d-status">Status: Required (Blocks confirmation)</span></div>
+            <span class="d-status">Blocks confirmation</span></div>
         </div>
         <div class="d-acts"><button class="btn-o"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="6.5" y="6.5" width="10" height="11" rx="1.5"/><path d="M3.5 13.5V4a1 1 0 0 1 1-1h8.5"/></svg> Duplicate</button>
           <button class="btn-o edit"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3l3 3-9 9-4 1 1-4z"/></svg> Edit requirement</button></div>
@@ -255,7 +256,7 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);font-size:16
         <div class="crit-rows"><div class="crit2"><span class="c2k">Source</span><span class="c2v">Paper test sheet, photo-captured</span></div><div class="crit2"><span class="c2k">Evaluation</span><span class="c2v">Pass / fail vs Testing Standard</span></div><div class="crit2"><span class="c2k">On fail</span><span class="c2v">Raises a test-fail exception</span></div></div>
       </div>
       <div class="card">
-        <div class="card-h">Applies to <span class="ap-meta"><span class="ap-filters"><svg width="13" height="13" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5h14l-5.2 6.2V16l-3.6 1.8v-6.6z"/></svg> 2 filters</span><button class="ap-edit"><svg width="13" height="13" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3l3 3-9 9-4 1 1-4z"/></svg> Edit</button></span></div>
+        <div class="card-h">Applies to <span class="ap-meta"><button class="ap-edit"><svg width="13" height="13" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3l3 3-9 9-4 1 1-4z"/></svg> Edit filters</button></span></div>
         <div class="ap-cols">
           <div class="ap-col"><div class="ap-k">Designs</div><span class="apc k-design">All tested designs</span></div>
           <div class="ap-col"><div class="ap-k">Operations</div><span class="apc k-work">Proof & load testing</span></div>
@@ -263,7 +264,7 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);font-size:16
         </div>
       </div>
       <div class="card">
-        <div class="card-h">Rationale · client expectation</div>
+        <div class="card-h">Reason</div>
         <div class="rat">Load capacity against the engineer-issued spec is the core deliverable; a record without a test result is not releasable.</div>
       </div>
     </div><div class="detail" id="d-EV-3" style="display:none" data-code="EV-3">
@@ -272,7 +273,7 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);font-size:16
           <div class="d-code-row"><span class="d-icon" style="color:#6e7d5c"><svg width="22" height="22" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="14" height="10" rx="2"/><circle cx="10" cy="11" r="2.6"/><path d="M7 6l1.1-2h3.8L13 6"/></svg></span>
             <span class="d-code">Grout record photo</span></div>
           <div class="d-tags"><span class="d-type">Photo</span><span class="wbadge req">Required</span>
-            <span class="d-status">Status: Required (Blocks confirmation)</span></div>
+            <span class="d-status">Blocks confirmation</span></div>
         </div>
         <div class="d-acts"><button class="btn-o"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="6.5" y="6.5" width="10" height="11" rx="1.5"/><path d="M3.5 13.5V4a1 1 0 0 1 1-1h8.5"/></svg> Duplicate</button>
           <button class="btn-o edit"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3l3 3-9 9-4 1 1-4z"/></svg> Edit requirement</button></div>
@@ -283,7 +284,7 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);font-size:16
         <div class="crit-rows"><div class="crit2"><span class="c2k">Minimum</span><span class="c2v">1 photo or batch docket</span></div><div class="crit2"><span class="c2k">Captures</span><span class="c2v">Grout batch and volume against spec</span></div><div class="crit2"><span class="c2k">When</span><span class="c2v">At grouting</span></div></div>
       </div>
       <div class="card">
-        <div class="card-h">Applies to <span class="ap-meta"><span class="ap-filters"><svg width="13" height="13" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5h14l-5.2 6.2V16l-3.6 1.8v-6.6z"/></svg> 2 filters</span><button class="ap-edit"><svg width="13" height="13" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3l3 3-9 9-4 1 1-4z"/></svg> Edit</button></span></div>
+        <div class="card-h">Applies to <span class="ap-meta"><button class="ap-edit"><svg width="13" height="13" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3l3 3-9 9-4 1 1-4z"/></svg> Edit filters</button></span></div>
         <div class="ap-cols">
           <div class="ap-col"><div class="ap-k">Designs</div><span class="apc k-design">All grouted designs</span></div>
           <div class="ap-col"><div class="ap-k">Operations</div><span class="apc k-work">Grouting</span></div>
@@ -291,7 +292,7 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);font-size:16
         </div>
       </div>
       <div class="card">
-        <div class="card-h">Rationale · client expectation</div>
+        <div class="card-h">Reason</div>
         <div class="rat">Grout traceability to the design specification is a standing client requirement on dam works.</div>
       </div>
     </div><div class="detail" id="d-EV-4" style="display:none" data-code="EV-4">
@@ -300,7 +301,7 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);font-size:16
           <div class="d-code-row"><span class="d-icon" style="color:#2b4721"><svg width="22" height="22" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 16.5s1.8-1 3.5-1 2.8 1 4.5 1 3.5-1.5 3.5-1.5"/><path d="M5.5 13l6.5-6.5 2 2L7.5 15l-3 1z"/></svg></span>
             <span class="d-code">Operator sign-off</span></div>
           <div class="d-tags"><span class="d-type">Sign-off</span><span class="wbadge req">Required</span>
-            <span class="d-status">Status: Required (Blocks confirmation)</span></div>
+            <span class="d-status">Blocks confirmation</span></div>
         </div>
         <div class="d-acts"><button class="btn-o"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="6.5" y="6.5" width="10" height="11" rx="1.5"/><path d="M3.5 13.5V4a1 1 0 0 1 1-1h8.5"/></svg> Duplicate</button>
           <button class="btn-o edit"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3l3 3-9 9-4 1 1-4z"/></svg> Edit requirement</button></div>
@@ -311,7 +312,7 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);font-size:16
         <div class="crit-rows"><div class="crit2"><span class="c2k">Who</span><span class="c2v">Drilling operator on shift</span></div><div class="crit2"><span class="c2k">When</span><span class="c2v">At submission to the QA queue</span></div></div>
       </div>
       <div class="card">
-        <div class="card-h">Applies to <span class="ap-meta"><span class="ap-filters"><svg width="13" height="13" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5h14l-5.2 6.2V16l-3.6 1.8v-6.6z"/></svg> 2 filters</span><button class="ap-edit"><svg width="13" height="13" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3l3 3-9 9-4 1 1-4z"/></svg> Edit</button></span></div>
+        <div class="card-h">Applies to <span class="ap-meta"><button class="ap-edit"><svg width="13" height="13" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3l3 3-9 9-4 1 1-4z"/></svg> Edit filters</button></span></div>
         <div class="ap-cols">
           <div class="ap-col"><div class="ap-k">Designs</div><span class="apc k-design">All anchor designs</span></div>
           <div class="ap-col"><div class="ap-k">Operations</div><span class="apc k-work">All work types</span></div>
@@ -319,7 +320,7 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);font-size:16
         </div>
       </div>
       <div class="card">
-        <div class="card-h">Rationale · client expectation</div>
+        <div class="card-h">Reason</div>
         <div class="rat">Accountability for the field record sits with the operator who did the work.</div>
       </div>
     </div><div class="detail" id="d-EV-5" style="display:none" data-code="EV-5">
@@ -328,7 +329,7 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);font-size:16
           <div class="d-code-row"><span class="d-icon" style="color:#2b4721"><svg width="22" height="22" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 16.5s1.8-1 3.5-1 2.8 1 4.5 1 3.5-1.5 3.5-1.5"/><path d="M5.5 13l6.5-6.5 2 2L7.5 15l-3 1z"/></svg></span>
             <span class="d-code">Engineer witness / sign-off</span></div>
           <div class="d-tags"><span class="d-type">Sign-off</span><span class="wbadge cond">Conditional</span>
-            <span class="d-status">Status: Conditional (Conditional check)</span></div>
+            <span class="d-status">Conditional check</span></div>
         </div>
         <div class="d-acts"><button class="btn-o"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="6.5" y="6.5" width="10" height="11" rx="1.5"/><path d="M3.5 13.5V4a1 1 0 0 1 1-1h8.5"/></svg> Duplicate</button>
           <button class="btn-o edit"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3l3 3-9 9-4 1 1-4z"/></svg> Edit requirement</button></div>
@@ -339,7 +340,7 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);font-size:16
         <div class="crit-rows"><div class="crit2"><span class="c2k">Who</span><span class="c2v">WSP engineer · N. Hayes</span></div><div class="crit2"><span class="c2k">When</span><span class="c2v">Before release of flagged records</span></div><div class="crit2"><span class="c2k">Trigger</span><span class="c2v">Ground-condition or performance flag</span></div></div>
       </div>
       <div class="card">
-        <div class="card-h">Applies to <span class="ap-meta"><span class="ap-filters"><svg width="13" height="13" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5h14l-5.2 6.2V16l-3.6 1.8v-6.6z"/></svg> 2 filters</span><button class="ap-edit"><svg width="13" height="13" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3l3 3-9 9-4 1 1-4z"/></svg> Edit</button></span></div>
+        <div class="card-h">Applies to <span class="ap-meta"><button class="ap-edit"><svg width="13" height="13" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3l3 3-9 9-4 1 1-4z"/></svg> Edit filters</button></span></div>
         <div class="ap-cols">
           <div class="ap-col"><div class="ap-k">Designs</div><span class="apc k-design">Ground anchors</span></div>
           <div class="ap-col"><div class="ap-k">Operations</div><span class="apc k-work">Flagged records</span></div>
@@ -347,23 +348,23 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);font-size:16
         </div>
       </div>
       <div class="card">
-        <div class="card-h">Rationale · client expectation</div>
+        <div class="card-h">Reason</div>
         <div class="rat">Independent engineering verification is expected before exception records go outward to the client.</div>
       </div>
     </div></div>
   </div>
 
   <div class="qa-summary">
-    <span class="qs-label">QA bar summary</span>
-    <div class="qs-item"><span class="qs-ic ok"><svg width="17" height="17" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"/></svg></span><div><div class="qs-1">4 required</div><div class="qs-2">Will always be enforced</div></div></div>
-    <div class="qs-item"><span class="qs-ic cond"><svg width="17" height="17" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="7"/><circle cx="10" cy="10" r="2.6" fill="currentColor" stroke="none"/></svg></span><div><div class="qs-1">1 conditional</div><div class="qs-2">Enforced when applicable</div></div></div>
-    <div class="qs-item"><span class="qs-ic blk"><svg width="17" height="17" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2.5 4 5v4.5c0 3.6 2.6 6.6 6 8 3.4-1.4 6-4.4 6-8V5z"/><path d="M7.5 10l1.8 1.8L13 8"/></svg></span><div><div class="qs-1">4 block confirmation</div><div class="qs-2">Records held until satisfied</div></div></div>
+    <span class="qs-label">QA setup summary</span>
+    <div class="qs-item"><span class="qs-ic ok"><svg width="17" height="17" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"/></svg></span><div class="qs-1">4 required</div></div>
+    <div class="qs-item"><span class="qs-ic cond"><svg width="17" height="17" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="7"/><circle cx="10" cy="10" r="2.6" fill="currentColor" stroke="none"/></svg></span><div class="qs-1">1 conditional</div></div>
+    <div class="qs-item"><span class="qs-ic blk"><svg width="17" height="17" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2.5 4 5v4.5c0 3.6 2.6 6.6 6 8 3.4-1.4 6-4.4 6-8V5z"/><path d="M7.5 10l1.8 1.8L13 8"/></svg></span><div class="qs-1">4 block confirmation</div></div>
     <div class="qs-result"><div class="qs-rk">Result</div><div class="qs-rv">Records become confirmable when all applicable requirements are met.</div></div>
     <button class="qs-preview"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2 10s3-5.5 8-5.5 8 5.5 8 5.5-3 5.5-8 5.5S2 10 2 10z"/><circle cx="10" cy="10" r="2.4"/></svg> Preview operator view</button>
   </div>
 
   <div class="eq-foot">
-    <div class="ss-item"><svg width="17" height="17" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"/></svg> 5 requirements defined · 4 block confirmation · ready for Safety &amp; Risk</div>
+    <div class="ss-item ok"><svg width="17" height="17" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"/></svg> 5 requirements defined · 4 block confirmation · ready for Safety &amp; Risk</div>
     <a class="continue-btn" href="safety-risk-controls.html">Continue to Safety &amp; Risk <svg width="17" height="17" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10h11M11 5l5 5-5 5"/></svg></a>
   </div>
 </div>
