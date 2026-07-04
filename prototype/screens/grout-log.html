@@ -315,6 +315,47 @@ body{font-family:var(--ui);color:var(--ink);background:var(--stage);min-height:1
 .btn.subqa .bchev{flex:0 0 auto;opacity:.85}
 .ponote{display:flex;align-items:flex-start;gap:9px;font-size:var(--fs-sm);color:var(--ink-40);line-height:1.4;padding:0 2px}
 .ponote svg{flex:0 0 auto;margin-top:1px;color:var(--ink-40)}
+/* ---- Grout Log minimalist pass ---- */
+.idmeta .wtype .stg{font-weight:400;color:var(--ink-40)}
+.sl .cnt{font-family:var(--ui);text-transform:none;letter-spacing:0;color:var(--ink-40);font-weight:400}
+.ghero{display:flex;align-items:center;gap:16px}
+.ghero-l{display:flex;align-items:center;gap:12px;flex:1;min-width:0}
+.ghero-l .gn{font-family:var(--ui);font-weight:700;font-size:var(--fs-4xl);line-height:.85;color:var(--ink)}
+.gbt{display:flex;flex-direction:column;gap:1px;line-height:1.2}
+.gbt b{font-size:var(--fs-md);font-weight:700;color:var(--ink)}
+.gbt span{font-size:var(--fs-sm);color:var(--ink-40)}
+.ghero-r{display:flex;align-items:center;gap:10px;padding-left:16px;border-left:1px solid var(--line);flex-shrink:0}
+.gs-ic{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;flex-shrink:0}
+.ghero-r.ok .gs-ic{background:var(--forest);color:#fff}
+.ghero-r.over .gs-ic{background:var(--ochre);color:#fff}
+.gs-t{font-size:var(--fs-lg);font-weight:700;color:var(--ink)}
+.gsep{height:1px;background:var(--rule);margin:16px 0}
+.gcalc{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.gc{display:flex;flex-direction:column;gap:5px;min-width:0}
+.gc .gck{font-size:var(--fs-xs);color:var(--ink-40);font-weight:500;line-height:1.2}
+.gc .gcv{font-family:var(--ui);font-weight:700;font-size:var(--fs-lg);color:var(--ink);white-space:nowrap}
+.gc .gcv i{font-style:normal;color:var(--ink-40);font-size:var(--fs-sm)}
+.gc .gcv.act{color:var(--ochre)}
+.gc .gcv.al{color:var(--forest-2)}
+.qc.on .big,.qc.on .cap,.qc.on .ico{color:var(--cream)}
+.lithlog .llrow{gap:9px}
+.llrange2{min-width:70px}
+.llmat{flex:1;min-width:0}
+.llthk{margin-left:0!important}
+.stok{flex:0 0 auto;display:inline-flex;align-items:center;gap:5px;width:auto;height:auto;border-radius:0;background:none;padding:0;font-size:var(--fs-sm);font-weight:600;color:var(--forest-2);margin-left:8px;white-space:nowrap}
+.stok svg{color:var(--forest)}
+.stcur{flex:0 0 auto;margin-left:8px;font-size:var(--fs-xs);font-weight:700;color:var(--forest);background:var(--sage-tint);border-radius:var(--r-pill);padding:3px 10px;white-space:nowrap}
+.dspec{border:1px solid var(--olive-edge);border-radius:var(--r-lg);background:var(--sage-tint);padding:14px 15px}
+.dsr{display:flex;align-items:center;gap:11px}
+.dsi{color:var(--olive);flex-shrink:0;display:flex}
+.dst{font-size:var(--fs-sm);color:var(--ink);font-weight:500;line-height:1.4}
+.sh-act.dsa{margin-top:11px;margin-left:auto;display:flex;align-items:center;gap:5px;background:none;border:none;font-family:var(--ui);font-size:var(--fs-sm);font-weight:600;color:var(--forest);cursor:pointer}
+.sh-act .chev{transition:transform .15s}
+.sh-act.open .chev{transform:rotate(180deg)}
+.dspec .sg{margin-top:12px;border-radius:10px;overflow:hidden;border:1px solid var(--olive-edge)}
+.dspec .sg[hidden]{display:none}
+.btn.subqa.muted{background:#a8ae98;color:var(--cream)}
+.btn.subqa.muted .bt2{color:rgba(247,245,236,.85)}
 </style>
 <link rel="stylesheet" href="../assets/tacedge.css">
 <link rel="manifest" href="../manifest.json">
@@ -339,9 +380,7 @@ body{font-family:var(--ui);color:var(--ink);background:var(--stage);min-height:1
       </svg>
       <a class="iconbtn" href="../index.html" aria-label="Back to home" title="Back to home"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></a>
       <div class="ctx"><span class="p">Benmore • Spillway Anchoring</span><span class="z">Rock Control • today</span></div>
-      <div class="right"><button class="iconbtn" id="fnavBtn" aria-label="Switch screen" title="Switch screen"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="3.5" width="7" height="7" rx="1.7"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.7"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.7"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.7"/></svg></button>
-        <a class="iconbtn" href="incident.html" aria-label="Report incident or near-miss" title="Report incident / near-miss"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></a>
-        <span class="fresh"><span class="d"></span>Live</span>
+      <div class="right"><span class="fresh"><span class="d"></span>Live</span>
         <span class="av">SK</span>
       </div>
     </header>
@@ -349,50 +388,39 @@ body{font-family:var(--ui);color:var(--ink);background:var(--stage);min-height:1
     <!-- gate satisfied -->
     <div class="signed">
       <span class="tick"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>
-      <span>Drill signed off <b>09:41</b> • cleared to grout</span><span class="jsa">JSA-118 ACK</span>
+      <span>Drill signed off <b>09:41</b> · cleared to grout</span><span class="jsa">JSA-118 acknowledged</span>
     </div>
 
     <div class="scroll"><div class="pad">
 
       <!-- identity -->
       <div class="hero">
-        <span class="eye">SPILLWAY FACE · ZONE B</span>
         <div class="idrow">
           <span class="idref">B12</span>
-          <span class="idmeta"><span class="wtype">Anchor</span><span class="stage-l">Grout stage 3 of 3</span><span class="phase"><span class="pd"></span>Active</span></span>
-          <button class="vad">View anchor details <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></button>
+          <span class="idmeta"><span class="wtype">Spillway Face <span class="stg">· Grout stage 3 of 3</span></span><span class="phase"><span class="pd"></span>Active</span></span>
+          <button class="vad">View anchor details <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>
         </div>
-        <span class="heropos">Bond zone • 6.0 m • final stage</span>
+        <span class="heropos">Bond zone 6.0 m · final stage</span>
       </div>
 
       <!-- grout used -->
       <div class="sec">
-        <div class="sl gusedrow"><span>Grout used</span><span class="bagtype">Bag type: <b>25 kg GP-2</b> <button class="bagedit" aria-label="Edit bag type"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z"/></svg></button></span></div>
+        <div class="sl">Grout used</div>
         <div class="gcard">
-          <div class="grow3">
-            <div class="gcol gcol1">
-              <div class="gck">Bags used</div>
-              <div class="gbags"><span class="gn" id="bagsVal">6</span><span class="bagico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 8h11l1.2 11.2a2 2 0 0 1-2 2.2H7.3a2 2 0 0 1-2-2.2L6.5 8z"/><path d="M8.5 8c0-2 1.6-3.5 3.5-3.5S15.5 6 15.5 8"/></svg></span><span class="gbu">bags<br>of 25 kg</span></div>
-              <div class="ghint">Use buttons or tap to edit</div>
-            </div>
-            <div class="gdiv"></div>
-            <div class="gcol">
-              <div class="gck">Calculated volume</div>
-              <div class="gval"><span class="gn2" id="grtVol">47</span> <span class="gu">L</span></div>
-              <div class="gck2">Theoretical</div>
-              <div class="gval2">38 <span class="gu">L</span></div>
-            </div>
-            <div class="gdiv"></div>
-            <div class="gcol">
-              <div class="gck">Overbreak</div>
-              <div class="gpct" id="grtPct">&times;1.24</div>
-              <div class="gover" id="grtOver" style="color:var(--forest-2)">Within allowance</div>
-              <div class="gck2" id="grtAllow">vs &times;1.35 setup allowance</div>
-            </div>
+          <div class="ghero">
+            <div class="ghero-l"><span class="gn" id="bagsVal">6</span><span class="gbt"><b>bags used</b><span>25 kg GP-2</span></span></div>
+            <div class="ghero-r" id="gStatus"><span class="gs-ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span><span class="gs-t" id="grtOver">Within allowance</span></div>
           </div>
-          <div class="qsep"></div>
+          <div class="gsep"></div>
+          <div class="gcalc">
+            <div class="gc"><span class="gck">Calculated</span><span class="gcv"><b id="grtVol">47</b> <i>L</i></span></div>
+            <div class="gc"><span class="gck">Theoretical</span><span class="gcv"><b>38</b> <i>L</i></span></div>
+            <div class="gc"><span class="gck">Usage (actual)</span><span class="gcv act" id="grtPct">×1.24</span></div>
+            <div class="gc"><span class="gck">Allowed (setup)</span><span class="gcv al">×1.35</span></div>
+          </div>
+          <div class="gsep"></div>
           <div class="qadj qbags" id="qadj">
-            <button class="qc" data-bag="1" aria-label="Add 1 bag"><span class="big">+1 bag</span><span class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 8h11l1.2 11.2a2 2 0 0 1-2 2.2H7.3a2 2 0 0 1-2-2.2L6.5 8z"/><path d="M8.5 8c0-2 1.6-3.5 3.5-3.5S15.5 6 15.5 8"/></svg></span></button>
+            <button class="qc on" data-bag="1" aria-label="Add 1 bag"><span class="big">+1 bag</span><span class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 8h11l1.2 11.2a2 2 0 0 1-2 2.2H7.3a2 2 0 0 1-2-2.2L6.5 8z"/><path d="M8.5 8c0-2 1.6-3.5 3.5-3.5S15.5 6 15.5 8"/></svg></span></button>
             <button class="qc" data-bag="0.5" aria-label="Add half bag"><span class="big">+0.5 bag</span><span class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 8h11l1.2 11.2a2 2 0 0 1-2 2.2H7.3a2 2 0 0 1-2-2.2L6.5 8z"/><path d="M8.5 8c0-2 1.6-3.5 3.5-3.5S15.5 6 15.5 8"/></svg></span></button>
             <button class="qc undo" id="undoBtn" aria-label="Undo last change"><span class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7v6h6"/><path d="M3.51 13a9 9 0 1 0 2.13-9.36L3 7"/></svg></span><span class="big">Undo</span><span class="cap">Last change</span></button>
             <button class="qc" id="editBags" aria-label="Edit bags manually"><span class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z"/></svg></span><span class="big">Edit bags</span><span class="cap">Manual entry</span></button>
@@ -418,14 +446,17 @@ body{font-family:var(--ui);color:var(--ink);background:var(--stage);min-height:1
 
       <!-- grout stages log -->
       <div class="sec">
-        <div class="sl">Grout stages <span class="sub">Active stage volume follows pump.</span><button class="act open" id="viewToggle"><span id="vtLabel">2 stages</span><svg class="chev" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 15l-6-6-6 6"/></svg></button></div>
+        <div class="sl">Grout stages <span class="cnt">· 2</span></div>
         <div class="lithlog" id="grtlog"></div>
       </div>
 
       <!-- design context (secondary) -->
-      <div class="spec">
-        <div class="sh"><span class="t">Design <span class="from">(from setup)</span></span><span class="lock">read-only <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span></div>
-        <div class="sg">
+      <div class="sec">
+        <div class="sl">Design <span class="sub">read-only</span></div>
+        <div class="dspec">
+          <div class="dsr"><span class="dsi"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4"/><path d="M10 12h6M10 15.5h5"/></svg></span><span class="dst">GP-2 · ×1.35 allowance · 500 kPa target · 6.0 m bond</span></div>
+          <button class="sh-act dsa" id="designToggle" aria-expanded="false">View design details <svg class="chev" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button>
+        <div class="sg" id="sg" hidden>
           <div class="c"><span class="k">Grout mix</span><span class="v">GP-2</span></div>
           <div class="c"><span class="k">W:C ratio</span><span class="v">0.42</span></div>
           <div class="c"><span class="k">Theoretical volume</span><span class="v">38 L</span></div>
@@ -434,22 +465,17 @@ body{font-family:var(--ui);color:var(--ink);background:var(--stage);min-height:1
           <div class="c"><span class="k">Bond length</span><span class="v">6.0 m</span></div>
           <div class="c"><span class="k">Batch</span><span class="v">B-118</span></div>
         </div>
-      </div>
-
-      <!-- footer note -->
-      <div class="sec">
-        <div class="ponote"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>All values are saved and time-stamped. Quality checks run on submit.</div>
+        </div>
       </div>
 
     </div></div>
 
     <!-- dock -->
     <div class="dock one">
-      <button class="btn prim subqa" id="submitStage"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg><span class="bt"><span class="bt1">Submit grout stage</span><span class="bt2">Save and advance stage</span></span><svg class="bchev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></button>
+      <button class="btn prim subqa" id="submitStage"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg><span class="bt"><span class="bt1" id="dockT">Submit grout stage</span><span class="bt2" id="dockS">Save and advance stage</span></span><svg class="bchev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></button>
     </div>
 
   </div>
-  <div class="foot">Internal · TacEdge Geotech · PDS-GRT · Grout Log</div>
 </div>
 
 <script>
@@ -459,8 +485,8 @@ body{font-family:var(--ui);color:var(--ink);background:var(--stage);min-height:1
       pctEl=document.getElementById('grtPct'), ovEl=document.getElementById('grtOver');
   var bags=6, undoStack=[];
   var stages=[
-    {from:0,to:32,name:'Stage 1 • Primary',kpa:480,color:'#6e7d5c'},
-    {from:32,to:null,name:'Stage 2 • Secondary',kpa:520,color:'#2b4721'}
+    {from:0,to:32,name:'Stage 1 · Primary',kpa:480,color:'#6e7d5c'},
+    {from:32,to:null,name:'Stage 2 · Secondary',kpa:520,color:'#2b4721'}
   ];
   function fmtBags(b){ return (b%1===0)?String(b):b.toFixed(1); }
   function vol(){ return Math.round(bags*YIELD); }
@@ -473,24 +499,30 @@ body{font-family:var(--ui);color:var(--ink);background:var(--stage);min-height:1
         +'<div class="llrange2"><span class="r">'+S.from+'\u2013'+to+' L</span>'+(active?'<span class="tm">current</span>':'')+'</div>'
         +'<div class="llmat"><span class="nm">'+S.name+'</span></div>'
         +'<span class="llthk">'+S.kpa+' kPa</span>'
-        +'<span class="stok"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>'
-        +'<span class="stchev"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></span>'
+        +(active?'<span class="stcur">Current</span>':'<span class="stok"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Complete</span>')
         +'</div>';
     }
     c.innerHTML=h;
-    document.getElementById('vtLabel').textContent=stages.length+' stages';
+  }
+  function updateDock(){
+    var ready = bags>0;
+    var b=document.getElementById('submitStage'); if(!b) return;
+    b.classList.toggle('muted',!ready);
+    document.getElementById('dockT').textContent = ready ? 'Submit grout stage' : 'Complete grout stage';
+    document.getElementById('dockS').textContent = ready ? 'Save and advance stage' : 'Bags and pressure required';
   }
   function recompute(){
     bagsEl.textContent=fmtBags(bags);
     var v=vol(); volEl.textContent=v;
-    var ratio=v/THEO;                                  // overbreak = placed / theoretical
-    pctEl.innerHTML='×'+ratio.toFixed(2);         // shown as an overbreak ratio
+    var ratio=v/THEO;
+    pctEl.textContent='×'+ratio.toFixed(2);
     var within=ratio<=WASTE+1e-9;
+    pctEl.style.color = within ? 'var(--ochre)' : 'var(--brick)';
     ovEl.textContent=within?'Within allowance':'Over allowance';
-    ovEl.style.color=within?'var(--forest-2)':'var(--ochre)';
-    var al=document.getElementById('grtAllow');
-    if(al) al.textContent='vs ×'+WASTE.toFixed(2)+' setup allowance';
+    var st=document.getElementById('gStatus');
+    if(st){ st.classList.toggle('ok',within); st.classList.toggle('over',!within); }
     renderStages(v);
+    updateDock();
   }
   document.getElementById('qadj').addEventListener('click',function(e){
     var b=e.target.closest('[data-bag]'); if(!b) return;
@@ -501,8 +533,17 @@ body{font-family:var(--ui);color:var(--ink);background:var(--stage);min-height:1
     var x=prompt('Bags used (25 kg)', fmtBags(bags));
     if(x!==null){ var n=parseFloat(x); if(!isNaN(n)&&n>=0){ undoStack.push(bags); bags=n; recompute(); } }
   });
-  document.getElementById('viewToggle').addEventListener('click',function(){
-    var open=this.classList.toggle('open'); document.getElementById('grtlog').classList.toggle('collapsed',!open);
+  var dtog=document.getElementById('designToggle'), sg=document.getElementById('sg');
+  if(dtog&&sg)dtog.addEventListener('click',function(){
+    var open=sg.hasAttribute('hidden');
+    if(open){sg.removeAttribute('hidden');}else{sg.setAttribute('hidden','');}
+    dtog.setAttribute('aria-expanded',open?'true':'false');
+    dtog.classList.toggle('open',open);
+  });
+  var sub=document.getElementById('submitStage');
+  if(sub)sub.addEventListener('click',function(){
+    if(sub.classList.contains('muted')) return;
+    location.href='anchor-test.html';
   });
   recompute();
 })();
