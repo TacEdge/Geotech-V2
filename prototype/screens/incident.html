@@ -327,9 +327,13 @@ body{font-family:var(--ui);color:var(--ink);background:var(--stage);min-height:1
 .attrow{display:flex;align-items:center;gap:13px;margin-top:12px}
 .attthumb{position:relative;flex:0 0 auto;width:58px;height:58px;border-radius:var(--r-sm);background:var(--sage-tint);border:1px solid var(--line);display:grid;place-items:center;color:var(--olive)}
 .attthumb .rm{position:absolute;top:-7px;right:-7px;width:22px;height:22px;border-radius:50%;background:var(--forest);color:var(--cream);border:2px solid var(--card);display:grid;place-items:center;font-size:var(--fs-base);line-height:1;cursor:pointer}
-.atttx{display:flex;flex-direction:column;gap:1px}
+.atttx{display:flex;flex-direction:column;gap:1px;flex:1;min-width:0}
 .att1{font-size:var(--fs-base);font-weight:600;color:var(--ink)}
 .att2{font-size:var(--fs-sm);color:var(--ink-40)}
+.attthumb .ok{position:absolute;top:-7px;right:-7px;width:22px;height:22px;border-radius:50%;background:var(--forest);color:var(--cream);border:2px solid var(--card);display:grid;place-items:center}
+.attmore{flex:0 0 auto}
+.signed.info .tick{background:none;color:var(--olive);width:auto;height:auto}
+.signed.info .tick svg{width:22px;height:22px}
 .btn.subqa{position:relative;display:flex;align-items:center;gap:13px;text-align:left;padding:15px 18px;width:100%}
 .btn.subqa .bt{display:flex;flex-direction:column;gap:1px;flex:1;min-width:0}
 .btn.subqa .bt1{font-size:var(--fs-md);font-weight:700;line-height:1.15}
@@ -362,9 +366,7 @@ body{font-family:var(--ui);color:var(--ink);background:var(--stage);min-height:1
       </svg>
       <a class="iconbtn" href="../index.html" aria-label="Back to home" title="Back to home"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></a>
       <div class="ctx"><span class="p">Benmore · Spillway Anchoring</span><span class="z">Rock Control · today</span></div>
-      <div class="right"><button class="iconbtn" id="fnavBtn" aria-label="Switch screen" title="Switch screen"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="3.5" width="7" height="7" rx="1.7"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.7"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.7"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.7"/></svg></button>
-        <a class="iconbtn" href="incident.html" aria-label="Report incident or near-miss" title="Report incident / near-miss"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></a>
-        <span class="fresh"><span class="d"></span>Live</span>
+      <div class="right"><span class="fresh"><span class="d"></span>Offline</span>
         <span class="av">SK</span>
       </div>
     </header>
@@ -372,21 +374,19 @@ body{font-family:var(--ui);color:var(--ink);background:var(--stage);min-height:1
     <!-- gate satisfied -->
     <div class="signed info" id="gate">
       <span class="tick"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.61 16.95A5 5 0 0 0 18 10h-1.26a8 8 0 0 0-7.05-6"/><path d="M5 5a8 8 0 0 0 4 15h9a5 5 0 0 0 1.7-.3"/><line x1="1" y1="1" x2="23" y2="23"/></svg></span>
-      <span id="gateTx">Saved on this device · will alert PM when synced</span><span class="jsa">OFFLINE</span>
+      <span id="gateTx">Saved on this device · PM will be alerted when synced</span>
     </div>
 
     <div class="scroll"><div class="pad">
 
       <!-- identity -->
       <div class="hero shift">
-        <span class="eye">SAFETY REPORT · AVAILABLE ANYTIME</span>
         <div class="idrow"><span class="ttl">Incident / near-miss</span></div>
-        <span class="sub2">Benmore · Spillway Anchoring · Rock Control</span>
+        <span class="sub2">Report safety events anytime.</span>
       </div>
 
       <!-- type -->
       <div class="sec">
-        <div class="sl">What are you reporting?</div>
         <div class="seg" id="seg">
           <button class="on" data-type="near"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>Near-miss</button>
           <button data-type="incident"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Incident</button>
@@ -395,15 +395,16 @@ body{font-family:var(--ui);color:var(--ink);background:var(--stage);min-height:1
 
       <!-- photo first -->
       <div class="sec">
-        <div class="sl">Photo or video <span class="sub">Capture first, saves offline.</span></div>
+        <div class="sl">Photo or video</div>
         <div class="photocard">
           <div class="capwrap">
             <button class="capbtn rec"><span class="capico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></span><span class="captx"><span class="cap1">Take photo</span><span class="cap2">Recommended</span></span></button>
             <button class="capbtn"><span class="capico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg></span><span class="captx"><span class="cap1">Record video</span><span class="cap2">Up to 60 seconds</span></span></button>
           </div>
           <div class="attrow" id="attRow">
-            <span class="attthumb"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg><span class="rm">&times;</span></span>
+            <span class="attthumb"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg><span class="ok"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span></span>
             <div class="atttx"><span class="att1">1 photo added</span><span class="att2">Tap to view</span></div>
+            <button class="opt attmore" id="addMore">Add another</button>
           </div>
         </div>
       </div>
@@ -416,27 +417,13 @@ body{font-family:var(--ui);color:var(--ink);background:var(--stage);min-height:1
         </div>
       </div>
 
-      <!-- severity -->
-      <div class="sec">
-        <div class="sl">Severity <span class="sub">Set on the standard scale.</span></div>
-        <div class="sevwrap" id="sev">
-          <button class="sev" data-sev="low"><span class="sd"></span><span class="slab">Low</span></button>
-          <button class="sev" data-sev="med"><span class="sd"></span><span class="slab">Medium</span></button>
-          <button class="sev" data-sev="high"><span class="sd"></span><span class="slab">High</span></button>
-          <button class="sev" data-sev="crit"><span class="sd"></span><span class="slab">Critical</span></button>
-        </div>
-      </div>
-
       <!-- optional context -->
       <div class="sec">
-        <div class="sl">Context <span class="sub">Optional.</span></div>
+        <div class="sl">Context <span class="sub">Optional</span></div>
         <div class="optrow">
           <button class="opt" id="optLoc"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Add location</button>
-          <button class="opt" id="optAnchor"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="3"/><line x1="12" y1="22" x2="12" y2="8"/><path d="M5 12H2a10 10 0 0 0 20 0h-3"/></svg>Link to anchor</button>
         </div>
       </div>
-
-      <button class="priorlink">View previous reports <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></button>
 
       <!-- submit (inline) -->
       <div class="sec">
@@ -445,13 +432,12 @@ body{font-family:var(--ui);color:var(--ink);background:var(--stage);min-height:1
 
       <!-- footer note -->
       <div class="sec">
-        <div class="ponote"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg> Reports are confidential and used to improve safety. You can report anytime. Safety is our priority.</div>
+        <div class="ponote"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg> Reports are confidential. Safety is the priority.</div>
       </div>
 
     </div></div>
 
   </div>
-    <div class="foot">Internal · TacEdge Geotech · PDS-INC · Incident / Near-Miss</div>
 </div>
 
 <script>
@@ -460,11 +446,7 @@ body{font-family:var(--ui);color:var(--ink);background:var(--stage);min-height:1
   var seg=document.getElementById('seg');
   seg.addEventListener('click',function(e){var b=e.target.closest('[data-type]');if(!b)return;
     [].forEach.call(seg.children,function(x){x.classList.remove('on');}); b.classList.add('on');});
-  var sev=document.getElementById('sev');
-  sev.addEventListener('click',function(e){var b=e.target.closest('[data-sev]');if(!b)return;
-    [].forEach.call(sev.children,function(x){x.classList.remove('on');}); b.classList.add('on');});
-  ['optLoc','optAnchor'].forEach(function(id){var el=document.getElementById(id); if(el) el.addEventListener('click',function(){el.classList.toggle('on');});});
-  var rm=document.querySelector('.attthumb .rm'); if(rm) rm.addEventListener('click',function(e){e.stopPropagation();var row=document.getElementById('attRow'); if(row) row.remove();});
+  ['optLoc'].forEach(function(id){var el=document.getElementById(id); if(el) el.addEventListener('click',function(){el.classList.toggle('on');});});
   var submit=document.getElementById('submitInc');
   submit.addEventListener('click',function(){
     if(submit.disabled) return;
