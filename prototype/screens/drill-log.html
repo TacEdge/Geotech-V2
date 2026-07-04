@@ -283,7 +283,46 @@ body{font-family:var(--ui);color:var(--ink);background:var(--stage);min-height:1
 .btn.subqa .bt1{font-size:var(--fs-md);font-weight:700;line-height:1.15}
 .btn.subqa .bt2{font-size:var(--fs-sm);font-weight:400;color:rgba(247,245,236,.8)}
 .btn.subqa .bchev{flex:0 0 auto;opacity:.85}
-.llempty{padding:14px 2px;color:var(--ink-40);font-size:13px;line-height:1.45}
+.btn.subqa.muted{background:#a8ae98;color:var(--cream)}
+.btn.subqa.muted .bt2{color:rgba(247,245,236,.85)}
+/* ---- Drill Log minimalist pass ---- */
+.idmeta .wtype .stg{font-weight:400;color:var(--ink-40)}
+.dcard>.des{font-size:var(--fs-sm);color:var(--ink-40);margin-top:8px}
+.dcard>.dpb{margin-top:11px}
+/* lithology current/empty state */
+.lithstate{display:flex;align-items:center;gap:13px;margin-top:12px;padding:14px 15px;border:1px dashed var(--line-2);border-radius:var(--r-lg);background:var(--card)}
+.lithstate.active{border-style:solid;border-color:var(--olive-edge);background:var(--sage-tint)}
+.lst-ic{width:46px;height:46px;border-radius:50%;background:var(--tint);color:var(--olive);display:grid;place-items:center;flex-shrink:0}
+.lithstate.active .lst-ic{background:var(--card);color:var(--forest)}
+.lst-tx{display:flex;flex-direction:column;gap:2px;min-width:0}
+.lst-tx b{font-size:var(--fs-base);font-weight:700;color:var(--ink)}
+.lst-tx span{font-size:var(--fs-sm);color:var(--ink-40)}
+/* lithology-log empty state as a card row */
+.llempty{display:flex;align-items:center;gap:13px;padding:14px 15px;color:var(--ink-40);font-size:var(--fs-sm);line-height:1.4}
+.lle-ic{width:44px;height:44px;border-radius:50%;background:var(--tint);color:var(--ink-40);display:grid;place-items:center;flex-shrink:0}
+.lle-tx{display:flex;flex-direction:column;gap:2px}
+.lle-tx b{font-size:var(--fs-base);font-weight:700;color:var(--ink)}
+.lle-tx span{font-size:var(--fs-sm);color:var(--ink-40)}
+/* design reference — white card, compact summary + toggle */
+.spec{background:var(--card);border-color:var(--line)}
+.spec .sh{background:transparent;border-bottom:1px solid var(--line)}
+.spec .sh .t{color:var(--ink-60)}
+.spec .sh .lock{margin-left:0;color:var(--ink-40)}
+.sh-act{margin-left:auto;display:inline-flex;align-items:center;gap:5px;background:none;border:none;font-family:var(--ui);font-size:var(--fs-sm);font-weight:600;color:var(--forest);cursor:pointer;text-transform:none;letter-spacing:0}
+.sh-act .chev{transition:transform .15s}
+.sh-act.open .chev{transform:rotate(180deg)}
+.dsum{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line)}
+.dcell{background:var(--card);display:flex;align-items:center;gap:10px;padding:13px 14px;min-width:0}
+.dci{color:var(--olive);flex-shrink:0}
+.dcx{display:flex;flex-direction:column;gap:2px;min-width:0}
+.dv{font-family:var(--mono);font-size:var(--fs-base);font-weight:600;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dv i{font-style:normal;color:var(--ink-40);font-size:var(--fs-sm)}
+.dk{font-size:var(--fs-2xs);color:var(--ink-40)}
+.spec .sg{border-top:1px solid var(--line);background:var(--line)}
+.spec .sg .c{background:var(--card)}
+.spec .sg .c .k{color:var(--ink-40)}
+.spec .sg[hidden]{display:none}
+.curlith[hidden]{display:none}
 </style>
 <link rel="stylesheet" href="../assets/tacedge.css">
 <link rel="manifest" href="../manifest.json">
@@ -308,9 +347,7 @@ body{font-family:var(--ui);color:var(--ink);background:var(--stage);min-height:1
       </svg>
       <a class="iconbtn" href="../index.html" aria-label="Back to home" title="Back to home"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></a>
       <div class="ctx"><span class="p">Benmore • Spillway Anchoring</span><span class="z">Rock Control • Today</span></div>
-      <div class="right"><button class="iconbtn" id="fnavBtn" aria-label="Switch screen" title="Switch screen"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="3.5" width="7" height="7" rx="1.7"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.7"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.7"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.7"/></svg></button>
-        <a class="iconbtn" href="incident.html" aria-label="Report incident or near-miss" title="Report incident / near-miss"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></a>
-        <span class="fresh"><span class="d"></span>Live</span>
+      <div class="right"><span class="fresh"><span class="d"></span>Live</span>
         <span class="av">SK</span>
       </div>
     </header>
@@ -325,62 +362,61 @@ body{font-family:var(--ui);color:var(--ink);background:var(--stage);min-height:1
 
       <!-- identity -->
       <div class="hero">
-        <span class="eye">SPILLWAY FACE · ZONE B</span>
         <div class="idrow">
           <span class="idref">B12</span>
-          <span class="idmeta"><span class="wtype">Anchor</span><span class="stage-l">Drill stage 2 of 3</span><span class="phase"><span class="pd"></span>Active</span></span>
-          <button class="vad">View anchor details <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></button>
+          <span class="idmeta"><span class="wtype">Spillway Face <span class="stg">· Drill stage 2 of 3</span></span><span class="phase"><span class="pd"></span>Active</span></span>
+          <button class="vad">View details <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></button>
         </div>
-        <span class="heropos">Row 2 • 14 of 18 drilled in this zone</span>
+        <span class="heropos">Row 2 · 14 of 18 drilled in this zone</span>
       </div>
 
       <!-- current depth (hero) -->
       <div class="sec">
         <div class="sl">Current depth</div>
         <div class="dcard">
-          <div class="dhead">
-            <div class="dh-l">
-              <div class="dh-val"><span class="n" id="depthVal">0.0</span><span class="u">m</span></div>
-              <div class="des">Design: 12.0 m</div>
-            </div>
-            <div class="dh-r">
-              <div class="pct" id="paPct">0<span class="pp">%</span></div>
-              <div class="ov under" id="paOver">12.0 m to design</div>
-            </div>
-          </div>
-          <div class="qsep"></div>
+          <div class="dh-val"><span class="n" id="depthVal">0.0</span><span class="u">m</span></div>
+          <div class="des" id="depthSub">Design 12.0 m · 0% complete</div>
+          <div class="pbar dpb"><span class="pf" id="depthBar" style="width:0%"></span></div>
           <div class="qadj" id="qadj">
             <button class="qc on" data-step="1" aria-label="Add 1.0 m"><span class="big">+1.0 m</span><span class="cap">Add 1.0 m</span></button>
             <button class="qc" data-step="0.1" aria-label="Add 0.1 m"><span class="big">+0.1 m</span><span class="cap">Add 0.1 m</span></button>
             <button class="qc undo" id="undoBtn" aria-label="Undo last change"><span class="ico"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7v6h6"/><path d="M3.51 13a9 9 0 1 0 2.13-9.36L3 7"/></svg></span><span class="big">Undo</span><span class="cap">Last change</span></button>
           </div>
-          <div class="lu2"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span id="lastUpd">Not started</span></div>
         </div>
       </div>
 
-      <!-- current lithology -->
+      <!-- lithology -->
       <div class="sec">
-        <div class="sl">Current lithology <span class="sub" id="curAt">(at 0.0 m)</span></div>
-        <div class="qmlab">Quick materials <span class="qmsub">(tap to select)</span></div>
+        <div class="sl">Lithology <span class="sub" id="curAt">at 0.0 m</span></div>
         <div class="lqchips" id="lqchips">
           <button class="lq" data-tone="tint" data-lith="Fill">Fill</button>
           <button class="lq" data-tone="ochre" data-lith="Clay">Clay</button>
           <button class="lq" data-tone="sage" data-lith="Weathered Greywacke">Weathered Greywacke</button>
           <button class="lq" data-lith="Greywacke">Greywacke</button>
         </div>
-        <button class="curlith" id="curlith"><span class="sw lg" data-mat="other"></span><span class="nm">Selected: <span id="curName">None yet</span></span><span class="car"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span></button>
+        <div class="lithstate" id="lithState">
+          <span class="lst-ic" id="lstIc"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l9 5-9 5-9-5z"/><path d="M3 12l9 5 9-5"/></svg></span>
+          <div class="lst-tx"><b id="lstT">No lithology logged yet</b><span id="lstS">Tap a material above to start the first layer.</span></div>
+        </div>
+        <button class="curlith" id="curlith" hidden><span class="sw lg" data-mat="other"></span><span class="nm">Selected: <span id="curName">None yet</span></span><span class="car"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span></button>
       </div>
 
       <!-- lithology log -->
       <div class="sec">
-        <div class="sl">Lithology log <span class="sub">Base of active layer follows depth.</span><button class="act open" id="viewToggle"><span id="vtLabel">0 intervals</span><svg class="chev" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 15l-6-6-6 6"/></svg></button></div>
-        <div class="lithlog" id="lithlog"><div class="llempty">No lithology recorded yet. Drill down, then tap a material to log the first layer.</div></div>
+        <div class="sl">Lithology log <button class="act open" id="viewToggle"><span id="vtLabel">0 intervals</span><svg class="chev" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 15l-6-6-6 6"/></svg></button></div>
+        <div class="lithlog" id="lithlog"><div class="llempty"><span class="lle-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 3.5h6v2H9z"/><path d="M8.5 10h7M8.5 14h5"/></svg></span><div class="lle-tx"><b>No intervals recorded yet.</b><span>Depth down, then tap a material to log the first layer.</span></div></div></div>
       </div>
 
       <!-- design context (secondary) -->
       <div class="spec">
-        <div class="sh"><span class="t">Design <span class="from">(from setup)</span></span><span class="lock">read-only <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span></div>
-        <div class="sg">
+        <div class="sh"><span class="t">Design</span><span class="lock">read-only</span><button class="sh-act" id="designToggle" aria-expanded="false">View design details <svg class="chev" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button></div>
+        <div class="dsum">
+          <div class="dcell"><svg class="dci" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="2" width="8" height="20" rx="1.5"/><path d="M8 6h3M8 10h3M8 14h3M8 18h3"/></svg><div class="dcx"><span class="dv">12.0 <i>m</i></span><span class="dk">Design depth</span></div></div>
+          <div class="dcell"><svg class="dci" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V3h6v1M9 10h6M9 14h4"/></svg><div class="dcx"><span class="dv">WSP-A2</span><span class="dk">Specification</span></div></div>
+          <div class="dcell"><svg class="dci" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3v18M12 3v18M16 3v18"/></svg><div class="dcx"><span class="dv">32 mm / 6.0 m</span><span class="dk">Bar · bond</span></div></div>
+          <div class="dcell"><svg class="dci" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 19l6-9 4 5 3-4 5 8z"/></svg><div class="dcx"><span class="dv">Greywacke</span><span class="dk">Expected</span></div></div>
+        </div>
+        <div class="sg" id="sg" hidden>
           <div class="c"><span class="k">Design depth</span><span class="v">12.0 m</span></div>
           <div class="c"><span class="k">Specification</span><span class="v">WSP-A2</span></div>
           <div class="c"><span class="k">Bar · bond</span><span class="v">32 mm · 6.0 m</span></div>
@@ -394,7 +430,7 @@ body{font-family:var(--ui);color:var(--ink);background:var(--stage);min-height:1
 
     <!-- dock -->
     <div class="dock one">
-      <button class="btn prim subqa" id="submitQA"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg><span class="bt"><span class="bt1">Submit to QA</span><span class="bt2">Depth, lithology and observations</span></span><svg class="bchev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></button>
+      <button class="btn prim subqa muted" id="submitQA"><svg class="bico" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg><span class="bt"><span class="bt1" id="dockT">Complete drill log</span><span class="bt2" id="dockS">Depth, lithology and observations required</span></span><svg class="bchev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></button>
     </div>
 
     <!-- record lithology change · bottom sheet -->
@@ -425,7 +461,6 @@ body{font-family:var(--ui);color:var(--ink);background:var(--stage);min-height:1
     </div>
 
   </div>
-  <div class="foot">Internal · TacEdge Geotech · PDS-DRL · Drill Log</div>
 </div>
 
 <script>
@@ -445,26 +480,39 @@ body{font-family:var(--ui);color:var(--ink);background:var(--stage);min-height:1
   var layers=[];            /* start of drilling, no lithology logged yet */
   var pickMat='Greywacke';
 
+  function setLithState(act){
+    var st=document.getElementById('lithState');
+    if(!st) return;
+    var t=document.getElementById('lstT'), s=document.getElementById('lstS');
+    if(!act){ st.classList.remove('active'); t.textContent='No lithology logged yet'; s.textContent='Tap a material above to start the first layer.'; }
+    else { st.classList.add('active'); t.textContent='Current layer: '+act.lith; s.textContent='Started at '+fmt(act.from)+' m'; }
+  }
+  function updateDock(){
+    var ready = curDepth()>0 && layers.length>0;
+    var b=document.getElementById('submitQA'); if(!b) return;
+    b.classList.toggle('muted',!ready);
+    document.getElementById('dockT').textContent = ready ? 'Submit to QA' : 'Complete drill log';
+    document.getElementById('dockS').textContent = ready ? 'Depth, lithology and observations complete' : 'Depth, lithology and observations required';
+  }
   function recompute(){
     var a=curDepth();
-    document.getElementById('paPct').innerHTML=Math.round(a/DESIGN*100)+'<span class="pp">%</span>';
-    var over=+(a-DESIGN).toFixed(1), os=document.getElementById('paOver');
-    if(over>0){os.textContent='+'+over.toFixed(1)+' m over design';os.classList.remove('under');}
-    else if(over<0){os.textContent=Math.abs(over).toFixed(1)+' m to design';os.classList.add('under');}
-    else{os.textContent='on design';os.classList.add('under');}
-    document.getElementById('curAt').textContent='(at '+fmt(a)+' m)';
-    var lu=document.getElementById("lastUpd"); if(lu) lu.textContent=(a>0||layers.length)?("Updated "+nowHM()):"Not started";
+    var pct=Math.min(100,Math.round(a/DESIGN*100)), over=+(a-DESIGN).toFixed(1);
+    var ds=document.getElementById('depthSub');
+    if(ds){ ds.textContent = over>0 ? ('Design '+fmt(DESIGN)+' m · +'+over.toFixed(1)+' m over design')
+                                    : ('Design '+fmt(DESIGN)+' m · '+pct+'% complete'); }
+    var db=document.getElementById('depthBar'); if(db) db.style.width=pct+'%';
+    document.getElementById('curAt').textContent='at '+fmt(a)+' m';
     var dc=document.getElementById('dacCur'); if(dc) dc.textContent='Current depth: '+fmt(a)+' m';
     renderLog();
+    updateDock();
   }
 
   function renderLog(){
     var d=curDepth(), c=document.getElementById('lithlog'), h='';
     var chips=document.querySelectorAll('#lqchips .lq');
     if(!layers.length){
-      c.innerHTML='<div class="llempty">No lithology recorded yet \u2014 drill down, then tap a material to log the first layer.</div>';
-      document.getElementById('curName').textContent='None yet';
-      var s0=document.querySelector('#curlith .sw'); if(s0) s0.setAttribute('data-mat','other');
+      c.innerHTML='<div class="llempty"><span class="lle-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 3.5h6v2H9z"/><path d="M8.5 10h7M8.5 14h5"/></svg></span><div class="lle-tx"><b>No intervals recorded yet.</b><span>Depth down, then tap a material to log the first layer.</span></div></div>';
+      setLithState(null);
       document.getElementById('vtLabel').textContent='0 intervals';
       [].forEach.call(chips,function(x){x.classList.remove('on');});
       return;
@@ -480,8 +528,7 @@ body{font-family:var(--ui);color:var(--ink);background:var(--stage);min-height:1
     }
     c.innerHTML=h;
     var act=layers[layers.length-1];
-    document.getElementById('curName').textContent=act.lith;
-    var s=document.querySelector('#curlith .sw'); if(s) s.setAttribute('data-mat',slug(act.lith));
+    setLithState(act);
     document.getElementById('vtLabel').textContent=layers.length+' interval'+(layers.length===1?'':'s');
     [].forEach.call(chips,function(x){x.classList.toggle('on',x.dataset.lith===act.lith);});
   }
@@ -522,6 +569,22 @@ body{font-family:var(--ui);color:var(--ink);background:var(--stage);min-height:1
   document.getElementById('viewToggle').addEventListener('click',function(){
     var open=this.classList.toggle('open');
     document.getElementById('lithlog').classList.toggle('collapsed',!open);
+  });
+
+  /* design details toggle */
+  var dtog=document.getElementById('designToggle'), sg=document.getElementById('sg');
+  if(dtog&&sg)dtog.addEventListener('click',function(){
+    var open=sg.hasAttribute('hidden');
+    if(open){sg.removeAttribute('hidden');}else{sg.setAttribute('hidden','');}
+    dtog.setAttribute('aria-expanded',open?'true':'false');
+    dtog.classList.toggle('open',open);
+  });
+
+  /* state-aware submit */
+  var sub=document.getElementById('submitQA');
+  if(sub)sub.addEventListener('click',function(){
+    if(sub.classList.contains('muted')) return;
+    location.href='qa-queue.html';
   });
 
   /* full lithology picker (sheet) via dropdown */
