@@ -224,6 +224,26 @@ body{font-family:var(--ui);color:var(--ink);background:var(--stage);font-size:16
 .legend{display:flex;flex-wrap:wrap;gap:9px 15px;padding:13px 15px}
 .legend .lg{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--ink-60)}
 .legend .d{width:11px;height:11px;border-radius:50%;border:1.5px solid #fff;box-shadow:0 0 0 1px rgba(27,33,23,.12)}
+/* --- operator spatial map minimalist pass --- */
+.prog{padding:14px 16px}
+.ptop{display:flex;align-items:center;gap:12px}
+.pcount{white-space:nowrap;font-size:13px;color:var(--ink-60)}
+.pcount b{font-family:var(--mono);font-weight:700;font-size:18px;color:var(--ink);margin-right:2px}
+.pbar.inline{flex:1;margin:0}
+.legbtn{flex-shrink:0;display:inline-flex;align-items:center;gap:5px;height:32px;padding:0 12px;border:1px solid var(--line-2);border-radius:99px;background:var(--card);font-family:var(--ui);font-size:13px;font-weight:600;color:var(--ink-60);cursor:pointer}
+.legbtn .lchev{transition:transform .15s}
+.legbtn.open .lchev{transform:rotate(180deg)}
+.prog .statline{margin-top:12px}
+.prog .legend{margin-top:12px;padding:12px 0 0;border-top:1px solid var(--line)}
+.prog .legend[hidden]{display:none}
+.rowbtn{display:flex;align-items:center;gap:12px;width:100%;height:52px;padding:0 15px;border:1px solid var(--line);border-radius:14px;background:var(--card);font-family:var(--ui);cursor:pointer;text-align:left;margin-top:11px}
+.rowbtn:active{background:var(--cream)}
+.rowbtn .ric{flex:0 0 auto;color:var(--olive);display:flex}
+.rowbtn .ric.play{color:var(--forest)}
+.rowbtn .rtx{flex:1;min-width:0;font-size:14px;font-weight:600;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rowbtn .rtx b.mono{color:var(--forest);font-weight:700}
+.rowbtn .go{flex:0 0 auto;color:var(--ink-40);display:flex}
+.pad{padding-bottom:26px}
 </style><link rel="stylesheet" href="../assets/tacedge.css">
 <link rel="manifest" href="../manifest.json">
 <meta name="theme-color" content="#2b4721">
@@ -251,11 +271,7 @@ body{font-family:var(--ui);color:var(--ink);background:var(--stage);font-size:16
         <div class="p">Benmore · Spillway Anchoring</div>
         <div class="z">Rock Control · Today</div>
       </div>
-      <div class="right"><button class="iconbtn" id="fnavBtn" aria-label="Switch screen" title="Switch screen"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="3.5" width="7" height="7" rx="1.7"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.7"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.7"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.7"/></svg></button>
-        <span class="warn" aria-label="1 issue in your zone">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4 21 19H3z"/><path d="M12 10v4"/><circle cx="12" cy="16.6" r=".4" fill="currentColor"/></svg>
-        </span>
-        <span class="fresh"><span class="dot"></span>Live</span>
+      <div class="right"><span class="fresh"><span class="dot"></span>Live</span>
         <span class="av">SK</span>
       </div>
     </header>
@@ -263,16 +279,15 @@ body{font-family:var(--ui);color:var(--ink);background:var(--stage);font-size:16
     <div class="signed">
       <span class="tick"><svg width="12" height="12" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 7.5 6 11l5.5-7"/></svg></span>
       <span>Signed on <b>06:42</b> · cleared to work</span>
-      <span class="jsa">JSA-118 ACK</span>
+      <span class="jsa">JSA-118 acknowledged</span>
     </div>
 
     <div class="scroll">
       <div class="pad">
     <div class="zhead">
       <div>
-        <div class="ey">Your zone</div>
         <h1>Spillway Face · Zone B</h1>
-        <div class="lead">Tap an anchor to open it, or find your next one.</div>
+        <div class="lead">Tap an anchor to open it, or continue your current task.</div>
       </div>
       <span class="blocked"><span class="d"></span>2 blocked</span>
     </div>
@@ -363,16 +378,23 @@ body{font-family:var(--ui);color:var(--ink);background:var(--stage);font-size:16
       </div>
     </div>
     <div class="card prog">
-      <div class="top">
-        <div class="big">14 <span class="of">/ 18</span><span class="u">drilled</span></div>
-        <div class="zone"><b>Spillway Face</b><br>Zone B · your face</div>
+      <div class="ptop">
+        <span class="pcount"><b>14</b> of 18 drilled</span>
+        <span class="pbar inline"><i class="done" style="width:44.4%"></i><i class="actv" style="width:27.8%"></i></span>
+        <button class="legbtn" id="legBtn" aria-expanded="false">Legend <svg class="lchev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button>
       </div>
-      <div class="pbar"><i class="done" style="width:44.4%"></i><i class="actv" style="width:27.8%"></i></div>
       <div class="statline">
         <span class="stat"><span class="d" style="background:var(--forest)"></span><b>8</b> signed off</span>
         <span class="stat"><span class="d" style="background:var(--olive)"></span><b>5</b> in progress</span>
         <span class="stat"><span class="d" style="background:var(--sage)"></span><b>3</b> to start</span>
         <span class="stat"><span class="d" style="background:var(--brick)"></span><b>2</b> blocked</span>
+      </div>
+      <div class="legend" id="legend" hidden>
+        <span class="lg"><span class="d" style="background:var(--forest)"></span>Done</span>
+        <span class="lg"><span class="d" style="background:var(--olive)"></span>In progress</span>
+        <span class="lg"><span class="d" style="background:var(--sage)"></span>Not started</span>
+        <span class="lg"><span class="d" style="background:var(--ochre)"></span>On hold</span>
+        <span class="lg"><span class="d" style="background:var(--brick)"></span>Needs review</span>
       </div>
     </div>
     <div class="card sel" id="selCard">
@@ -388,36 +410,18 @@ body{font-family:var(--ui);color:var(--ink);background:var(--stage);font-size:16
         <div class="r"><span class="k">Current depth</span><span class="v warnv">12.4 m / 12.0 m</span></div>
         <div class="r"><span class="k">Position</span><span class="v">Row 2 · 14 of 18</span></div>
       </div>
-      </div>
-    <div class="card legend">
-      <span class="lg"><span class="d" style="background:var(--forest)"></span>Done</span>
-      <span class="lg"><span class="d" style="background:var(--olive)"></span>In progress</span>
-      <span class="lg"><span class="d" style="background:var(--sage)"></span>Not started</span>
-      <span class="lg"><span class="d" style="background:var(--ochre)"></span>On hold</span>
-      <span class="lg"><span class="d" style="background:var(--brick)"></span>Needs review</span>
-    </div>
-      </div>
-    </div>
-
-    <div class="dock">
       <div class="sel-acts">
         <button class="btn-p" id="selCta" onclick="location.href='drill-log.html'">Continue drilling</button>
-        <button class="btn-i" id="selInfo" aria-label="Anchor details">
-          <svg width="20" height="20" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="11" cy="11" r="8.5"/><path d="M11 10v5" stroke-linecap="round"/><circle cx="11" cy="7.2" r=".9" fill="currentColor" stroke="none"/></svg>
-        </button>
+        <button class="btn-p outline" id="selInfo">View details</button>
       </div>
-      <button class="findbtn" id="findBtn"><svg width="19" height="19" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="9.5" cy="9.5" r="6.5"/><path d="M14.5 14.5L19 19"/></svg> Find an anchor on the grid</button>
-      <div class="nextup" id="nextUp">
-        <div>
-          <div class="lab">Next to start</div>
-          <div class="who"><span class="mono">B14</span> · Spillway Face</div>
-        </div>
-        <span class="go"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4l6 6-6 6"/></svg></span>
+      </div>
+    <button class="rowbtn" id="findBtn"><span class="ric"><svg width="19" height="19" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="9.5" cy="9.5" r="6.5"/><path d="M14.5 14.5L19 19"/></svg></span><span class="rtx">Find an anchor</span><span class="go"><svg width="19" height="19" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4l6 6-6 6"/></svg></span></button>
+    <button class="rowbtn" id="nextUp"><span class="ric play"><svg width="18" height="18" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8.2"/><path d="M9 7.4l6 3.6-6 3.6z" fill="currentColor" stroke="none"/></svg></span><span class="rtx">Next to start: <b class="mono">B14</b> · Spillway Face</span><span class="go"><svg width="19" height="19" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4l6 6-6 6"/></svg></span></button>
+
       </div>
     </div>
 
   </div>
-  <div class="foot">Internal · TacEdge Geotech · PDS-SPM · Spatial Map</div>
 </div>
 <script>
 (function(){
@@ -615,8 +619,18 @@ body{font-family:var(--ui);color:var(--ink);background:var(--stage);font-size:16
   map.addEventListener("pointercancel",endDrag);
   map.addEventListener("pointerleave",endDrag);
 
+  // legend collapse toggle
+  var legBtn=document.getElementById("legBtn"),legend=document.getElementById("legend");
+  if(legBtn&&legend)legBtn.addEventListener("click",function(){
+    var open=legend.hasAttribute("hidden");
+    if(open){legend.removeAttribute("hidden");}else{legend.setAttribute("hidden","");}
+    legBtn.setAttribute("aria-expanded",open?"true":"false");
+    legBtn.classList.toggle("open",open);
+  });
   // next-up + info demo states
   document.getElementById("nextUp").addEventListener("click",function(){select("B14",true);});
+  var selInfo=document.getElementById("selInfo");
+  if(selInfo)selInfo.addEventListener("click",function(){location.href="drill-log.html";});
   selCta.addEventListener("click",function(){
     var t=selCta.textContent; selCta.textContent="Opening "+current+"…";
     setTimeout(function(){selCta.textContent=t;},1100);
