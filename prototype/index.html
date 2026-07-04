@@ -73,9 +73,42 @@
   .chip.eng{background:var(--tint);color:var(--ink-60)}
 
   .note{margin-top:8px;color:var(--ink-40);font-size:var(--fs-sm)}
-  .foot{margin-top:30px;padding-top:18px;border-top:1px solid var(--line);
-    color:var(--ink-40);font-size:var(--fs-sm)}
-  @media(max-width:680px){.hero{flex-direction:column;align-items:flex-start}}
+
+  /* hero refinements */
+  .hero{border-bottom:none;padding-bottom:0;margin-bottom:22px;align-items:flex-start}
+  .cta-wrap{display:flex;flex-direction:column;align-items:flex-end;gap:7px;flex-shrink:0}
+  .cta-note{color:var(--ink-40);font-size:var(--fs-sm)}
+  /* journey path */
+  .journey{display:flex;align-items:center;gap:11px;flex-wrap:wrap;margin-top:20px}
+  .jstep{display:inline-flex;align-items:center;gap:9px;font-weight:600;font-size:var(--fs-md)}
+  .jstep .jc{width:30px;height:30px;border-radius:50%;border:1.5px solid currentColor;
+    display:grid;place-items:center}
+  .jstep .jc svg{width:15px;height:15px}
+  .jstep.j1{color:var(--forest)} .jstep.j2{color:#2f7d86}
+  .jstep.j3{color:var(--ochre)} .jstep.j4{color:var(--ink-40)}
+  .jarrow{color:var(--ink-40);display:flex}.jarrow svg{width:20px;height:20px}
+
+  /* section containers */
+  .phase{border:1px solid var(--line);border-radius:var(--r-2xl);background:rgba(255,255,255,.45);
+    padding:20px 22px 22px;margin-bottom:20px}
+  .phase-head{display:flex;align-items:center;gap:11px;margin-bottom:16px}
+  .ph-ic{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;flex-shrink:0}
+  .ph-ic svg{width:17px;height:17px}
+  .ph-n{font-family:var(--display);font-weight:700;font-size:var(--fs-lg);color:var(--ink)}
+  .phase-head h2{font-family:var(--display);font-size:var(--fs-lg);color:var(--ink);font-weight:700}
+  .ph-sub{color:var(--ink-40);font-size:var(--fs-md)}
+  .ph-role{margin-left:auto;font-size:var(--fs-sm);font-weight:600;border-radius:var(--r-pill);padding:5px 13px}
+  .phase.s1 .ph-ic{background:var(--sage-tint);color:var(--forest)} .phase.s1 .ph-role{background:var(--sage-tint);color:var(--forest-2)}
+  .phase.s2 .ph-ic{background:#dbe9ea;color:#2f7d86} .phase.s2 .ph-role{background:#dbe9ea;color:#2f7d86}
+  .phase.s3 .ph-ic{background:var(--ochre-tint);color:#9a6a16} .phase.s3 .ph-role{background:var(--ochre-tint);color:#9a6a16}
+  .grid{grid-template-columns:repeat(auto-fill,minmax(144px,1fr))}
+  .chip.op{background:#dbe9ea;color:#2f7d86}
+  .chip.eng{background:var(--ochre-tint);color:#9a6a16}
+
+  .foot{margin-top:22px;color:var(--ink-40);font-size:var(--fs-sm);
+    display:flex;align-items:center;gap:8px}
+  .foot svg{width:16px;height:16px;color:var(--ink-40)}
+  @media(max-width:680px){.hero{flex-direction:column;align-items:flex-start}.cta-wrap{align-items:flex-start}}
 </style>
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#2b4721">
@@ -97,136 +130,136 @@
     <section class="hero">
       <div>
         <h1>Spillway Anchoring — Benmore Dam</h1>
-        <p>A clickable walkthrough of TacEdge Geotech V2.0 — from project configuration
-           through field delivery, QA confirmation, and the released engineer view.</p>
-        <div class="meta">CONFIGURE → PLAN → DELIVER → VERIFY → RELEASE</div>
+        <p>Clickable TacEdge Geotech V2 prototype from setup to field capture, QA, release and engineer handover.</p>
       </div>
-      <a class="start" href="screens/projects.html">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-             stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-        Start walkthrough
-      </a>
+      <div class="cta-wrap">
+        <a class="start" href="screens/projects.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          Start walkthrough
+        </a>
+        <span class="cta-note">Explore the full end-to-end flow</span>
+      </div>
     </section>
 
-    <!-- CONFIGURE -->
-    <section class="phase">
+    <div class="journey">
+      <span class="jstep j1"><span class="jc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/></svg></span>Configure</span>
+      <span class="jarrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="jstep j2"><span class="jc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="4" width="12" height="16" rx="2"/><rect x="9" y="2.5" width="6" height="3" rx="1"/><path d="M9 11h6M9 14h4"/></svg></span>Capture</span>
+      <span class="jarrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="jstep j3"><span class="jc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg></span>Confirm</span>
+      <span class="jarrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="jstep j4"><span class="jc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4"/></svg></span>Release</span>
+    </div>
+
+    <!-- 1 CONFIGURE -->
+    <section class="phase s1">
       <div class="phase-head">
-        <span class="n">Configure</span><h2>Set the project up once</h2>
-        <span class="rule"></span><span class="desc">PM · Desktop</span>
+        <span class="ph-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/></svg></span>
+        <span class="ph-n">1</span><h2>Configure</h2><span class="ph-sub">— Set the project up once</span>
+        <span class="ph-role">PM · Desktop</span>
       </div>
       <div class="grid">
         <a class="card" href="screens/projects.html">
           <div class="top"><span class="num">01</span><span class="chip pm">PM</span></div>
-          <h3>Projects</h3><p>Pick a live project, or start a new one.</p></a>
+          <h3>Projects</h3><p>Pick or create a project.</p></a>
         <a class="card" href="screens/platform.html">
-          <div class="top"><span class="num">00</span><span class="chip pm">PM</span></div>
-          <h3>Configurable Engine</h3><p>One core, every work type. The architecture story.</p></a>
-        <a class="card" href="screens/layout.html">
           <div class="top"><span class="num">02</span><span class="chip pm">PM</span></div>
-          <h3>Layout</h3><p>Define the site's operational zones.</p></a>
-        <a class="card" href="screens/work-item-design.html">
+          <h3>Configurable Engine</h3><p>One core, multiple geotech work types.</p></a>
+        <a class="card" href="screens/layout.html">
           <div class="top"><span class="num">03</span><span class="chip pm">PM</span></div>
-          <h3>Work Item Design</h3><p>Reusable anchor designs from the engineer spec.</p></a>
-        <a class="card" href="screens/work-plan.html">
+          <h3>Layout</h3><p>Define zones and locations.</p></a>
+        <a class="card" href="screens/work-item-design.html">
           <div class="top"><span class="num">04</span><span class="chip pm">PM</span></div>
-          <h3>Work Plan</h3><p>AI proposes the plan; the PM reviews and commits.</p></a>
-        <a class="card" href="screens/testing-standards.html">
+          <h3>Work Item Design</h3><p>Set reusable anchor designs.</p></a>
+        <a class="card" href="screens/work-plan.html">
           <div class="top"><span class="num">05</span><span class="chip pm">PM</span></div>
-          <h3>Testing Standards</h3><p>Set the pass criteria once.</p></a>
-        <a class="card" href="screens/evidence-qa.html">
+          <h3>Work Plan</h3><p>Plan and commit the work.</p></a>
+        <a class="card" href="screens/testing-standards.html">
           <div class="top"><span class="num">06</span><span class="chip pm">PM</span></div>
-          <h3>Evidence &amp; QA Requirements</h3><p>What makes a record confirmable.</p></a>
-        <a class="card" href="screens/safety-risk-controls.html">
+          <h3>Testing Standards</h3><p>Set pass criteria once.</p></a>
+        <a class="card" href="screens/evidence-qa.html">
           <div class="top"><span class="num">07</span><span class="chip pm">PM</span></div>
-          <h3>Safety &amp; Risk Controls</h3><p>JSA/SWMS that gate field sign-on.</p></a>
+          <h3>Evidence &amp; QA Requirements</h3><p>Define what makes a record confirmable.</p></a>
+        <a class="card" href="screens/safety-risk-controls.html">
+          <div class="top"><span class="num">08</span><span class="chip pm">PM</span></div>
+          <h3>Safety &amp; Risk Controls</h3><p>Gate sign-on with JSA/SWMS.</p></a>
       </div>
     </section>
 
-    <!-- DELIVER -->
-    <section class="phase">
+    <!-- 2 CAPTURE FIELD REALITY -->
+    <section class="phase s2">
       <div class="phase-head">
-        <span class="n">Deliver</span><h2>Capture field reality</h2>
-        <span class="rule"></span><span class="desc">PM oversight · Operator capture</span>
+        <span class="ph-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="4" width="12" height="16" rx="2"/><rect x="9" y="2.5" width="6" height="3" rx="1"/><path d="M9 11h6M9 14h4"/></svg></span>
+        <span class="ph-n">2</span><h2>Capture field reality</h2><span class="ph-sub">— PM oversight · operator capture</span>
+        <span class="ph-role">PM · Operator</span>
       </div>
       <div class="grid">
         <a class="card" href="screens/overview.html">
-          <div class="top"><span class="num">08</span><span class="chip pm">PM</span></div>
-          <h3>Overview</h3><p>What needs the PM's attention right now.</p></a>
-        <a class="card" href="screens/status-board.html">
           <div class="top"><span class="num">09</span><span class="chip pm">PM</span></div>
+          <h3>Overview</h3><p>What needs the PM's attention.</p></a>
+        <a class="card" href="screens/status-board.html">
+          <div class="top"><span class="num">10</span><span class="chip pm">PM</span></div>
           <h3>Status Board</h3><p>Project status at a glance.</p></a>
         <a class="card" href="screens/spatial-map.html">
-          <div class="top"><span class="num">10</span><span class="chip pm">PM</span></div>
-          <h3>Spatial Map</h3><p>Every anchor located on the site.</p></a>
+          <div class="top"><span class="num">11</span><span class="chip pm">PM</span></div>
+          <h3>Spatial Map</h3><p>Every anchor on the site.</p></a>
+        <a class="card" href="screens/reference-documents.html">
+          <div class="top"><span class="num">12</span><span class="chip pm">PM</span></div>
+          <h3>Reference Documents</h3><p>Approved project library.</p></a>
         <a class="card" href="screens/crew-sign-on.html">
-          <div class="top"><span class="num">11</span><span class="chip op">Operator</span></div>
-          <h3>Crew Sign-On</h3><p>Individual sign-on and clearance to work.</p></a>
+          <div class="top"><span class="num">13</span><span class="chip op">OP</span></div>
+          <h3>Crew Sign-On</h3><p>Individual sign-on and clearance.</p></a>
         <a class="card" href="screens/drill-log.html">
-          <div class="top"><span class="num">12</span><span class="chip op">Operator</span></div>
+          <div class="top"><span class="num">14</span><span class="chip op">OP</span></div>
           <h3>Drill Log</h3><p>Capture the actual drilling record.</p></a>
         <a class="card" href="screens/grout-log.html">
-          <div class="top"><span class="num">13</span><span class="chip op">Operator</span></div>
-          <h3>Grout Log</h3><p>Count bags; the system computes variance.</p></a>
+          <div class="top"><span class="num">15</span><span class="chip op">OP</span></div>
+          <h3>Grout Log</h3><p>Count bags; system computes variance.</p></a>
         <a class="card" href="screens/anchor-test.html">
-          <div class="top"><span class="num">14</span><span class="chip op">Operator</span></div>
-          <h3>Anchor Test Record</h3><p>AI proposes; the operator verifies and commits.</p></a>
+          <div class="top"><span class="num">16</span><span class="chip op">OP</span></div>
+          <h3>Anchor Test Record</h3><p>AI proposes; operator verifies and commits.</p></a>
         <a class="card" href="screens/incident.html">
-          <div class="top"><span class="num">15</span><span class="chip op">Operator</span></div>
+          <div class="top"><span class="num">17</span><span class="chip op">OP</span></div>
           <h3>Incident / Near-Miss</h3><p>Photo-first report, available anytime.</p></a>
         <a class="card" href="screens/daily-activity.html">
-          <div class="top"><span class="num">16</span><span class="chip op">Operator</span></div>
-          <h3>Daily Activity Sheet</h3><p>Default a normal day; edit exceptions.</p></a>
+          <div class="top"><span class="num">18</span><span class="chip op">OP</span></div>
+          <h3>Daily Activity Sheet</h3><p>Default day; edit exceptions.</p></a>
         <a class="card" href="screens/spatial-map-operator.html">
-          <div class="top"><span class="num">17</span><span class="chip op">Operator</span></div>
+          <div class="top"><span class="num">19</span><span class="chip op">OP</span></div>
           <h3>Spatial Map · Field</h3><p>Identify anchors and continue work.</p></a>
         <a class="card" href="screens/safety-docs.html">
-          <div class="top"><span class="num">18</span><span class="chip op">Operator</span></div>
-          <h3>Safety Docs</h3><p>Read and acknowledge the active JSA/SWMS.</p></a>
+          <div class="top"><span class="num">20</span><span class="chip op">OP</span></div>
+          <h3>Safety Docs</h3><p>Read and acknowledge active JSA/SWMS.</p></a>
+        <a class="card" href="screens/reference-documents-operator.html">
+          <div class="top"><span class="num">21</span><span class="chip op">OP</span></div>
+          <h3>Reference Documents · Field</h3><p>Read-only/offline library for crews.</p></a>
       </div>
     </section>
 
-    <!-- VERIFY & RELEASE -->
-    <section class="phase">
+    <!-- 3 CONFIRM AND HAND OVER -->
+    <section class="phase s3">
       <div class="phase-head">
-        <span class="n">Verify · Release</span><h2>Confirm and hand over</h2>
-        <span class="rule"></span><span class="desc">PM · QA · Engineer</span>
+        <span class="ph-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg></span>
+        <span class="ph-n">3</span><h2>Confirm and hand over</h2><span class="ph-sub">— PM · QA · Engineer</span>
+        <span class="ph-role">PM · QA · Engineer</span>
       </div>
       <div class="grid">
         <a class="card" href="screens/qa-queue.html">
-          <div class="top"><span class="num">19</span><span class="chip pm">PM</span></div>
+          <div class="top"><span class="num">22</span><span class="chip pm">PM</span></div>
           <h3>QA Queue</h3><p>Confirm a record, or reopen with a reason.</p></a>
         <a class="card" href="screens/reporting.html">
-          <div class="top"><span class="num">20</span><span class="chip pm">PM</span></div>
+          <div class="top"><span class="num">23</span><span class="chip pm">PM</span></div>
           <h3>Reporting</h3><p>Assemble and release confirmed work.</p></a>
-        <a class="card" href="screens/reference-documents.html">
-          <div class="top"><span class="num">21</span><span class="chip pm">PM</span></div>
-          <h3>Reference Documents</h3><p>The bounded project library.</p></a>
-        <a class="card" href="screens/engineer-view.html">
-          <div class="top"><span class="num">22</span><span class="chip eng">Engineer</span></div>
-          <h3>Engineer View</h3><p>Confirmed, released work only — read-only.</p></a>
-      </div>
-    </section>
-
-    <!-- SUPPORTING -->
-    <section class="phase">
-      <div class="phase-head">
-        <span class="n">Also included</span><h2>Supporting screens</h2>
-        <span class="rule"></span><span class="desc">Off the primary path</span>
-      </div>
-      <div class="grid">
         <a class="card" href="screens/closeout.html">
-          <div class="top"><span class="num">+</span><span class="chip pm">PM</span></div>
-          <h3>Project Closeout</h3><p>Gated readiness checks before closing.</p></a>
-        <a class="card" href="screens/reference-documents-operator.html">
-          <div class="top"><span class="num">+</span><span class="chip op">Operator</span></div>
-          <h3>Reference Documents · Field</h3><p>Offline project library for the crew.</p></a>
+          <div class="top"><span class="num">24</span><span class="chip pm">PM</span></div>
+          <h3>Project Closeout</h3><p>Final checks before archive.</p></a>
+        <a class="card" href="screens/engineer-view.html">
+          <div class="top"><span class="num">25</span><span class="chip eng">ENG</span></div>
+          <h3>Engineer View</h3><p>Confirmed, released work only.</p></a>
       </div>
-      <p class="note">All 23 screens are reachable here. The numbered cards above are the
-        recommended pitch path.</p>
     </section>
 
-    <div class="foot">TacEdge Geotech V2.0 — integrated clickable prototype.
-      Configure → Plan → Deliver → Verify → Release.</div>
+    <div class="foot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5"/><path d="M12 8v.01"/></svg> This is a prototype walkthrough for TacEdge Geotech V2.0.</div>
   </main>
 <script>(function(){try{var b=getComputedStyle(document.documentElement).getPropertyValue("--build").replace(/[\s"']/g,"");if(!b)return;document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest("a");if(!a)return;var h=a.getAttribute("href");if(!h)return;if(/^(https?:|#|mailto:|tel:)/i.test(h))return;if(!/\.html($|[?#])/i.test(h))return;if(/[?&]v=/.test(h))return;a.setAttribute("href",h+(h.indexOf("?")<0?"?":"&")+"v="+b);},true);}catch(_){}})();</script>
 <script>if(window.navigator.standalone){document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest("a");if(a&&a.getAttribute("href")&&a.target!=="_blank"&&a.host===location.host){e.preventDefault();location.href=a.href;}},true);}</script>
