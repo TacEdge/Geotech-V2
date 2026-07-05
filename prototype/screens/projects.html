@@ -92,7 +92,7 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);font-size:va
 
     <div class="grid">
 
-      <a class="pcard" href="overview.html">
+      <a class="pcard" href="overview.html" data-project="benmore">
         <div class="pc-top"><span class="te-pill is-pend">In delivery</span></div>
         <h3>Benmore Dam — Spillway</h3>
         <div class="pc-meta">Meridian Energy · Waitaki Valley</div>
@@ -101,7 +101,7 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);font-size:va
         <div class="pc-foot"><span class="ts"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> Updated 2 min ago</span></div>
       </a>
 
-      <a class="pcard" href="overview.html">
+      <a class="pcard" href="overview.html" data-project="clyde">
         <div class="pc-top"><span class="te-pill is-pend">In delivery</span></div>
         <h3>Clyde Dam — Stabilisation</h3>
         <div class="pc-meta">Contact Energy · Central Otago</div>
@@ -110,7 +110,7 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);font-size:va
         <div class="pc-foot"><span class="ts"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> Updated 1 hr ago</span></div>
       </a>
 
-      <a class="pcard" href="overview.html">
+      <a class="pcard" href="overview.html" data-project="aviemore">
         <div class="pc-top"><span class="te-pill is-muted">In setup</span></div>
         <h3>Aviemore Dam — Tailrace</h3>
         <div class="pc-meta">Meridian Energy · Waitaki Valley</div>
@@ -125,5 +125,12 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);font-size:va
   <script defer src="../js/build.js"></script>
   <script defer src="../js/versioner.js"></script>
   <script defer src="../js/standalone.js"></script>
+  <script>
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('.pcard[data-project]');
+    if (!a) return;
+    try { sessionStorage.setItem('te.project', a.getAttribute('data-project')); } catch (_) {}
+  }, true);
+  </script>
 </body>
 </html>

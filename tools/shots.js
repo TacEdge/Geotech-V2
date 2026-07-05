@@ -144,7 +144,7 @@ function pages() {
     const page = await ctx.newPage();
     await page.goto(`http://127.0.0.1:${PORT}/screens/platform.html`, { waitUntil: 'networkidle', timeout: 30000 });
     const json = await page.evaluate(async () => {
-      try { const m = await import('/config/project.js'); return m.serialise(); } catch (_) { return null; }
+      try { const m = await import('/config/projects.js'); return m.serialise(); } catch (_) { return null; }
     });
     if (json) { fs.writeFileSync(path.join(out, 'export.json'), json); console.log('  export.json captured'); }
     else console.log('  ! export.json: window.TE.serialise() unavailable');

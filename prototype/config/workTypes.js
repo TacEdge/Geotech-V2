@@ -10,7 +10,7 @@
    assets/work-types.js (per-type operational fields: item nouns, fieldScreens,
    material, wastage, spec, design). Anchoring absorbs the old 'anchor' profile,
    piling the old 'screwPile' profile. The Benmore job record lives in
-   config/project.js, which reads this catalogue.
+   config/projects.js, which reads this catalogue.
    ========================================================================== */
 export const WORK_TYPES = {
   anchoring: {
