@@ -17,6 +17,9 @@ export const WORK_TYPES = {
     label: 'Anchoring',
     icon: 'anchor',
     status: 'live',
+    geometry: 'point',
+    unit: 'each',
+    confirmationBasis: 'per_item',
     description: 'Anchors, bolts and nails that stabilise ground and structures.',
     templates: ['Ground anchors', 'Rock bolts', 'Soil nails'],
     exampleTemplate: {
@@ -77,6 +80,9 @@ export const WORK_TYPES = {
     label: 'Drilling',
     icon: 'drill',
     status: 'configured',
+    geometry: 'point',
+    unit: 'each',
+    confirmationBasis: 'per_item',
     description: 'Investigation and production holes where the drill record is the deliverable.',
     templates: ['Cored investigation', 'Open hole', 'Instrumentation'],
     exampleTemplate: {
@@ -109,6 +115,9 @@ export const WORK_TYPES = {
     label: 'Shotcrete',
     icon: 'spray',
     status: 'configured',
+    geometry: 'area',
+    unit: 'm2',
+    confirmationBasis: 'per_lot',
     description: 'Sprayed concrete support, from substrate prep to strength results.',
     templates: ['Mesh reinforced', 'Fibre reinforced', 'Sealing coat'],
     exampleTemplate: {
@@ -141,6 +150,9 @@ export const WORK_TYPES = {
     label: 'Rockfall protection',
     icon: 'mesh',
     status: 'configured',
+    geometry: 'area',  // panels area + pins point; mix noted per template
+    unit: 'm2',
+    confirmationBasis: 'per_lot',
     description: 'Mesh, fences and scaling that manage rockfall hazard.',
     templates: ['Drapery mesh', 'Catch fence', 'Scaling'],
     exampleTemplate: {
@@ -173,6 +185,9 @@ export const WORK_TYPES = {
     label: 'Drainage',
     icon: 'drop',
     status: 'configured',
+    geometry: 'line',
+    unit: 'm',
+    confirmationBasis: 'per_run',
     description: 'Drilled and trenched drains that control groundwater.',
     templates: ['Horizontal drains', 'Trench drains', 'Weep holes'],
     exampleTemplate: {
@@ -205,6 +220,9 @@ export const WORK_TYPES = {
     label: 'Piling / retaining',
     icon: 'piles',
     status: 'configured',
+    geometry: 'point',
+    unit: 'each',
+    confirmationBasis: 'per_item',
     description: 'Piles and retaining structures from installation to proof.',
     templates: ['Screw piles', 'Bored piles', 'Pole retaining'],
     exampleTemplate: {
