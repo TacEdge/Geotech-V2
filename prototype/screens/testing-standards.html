@@ -216,83 +216,59 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);font-size:16
   <div class="ts-grid">
     <div class="leftcol">
       <div class="libpanel">
-        <div class="lib-h"><span class="pt">Test standards</span><span class="pc">· 3</span>
+        <div class="lib-h"><span class="pt">Test standards</span><span class="pc" id="tsCount">· 3</span>
           <button class="new-d"><svg width="15" height="15" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M10 4v12M4 10h12"/></svg> Add test standard</button></div>
-        <button class="wrow sel" data-code="TS-A"><span class="wsw" style="color:#6e8b3d"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="7"/><circle cx="10" cy="10" r="3"/></svg></span><div class="wmain"><div class="wcode-row"><span class="wcode">TS-A</span><span class="wbadge inuse">Active</span></div><div class="wname">Permanent ground anchor proof test</div><div class="wsum">Proof 1.25× WL · 3 designs</div></div><span class="wmenu"><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="4.5" r="1.3" fill="currentColor" stroke="none"/><circle cx="10" cy="10" r="1.3" fill="currentColor" stroke="none"/><circle cx="10" cy="15.5" r="1.3" fill="currentColor" stroke="none"/></svg></span></button><button class="wrow" data-code="TS-B"><span class="wsw" style="color:#2f9089"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="7"/><circle cx="10" cy="10" r="3"/></svg></span><div class="wmain"><div class="wcode-row"><span class="wcode">TS-B</span><span class="wbadge draft">Draft</span></div><div class="wname">High-load anchor proof test</div><div class="wsum">Proof 1.5× WL · 1 design</div></div><span class="wmenu"><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="4.5" r="1.3" fill="currentColor" stroke="none"/><circle cx="10" cy="10" r="1.3" fill="currentColor" stroke="none"/><circle cx="10" cy="15.5" r="1.3" fill="currentColor" stroke="none"/></svg></span></button><button class="wrow" data-code="TS-C"><span class="wsw" style="color:#cf8e2c"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="7"/><circle cx="10" cy="10" r="3"/></svg></span><div class="wmain"><div class="wcode-row"><span class="wcode">TS-C</span><span class="wbadge inuse">Active</span></div><div class="wname">Micropile load test</div><div class="wsum">Proof 1.5× WL · 1 design</div></div><span class="wmenu"><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="4.5" r="1.3" fill="currentColor" stroke="none"/><circle cx="10" cy="10" r="1.3" fill="currentColor" stroke="none"/><circle cx="10" cy="15.5" r="1.3" fill="currentColor" stroke="none"/></svg></span></button>
+        <span id="tsList" style="display:contents"></span>
       </div>
     </div>
-    <div class="detailwrap"><div class="detail" id="d-TS-A" data-code="TS-A">
-      <div class="d-head">
-        <div class="d-head-l">
-          <div class="d-code-row"><span class="d-code">TS-A</span><span class="d-type">Proof test</span><span class="d-used">Used by 3 designs</span></div>
-          <div class="d-name">Permanent ground anchor proof test</div>
-        </div>
-        <div class="d-acts"><button class="btn-o"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="6.5" y="6.5" width="10" height="11" rx="1.5"/><path d="M3.5 13.5V4a1 1 0 0 1 1-1h8.5"/></svg> Duplicate</button>
-          <button class="btn-o edit"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3l3 3-9 9-4 1 1-4z"/></svg> Edit criteria</button></div>
-      </div>
-      <div class="meta-bar"><div class="mb-cell"><span class="mb-ic"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="4.5" width="13" height="12" rx="1.5"/><path d="M3.5 8h13M7 3v3M13 3v3"/></svg></span><div><div class="mb-k">Engineer source</div><div class="mb-v">WSP testing schedule</div><div class="mb-s">Rev B · 12 May 2026</div></div></div><div class="mb-cell"><span class="mb-ic"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 16h12M4 16V8M16 16V8M10 3l6 5H4z"/><path d="M7.5 11v3M12.5 11v3"/></svg></span><div><div class="mb-k">Governing standard</div><div class="mb-v">TS-A2</div><div class="mb-s">Project specification</div></div></div></div>
-      <div class="card">
-        <div class="card-h"><svg width="14" height="14" class="ch-ic" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="7"/><circle cx="10" cy="10" r="3"/></svg> Pass criteria</div>
-        <div class="crit-rows"><div class="crit"><div class="ct-l"><div class="ct-name">Proof load</div><div class=ct-cond>Load reached and held</div></div><div class="ct-val">1.25 × working load</div></div><div class="crit"><div class="ct-l"><div class="ct-name">Load hold</div><div class=ct-cond>Sustained at proof load</div></div><div class="ct-val">10 minutes</div></div><div class="crit"><div class="ct-l"><div class="ct-name">Creep · final log cycle</div><div class=ct-cond>Measured 1–10 min</div></div><div class="ct-val">≤ 1.0 mm</div></div><div class="crit"><div class="ct-l"><div class="ct-name">Residual movement</div></div><div class="ct-val">≤ 10% of elastic extension</div></div><div class="crit"><div class="ct-l"><div class="ct-name">Lock-off load</div></div><div class="ct-val">1.0 × working load</div></div></div>
-        <div class="accept"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"/></svg> <span>All criteria met → Pass. Any unmet → Fail.</span></div>
-      </div>
-      <div class="card">
-        <div class="card-h">Applies to <span class="cc ap-meta">3 designs · 42 planned anchors</span></div>
-        <div class="ap-row"><span class="ap-sw" style="background:#6e8b3d"></span><span class="ap-code">GA-17S</span><span class="ap-name">Spillway Standard</span><span class="ap-zone">Spillway Face</span><span class="ap-ct">18 anchors</span></div><div class="ap-row"><span class="ap-sw" style="background:#2f9089"></span><span class="ap-code">GA-16</span><span class="ap-name">Stilling Basin</span><span class="ap-zone">Stilling Basin</span><span class="ap-ct">14 anchors</span></div><div class="ap-row"><span class="ap-sw" style="background:#cf8e2c"></span><span class="ap-code">LA-14</span><span class="ap-name">Left Abutment</span><span class="ap-zone">Left Abutment</span><span class="ap-ct">10 anchors</span></div>
-      </div>
-    </div><div class="detail" id="d-TS-B" style="display:none" data-code="TS-B">
-      <div class="d-head">
-        <div class="d-head-l">
-          <div class="d-code-row"><span class="d-code">TS-B</span><span class="d-type">Proof test</span><span class="d-used">Used by 1 design</span></div>
-          <div class="d-name">High-load anchor proof test</div>
-        </div>
-        <div class="d-acts"><button class="btn-o"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="6.5" y="6.5" width="10" height="11" rx="1.5"/><path d="M3.5 13.5V4a1 1 0 0 1 1-1h8.5"/></svg> Duplicate</button>
-          <button class="btn-o edit"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3l3 3-9 9-4 1 1-4z"/></svg> Edit criteria</button></div>
-      </div>
-      <div class="meta-bar"><div class="mb-cell"><span class="mb-ic"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="4.5" width="13" height="12" rx="1.5"/><path d="M3.5 8h13M7 3v3M13 3v3"/></svg></span><div><div class="mb-k">Engineer source</div><div class="mb-v">WSP testing schedule</div><div class="mb-s">Rev B · 12 May 2026</div></div></div><div class="mb-cell"><span class="mb-ic"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 16h12M4 16V8M16 16V8M10 3l6 5H4z"/><path d="M7.5 11v3M12.5 11v3"/></svg></span><div><div class="mb-k">Governing standard</div><div class="mb-v">TS-B1</div><div class="mb-s">Project specification</div></div></div></div>
-      <div class="card">
-        <div class="card-h"><svg width="14" height="14" class="ch-ic" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="7"/><circle cx="10" cy="10" r="3"/></svg> Pass criteria</div>
-        <div class="crit-rows"><div class="crit"><div class="ct-l"><div class="ct-name">Proof load</div><div class=ct-cond>Load reached and held</div></div><div class="ct-val">1.5 × working load</div></div><div class="crit"><div class="ct-l"><div class="ct-name">Load hold</div><div class=ct-cond>Sustained at proof load</div></div><div class="ct-val">15 minutes</div></div><div class="crit"><div class="ct-l"><div class="ct-name">Creep · final log cycle</div><div class=ct-cond>Measured 1–15 min</div></div><div class="ct-val">≤ 0.8 mm</div></div><div class="crit"><div class="ct-l"><div class="ct-name">Lock-off load</div></div><div class="ct-val">1.1 × working load</div></div></div>
-        <div class="accept"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"/></svg> <span>All criteria met → Pass. Any unmet → Fail.</span></div>
-      </div>
-      <div class="card">
-        <div class="card-h">Applies to <span class="cc ap-meta">1 design · 2 planned anchors</span></div>
-        <div class="ap-row"><span class="ap-sw" style="background:#6e8b3d"></span><span class="ap-code">GA-18H</span><span class="ap-name">Spillway High-load</span><span class="ap-zone">Spillway Face</span><span class="ap-ct">2 anchors</span></div>
-      </div>
-    </div><div class="detail" id="d-TS-C" style="display:none" data-code="TS-C">
-      <div class="d-head">
-        <div class="d-head-l">
-          <div class="d-code-row"><span class="d-code">TS-C</span><span class="d-type">Load test</span><span class="d-used">Used by 1 design</span></div>
-          <div class="d-name">Micropile load test</div>
-        </div>
-        <div class="d-acts"><button class="btn-o"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="6.5" y="6.5" width="10" height="11" rx="1.5"/><path d="M3.5 13.5V4a1 1 0 0 1 1-1h8.5"/></svg> Duplicate</button>
-          <button class="btn-o edit"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3l3 3-9 9-4 1 1-4z"/></svg> Edit criteria</button></div>
-      </div>
-      <div class="meta-bar"><div class="mb-cell"><span class="mb-ic"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="4.5" width="13" height="12" rx="1.5"/><path d="M3.5 8h13M7 3v3M13 3v3"/></svg></span><div><div class="mb-k">Engineer source</div><div class="mb-v">WSP testing schedule</div><div class="mb-s">Rev B · 12 May 2026</div></div></div><div class="mb-cell"><span class="mb-ic"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 16h12M4 16V8M16 16V8M10 3l6 5H4z"/><path d="M7.5 11v3M12.5 11v3"/></svg></span><div><div class="mb-k">Governing standard</div><div class="mb-v">TS-C1</div><div class="mb-s">Project specification</div></div></div></div>
-      <div class="card">
-        <div class="card-h"><svg width="14" height="14" class="ch-ic" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="7"/><circle cx="10" cy="10" r="3"/></svg> Pass criteria</div>
-        <div class="crit-rows"><div class="crit"><div class="ct-l"><div class="ct-name">Proof load</div><div class=ct-cond>Maintained load test</div></div><div class="ct-val">1.5 × working load</div></div><div class="crit"><div class="ct-l"><div class="ct-name">Load hold</div></div><div class="ct-val">10 minutes</div></div><div class="crit"><div class="ct-l"><div class="ct-name">Settlement at proof load</div></div><div class="ct-val">≤ 5.0 mm</div></div><div class="crit"><div class="ct-l"><div class="ct-name">Residual settlement</div></div><div class="ct-val">≤ 2.0 mm</div></div></div>
-        <div class="accept"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"/></svg> <span>All criteria met → Pass. Any unmet → Fail.</span></div>
-      </div>
-      <div class="card">
-        <div class="card-h">Applies to <span class="cc ap-meta">1 design · 12 planned anchors</span></div>
-        <div class="ap-row"><span class="ap-sw" style="background:#46663a"></span><span class="ap-code">CP-12</span><span class="ap-name">Crest Pile</span><span class="ap-zone">Crest Gallery</span><span class="ap-ct">12 anchors</span></div>
-      </div>
-    </div></div>
+    <div class="detailwrap" id="tsDetails"></div>
   </div>
 
   <div class="ts-foot">
-    <div class="ss-item ok"><svg width="17" height="17" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"/></svg> 3 testing standards defined · all mapped to designs · pass logic set</div>
+    <div class="ss-item ok"><svg width="17" height="17" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"/></svg> <span id="tsFoot">3 testing standards defined · all mapped to designs · pass logic set</span></div>
     <a class="continue-btn" href="evidence-qa.html">Continue to Evidence &amp; QA <svg width="17" height="17" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10h11M11 5l5 5-5 5"/></svg></a>
   </div>
 </div>
 
-<script>
-(function(){try{
-  function show(c){ document.querySelectorAll('.detail').forEach(function(d){d.style.display=(d.dataset.code===c)?'flex':'none';});
-    document.querySelectorAll('.wrow').forEach(function(r){r.classList.toggle('sel',r.dataset.code===c);}); }
-  document.querySelectorAll('.wrow').forEach(function(r){r.addEventListener('click',function(){show(r.dataset.code);});});
-}catch(e){}})();
+<script type="module">
+import { packFor } from '../data/mock/index.js';
+import { activeProject } from '../config/projects.js';
+var SW16='<svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="7"/><circle cx="10" cy="10" r="3"/></svg>';
+var SW14='<svg width="14" height="14" class="ch-ic" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="7"/><circle cx="10" cy="10" r="3"/></svg>';
+var MENU='<svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="4.5" r="1.3" fill="currentColor" stroke="none"/><circle cx="10" cy="10" r="1.3" fill="currentColor" stroke="none"/><circle cx="10" cy="15.5" r="1.3" fill="currentColor" stroke="none"/></svg>';
+var DUP='<svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="6.5" y="6.5" width="10" height="11" rx="1.5"/><path d="M3.5 13.5V4a1 1 0 0 1 1-1h8.5"/></svg>';
+var EDIT='<svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3l3 3-9 9-4 1 1-4z"/></svg>';
+var MCAL='<svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="4.5" width="13" height="12" rx="1.5"/><path d="M3.5 8h13M7 3v3M13 3v3"/></svg>';
+var MANC='<svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 16h12M4 16V8M16 16V8M10 3l6 5H4z"/><path d="M7.5 11v3M12.5 11v3"/></svg>';
+var ACC='<svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"/></svg>';
+var pack = packFor(activeProject().workType);
+if (pack && pack.testingStandards) {
+  var TS = pack.testingStandards, eng = pack.engineerSource;
+  function btn(s, i){
+    return '<button class="wrow'+(i===0?' sel':'')+'" data-code="'+s.code+'"><span class="wsw" style="color:'+s.colour+'">'+SW16+'</span><div class="wmain"><div class="wcode-row"><span class="wcode">'+s.code+'</span><span class="wbadge '+s.badgeClass+'">'+s.badge+'</span></div><div class="wname">'+s.name+'</div><div class="wsum">'+s.summary+'</div></div><span class="wmenu">'+MENU+'</span></button>';
+  }
+  function crit(c){ return '<div class="crit"><div class="ct-l"><div class="ct-name">'+c.name+'</div>'+(c.cond?'<div class=ct-cond>'+c.cond+'</div>':'')+'</div><div class="ct-val">'+c.val+'</div></div>'; }
+  function ap(a){ return '<div class="ap-row"><span class="ap-sw" style="background:'+a.colour+'"></span><span class="ap-code">'+a.code+'</span><span class="ap-name">'+a.name+'</span><span class="ap-zone">'+a.zone+'</span><span class="ap-ct">'+a.count+'</span></div>'; }
+  function detail(s, i){
+    return '<div class="detail" id="d-'+s.code+'"'+(i===0?'':' style="display:none"')+' data-code="'+s.code+'">'+
+      '<div class="d-head"><div class="d-head-l"><div class="d-code-row"><span class="d-code">'+s.code+'</span><span class="d-type">'+s.type+'</span><span class="d-used">'+s.usedBy+'</span></div><div class="d-name">'+s.name+'</div></div>'+
+      '<div class="d-acts"><button class="btn-o">'+DUP+' Duplicate</button><button class="btn-o edit">'+EDIT+' Edit criteria</button></div></div>'+
+      '<div class="meta-bar"><div class="mb-cell"><span class="mb-ic">'+MCAL+'</span><div><div class="mb-k">Engineer source</div><div class="mb-v">'+eng.name+'</div><div class="mb-s">'+eng.rev+'</div></div></div><div class="mb-cell"><span class="mb-ic">'+MANC+'</span><div><div class="mb-k">Governing standard</div><div class="mb-v">'+s.governing+'</div><div class="mb-s">Project specification</div></div></div></div>'+
+      '<div class="card"><div class="card-h">'+SW14+' Pass criteria</div><div class="crit-rows">'+s.criteria.map(crit).join('')+'</div>'+
+      '<div class="accept">'+ACC+' <span>All criteria met → Pass. Any unmet → Fail.</span></div></div>'+
+      '<div class="card"><div class="card-h">Applies to <span class="cc ap-meta">'+s.appliesMeta+'</span></div>'+s.appliesTo.map(ap).join('')+'</div>'+
+      '</div>';
+  }
+  document.getElementById('tsList').innerHTML = TS.map(btn).join('');
+  document.getElementById('tsDetails').innerHTML = TS.map(detail).join('');
+  var cnt = document.getElementById('tsCount'); if (cnt) cnt.textContent = '· ' + TS.length;
+  var ft = document.getElementById('tsFoot'); if (ft) ft.textContent = TS.length + ' testing standards defined · all mapped to designs · pass logic set';
+  function show(c){
+    document.querySelectorAll('.detail').forEach(function(d){ d.style.display = (d.dataset.code===c)?'flex':'none'; });
+    document.querySelectorAll('.wrow').forEach(function(r){ r.classList.toggle('sel', r.dataset.code===c); });
+  }
+  document.querySelectorAll('.wrow').forEach(function(r){ r.addEventListener('click', function(){ show(r.dataset.code); }); });
+}
 </script>
   <script defer src="../js/build.js"></script>
   <script defer src="../js/versioner.js"></script>
