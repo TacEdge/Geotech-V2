@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 853" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Cashmere Ridge site plan (placeholder)">
+  <!-- Placeholder site plan for the Cashmere Ridge screw-piling demo.
+       Simple and on-brand; flagged for replacement with survey artwork. -->
+  <rect width="1280" height="853" fill="#efeadd"/>
+  <!-- slope contours -->
+  <g fill="none" stroke="#cdd5b9" stroke-width="2">
+    <path d="M-20 120 C 300 90, 700 150, 1300 110"/>
+    <path d="M-20 210 C 300 180, 700 240, 1300 200"/>
+    <path d="M-20 690 C 320 660, 760 720, 1300 680"/>
+    <path d="M-20 780 C 320 750, 760 810, 1300 770"/>
+  </g>
+  <!-- upper bench platform -->
+  <rect x="150" y="250" width="980" height="360" rx="26" fill="#e4ead6" stroke="#c4cdb0" stroke-width="2"/>
+  <!-- retaining wall along the bench toe -->
+  <g>
+    <rect x="150" y="600" width="980" height="26" rx="6" fill="#2b4721"/>
+    <g stroke="#6e7d5c" stroke-width="2">
+      <line x1="200" y1="626" x2="180" y2="672"/>
+      <line x1="360" y1="626" x2="342" y2="672"/>
+      <line x1="520" y1="626" x2="504" y2="672"/>
+      <line x1="680" y1="626" x2="666" y2="672"/>
+      <line x1="840" y1="626" x2="828" y2="672"/>
+      <line x1="1000" y1="626" x2="990" y2="672"/>
+    </g>
+  </g>
+  <!-- access track -->
+  <path d="M60 800 C 300 720, 500 680, 1130 660" fill="none" stroke="#d8cbb0" stroke-width="16" stroke-linecap="round"/>
+  <!-- north arrow -->
+  <g transform="translate(1180,120)" fill="#56604c">
+    <path d="M0 -34 L 12 12 L 0 2 L -12 12 Z" fill="#2b4721"/>
+    <text x="0" y="34" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="20" font-weight="700">N</text>
+  </g>
+  <!-- scale bar -->
+  <g transform="translate(90,760)" font-family="'JetBrains Mono',monospace" font-size="16" fill="#56604c">
+    <rect x="0" y="0" width="120" height="8" fill="#56604c"/>
+    <rect x="0" y="0" width="60" height="8" fill="#a7b088"/>
+    <text x="0" y="30">0</text><text x="120" y="30" text-anchor="middle">20 m</text>
+  </g>
+</svg>

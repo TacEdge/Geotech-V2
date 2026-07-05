@@ -358,7 +358,70 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);font-size:16
 })();
 </script>
 {SNIP}
-<script>document.addEventListener("click",function(e){var b=e.target.closest&&e.target.closest("button");if(b&&/Open Drill Log/.test(b.textContent))location.href="drill-log.html";});</script>
+<script>document.addEventListener("click",function(e){var b=e.target.closest&&e.target.closest("button");if(!b)return;if(/Open Drill Log/.test(b.textContent))location.href="drill-log.html";else if(/Open Torque Log/.test(b.textContent))location.href="torque-log.html";});</script>
+
+<script type="module">
+import { packFor } from '../data/mock/index.js';
+import { activeProject } from '../config/projects.js';
+(function(){
+  var ap; try { ap = activeProject(); } catch (_) { return; }
+  if (!ap || ap.workType === 'anchoring') return;
+  var pack = packFor(ap.workType);
+  if (!pack || !pack.planPins || !pack.boardAnchors) return;
+  var pins = pack.planPins, ba = pack.boardAnchors;
+  var esc = function(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');};
+  // Replace the anchoring canvas with the site plan + this project's points.
+  var vp = document.getElementById('viewport');
+  if (!vp) return;
+  var img = '<image href="../assets/maps/cashmere-ridge.svg" x="0" y="0" width="1280" height="853" preserveAspectRatio="xMidYMid slice"/>';
+  var zlab = '<text class="zlab" x="580" y="250" text-anchor="middle">UPPER BENCH</text>';
+  var pinsHtml = Object.keys(pins).map(function(k){
+    var p = pins[k], rec = ba[p.id] || {}, ph = rec.phase || 'planned';
+    var lab = p.id.replace('SP-', '');
+    return '<g class="pin p-' + ph + '" data-id="' + p.id + '" data-zone="' + esc(p.zone) + '" data-phase="' + ph + '" transform="translate(' + p.cx + ',' + p.cy + ')">' +
+      '<circle class="pback" r="17"/><circle class="ring" r="20"/><circle class="pdot" r="13.5"/><text class="plab" y="33">' + lab + '</text></g>';
+  }).join('');
+  vp.innerHTML = img + zlab + pinsHtml;
+  // Filter bar counts + total.
+  var vals = Object.keys(ba).map(function(k){return ba[k].phase;});
+  var count = function(ph){ return vals.filter(function(x){return x===ph;}).length; };
+  var cts = document.querySelectorAll('.filterbar .fchip .ct');
+  if (cts[0]) cts[0].textContent = count('issue');
+  if (cts[1]) cts[1].textContent = Object.keys(ba).filter(function(k){return /qa/i.test(ba[k].review);}).length;
+  if (cts[2]) cts[2].textContent = count('active');
+  if (cts[3]) cts[3].textContent = 0;
+  var ftot = document.querySelector('.ftotal'); if (ftot) ftot.textContent = Object.keys(pins).length + ' piles';
+  var find = document.getElementById('findinput'); if (find) find.placeholder = 'Find pile';
+  var setuptoggle = document.getElementById('setuptoggle');
+  if (setuptoggle) setuptoggle.firstChild.textContent = 'Unplotted piles (0) ';
+  var setupBody = document.querySelector('#setuppanel .setup-body'); if (setupBody) setupBody.innerHTML = '<div class="up-row"><span class="up-z">All piles plotted.</span></div>';
+  // Selected-pile detail in the rail.
+  function renderSel(id){
+    var a = ba[id]; if (!a) return;
+    var col = a.phase === 'issue' ? 'var(--brick)' : (a.phase === 'complete' ? 'var(--forest)' : (a.phase === 'active' ? 'var(--olive)' : 'var(--ink-40)'));
+    var selbd = document.getElementById('selbd'); if (!selbd) return;
+    selbd.innerHTML =
+      '<div class="sel-top"><div><div class="sel-id" data-phase="' + a.phase + '">' + esc(a.id) + '</div></div>' +
+        '<span class="sel-pill" style="background:var(--sage-tint);color:' + col + '"><span class="d" style="background:' + col + '"></span>' + esc(a.phaseName) + '</span></div>' +
+      '<div class="sel-zone">' + esc(a.zone) + '</div>' +
+      (a.reason ? '<div class="sel-reason">' + esc(a.reason) + '</div>' : '') +
+      '<div class="sel-sec"><div class="sel-sec-t">Status</div>' +
+        '<div class="sel-row"><span class="k">Work phase</span><span class="v">' + esc(a.work) + '</span></div>' +
+        '<div class="sel-row"><span class="k">Review state</span><span class="v">' + esc(a.review) + '</span></div></div>' +
+      '<div class="sel-sec"><div class="sel-sec-t">Assignment</div>' +
+        '<div class="sel-row"><span class="k">Assigned crew</span><span class="v">' + esc(a.crew) + '</span></div>' +
+        '<div class="sel-row"><span class="k">Last updated</span><span class="v">' + esc(a.updated) + '</span></div></div>' +
+      '<div class="sel-acts"><button class="btn-p">Open Torque Log <span>&#8594;</span></button><button class="btn-o">Open Status Board <span>&#8594;</span></button></div>';
+    var hd = document.querySelector('.rail .panel .hd'); if (hd) hd.textContent = 'Selected pile';
+  }
+  function select(id){
+    document.querySelectorAll('#viewport .pin').forEach(function(g){ var on = g.dataset.id === id; g.classList.toggle('sel', on); if (on) g.parentNode.appendChild(g); });
+    renderSel(id);
+  }
+  document.querySelectorAll('#viewport .pin').forEach(function(g){ g.addEventListener('click', function(){ select(g.dataset.id); }); });
+  select('SP-05');
+})();
+</script>
   <script defer src="../js/build.js"></script>
   <script defer src="../js/versioner.js"></script>
   <script defer src="../js/standalone.js"></script>
