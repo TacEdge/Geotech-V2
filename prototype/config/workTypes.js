@@ -1,14 +1,16 @@
 /* ============================================================================
-   TacEdge Geotech V2.0 · Configurable Engine work-type catalogue
+   TacEdge Geotech V2.0 · Work-type catalogue (single source of truth)
    ----------------------------------------------------------------------------
    Single source of truth for the Configurable Engine page. Every label,
    template, preset, capture module and matrix chip rendered below the work-type
    selector comes from this object. The page holds no hardcoded work-type
    strings: selecting a work type re-renders from here.
 
-   This file is deliberately separate from assets/work-types.js (the shared job
-   record read by the operator, QA and reporting screens). It drives the
-   configurability demonstration only, and touches no project data.
+   Merged from the former js/worktypes.js (the six-type UI catalogue) and
+   assets/work-types.js (per-type operational fields: item nouns, fieldScreens,
+   material, wastage, spec, design). Anchoring absorbs the old 'anchor' profile,
+   piling the old 'screwPile' profile. The Benmore job record lives in
+   config/project.js, which reads this catalogue.
    ========================================================================== */
 export const WORK_TYPES = {
   anchoring: {
@@ -40,7 +42,18 @@ export const WORK_TYPES = {
       ["Anchor Test Record", "test results, photos"],
       ["Evidence & Photos", "general site evidence"]
     ],
-    matrixChips: ["Drill Log", "Grout Log", "Test Record", "Evidence"]
+    matrixChips: ["Drill Log", "Grout Log", "Test Record", "Evidence"],
+    item: { singular: 'anchor', plural: 'anchors', idPrefix: 'B' },
+    fieldScreens: [
+      { core: 'Crew Sign-On', label: 'Crew Sign-On', note: 'JSA + fitness, identical for every work type' },
+      { core: 'Drill Log',    label: 'Drill Log',     note: 'depth + lithology, in three taps' },
+      { core: 'Material Log', label: 'Grout Log',     note: 'bags + auto variance vs the setup preset' },
+      { core: 'Test Record',  label: 'Anchor Test',   note: 'photo first, provisional until a PM approves' }
+    ],
+    material: { name: 'Class G cement grout', unit: '25 kg bags', theoretical: '38 L per anchor' },
+    wastage: { label: 'Bagged grout, rotary-drilled', factor: 1.35, display: '×1.35', flagAt: '> ×1.35' },
+    spec: { name: 'WSP anchor schedule', rev: 'Rev B · 12 May 2026' },
+    design: { depth: '17.5 m', load: '600 kN', testRegime: 'Proof 1.25× WL · 3 cycles' }
   },
 
   drilling: {
@@ -200,6 +213,17 @@ export const WORK_TYPES = {
       ["Cut-off Record", "level, cap detail"],
       ["Evidence & Photos", "founding and cut-off"]
     ],
-    matrixChips: ["Torque Log", "Verticality", "Cut-off", "Photos"]
+    matrixChips: ["Torque Log", "Verticality", "Cut-off", "Photos"],
+    item: { singular: 'pile', plural: 'piles', idPrefix: 'SP' },
+    fieldScreens: [
+      { core: 'Crew Sign-On', label: 'Crew Sign-On', note: 'JSA + fitness, identical for every work type' },
+      { core: 'Drill Log',    label: 'Install Log',   note: 'depth + torque, in three taps' },
+      { core: 'Material Log', label: 'Grout Log',     note: 'structural grout + auto variance vs the setup preset' },
+      { core: 'Test Record',  label: 'Pile Test',     note: 'photo first, provisional until a PM approves' }
+    ],
+    material: { name: 'Structural grout, self-drilling', unit: '25 kg bags', theoretical: '95 L per pile' },
+    wastage: { label: 'Self-drilling, high overbreak', factor: 3.0, display: '×2.0 to ×4.0', range: '200 to 400%', flagAt: '> ×4.0' },
+    spec: { name: 'Screw pile design set', rev: 'Rev C · 18 Jun 2026' },
+    design: { depth: '12.0 m', load: '450 kN', testRegime: 'Installation torque + proof load' }
   }
 };

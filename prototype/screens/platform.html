@@ -257,11 +257,10 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);font-size:va
     <div class="foot">Benmore (ground anchors) and Aviemore (rock bolts) already run on this engine: two templates, one work type, no new code. Adding a work type like screw piling is a configuration entry, not a rebuild. <a href="projects.html" style="color:var(--forest-2);font-weight:600">Projects</a>.</div>
   </main>
 
-  <!-- Shared job record: kept for the export seam (JSON download / Excel toast). -->
-  <script src="../assets/work-types.js"></script>
-  <!-- Page config: the ONLY source of work-type labels below the selector. -->
+  <!-- Unified work-type catalogue + project record (single source of truth). -->
   <script type="module">
-  import { WORK_TYPES } from '../js/worktypes.js';
+  import { WORK_TYPES } from '../config/workTypes.js';
+  import { PROJECT, serialise } from '../config/project.js';
 
   var ICONS={
     anchor:'<circle cx="12" cy="5" r="2"/><path d="M12 7v13M5 12a7 7 0 0014 0M4 12H3M21 12h-2"/>',
@@ -350,9 +349,9 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);font-size:va
 
   /* export seam: preserve previous behaviour (JSON download, Excel toast) */
   var okSvg='<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>';
-  var jobId=(window.TE&&TE.JOB)?TE.JOB.id:'BEN-SPW-2026';
+  var jobId=PROJECT.id;
   document.getElementById('pfExJson').addEventListener('click',function(){
-    var b=this,data=(window.TE?TE.serialise():'{}');
+    var b=this,data=serialise();
     try{var blob=new Blob([data],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=jobId+'.json';document.body.appendChild(a);a.click();a.remove();setTimeout(function(){URL.revokeObjectURL(url);},1000);}catch(e){}
     b.classList.add('is-ok');var t=b.textContent;b.textContent='JSON exported';setTimeout(function(){b.classList.remove('is-ok');b.textContent=t;},1700);
   });
