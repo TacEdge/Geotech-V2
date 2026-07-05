@@ -251,22 +251,13 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);font-size:16
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="TacEdge">
-<link rel="apple-touch-icon" href="../assets/icons/apple-touch-icon.png?v=2026-06-26.7"></head>
+<link rel="apple-touch-icon" href="../assets/icons/apple-touch-icon.png?v=2026-06-26.7">  <script src="../config/screens.js"></script>
+  <script src="../components/header.js"></script>
+</head>
 <body>
 
-<header class="topbar">
-  <svg class="contour" viewBox="0 0 1400 64" preserveAspectRatio="xMaxYMid slice" aria-hidden="true">
-    <g fill="none" stroke="#f3efe6" stroke-width="1">
-      <path d="M850,-20 C 980 34, 1040 12, 1180 74 C 1260 104, 1330 44, 1480 84"/>
-      <path d="M960,-40 C 1070 12, 1140 -6, 1270 56 C 1350 88, 1400 28, 1520 64"/>
-      <path d="M1030,-50 C 1130 2, 1200 -16, 1330 48 C 1410 80, 1450 20, 1560 54"/>
-    </g>
-  </svg>
-  <a class="burger" href="../index.html" aria-label="All screens" title="All screens"><span></span><span></span><span></span></a>
-  <div class="brand"><span class="wordmark">TACEDGE</span><span class="vert"></span><span class="tag">Geotech</span></div>
-  <div class="proj"><span class="name">Benmore Dam – Spillway Anchoring</span><span class="meta">Rock Control · Meridian Energy · WSP engineer</span></div>
-  <div class="right"><span class="sync"><span class="dot"></span>Synced 2 min ago</span><span class="who"><span class="av">TR</span>Tim R · PM <span class="car">&#9662;</span></span></div>
-</header>
+<header></header>
+  <script>TE_HEADER.fill('reporting')</script>
 
 <nav class="subbar">
   <a class="tab" href="overview.html">Overview</a><a class="tab" href="status-board.html">Status Board</a>

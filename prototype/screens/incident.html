@@ -332,26 +332,16 @@ body{font-family:var(--ui);color:var(--ink);background:var(--stage);min-height:1
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="TacEdge">
-<link rel="apple-touch-icon" href="../assets/icons/apple-touch-icon.png?v=2026-06-26.7"></head>
+<link rel="apple-touch-icon" href="../assets/icons/apple-touch-icon.png?v=2026-06-26.7">  <script src="../config/screens.js"></script>
+  <script src="../components/header.js"></script>
+</head>
 <body class="field">
 <div class="stage">
   <div class="app" id="app">
 
     <!-- top bar -->
-    <header class="bar">
-      <svg class="contour" viewBox="0 0 480 60" preserveAspectRatio="xMaxYMid slice" aria-hidden="true">
-        <g fill="none" stroke="#f3efe6" stroke-width="1">
-          <path d="M300,-18 C 360 30, 392 10, 462 66 C 502 92, 540 40, 612 76"/>
-          <path d="M348,-34 C 408 12, 440 -4, 510 52 C 552 80, 590 26, 660 60"/>
-          <path d="M384,-44 C 444 6, 476 -12, 546 46 C 588 74, 622 22, 700 52"/>
-        </g>
-      </svg>
-      <a class="iconbtn" href="../index.html" aria-label="Back to home" title="Back to home"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></a>
-      <div class="ctx"><span class="p">Benmore · Spillway Anchoring</span><span class="z">Rock Control · today</span></div>
-      <div class="right"><span class="fresh"><span class="d"></span>Offline</span>
-        <span class="av">SK</span>
-      </div>
-    </header>
+    <header></header>
+  <script>TE_HEADER.fill('incident')</script>
 
     <!-- gate satisfied -->
     <div class="signed info" id="gate">
