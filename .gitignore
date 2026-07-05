@@ -1,0 +1,10 @@
+# Dev-only test harness artefacts (regenerate locally; never committed)
+tools/node_modules/
+tools/baseline/
+tools/current/
+tools/diffs/
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+*.swp
