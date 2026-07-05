@@ -364,16 +364,16 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);font-size:16
 import { packFor } from '../data/mock/index.js';
 import { activeProject } from '../config/projects.js';
 (function(){
-  var ap; try { ap = activeProject(); } catch (_) { return; }
-  if (!ap || ap.workType === 'anchoring') return;
-  var pack = packFor(ap.workType);
-  if (!pack || !pack.planPins || !pack.boardAnchors) return;
+  // Config-driven: a work type opts into a plotted site plan by declaring
+  // spatialCanvas in its pack. Anchoring has none, so it keeps the dam canvas.
+  var pack; try { pack = packFor(activeProject().workType); } catch (_) { return; }
+  if (!pack || !pack.spatialCanvas || !pack.planPins || !pack.boardAnchors) return;
   var pins = pack.planPins, ba = pack.boardAnchors;
   var esc = function(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');};
   // Replace the anchoring canvas with the site plan + this project's points.
   var vp = document.getElementById('viewport');
   if (!vp) return;
-  var img = '<image href="../assets/maps/cashmere-ridge.svg" x="0" y="0" width="1280" height="853" preserveAspectRatio="xMidYMid slice"/>';
+  var img = '<image href="' + pack.spatialCanvas + '" x="0" y="0" width="1280" height="853" preserveAspectRatio="xMidYMid slice"/>';
   var zlab = '<text class="zlab" x="580" y="250" text-anchor="middle">UPPER BENCH</text>';
   var pinsHtml = Object.keys(pins).map(function(k){
     var p = pins[k], rec = ba[p.id] || {}, ph = rec.phase || 'planned';

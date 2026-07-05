@@ -843,7 +843,8 @@ export const planSummary = {
   summarySub: "4 zones · all designs assigned",
   footText: "54 anchors proposed · all designs assigned · 0 unresolved",
   commitText: "54 of 54 anchors committed",
-  defaultPin: 15
+  defaultPin: 15,
+  usesStaticPlanCanvas: true
 };
 
 /* --- Overview dashboard: metrics, attention lists, setup cards -----------

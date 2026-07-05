@@ -386,10 +386,11 @@ import { activeProject } from '../config/projects.js';
     }
     if(cont)cont.addEventListener('click',commit);
     var PD=pack.planPins||{};
-    // The plan canvas (map image + pins) is anchoring-specific. For any other
-    // work type the plan list stands alone; the spatial canvas lives on the
-    // Spatial Map. Benmore keeps the map, so it is unchanged.
-    if(activeProject().workType!=='anchoring'){
+    // The plan canvas (map image + pins) belongs to whichever work type
+    // declares usesStaticPlanCanvas (anchoring owns the static one). Any work
+    // type without it shows the plan list alone; its spatial canvas lives on
+    // the Spatial Map. Benmore keeps the map, so it is unchanged.
+    if(!(pack.planSummary&&pack.planSummary.usesStaticPlanCanvas)){
       var mc=document.querySelector('.mapcol'); if(mc)mc.style.display='none';
       var pgrid=document.querySelector('.plan-grid'); if(pgrid)pgrid.style.gridTemplateColumns='1fr';
     }

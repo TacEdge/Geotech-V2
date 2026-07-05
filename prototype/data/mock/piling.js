@@ -451,3 +451,6 @@ export const qaQueue = {
     { id: 'SP-05', state: 'attn', zone: 'Upper Bench', by: 'J. Neho', ago: '3h ago', ev: 4, evTotal: 5, depth: '12.0 m', torque: '7.8 kNm', vert: '1.9°', result: 'Below 8 kNm target', pill: 'Torque below target', gap: 'Torque below target' }
   ]
 };
+
+/* Spatial Map canvas for this work type (site plan behind the plotted points). */
+export const spatialCanvas = '../assets/maps/cashmere-ridge.svg';
