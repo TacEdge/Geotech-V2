@@ -87,8 +87,12 @@ function pages() {
   const list = [{ id: 'index', url: 'index.html' }];
   const manifestPath = path.join(ROOT, 'config', 'screens.js');
   try {
+    // The manifest is JS (window.TE_SCREENS = [...]), not JSON: eval it safely.
     const raw = fs.readFileSync(manifestPath, 'utf8');
-    const arr = JSON.parse(raw.slice(raw.indexOf('['), raw.lastIndexOf(']') + 1));
+    const win = {};
+    new Function('window', raw)(win);
+    const arr = win.TE_SCREENS || [];
+    if (!arr.length) throw new Error('empty manifest');
     for (const s of arr) list.push({ id: s.id, url: s.path });
     return list;
   } catch (_) {

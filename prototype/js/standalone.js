@@ -6,12 +6,16 @@
    ========================================================================== */
 (function () {
   if (window.navigator.standalone) {
-    document.addEventListener("click", function (e) {
-      var a = e.target.closest && e.target.closest("a");
-      if (a && a.getAttribute("href") && a.target !== "_blank" && a.host === location.host) {
-        e.preventDefault();
-        location.href = a.href;
-      }
-    }, true);
+    document.addEventListener(
+      'click',
+      function (e) {
+        var a = e.target.closest && e.target.closest('a');
+        if (a && a.getAttribute('href') && a.target !== '_blank' && a.host === location.host) {
+          e.preventDefault();
+          location.href = a.href;
+        }
+      },
+      true
+    );
   }
 })();

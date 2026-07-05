@@ -11,11 +11,24 @@ Pages.
 (`.github/workflows/deploy-pages.yml`) uploads `./prototype` on every push to
 `main`. Nothing else in the repo reaches the live site.
 
-- `prototype/index.html` — the launcher / walkthrough map.
-- `prototype/screens/` — the screens (one self-contained HTML document each).
-- `prototype/assets/` — shared stylesheet, work-type data, PWA icons.
-- `prototype/js/` — page-specific and shared scripts.
-- `prototype/manifest.json` — PWA manifest.
+- `prototype/index.html` — the launcher; its cards render from the manifest.
+- `prototype/screens/` — the screens (one HTML document each; thin — no inline
+  fonts, no local palette, headers mounted from the manifest).
+- `prototype/styles/` — the design system: `fonts.css` (self-hosted woff2),
+  `tokens.css` (the single `:root`), `base.css` (reset + the global `[hidden]`
+  fix), `components.css` (shared primitives).
+- `prototype/fonts/` — the woff2 faces (one shared set, fetched lazily).
+- `prototype/config/` — the single sources of truth: `screens.js` (manifest:
+  every screen's id/title/stage/chrome/path, header markup, and launcher card),
+  `workTypes.js` (the six-type catalogue), `project.js` (the Benmore job record
+  + `serialise()` export seam).
+- `prototype/components/` — `header.js` (mounts a screen's header from the
+  manifest).
+- `prototype/data/mock/` — sample records (`anchoring.js`); the one deeply
+  populated work type.
+- `prototype/js/` — shared scripts: `versioner.js` (cache-busting), `build.js`
+  (CI-stamped build id), `standalone.js` (PWA nav), `render.js` (render helpers).
+- `prototype/assets/icons/` + `prototype/manifest.json` — PWA icons + manifest.
 
 `review-pack/` holds the walkthrough deliverables (PDF/DOCX). `CODEBASE_AUDIT.md`
 is a review document. `tools/` is the dev-only test harness (below). None of
@@ -23,10 +36,12 @@ these deploy.
 
 ## Running locally
 
-Most screens open directly in a browser via `file://`. **The Configurable
-Engine page (`screens/platform.html`) does not** — it loads an ES module
-(`js/worktypes.js`), and browsers block module fetches over `file://` (CORS).
-It fails silently: the page renders but the work-type sections stay empty.
+Most screens open directly in a browser via `file://`. **Screens that load ES
+modules do not** — `screens/platform.html` (imports `config/workTypes.js`),
+`screens/work-item-design.html` (imports `data/mock/anchoring.js`), and any
+screen mounting its header — because browsers block module fetches over
+`file://` (CORS). They fail silently: the page renders but module-driven content
+stays empty. Serve over HTTP instead (below).
 
 Serve the folder over HTTP instead:
 
