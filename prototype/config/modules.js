@@ -30,11 +30,11 @@ export const MODULES = {
 
   // --- Configured, not yet built (screen: null) ------------------------------
   torque_log: {
-    id: 'torque_log', name: 'Install / Torque Log', screen: null,
+    id: 'torque_log', name: 'Install / Torque Log', screen: 'screens/torque-log.html',
     summary: 'torque vs depth', sharedBy: ['piling']
   },
   verticality_cutoff: {
-    id: 'verticality_cutoff', name: 'Verticality & Cut-off Record', screen: null,
+    id: 'verticality_cutoff', name: 'Verticality & Cut-off Record', screen: 'screens/verticality-cutoff.html',
     summary: 'two-axis verticality, cut-off, cap detail', sharedBy: ['piling']
   },
   panel_install: {

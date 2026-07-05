@@ -218,6 +218,34 @@ window.TE_SCREENS = [
     desc: 'Photo-first report, available anytime.'
   },
   {
+    id: 'torque-log',
+    title: 'Install / Torque Log',
+    stage: null,
+    chrome: 'field',
+    path: 'screens/torque-log.html',
+    moduleId: 'torque_log',
+    workTypes: ['piling'],
+    header:
+      '<header class="bar">\n      {{CONTOUR:field}}\n      <a class="iconbtn" href="../index.html" aria-label="Back to home" title="Back to home"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></a>\n      <div class="ctx"><span class="p">Cashmere Ridge · Screw Piling</span><span class="z">Rock Control · today</span></div>\n      <div class="right"><span class="fresh"><span class="d"></span>Live</span>\n        <span class="av">SK</span>\n      </div>\n    </header>',
+    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v4M12 21v-3M4.2 8l3.4 2M16.4 14l3.4 2M4.2 16l3.4-2M16.4 10l3.4-2"/><circle cx="12" cy="12" r="3"/></svg>',
+    cardTitle: 'Install / Torque Log',
+    desc: 'Torque vs depth to founding.'
+  },
+  {
+    id: 'verticality-cutoff',
+    title: 'Verticality & Cut-off',
+    stage: null,
+    chrome: 'field',
+    path: 'screens/verticality-cutoff.html',
+    moduleId: 'verticality_cutoff',
+    workTypes: ['piling'],
+    header:
+      '<header class="bar">\n      {{CONTOUR:field}}\n      <a class="iconbtn" href="../index.html" aria-label="Back to home" title="Back to home"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></a>\n      <div class="ctx"><span class="p">Cashmere Ridge · Screw Piling</span><span class="z">Rock Control · today</span></div>\n      <div class="right"><span class="fresh"><span class="d"></span>Live</span>\n        <span class="av">SK</span>\n      </div>\n    </header>',
+    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M12 3l4 5M12 3l-4 5"/><path d="M5 21h14"/></svg>',
+    cardTitle: 'Verticality & Cut-off',
+    desc: 'Two-axis tilt, cut-off and cap.'
+  },
+  {
     id: 'daily-activity',
     title: 'Daily Activity Sheet',
     stage: 'capture',
