@@ -842,3 +842,32 @@ export const planSummary = {
   summaryTotal: "/ 54",
   summarySub: "4 zones · all designs assigned"
 };
+
+/* --- Overview dashboard: metrics, attention lists, setup cards -----------
+   The project rollup the Overview renders. metrics are the header counters,
+   alerts + qaChips feed 'Needs your attention', setupCards list the setup
+   steps with their per-project meta. */
+export const overview = {
+  metrics: {
+    pct: 26, done: 14, total: 54,
+    confirmedLine: "14 of 54 anchors confirmed",
+    active: 13, awaitingQA: 8, issues: 2,
+    statusPill: "In delivery", targetDate: "14 Aug 2026"
+  },
+  alerts: [
+    {"id":"B07","title":"Test failure","zone":"Spillway Face","tagCls":"high","tagText":"High","href":"qa-queue.html"},
+    {"id":"B23","title":"Redrill required","zone":"Stilling Basin","tagCls":"action","tagText":"Action required","href":"status-board.html"},
+    {"id":"B31","title":"Incident submitted","zone":"Stilling Basin","tagCls":"new","tagText":"New","href":"incident.html"}
+  ],
+  qaChips: ["B11","B13","B17","B21","B28","B31","B40","P05"],
+  qaFoot: "8 anchors submitted, ready to confirm or reopen.",
+  setupCards: [
+    { href: "layout.html", nm: "Layout", mt: "4 zones", icon: "<svg width=\"21\" height=\"21\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"4\" y=\"4\" width=\"16\" height=\"16\" rx=\"2\"/><path d=\"M4 10h16M10 4v16\"/></svg>" },
+    { href: "work-item-design.html", nm: "Work item design", mt: "5 designs", icon: "<svg width=\"21\" height=\"21\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3 20 7.5v9L12 21 4 16.5v-9z\"/><path d=\"M4 7.5 12 12l8-4.5\"/><path d=\"M12 12v9\"/></svg>" },
+    { href: "work-plan.html", nm: "Work plan", mt: "54 placed", icon: "<svg width=\"21\" height=\"21\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"4\" y=\"5\" width=\"16\" height=\"15\" rx=\"2\"/><path d=\"M4 9.5h16\"/><path d=\"M8 3v4M16 3v4\"/></svg>" },
+    { href: "testing-standards.html", nm: "Testing standards", mt: "Configured", icon: "<svg width=\"21\" height=\"21\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3 19 6v5c0 5-3 7.6-7 9-4-1.4-7-4-7-9V6z\"/><path d=\"M9 12l2 2 4-4\"/></svg>" },
+    { href: "evidence-qa.html", nm: "Evidence & QA", mt: "Configured", icon: "<svg width=\"21\" height=\"21\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M4 8a2 2 0 0 1 2-2h3.4l1.6 1.8H18a2 2 0 0 1 2 2V17a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z\"/><circle cx=\"13\" cy=\"13\" r=\"2.3\"/></svg>" },
+    { href: "safety-risk-controls.html", nm: "Safety & risk", mt: "2 active", icon: "<svg width=\"21\" height=\"21\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3 19 6v5c0 5-3 7.6-7 9-4-1.4-7-4-7-9V6z\"/><path d=\"M12 8.4v4\"/><path d=\"M12 15.2v.01\"/></svg>" },
+    { href: "reference-documents.html", nm: "Reference documents", mt: "42 documents", icon: "<svg width=\"21\" height=\"21\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M7 3h7l4 4v14H7z\"/><path d=\"M14 3v4h4\"/><path d=\"M10 12h6M10 15.5h6\"/></svg>" }
+  ]
+};

@@ -336,15 +336,13 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);font-size:16
     <div class="att-grid">
       <div class="att-card alerts">
         <div class="att-bar">Alerts &amp; incidents <span class="cnt">3</span></div>
-        <div class="arow"><span class="ad"></span><span class="aid">B07</span><div class="atext"><div class="a1">Test failure</div><div class="a2">Spillway Face</div></div><span class="tag high">High</span><a class="ago" href="qa-queue.html">Review <svg class="ar" width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10h11M11 5.5 15.5 10 11 14.5"/></svg></a></div>
-        <div class="arow"><span class="ad"></span><span class="aid">B23</span><div class="atext"><div class="a1">Redrill required</div><div class="a2">Stilling Basin</div></div><span class="tag action">Action required</span><a class="ago" href="status-board.html">Review <svg class="ar" width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10h11M11 5.5 15.5 10 11 14.5"/></svg></a></div>
-        <div class="arow"><span class="ad"></span><span class="aid">B31</span><div class="atext"><div class="a1">Incident submitted</div><div class="a2">Stilling Basin</div></div><span class="tag new">New</span><a class="ago" href="incident.html">Review <svg class="ar" width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10h11M11 5.5 15.5 10 11 14.5"/></svg></a></div>
+        <span id="ovAlerts" style="display:contents"></span>
         <div class="card-foot"><a href="incident.html">View all alerts &amp; incidents <svg class="ar" width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10h11M11 5.5 15.5 10 11 14.5"/></svg></a></div>
       </div>
 
       <div class="att-card qa">
         <div class="att-bar">Awaiting QA <span class="cnt">8</span></div>
-        <div class="qa-chiprow"><span class="qa-chip">B11</span><span class="qa-chip">B13</span><span class="qa-chip">B17</span><span class="qa-chip">B21</span><span class="qa-chip">B28</span><span class="qa-chip">B31</span><span class="qa-chip">B40</span><span class="qa-chip">P05</span></div>
+        <div class="qa-chiprow" id="ovQaChips"></div>
         <div class="qa-foot"><span class="l">8 anchors submitted, ready to confirm or reopen.</span></div>
         <div class="card-foot qafoot"><a href="qa-queue.html">Open QA queue <svg class="ar" width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10h11M11 5.5 15.5 10 11 14.5"/></svg></a></div>
       </div>
@@ -354,21 +352,39 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);font-size:16
   <section class="setup">
     <div class="setup-head"><span class="h">Project setup</span><a class="manage" href="layout.html">Manage setup <svg class="ar" width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10h11M11 5.5 15.5 10 11 14.5"/></svg></a></div>
     <div class="scards">
-      <a class="scard" href="layout.html"><span class="ic"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M4 10h16M10 4v16"/></svg></span><span class="body"><span class="nm">Layout</span><span class="mt">4 zones</span></span><span class="chev"><svg width="19" height="19" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M7.5 4.5 13 10l-5.5 5.5"/></svg></span></a>
-      <a class="scard" href="work-item-design.html"><span class="ic"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 20 7.5v9L12 21 4 16.5v-9z"/><path d="M4 7.5 12 12l8-4.5"/><path d="M12 12v9"/></svg></span><span class="body"><span class="nm">Work item design</span><span class="mt">5 designs</span></span><span class="chev"><svg width="19" height="19" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M7.5 4.5 13 10l-5.5 5.5"/></svg></span></a>
-      <a class="scard" href="work-plan.html"><span class="ic"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 9.5h16"/><path d="M8 3v4M16 3v4"/></svg></span><span class="body"><span class="nm">Work plan</span><span class="mt">54 placed</span></span><span class="chev"><svg width="19" height="19" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M7.5 4.5 13 10l-5.5 5.5"/></svg></span></a>
-      <a class="scard" href="testing-standards.html"><span class="ic"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 19 6v5c0 5-3 7.6-7 9-4-1.4-7-4-7-9V6z"/><path d="M9 12l2 2 4-4"/></svg></span><span class="body"><span class="nm">Testing standards</span><span class="mt">Configured</span></span><span class="chev"><svg width="19" height="19" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M7.5 4.5 13 10l-5.5 5.5"/></svg></span></a>
-      <a class="scard" href="evidence-qa.html"><span class="ic"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8a2 2 0 0 1 2-2h3.4l1.6 1.8H18a2 2 0 0 1 2 2V17a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/><circle cx="13" cy="13" r="2.3"/></svg></span><span class="body"><span class="nm">Evidence &amp; QA</span><span class="mt">Configured</span></span><span class="chev"><svg width="19" height="19" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M7.5 4.5 13 10l-5.5 5.5"/></svg></span></a>
-      <a class="scard" href="safety-risk-controls.html"><span class="ic"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 19 6v5c0 5-3 7.6-7 9-4-1.4-7-4-7-9V6z"/><path d="M12 8.4v4"/><path d="M12 15.2v.01"/></svg></span><span class="body"><span class="nm">Safety &amp; risk</span><span class="mt">2 active</span></span><span class="chev"><svg width="19" height="19" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M7.5 4.5 13 10l-5.5 5.5"/></svg></span></a>
-      <a class="scard" href="reference-documents.html"><span class="ic"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4"/><path d="M10 12h6M10 15.5h6"/></svg></span><span class="body"><span class="nm">Reference documents</span><span class="mt">42 documents</span></span><span class="chev"><svg width="19" height="19" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M7.5 4.5 13 10l-5.5 5.5"/></svg></span></a>
+      <span id="ovSetup" style="display:contents"></span>
     </div>
   </section>
 
 </div>
 
-<script>
+<script type="module">
+import { packFor } from '../data/mock/index.js';
+import { activeProject } from '../config/projects.js';
 (function(){
   try{
+    var pack = packFor(activeProject().workType);
+    if(pack && pack.overview){
+      var ov=pack.overview, m=ov.metrics;
+      var esc=function(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');};
+      var qs=function(sel){return document.querySelector(sel);};
+      var setT=function(sel,v){var e=qs(sel); if(e)e.textContent=v;};
+      var big=qs('.metrics .big'); if(big)big.innerHTML=m.pct+'<sup>%</sup>';
+      setT('.m-left .sub',m.confirmedLine);
+      var tr=qs('.m-track span'); if(tr)tr.style.width=m.pct+'%';
+      setT('.m-stat.active .n',String(m.active)); setT('.m-stat.qa .n',String(m.awaitingQA)); setT('.m-stat.iss .n',String(m.issues));
+      var sp=qs('.status-pill'); if(sp)sp.innerHTML='<span class="d"></span>'+esc(m.statusPill);
+      setT('.target .td',m.targetDate);
+      var AR='<svg class="ar" width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10h11M11 5.5 15.5 10 11 14.5"/></svg>';
+      var ac=document.getElementById('ovAlerts');
+      if(ac)ac.outerHTML=ov.alerts.map(function(a){return '<div class="arow"><span class="ad"></span><span class="aid">'+esc(a.id)+'</span><div class="atext"><div class="a1">'+esc(a.title)+'</div><div class="a2">'+esc(a.zone)+'</div></div><span class="tag '+a.tagCls+'">'+esc(a.tagText)+'</span><a class="ago" href="'+a.href+'">Review '+AR+'</a></div>';}).join('');
+      var alc=qs('.att-card.alerts .att-bar .cnt'); if(alc)alc.textContent=String(ov.alerts.length);
+      var qc=document.getElementById('ovQaChips'); if(qc)qc.innerHTML=ov.qaChips.map(function(c){return '<span class="qa-chip">'+esc(c)+'</span>';}).join('');
+      setT('.att-card.qa .att-bar .cnt',String(m.awaitingQA)); setT('.qa-foot .l',ov.qaFoot);
+      var CH='<svg width="19" height="19" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M7.5 4.5 13 10l-5.5 5.5"/></svg>';
+      var sc=document.getElementById('ovSetup');
+      if(sc)sc.outerHTML=ov.setupCards.map(function(c){return '<a class="scard" href="'+c.href+'"><span class="ic">'+c.icon+'</span><span class="body"><span class="nm">'+esc(c.nm)+'</span><span class="mt">'+esc(c.mt)+'</span></span><span class="chev">'+CH+'</span></a>';}).join('');
+    }
     document.querySelectorAll('.arow .ago').forEach(function(b){
       b.addEventListener('click',function(){var r=b.closest('.arow');r.style.opacity=.45;b.textContent='Reviewed';});
     });
