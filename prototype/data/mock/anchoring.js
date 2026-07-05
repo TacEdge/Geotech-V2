@@ -764,3 +764,81 @@ export const safetyDocs = [
 ];
 
 export const safetyFoot = "2 safety documents active · scoped · sign-on gate wired";
+
+/* --- Work Plan: proposed anchors, zone/design assignments, plan summary ----
+   planPins keys are SVG pin numbers; the map canvas positions them, this pack
+   supplies the record each pin resolves to. planZones drives the rail rows. */
+export const planPins = {
+  "1": {"id":"B01","zone":"Stilling Basin","zcol":"#2f9089","design":"GA-16","dname":"Stilling Basin","test":"Proof 1.25× WL · 3 cycles","e":"241,561.13","n":"6,024,802.05"},
+  "2": {"id":"B02","zone":"Stilling Basin","zcol":"#2f9089","design":"GA-16","dname":"Stilling Basin","test":"Proof 1.25× WL · 3 cycles","e":"241,562.26","n":"6,024,803.09"},
+  "3": {"id":"B03","zone":"Stilling Basin","zcol":"#2f9089","design":"GA-16","dname":"Stilling Basin","test":"Proof 1.25× WL · 3 cycles","e":"241,563.39","n":"6,024,804.14"},
+  "4": {"id":"B04","zone":"Stilling Basin","zcol":"#2f9089","design":"GA-16","dname":"Stilling Basin","test":"Proof 1.25× WL · 3 cycles","e":"241,564.52","n":"6,024,805.18"},
+  "5": {"id":"B05","zone":"Stilling Basin","zcol":"#2f9089","design":"GA-16","dname":"Stilling Basin","test":"Proof 1.25× WL · 3 cycles","e":"241,565.65","n":"6,024,806.23"},
+  "6": {"id":"B06","zone":"Stilling Basin","zcol":"#2f9089","design":"GA-16","dname":"Stilling Basin","test":"Proof 1.25× WL · 3 cycles","e":"241,566.78","n":"6,024,807.28"},
+  "7": {"id":"B07","zone":"Stilling Basin","zcol":"#2f9089","design":"GA-16","dname":"Stilling Basin","test":"Proof 1.25× WL · 3 cycles","e":"241,567.91","n":"6,024,808.32"},
+  "8": {"id":"B08","zone":"Stilling Basin","zcol":"#2f9089","design":"GA-16","dname":"Stilling Basin","test":"Proof 1.25× WL · 3 cycles","e":"241,569.04","n":"6,024,809.37"},
+  "9": {"id":"B09","zone":"Stilling Basin","zcol":"#2f9089","design":"GA-16","dname":"Stilling Basin","test":"Proof 1.25× WL · 3 cycles","e":"241,570.17","n":"6,024,810.41"},
+  "10": {"id":"B10","zone":"Stilling Basin","zcol":"#2f9089","design":"GA-16","dname":"Stilling Basin","test":"Proof 1.25× WL · 3 cycles","e":"241,571.30","n":"6,024,811.46"},
+  "11": {"id":"B11","zone":"Stilling Basin","zcol":"#2f9089","design":"GA-16","dname":"Stilling Basin","test":"Proof 1.25× WL · 3 cycles","e":"241,572.43","n":"6,024,812.51"},
+  "12": {"id":"B12","zone":"Stilling Basin","zcol":"#2f9089","design":"GA-16","dname":"Stilling Basin","test":"Proof 1.25× WL · 3 cycles","e":"241,573.56","n":"6,024,813.55"},
+  "13": {"id":"B13","zone":"Stilling Basin","zcol":"#2f9089","design":"GA-16","dname":"Stilling Basin","test":"Proof 1.25× WL · 3 cycles","e":"241,574.69","n":"6,024,814.60"},
+  "14": {"id":"B14","zone":"Stilling Basin","zcol":"#2f9089","design":"GA-16","dname":"Stilling Basin","test":"Proof 1.25× WL · 3 cycles","e":"241,575.82","n":"6,024,815.64"},
+  "15": {"id":"B15","zone":"Spillway Face","zcol":"#6e8b3d","design":"GA-17S","dname":"Spillway Standard","test":"Proof 1.25× WL · 3 cycles","e":"241,576.95","n":"6,024,816.69"},
+  "16": {"id":"B16","zone":"Spillway Face","zcol":"#6e8b3d","design":"GA-17S","dname":"Spillway Standard","test":"Proof 1.25× WL · 3 cycles","e":"241,578.08","n":"6,024,817.74"},
+  "17": {"id":"B17","zone":"Spillway Face","zcol":"#6e8b3d","design":"GA-17S","dname":"Spillway Standard","test":"Proof 1.25× WL · 3 cycles","e":"241,579.21","n":"6,024,818.78"},
+  "18": {"id":"B18","zone":"Spillway Face","zcol":"#6e8b3d","design":"GA-17S","dname":"Spillway Standard","test":"Proof 1.25× WL · 3 cycles","e":"241,580.34","n":"6,024,819.83"},
+  "19": {"id":"B19","zone":"Spillway Face","zcol":"#6e8b3d","design":"GA-17S","dname":"Spillway Standard","test":"Proof 1.25× WL · 3 cycles","e":"241,581.47","n":"6,024,820.87"},
+  "20": {"id":"B20","zone":"Spillway Face","zcol":"#6e8b3d","design":"GA-17S","dname":"Spillway Standard","test":"Proof 1.25× WL · 3 cycles","e":"241,582.60","n":"6,024,821.92"},
+  "21": {"id":"B21","zone":"Spillway Face","zcol":"#6e8b3d","design":"GA-17S","dname":"Spillway Standard","test":"Proof 1.25× WL · 3 cycles","e":"241,583.73","n":"6,024,822.97"},
+  "22": {"id":"B22","zone":"Spillway Face","zcol":"#6e8b3d","design":"GA-17S","dname":"Spillway Standard","test":"Proof 1.25× WL · 3 cycles","e":"241,584.86","n":"6,024,824.01"},
+  "23": {"id":"B23","zone":"Spillway Face","zcol":"#6e8b3d","design":"GA-17S","dname":"Spillway Standard","test":"Proof 1.25× WL · 3 cycles","e":"241,585.99","n":"6,024,825.06"},
+  "24": {"id":"B24","zone":"Spillway Face","zcol":"#6e8b3d","design":"GA-17S","dname":"Spillway Standard","test":"Proof 1.25× WL · 3 cycles","e":"241,587.12","n":"6,024,826.10"},
+  "25": {"id":"B25","zone":"Spillway Face","zcol":"#6e8b3d","design":"GA-17S","dname":"Spillway Standard","test":"Proof 1.25× WL · 3 cycles","e":"241,588.25","n":"6,024,827.15"},
+  "26": {"id":"B26","zone":"Spillway Face","zcol":"#6e8b3d","design":"GA-17S","dname":"Spillway Standard","test":"Proof 1.25× WL · 3 cycles","e":"241,589.38","n":"6,024,828.20"},
+  "27": {"id":"B27","zone":"Spillway Face","zcol":"#6e8b3d","design":"GA-17S","dname":"Spillway Standard","test":"Proof 1.25× WL · 3 cycles","e":"241,590.51","n":"6,024,829.24"},
+  "28": {"id":"B28","zone":"Spillway Face","zcol":"#6e8b3d","design":"GA-17S","dname":"Spillway Standard","test":"Proof 1.25× WL · 3 cycles","e":"241,591.64","n":"6,024,830.29"},
+  "29": {"id":"B29","zone":"Spillway Face","zcol":"#6e8b3d","design":"GA-17S","dname":"Spillway Standard","test":"Proof 1.25× WL · 3 cycles","e":"241,592.77","n":"6,024,831.33"},
+  "30": {"id":"B30","zone":"Spillway Face","zcol":"#6e8b3d","design":"GA-17S","dname":"Spillway Standard","test":"Proof 1.25× WL · 3 cycles","e":"241,593.90","n":"6,024,832.38"},
+  "31": {"id":"B31","zone":"Spillway Face","zcol":"#6e8b3d","design":"GA-17S","dname":"Spillway Standard","test":"Proof 1.25× WL · 3 cycles","e":"241,595.03","n":"6,024,833.43"},
+  "32": {"id":"B32","zone":"Spillway Face","zcol":"#6e8b3d","design":"GA-17S","dname":"Spillway Standard","test":"Proof 1.25× WL · 3 cycles","e":"241,596.16","n":"6,024,834.47"},
+  "33": {"id":"B33","zone":"Left Abutment","zcol":"#cf8e2c","design":"LA-14","dname":"Left Abutment","test":"Proof 1.25× WL · 2 cycles","e":"241,597.29","n":"6,024,835.52"},
+  "34": {"id":"B34","zone":"Left Abutment","zcol":"#cf8e2c","design":"LA-14","dname":"Left Abutment","test":"Proof 1.25× WL · 2 cycles","e":"241,598.42","n":"6,024,836.56"},
+  "35": {"id":"B35","zone":"Left Abutment","zcol":"#cf8e2c","design":"LA-14","dname":"Left Abutment","test":"Proof 1.25× WL · 2 cycles","e":"241,599.55","n":"6,024,837.61"},
+  "36": {"id":"B36","zone":"Left Abutment","zcol":"#cf8e2c","design":"LA-14","dname":"Left Abutment","test":"Proof 1.25× WL · 2 cycles","e":"241,600.68","n":"6,024,838.66"},
+  "37": {"id":"B37","zone":"Left Abutment","zcol":"#cf8e2c","design":"LA-14","dname":"Left Abutment","test":"Proof 1.25× WL · 2 cycles","e":"241,601.81","n":"6,024,839.70"},
+  "38": {"id":"B38","zone":"Left Abutment","zcol":"#cf8e2c","design":"LA-14","dname":"Left Abutment","test":"Proof 1.25× WL · 2 cycles","e":"241,602.94","n":"6,024,840.75"},
+  "39": {"id":"B39","zone":"Left Abutment","zcol":"#cf8e2c","design":"LA-14","dname":"Left Abutment","test":"Proof 1.25× WL · 2 cycles","e":"241,604.07","n":"6,024,841.79"},
+  "40": {"id":"B40","zone":"Left Abutment","zcol":"#cf8e2c","design":"LA-14","dname":"Left Abutment","test":"Proof 1.25× WL · 2 cycles","e":"241,605.20","n":"6,024,842.84"},
+  "41": {"id":"B41","zone":"Left Abutment","zcol":"#cf8e2c","design":"LA-14","dname":"Left Abutment","test":"Proof 1.25× WL · 2 cycles","e":"241,606.33","n":"6,024,843.89"},
+  "42": {"id":"B42","zone":"Left Abutment","zcol":"#cf8e2c","design":"LA-14","dname":"Left Abutment","test":"Proof 1.25× WL · 2 cycles","e":"241,607.46","n":"6,024,844.93"},
+  "43": {"id":"P43","zone":"Crest Gallery","zcol":"#46663a","design":"CP-12","dname":"Crest Pile","test":"Proof 1.5× WL · single cycle","e":"241,608.59","n":"6,024,845.98"},
+  "44": {"id":"P44","zone":"Crest Gallery","zcol":"#46663a","design":"CP-12","dname":"Crest Pile","test":"Proof 1.5× WL · single cycle","e":"241,609.72","n":"6,024,847.02"},
+  "45": {"id":"P45","zone":"Crest Gallery","zcol":"#46663a","design":"CP-12","dname":"Crest Pile","test":"Proof 1.5× WL · single cycle","e":"241,610.85","n":"6,024,848.07"},
+  "46": {"id":"P46","zone":"Crest Gallery","zcol":"#46663a","design":"CP-12","dname":"Crest Pile","test":"Proof 1.5× WL · single cycle","e":"241,611.98","n":"6,024,849.12"},
+  "47": {"id":"P47","zone":"Crest Gallery","zcol":"#46663a","design":"CP-12","dname":"Crest Pile","test":"Proof 1.5× WL · single cycle","e":"241,613.11","n":"6,024,850.16"},
+  "48": {"id":"P48","zone":"Crest Gallery","zcol":"#46663a","design":"CP-12","dname":"Crest Pile","test":"Proof 1.5× WL · single cycle","e":"241,614.24","n":"6,024,851.21"},
+  "49": {"id":"P49","zone":"Crest Gallery","zcol":"#46663a","design":"CP-12","dname":"Crest Pile","test":"Proof 1.5× WL · single cycle","e":"241,615.37","n":"6,024,852.25"},
+  "50": {"id":"P50","zone":"Crest Gallery","zcol":"#46663a","design":"CP-12","dname":"Crest Pile","test":"Proof 1.5× WL · single cycle","e":"241,616.50","n":"6,024,853.30"},
+  "51": {"id":"P51","zone":"Crest Gallery","zcol":"#46663a","design":"CP-12","dname":"Crest Pile","test":"Proof 1.5× WL · single cycle","e":"241,617.63","n":"6,024,854.35"},
+  "52": {"id":"P52","zone":"Crest Gallery","zcol":"#46663a","design":"CP-12","dname":"Crest Pile","test":"Proof 1.5× WL · single cycle","e":"241,618.76","n":"6,024,855.39"},
+  "53": {"id":"P53","zone":"Crest Gallery","zcol":"#46663a","design":"CP-12","dname":"Crest Pile","test":"Proof 1.5× WL · single cycle","e":"241,619.89","n":"6,024,856.44"},
+  "54": {"id":"P54","zone":"Crest Gallery","zcol":"#46663a","design":"CP-12","dname":"Crest Pile","test":"Proof 1.5× WL · single cycle","e":"241,621.02","n":"6,024,857.48"}
+};
+
+export const planZones = [
+  { key: "spillway", label: "Spillway Face", colour: "#6e8b3d", design: "GA-17S", count: 18 },
+  { key: "stilling", label: "Stilling Basin", colour: "#2f9089", design: "GA-16", count: 14 },
+  { key: "left", label: "Left Abutment", colour: "#cf8e2c", design: "LA-14", count: 10 },
+  { key: "crest", label: "Crest Gallery", colour: "#46663a", design: "CP-12", count: 12 }
+];
+
+export const planSummary = {
+  source: "benmore_plan.pdf",
+  total: 54,
+  zones: 4,
+  unresolved: 0,
+  bannerTitle: "AI proposal from benmore_plan.pdf",
+  bannerSub: "54 anchors · 4 zones · 0 unresolved",
+  summaryTotal: "/ 54",
+  summarySub: "4 zones · all designs assigned"
+};
