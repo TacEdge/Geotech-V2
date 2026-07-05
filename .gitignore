@@ -3,6 +3,7 @@ tools/node_modules/
 tools/baseline/
 tools/current/
 tools/diffs/
+tools/piling/
 
 # OS / editor cruft
 .DS_Store

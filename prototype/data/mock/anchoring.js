@@ -840,7 +840,10 @@ export const planSummary = {
   bannerTitle: "AI proposal from benmore_plan.pdf",
   bannerSub: "54 anchors · 4 zones · 0 unresolved",
   summaryTotal: "/ 54",
-  summarySub: "4 zones · all designs assigned"
+  summarySub: "4 zones · all designs assigned",
+  footText: "54 anchors proposed · all designs assigned · 0 unresolved",
+  commitText: "54 of 54 anchors committed",
+  defaultPin: 15
 };
 
 /* --- Overview dashboard: metrics, attention lists, setup cards -----------

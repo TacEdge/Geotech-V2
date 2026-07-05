@@ -381,10 +381,18 @@ import { activeProject } from '../config/projects.js';
         cont=document.getElementById('contBtn'), foot=document.getElementById('footStatus');
     function commit(){
       zones.classList.add('approved'); banner.classList.add('done');
-      if(foot)foot.innerHTML='<svg width=\"17\" height=\"17\" viewBox=\"0 0 20 20\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M4 10.5l4 4 8-9\"/></svg> 54 of 54 anchors committed';
+      var ctext=(pack.planSummary&&pack.planSummary.commitText)||'54 of 54 anchors committed';
+      if(foot)foot.innerHTML='<svg width=\"17\" height=\"17\" viewBox=\"0 0 20 20\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M4 10.5l4 4 8-9\"/></svg> '+ctext;
     }
     if(cont)cont.addEventListener('click',commit);
     var PD=pack.planPins||{};
+    // The plan canvas (map image + pins) is anchoring-specific. For any other
+    // work type the plan list stands alone; the spatial canvas lives on the
+    // Spatial Map. Benmore keeps the map, so it is unchanged.
+    if(activeProject().workType!=='anchoring'){
+      var mc=document.querySelector('.mapcol'); if(mc)mc.style.display='none';
+      var pgrid=document.querySelector('.plan-grid'); if(pgrid)pgrid.style.gridTemplateColumns='1fr';
+    }
     if(pack.planZones){
       var zr=pack.planZones.map(function(z){return '<button class="zrow" data-zone="'+z.key+'">'+'<span class="zsw" style="background:'+z.colour+'"></span>'+'<span class="zn">'+z.label+'</span>'+'<span class="zdes">'+z.design+'</span>'+'<span class="zct"><b>'+z.count+'</b> / '+z.count+'</span></button>';}).join('');
       var zc=document.getElementById('zdRows'); if(zc)zc.innerHTML=zr;
@@ -394,6 +402,8 @@ import { activeProject } from '../config/projects.js';
       setT('.sum-big .sb-n',String(ps.total)); setT('.sum-big .sb-t',ps.summaryTotal); setT('.sum-sub',ps.summarySub);
       var srcB=document.querySelector('.sum-src-l b'); if(srcB)srcB.textContent=ps.source;
       setT('.ai-1',ps.bannerTitle); setT('.ai-2',ps.bannerSub);
+      // Rewrite the foot status text node in place (keep the leading icon).
+      if(ps.footText){var fs=document.getElementById('footStatus'); if(fs){var tn=fs.lastChild; if(tn&&tn.nodeType===3)tn.nodeValue=' '+ps.footText;}}
     }
     function selPin(num){
       document.querySelectorAll('.pin').forEach(function(p){ var on=(+p.dataset.num===num); p.classList.toggle('sel',on); if(on)p.parentNode.appendChild(p); });
@@ -408,7 +418,8 @@ import { activeProject } from '../config/projects.js';
       document.querySelectorAll('.pin').forEach(function(p){p.classList.remove('sel');});
       var card=document.getElementById('selCard'); if(card)card.style.display='none';
     });
-    selPin(15);
+    var defPin=(pack.planSummary&&pack.planSummary.defaultPin!=null)?pack.planSummary.defaultPin:+Object.keys(PD)[0];
+    if(defPin!=null&&!isNaN(defPin))selPin(+defPin);
     var sel=null;
     document.querySelectorAll('.zrow').forEach(function(r){
       r.addEventListener('click',function(){

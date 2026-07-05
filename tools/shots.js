@@ -112,6 +112,12 @@ function pages() {
   const list = pages();
   console.log(`Capturing ${list.length} pages x ${VIEWPORTS.length} viewports = ${list.length * VIEWPORTS.length} images -> ${path.basename(out)}/`);
 
+  // Optional: capture with a specific project active (writes te.project into
+  // sessionStorage before each page loads), so a non-default work type can be
+  // shot into its own output dir. e.g. --project cashmere-ridge --out piling.
+  const pIdx = process.argv.indexOf('--project');
+  const activeProjectId = pIdx > -1 ? process.argv[pIdx + 1] : null;
+
   let failures = 0;
   for (const vp of VIEWPORTS) {
     const ctx = await browser.newContext({
@@ -119,6 +125,11 @@ function pages() {
       deviceScaleFactor: 1,
       reducedMotion: 'reduce'
     });
+    if (activeProjectId) {
+      await ctx.addInitScript(pid => {
+        try { sessionStorage.setItem('te.project', pid); } catch (_) {}
+      }, activeProjectId);
+    }
     for (const pg of list) {
       const page = await ctx.newPage();
       const errs = [];
@@ -141,6 +152,11 @@ function pages() {
   /* Snapshot the Configurable Engine serialised export (the window.TE seam). */
   try {
     const ctx = await browser.newContext({ viewport: { width: 1440, height: 900 } });
+    if (activeProjectId) {
+      await ctx.addInitScript(pid => {
+        try { sessionStorage.setItem('te.project', pid); } catch (_) {}
+      }, activeProjectId);
+    }
     const page = await ctx.newPage();
     await page.goto(`http://127.0.0.1:${PORT}/screens/platform.html`, { waitUntil: 'networkidle', timeout: 30000 });
     const json = await page.evaluate(async () => {

@@ -19,6 +19,28 @@ window.TE_HEADER = (function () {
     for (var i = 0; i < list.length; i++) if (list[i].id === id) return list[i];
     return null;
   }
+  /* Header project context for non-default projects. The manifest header markup
+     carries the default (Benmore) project text; when another project is active
+     we swap the project name/meta so every screen's chrome matches the walk-
+     through. Benmore has no entry here, so its headers are untouched. */
+  var PROJECT_HEADERS = {
+    'cashmere-ridge': {
+      name: 'Cashmere Ridge · Screw Piling',
+      meta: 'Rock Control · client TBC · engineer TBC',
+      short: 'Cashmere Ridge • Screw Piling',
+      zone: 'Rock Control • today'
+    }
+  };
+  function activeHeader() {
+    try {
+      var id = window.sessionStorage && sessionStorage.getItem('te.project');
+      return id ? PROJECT_HEADERS[id] : null;
+    } catch (_) { return null; }
+  }
+  function swap(root, sel, v) {
+    var e = root.querySelector(sel);
+    if (e && v != null) e.textContent = v;
+  }
   function fill(id) {
     var s = byId(id);
     if (!s || !s.header) return;
@@ -26,7 +48,19 @@ window.TE_HEADER = (function () {
       return CONTOURS[k] || '';
     });
     var ph = document.currentScript && document.currentScript.previousElementSibling;
-    if (ph) ph.outerHTML = html;
+    if (!ph) return;
+    var ah = activeHeader();
+    if (ah) {
+      // Apply the project override off-DOM, then inject the finished header.
+      var tmp = document.createElement('div');
+      tmp.innerHTML = html;
+      swap(tmp, '.proj .name', ah.name);
+      swap(tmp, '.proj .meta', ah.meta);
+      swap(tmp, '.ctx .p', ah.short);
+      swap(tmp, '.ctx .z', ah.zone);
+      html = tmp.innerHTML;
+    }
+    ph.outerHTML = html;
   }
   return { fill: fill };
 })();

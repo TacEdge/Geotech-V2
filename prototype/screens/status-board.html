@@ -318,14 +318,16 @@ import { activeProject } from '../config/projects.js';
       var st=pack.boardStatus;
       var sp=document.querySelector('.s-pct'); if(sp)sp.textContent=st.pct+'%';
       var sn=document.querySelectorAll('.statusline .s-n');
-      if(sn.length===4){sn[0].textContent=st.confirmed;sn[1].textContent=st.drilled;sn[2].textContent=st.qa;sn[3].textContent=st.issues;}
+      if(sn.length===4){sn[0].textContent=st.confirmed;sn[1].textContent=st.drilled;sn[2].textContent=st.qa;sn[3].textContent=st.issues;
+        // Rewrite the " of N confirmed" text node in place (keep it one flex item).
+        var tn=sn[0].nextSibling; if(tn&&tn.nodeType===3)tn.nodeValue=' of '+st.total+' confirmed';}
     }
     if(pack.boardAttention){
       var ath=document.getElementById('sbAtt');
       if(ath)ath.outerHTML=pack.boardAttention.map(function(a){return '<button class="att-i" data-id="'+a.id+'"><span class="ad"></span><b>'+a.id+'</b> '+escH(a.text)+' <span class="az">('+escH(a.zone)+')</span></button>';}).join('');
     }
     if(pack.boardZones){
-      var TPH={complete:'TESTED',issue:'REDRILL',active:'DRILLED',onhold:'FOR TEST',planned:'PLANNED'};
+      var TPH=pack.boardPhaseLabels||{complete:'TESTED',issue:'REDRILL',active:'DRILLED',onhold:'FOR TEST',planned:'PLANNED'};
       var zh=document.getElementById('sbZones');
       if(zh)zh.outerHTML=pack.boardZones.map(function(z){
         var tiles=z.ids.map(function(id){var a=D[id]||{}; var ex=(a.reason&&a.phase!=='issue')?'<span class="exc">!</span>':'';
