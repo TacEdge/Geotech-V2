@@ -219,7 +219,7 @@ export const WORK_TYPES = {
   piling: {
     label: 'Piling / retaining',
     icon: 'piles',
-    status: 'configured',
+    status: 'live',
     geometry: 'point',
     unit: 'each',
     confirmationBasis: 'per_item',

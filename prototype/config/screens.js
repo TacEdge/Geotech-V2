@@ -220,7 +220,7 @@ window.TE_SCREENS = [
   {
     id: 'torque-log',
     title: 'Install / Torque Log',
-    stage: null,
+    stage: 'capture',
     chrome: 'field',
     path: 'screens/torque-log.html',
     moduleId: 'torque_log',
@@ -234,7 +234,7 @@ window.TE_SCREENS = [
   {
     id: 'verticality-cutoff',
     title: 'Verticality & Cut-off',
-    stage: null,
+    stage: 'capture',
     chrome: 'field',
     path: 'screens/verticality-cutoff.html',
     moduleId: 'verticality_cutoff',
