@@ -1,0 +1,51 @@
+/* ============================================================================
+   Cross-screen primitives — opt-in helper classes (prefixed te-) so they
+   never collide with a screen's existing class names. Used by the integrated
+   shell (index launcher, nav links, standardised title block).
+   ========================================================================== */
+
+.te-link { color:inherit; text-decoration:none; }
+
+/* Standard desktop page title block (the Reporting pattern, generalised) */
+.te-pagehead { display:flex; align-items:flex-end; justify-content:space-between;
+  gap:var(--sp-4); margin:var(--sp-1) 0 var(--sp-2); }
+.te-pagehead h1 { font-family:var(--display); font-weight:700; color:var(--ink);
+  font-size:var(--fs-xl); line-height:1.1; letter-spacing:.01em; }
+.te-pagehead .te-sub { color:var(--ink-60); font-size:var(--fs-base); margin-top:4px; }
+
+/* Status pills — calm, muted, shared vocabulary */
+.te-pill { display:inline-flex; align-items:center; gap:6px; height:24px;
+  padding:0 10px; border-radius:var(--r-pill); font-size:var(--fs-sm);
+  font-weight:600; font-family:var(--ui); white-space:nowrap; }
+.te-pill.is-ok    { background:var(--sage-tint); color:var(--forest-2); }
+.te-pill.is-pend  { background:var(--ochre-tint); color:var(--ochre); }
+.te-pill.is-issue { background:var(--brick-tint); color:var(--brick); }
+.te-pill.is-muted { background:var(--tint); color:var(--ink-60); }
+
+/* Primary / secondary buttons — calm enterprise defaults */
+.te-btn { display:inline-flex; align-items:center; justify-content:center; gap:8px;
+  height:40px; padding:0 18px; border-radius:var(--r-md); border:1px solid transparent;
+  font-family:var(--ui); font-size:var(--fs-base); font-weight:600; cursor:pointer;
+  transition:background .15s ease,border-color .15s ease; }
+.te-btn-primary { background:var(--forest); color:var(--cream); }
+.te-btn-primary:hover { background:var(--forest-2); }
+.te-btn-ghost { background:transparent; color:var(--ink-60); border-color:var(--line-2); }
+.te-btn-ghost:hover { color:var(--ink); border-color:var(--ink-40); }
+
+/* Buttons promoted to links during integration keep their original look.
+   Plain links inherit the surrounding text colour ... */
+a.tab, a.scard, a.act, a.qbtn, a.vall, a.view-link, a.btn-go, a.ago,
+a.card-foot, a.settings-link, a.iconbtn, a.sstep, a.back {
+  text-decoration:none; color:inherit;
+}
+/* ... but converted PRIMARY (forest) buttons keep their cream text, not the
+   surrounding dark ink — otherwise their label renders black on green. */
+a.continue-btn, a.save-btn, a.subqa, a.dock {
+  text-decoration:none; color:var(--cream);
+}
+a.burger { display:flex; }
+
+/* Honour reduced-motion globally — keeps the product calm */
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration:.001ms !important; transition-duration:.001ms !important; }
+}
