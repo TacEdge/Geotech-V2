@@ -129,7 +129,8 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="TacEdge">
 <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png?v=2026-06-26.7">
-<link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32.png?v=2026-06-26.7"></head>
+<link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32.png?v=2026-06-26.7">  <script src="config/screens.js"></script>
+</head>
 <body>
   <header class="topbar">
     <span class="wordmark">TACEDGE</span>
@@ -163,32 +164,7 @@
         </div>
         <span class="ph-role">PM · Desktop</span>
       </div>
-      <div class="grid">
-        <a class="card" href="screens/projects.html">
-          <span class="cic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18"/></svg></span>
-          <h3>Projects</h3><p>Pick or create a project.</p></a>
-        <a class="card" href="screens/platform.html">
-          <span class="cic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/></svg></span>
-          <h3>Configurable Engine</h3><p>One core, multiple geotech work types.</p></a>
-        <a class="card" href="screens/layout.html">
-          <span class="cic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></span>
-          <h3>Layout</h3><p>Define zones and locations.</p></a>
-        <a class="card" href="screens/work-item-design.html">
-          <span class="cic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20l4-1 10-10-3-3L5 16z"/><path d="M14 6l3 3"/></svg></span>
-          <h3>Work Item Design</h3><p>Set reusable anchor designs.</p></a>
-        <a class="card" href="screens/work-plan.html">
-          <span class="cic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5" width="16" height="16" rx="2"/><path d="M4 9h16M8 3v4M16 3v4"/></svg></span>
-          <h3>Work Plan</h3><p>Plan and commit the work.</p></a>
-        <a class="card" href="screens/testing-standards.html">
-          <span class="cic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg></span>
-          <h3>Testing Standards</h3><p>Set pass criteria once.</p></a>
-        <a class="card" href="screens/evidence-qa.html">
-          <span class="cic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4-3 7-7 8-4-1-7-4-7-8V6z"/><path d="M9 12l2 2 4-4"/></svg></span>
-          <h3>Evidence &amp; QA Requirements</h3><p>Define what makes a record confirmable.</p></a>
-        <a class="card" href="screens/safety-risk-controls.html">
-          <span class="cic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4a6 6 0 016 6v2H6v-2a6 6 0 016-6z"/><path d="M4 16h16M4 14v2M20 14v2"/></svg></span>
-          <h3>Safety &amp; Risk Controls</h3><p>Gate sign-on with JSA/SWMS.</p></a>
-      </div>
+      <div class="grid" id="g-configure"></div>
     </section>
 
     <!-- 2 CAPTURE FIELD REALITY -->
@@ -204,53 +180,12 @@
 
       <div class="subgroup pmgroup">
         <div class="sglabel">PM oversight</div>
-        <div class="grid">
-          <a class="card" href="screens/overview.html">
-            <span class="cic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg></span>
-            <h3>Overview</h3><p>What needs the PM's attention.</p></a>
-          <a class="card" href="screens/status-board.html">
-            <span class="cic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="4" height="16" rx="1"/><rect x="10" y="4" width="4" height="11" rx="1"/><rect x="17" y="4" width="4" height="14" rx="1"/></svg></span>
-            <h3>Status Board</h3><p>Project status at a glance.</p></a>
-          <a class="card" href="screens/spatial-map.html">
-            <span class="cic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 11-8 11s-8-5-8-11a8 8 0 0116 0z"/><circle cx="12" cy="10" r="2.5"/></svg></span>
-            <h3>Spatial Map</h3><p>Every anchor on the site.</p></a>
-          <a class="card" href="screens/reference-documents.html">
-            <span class="cic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5a2 2 0 012-2h13v18H6a2 2 0 01-2-2z"/><path d="M4 5v14"/></svg></span>
-            <h3>Reference Documents</h3><p>Approved project library.</p></a>
-        </div>
+        <div class="grid" id="g-capture-pm"></div>
       </div>
 
       <div class="subgroup opgroup">
         <div class="sglabel">Operator capture</div>
-        <div class="grid">
-          <a class="card" href="screens/crew-sign-on.html">
-            <span class="cic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M3 20c0-3 3-5 6-5s6 2 6 5"/><path d="M15.5 12.5l2 2 4-4"/></svg></span>
-            <h3>Crew Sign-On</h3><p>Individual sign-on and clearance.</p></a>
-          <a class="card" href="screens/drill-log.html">
-            <span class="cic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v10M8 9l4 4 4-4"/><rect x="7" y="16" width="10" height="4" rx="1"/></svg></span>
-            <h3>Drill Log</h3><p>Capture the actual drilling record.</p></a>
-          <a class="card" href="screens/grout-log.html">
-            <span class="cic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3s6 7 6 11a6 6 0 01-12 0c0-4 6-11 6-11z"/></svg></span>
-            <h3>Grout Log</h3><p>Count bags; system computes variance.</p></a>
-          <a class="card" href="screens/anchor-test.html">
-            <span class="cic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="2"/><path d="M12 7v13M5 12a7 7 0 0014 0M4 12H3M21 12h-2"/></svg></span>
-            <h3>Anchor Test Record</h3><p>AI proposes; operator verifies and commits.</p></a>
-          <a class="card" href="screens/incident.html">
-            <span class="cic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4l9 16H3z"/><path d="M12 10v4M12 17v.01"/></svg></span>
-            <h3>Incident / Near-Miss</h3><p>Photo-first report, available anytime.</p></a>
-          <a class="card" href="screens/daily-activity.html">
-            <span class="cic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 3h6v3H9z"/><path d="M9 11h6M9 15h4"/></svg></span>
-            <h3>Daily Activity Sheet</h3><p>Default day; edit exceptions.</p></a>
-          <a class="card" href="screens/spatial-map-operator.html">
-            <span class="cic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 11-8 11s-8-5-8-11a8 8 0 0116 0z"/><circle cx="12" cy="10" r="2.5"/></svg></span>
-            <h3>Spatial Map · Field</h3><p>Identify anchors and continue work.</p></a>
-          <a class="card" href="screens/safety-docs.html">
-            <span class="cic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4-3 7-7 8-4-1-7-4-7-8V6z"/><path d="M9 12l2 2 4-4"/></svg></span>
-            <h3>Safety Docs</h3><p>Read and acknowledge active JSA/SWMS.</p></a>
-          <a class="card" href="screens/reference-documents-operator.html">
-            <span class="cic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5a2 2 0 012-2h13v18H6a2 2 0 01-2-2z"/><path d="M4 5v14"/></svg></span>
-            <h3>Reference Documents · Field</h3><p>Read-only/offline library for crews.</p></a>
-        </div>
+        <div class="grid" id="g-capture-op"></div>
       </div>
     </section>
 
@@ -264,23 +199,23 @@
         </div>
         <span class="ph-role">PM · QA · Engineer</span>
       </div>
-      <div class="grid">
-        <a class="card" href="screens/qa-queue.html">
-          <span class="cic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg></span>
-          <h3>QA Queue</h3><p>Confirm a record, or reopen with a reason.</p></a>
-        <a class="card" href="screens/reporting.html">
-          <span class="cic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4"/><path d="M10 15v2M13 13v4M16 15v2"/></svg></span>
-          <h3>Reporting</h3><p>Assemble and release confirmed work.</p></a>
-        <a class="card" href="screens/closeout.html">
-          <span class="cic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="4" rx="1"/><path d="M5 8v11a1 1 0 001 1h12a1 1 0 001-1V8"/><path d="M10 12h4"/></svg></span>
-          <h3>Project Closeout</h3><p>Final checks before archive.</p></a>
-        <a class="card" href="screens/engineer-view.html">
-          <span class="cic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="5"/><path d="M9 13l-1 8 4-2 4 2-1-8"/></svg></span>
-          <h3>Engineer View</h3><p>Confirmed, released work only.</p></a>
-      </div>
+      <div class="grid" id="g-confirm"></div>
     </section>
 
     <div class="foot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5"/><path d="M12 8v.01"/></svg> <span>This is a prototype walkthrough for TacEdge Geotech V2.0.<br>Data shown is sample only.</span></div>
+  <script>
+  (function(){
+    var S = window.TE_SCREENS || [];
+    function card(s){
+      return '<a class="card" href="'+s.path+'"><span class="cic">'+s.icon+'</span><h3>'+s.cardTitle+'</h3><p>'+s.desc+'</p></a>';
+    }
+    function fill(id, list){ var el=document.getElementById(id); if(el) el.innerHTML = list.map(card).join(''); }
+    fill('g-configure',  S.filter(function(s){return s.stage==='configure';}));
+    fill('g-capture-pm', S.filter(function(s){return s.stage==='capture' && s.chrome==='pm';}));
+    fill('g-capture-op', S.filter(function(s){return s.stage==='capture' && s.chrome==='field';}));
+    fill('g-confirm',    S.filter(function(s){return s.stage==='confirm';}));
+  })();
+  </script>
   </main>
   <script defer src="js/build.js"></script>
   <script defer src="js/versioner.js"></script>

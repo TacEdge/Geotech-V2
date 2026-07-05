@@ -82,10 +82,20 @@ function startServer() {
 }
 
 function pages() {
-  const screens = fs.readdirSync(path.join(ROOT, 'screens'))
-    .filter(f => f.endsWith('.html')).sort();
-  return [{ id: 'index', url: 'index.html' }]
-    .concat(screens.map(f => ({ id: f.replace(/\.html$/, ''), url: 'screens/' + f })));
+  // Share one source of truth with the app: read the screen manifest. Fall back
+  // to globbing the screens dir if the manifest is missing.
+  const list = [{ id: 'index', url: 'index.html' }];
+  const manifestPath = path.join(ROOT, 'config', 'screens.js');
+  try {
+    const raw = fs.readFileSync(manifestPath, 'utf8');
+    const arr = JSON.parse(raw.slice(raw.indexOf('['), raw.lastIndexOf(']') + 1));
+    for (const s of arr) list.push({ id: s.id, url: s.path });
+    return list;
+  } catch (_) {
+    const screens = fs.readdirSync(path.join(ROOT, 'screens'))
+      .filter(f => f.endsWith('.html')).sort();
+    return list.concat(screens.map(f => ({ id: f.replace(/\.html$/, ''), url: 'screens/' + f })));
+  }
 }
 
 (async () => {
