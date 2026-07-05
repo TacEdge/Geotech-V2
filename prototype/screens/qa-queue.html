@@ -782,6 +782,99 @@ body{font-size:15px}
 })();
 
 </script>
+
+<style>
+/* Piling QA detail (compact; no photo evidence tabs). Scoped to the piling grid. */
+.pq-detail{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:18px 20px}
+.pq-head{display:flex;align-items:center;gap:12px}
+.pq-head .pq-id{font-family:var(--display);font-weight:700;font-size:24px;color:var(--ink)}
+.pq-pill{font-size:11px;font-weight:700;padding:3px 11px;border-radius:99px}
+.pq-pill.ready{color:var(--forest);background:var(--sage-tint)}
+.pq-pill.attn{color:var(--ochre);background:var(--ochre-tint);border:1px solid #eadbb8}
+.pq-sub{font-size:13px;color:var(--ink-60);margin-top:8px}
+.pq-metrics{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:16px}
+.pq-mx{background:var(--cream);border:1px solid var(--line);border-radius:10px;padding:12px 13px}
+.pq-mx .k{font-size:11px;color:var(--ink-40)}
+.pq-mx .v{font-family:var(--mono);font-size:16px;font-weight:700;color:var(--ink);margin-top:4px}
+.pq-mx .v.warn{color:var(--ochre)}
+.pq-mx .v.ok{color:var(--forest-2)}
+.pq-ev{display:flex;align-items:center;gap:9px;margin-top:16px;font-size:12.5px;color:var(--ink-60)}
+.pq-ev .ev-dots{display:flex;gap:5px}
+.pq-ev .ev-d{width:9px;height:9px;border-radius:50%}
+.pq-note{display:flex;align-items:flex-start;gap:9px;margin-top:16px;padding:12px 14px;background:var(--ochre-tint);border:1px solid #eadbb8;border-radius:10px;font-size:13px;color:var(--ink);line-height:1.5}
+.pq-acts{display:flex;gap:10px;margin-top:18px}
+.pq-btn{flex:1;display:flex;align-items:center;justify-content:center;gap:8px;height:44px;border-radius:9px;font-family:var(--ui);font-size:14px;font-weight:600;cursor:pointer;border:1px solid var(--line-2);background:var(--card);color:var(--ink)}
+.pq-btn.approve{background:var(--forest);color:var(--cream);border-color:var(--forest)}
+.pq-btn.approve:hover{background:var(--forest-2)}
+.pq-btn.reopen:hover{border-color:var(--ochre)}
+.pq-btn.done{background:var(--sage-tint);color:var(--forest-2);border-color:#cdd5b9;pointer-events:none}
+</style>
+<script type="module">
+import { packFor } from '../data/mock/index.js';
+import { activeProject } from '../config/projects.js';
+(function(){
+  var ap; try { ap = activeProject(); } catch (_) { return; }
+  if (!ap || ap.workType === 'anchoring') return;
+  var pack = packFor(ap.workType);
+  if (!pack || !pack.qaQueue) return;
+  var q = pack.qaQueue, esc = function(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');};
+  function dots(ev, tot){ var s=''; for (var i=0;i<tot;i++){ s+='<span class="ev-d" style="background:'+(i<ev?'#6e7d5c':'#d9d3c4')+'"></span>'; } return s; }
+  function item(it, sel){
+    return '<button class="q-item bd-'+(it.state==='attn'?'attn':'ready')+(sel?' is-sel':'')+'" data-pt="'+it.id+'">'+
+      '<div class="qi-top"><span class="qi-id">'+esc(it.id)+'</span><span class="qi-pill '+(it.state==='attn'?'attn':'ready')+'">'+esc(it.pill)+'</span></div>'+
+      '<div class="qi-zone">'+esc(it.zone)+' · '+esc(it.by)+' · '+esc(it.ago)+'</div>'+
+      '<div class="qi-ev"><span class="ev-dots">'+dots(it.ev,it.evTotal)+'</span><span class="ev-lab">'+it.ev+'/'+it.evTotal+' evidence</span></div>'+
+    '</button>';
+  }
+  function detail(it, sel){
+    var warn = it.state==='attn';
+    var note = warn ? '<div class="pq-note"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;color:#9a6a16"><path d="M12 4 21 19H3z"/><path d="M12 9.5v4"/><path d="M12 16.4v.01"/></svg><span>'+esc(it.gap)+' · final sustained torque below the 8 kNm target. Confirm the pile, monitor, or re-install.</span></div>' : '';
+    return '<div class="pq-detail" id="pd-'+it.id+'" data-id="'+it.id+'"'+(sel?'':' style="display:none"')+'>'+
+      '<div class="pq-head"><span class="pq-id">'+esc(it.id)+'</span><span class="pq-pill '+(warn?'attn':'ready')+'">'+esc(it.pill)+'</span></div>'+
+      '<div class="pq-sub">'+esc(it.zone)+' · Submitted by '+esc(it.by)+' · '+esc(it.ago)+'</div>'+
+      '<div class="pq-metrics">'+
+        '<div class="pq-mx"><div class="k">Final depth</div><div class="v">'+esc(it.depth)+'</div></div>'+
+        '<div class="pq-mx"><div class="k">Final torque</div><div class="v '+(warn?'warn':'ok')+'">'+esc(it.torque)+'</div></div>'+
+        '<div class="pq-mx"><div class="k">Verticality</div><div class="v ok">'+esc(it.vert)+'</div></div>'+
+      '</div>'+
+      '<div class="pq-ev"><span class="ev-dots">'+dots(it.ev,it.evTotal)+'</span> '+it.ev+' of '+it.evTotal+' evidence items · '+esc(it.result)+'</div>'+
+      note+
+      '<div class="pq-acts"><button class="pq-btn reopen" data-reopen="'+it.id+'">Reopen</button><button class="pq-btn approve" data-approve="'+it.id+'">'+(warn?'Confirm with note':'Approve record')+'</button></div>'+
+    '</div>';
+  }
+  var ready = q.items.filter(function(x){return x.state==='ready';});
+  var attn = q.items.filter(function(x){return x.state==='attn';});
+  var listHtml = '<div class="queue">'+
+    '<section class="q-sec"><div class="q-sec-h">Ready to confirm <span class="q-sec-c">'+ready.length+'</span></div>'+ready.map(function(it,i){return item(it,i===0);}).join('')+'</section>'+
+    '<section class="q-sec"><div class="q-sec-h">Needs attention <span class="q-sec-c">'+attn.length+'</span></div>'+attn.map(function(it){return item(it,false);}).join('')+'</section>'+
+    '<div class="reopen-note">Reopened records will appear here when available.</div></div>';
+  var detHtml = '<div class="detailwrap">'+q.items.map(function(it,i){return detail(it,i===0);}).join('')+'</div>';
+  var grid = document.querySelector('.qa-grid');
+  if (grid) grid.innerHTML = listHtml + detHtml;
+  var tot = document.getElementById('qa-total'); if (tot) tot.textContent = q.total;
+  var chips = document.querySelectorAll('.qa-filter .qchip .n');
+  if (chips[0]) chips[0].textContent = q.readyCount;
+  if (chips[1]) chips[1].textContent = q.attnCount;
+  function select(id){
+    document.querySelectorAll('.qa-grid .pq-detail').forEach(function(d){ d.style.display = d.dataset.id===id ? 'block' : 'none'; });
+    document.querySelectorAll('.qa-grid .q-item').forEach(function(b){ b.classList.toggle('is-sel', b.dataset.pt===id); });
+  }
+  document.querySelectorAll('.qa-grid .q-item').forEach(function(b){ b.addEventListener('click', function(){ select(b.dataset.pt); }); });
+  document.querySelectorAll('.qa-grid [data-approve]').forEach(function(b){
+    b.addEventListener('click', function(){
+      var d = document.getElementById('pd-'+b.dataset.approve);
+      b.textContent = 'Confirmed'; b.classList.add('done');
+      var pill = d && d.querySelector('.pq-pill'); if (pill){ pill.textContent = 'Confirmed'; pill.className = 'pq-pill ready'; }
+    });
+  });
+  document.querySelectorAll('.qa-grid [data-reopen]').forEach(function(b){
+    b.addEventListener('click', function(){
+      var d = document.getElementById('pd-'+b.dataset.reopen);
+      var pill = d && d.querySelector('.pq-pill'); if (pill){ pill.textContent = 'Reopened'; pill.className = 'pq-pill attn'; }
+    });
+  });
+})();
+</script>
   <script defer src="../js/build.js"></script>
   <script defer src="../js/versioner.js"></script>
   <script defer src="../js/standalone.js"></script>

@@ -439,3 +439,15 @@ export const closeout = {
   afterReport: 'Pile register',
   afterReportMeta: '12 piles'
 };
+
+/* --- QA Queue ------------------------------------------------------------- */
+export const qaQueue = {
+  total: 3,
+  readyCount: 2,
+  attnCount: 1,
+  items: [
+    { id: 'SP-04', state: 'ready', zone: 'Upper Bench', by: 'J. Neho', ago: '4h ago', ev: 5, evTotal: 5, depth: '12.2 m', torque: '8.9 kNm', vert: '1.6°', result: 'Meets target', pill: 'Ready' },
+    { id: 'SP-06', state: 'ready', zone: 'Upper Bench', by: 'J. Neho', ago: '4h ago', ev: 5, evTotal: 5, depth: '12.4 m', torque: '9.0 kNm', vert: '1.2°', result: 'Meets target', pill: 'Ready' },
+    { id: 'SP-05', state: 'attn', zone: 'Upper Bench', by: 'J. Neho', ago: '3h ago', ev: 4, evTotal: 5, depth: '12.0 m', torque: '7.8 kNm', vert: '1.9°', result: 'Below 8 kNm target', pill: 'Torque below target', gap: 'Torque below target' }
+  ]
+};
