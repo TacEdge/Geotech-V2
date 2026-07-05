@@ -356,6 +356,14 @@ window.TE_SCREENS = [
     path: 'screens/report-drill-summary.html'
   },
   {
+    id: 'report-pile-register',
+    title: 'Pile Register Report',
+    stage: null,
+    chrome: 'none',
+    path: 'screens/report-pile-register.html',
+    workTypes: ['piling']
+  },
+  {
     id: 'module-preview',
     title: 'Module Preview',
     stage: null,
