@@ -412,3 +412,30 @@ export const boardAttention = [
 
 /* Engineer source shown on Testing Standards + Work Item Design. */
 export const engineerSource = { name: 'Cashmere Ridge design set', rev: 'Rev C · 18 Jun 2026' };
+
+/* --- Closeout (piling conditions) ----------------------------------------- */
+export const closeout = {
+  itemLabel: 'piles',
+  items: 12,
+  blocking: 3,
+  days: '—',
+  progressPct: 78,
+  readyBig: 'Not ready',
+  readySub: '3 checks still blocking closeout',
+  checks: [
+    { state: 'ok', name: 'All piles installed', detail: '12 of 12 set, proofed and capped', v: 'Done' },
+    { state: 'blk', name: 'All records confirmed', detail: '2 piles awaiting QA confirmation', act: 'Open QA Queue', go: 'qa' },
+    { state: 'blk', name: 'Torque exceptions resolved', detail: 'SP-05 torque below target, awaiting PM decision', act: 'Open QA Queue', go: 'qa' },
+    { state: 'blk', name: 'Handover documentation delivered', detail: 'Pile register not yet confirmed issued to client', act: 'Confirm handover', go: 'rpt' },
+    { state: 'ok', name: 'No open incidents', detail: '1 reported · closed', v: 'Clear' },
+    { state: 'ok', name: 'Daily sheets submitted', detail: '18 of 18 days submitted', v: 'Done' }
+  ],
+  summary: [
+    { k: 'Piles', v: '12', small: 'of 12' },
+    { k: 'Released', v: '3' },
+    { k: 'Flagged', v: '1', small: 'open' },
+    { k: 'Duration', v: '18', small: 'days' }
+  ],
+  afterReport: 'Pile register',
+  afterReportMeta: '12 piles'
+};

@@ -282,7 +282,9 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);font-size:16
 
 </div>
 
-<script>
+<script type="module">
+import { packFor } from '../data/mock/index.js';
+import { activeProject } from '../config/projects.js';
 (function(){
   function nowHM(){var d=new Date();return ('0'+d.getHours()).slice(-2)+':'+('0'+d.getMinutes()).slice(-2);}
   var chk='<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>';
@@ -290,6 +292,30 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);font-size:16
       sub=document.getElementById('readySub'), blkN=document.getElementById('blkN'),
       stageTx=document.getElementById('stageTx'), closeBtn=document.getElementById('closeBtn'),
       gate=document.getElementById('gateMsg');
+
+  // Piling closeout: render this work type's conditions from the pack. Benmore
+  // (anchoring) keeps the static checks below, so it is unchanged.
+  (function(){
+    var ap; try { ap = activeProject(); } catch (_) { return; }
+    if (!ap || ap.workType === 'anchoring') return;
+    var pack = packFor(ap.workType);
+    if (!pack || !pack.closeout) return;
+    var co = pack.closeout, esc = function(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');};
+    var warn = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="8" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>';
+    var chev = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>';
+    var nEls = document.querySelectorAll('.m-stats .m-stat .n'), tEls = document.querySelectorAll('.m-stats .m-stat .t');
+    if (nEls[0]) nEls[0].textContent = co.items; if (tEls[0]) tEls[0].textContent = co.itemLabel;
+    if (nEls[2]) nEls[2].textContent = co.days;
+    var pctT = document.querySelectorAll('.m-track .tl span'); if (pctT[1]) pctT[1].textContent = co.progressPct + '%';
+    var pbar = document.querySelector('.m-track .bar span'); if (pbar) pbar.style.width = co.progressPct + '%';
+    document.getElementById('cklist').innerHTML = co.checks.map(function(c){
+      if (c.state === 'ok') return '<div class="ckrow ok"><span class="cki">' + chk + '</span><div class="ckinfo"><span class="ckn">' + esc(c.name) + '</span><span class="ckd">' + esc(c.detail) + '</span></div><span class="ckv">' + esc(c.v) + '</span></div>';
+      return '<div class="ckrow blk" data-block="' + (c.go || '') + '"><span class="cki">' + warn + '</span><div class="ckinfo"><span class="ckn">' + esc(c.name) + '</span><span class="ckd">' + esc(c.detail) + '</span></div><button class="ckact" data-go="' + (c.go || '') + '">' + esc(c.act) + chev + '</button></div>';
+    }).join('');
+    var sgCells = document.querySelectorAll('.anchor .sg .c');
+    (co.summary || []).forEach(function(s, i){ if (sgCells[i]) { var k = sgCells[i].querySelector('.k'), v = sgCells[i].querySelector('.v'); if (k) k.textContent = s.k; if (v) v.innerHTML = esc(s.v) + (s.small ? '<small>' + esc(s.small) + '</small>' : ''); } });
+    var afterMl = document.querySelector('.after .mgr-row .ml2'); if (afterMl) afterMl.innerHTML = esc(co.afterReport) + ' <span class="ms">' + esc(co.afterReportMeta) + '</span>';
+  })();
 
   function blocks(){return document.querySelectorAll('#cklist .ckrow.blk').length;}
 
