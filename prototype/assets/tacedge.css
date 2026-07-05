@@ -1,9 +1,0 @@
-/* ============================================================================
-   Compatibility shim. The design system now lives in ../styles/. Screens not
-   yet migrated still link this file; it re-exports the tokens and primitives so
-   their rendering is unchanged. Retire once every screen links the split
-   stylesheets directly. Deliberately excludes base.css so the reset and the
-   [hidden] fix only apply to migrated screens.
-   ========================================================================== */
-@import url("../styles/tokens.css");
-@import url("../styles/components.css");
