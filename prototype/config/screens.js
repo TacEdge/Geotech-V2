@@ -168,6 +168,8 @@ window.TE_SCREENS = [
     stage: 'capture',
     chrome: 'field',
     path: 'screens/drill-log.html',
+    moduleId: 'drill_log',
+    workTypes: ['anchoring', 'drainage'],
     header:
       '<header class="bar">\n      {{CONTOUR:field}}\n      <a class="iconbtn" href="../index.html" aria-label="Back to home" title="Back to home"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></a>\n      <div class="ctx"><span class="p">Benmore • Spillway Anchoring</span><span class="z">Rock Control • Today</span></div>\n      <div class="right"><span class="fresh"><span class="d"></span>Live</span>\n        <span class="av">SK</span>\n      </div>\n    </header>',
     icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v10M8 9l4 4 4-4"/><rect x="7" y="16" width="10" height="4" rx="1"/></svg>',
@@ -180,6 +182,8 @@ window.TE_SCREENS = [
     stage: 'capture',
     chrome: 'field',
     path: 'screens/grout-log.html',
+    moduleId: 'grout_log',
+    workTypes: ['anchoring'],
     header:
       '<header class="bar">\n      {{CONTOUR:field}}\n      <a class="iconbtn" href="../index.html" aria-label="Back to home" title="Back to home"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></a>\n      <div class="ctx"><span class="p">Benmore • Spillway Anchoring</span><span class="z">Rock Control • today</span></div>\n      <div class="right"><span class="fresh"><span class="d"></span>Live</span>\n        <span class="av">SK</span>\n      </div>\n    </header>',
     icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3s6 7 6 11a6 6 0 01-12 0c0-4 6-11 6-11z"/></svg>',
@@ -192,6 +196,8 @@ window.TE_SCREENS = [
     stage: 'capture',
     chrome: 'field',
     path: 'screens/anchor-test.html',
+    moduleId: 'anchor_test',
+    workTypes: ['anchoring'],
     header:
       '<header class="bar">\n      {{CONTOUR:field}}\n      <a class="iconbtn" href="../index.html" aria-label="Back to home" title="Back to home"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></a>\n      <div class="ctx"><span class="p">Benmore · Spillway Anchoring</span><span class="z">Rock Control · today</span></div>\n      <div class="right"><span class="fresh"><span class="d"></span>Live</span>\n        <span class="av">SK</span>\n      </div>\n    </header>',
     icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="2"/><path d="M12 7v13M5 12a7 7 0 0014 0M4 12H3M21 12h-2"/></svg>',
@@ -204,6 +210,7 @@ window.TE_SCREENS = [
     stage: 'capture',
     chrome: 'field',
     path: 'screens/incident.html',
+    moduleId: 'evidence',
     header:
       '<header class="bar">\n      {{CONTOUR:field}}\n      <a class="iconbtn" href="../index.html" aria-label="Back to home" title="Back to home"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></a>\n      <div class="ctx"><span class="p">Benmore · Spillway Anchoring</span><span class="z">Rock Control · today</span></div>\n      <div class="right"><span class="fresh"><span class="d"></span>Offline</span>\n        <span class="av">SK</span>\n      </div>\n    </header>',
     icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4l9 16H3z"/><path d="M12 10v4M12 17v.01"/></svg>',

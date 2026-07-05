@@ -203,17 +203,23 @@
     </section>
 
     <div class="foot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5"/><path d="M12 8v.01"/></svg> <span>This is a prototype walkthrough for TacEdge Geotech V2.0.<br>Data shown is sample only.</span></div>
-  <script>
+  <script type="module">
+  import { activeProject } from './config/projects.js';
   (function(){
     var S = window.TE_SCREENS || [];
+    // The active project's work type gates which capture modules appear; a
+    // screen with no workTypes is universal (shown for every work type).
+    var wt = 'anchoring';
+    try { wt = (activeProject() && activeProject().workType) || wt; } catch (_) {}
+    function applies(s){ return !s.workTypes || s.workTypes.indexOf(wt) !== -1; }
     function card(s){
       return '<a class="card" href="'+s.path+'"><span class="cic">'+s.icon+'</span><h3>'+s.cardTitle+'</h3><p>'+s.desc+'</p></a>';
     }
     function fill(id, list){ var el=document.getElementById(id); if(el) el.innerHTML = list.map(card).join(''); }
-    fill('g-configure',  S.filter(function(s){return s.stage==='configure';}));
-    fill('g-capture-pm', S.filter(function(s){return s.stage==='capture' && s.chrome==='pm';}));
-    fill('g-capture-op', S.filter(function(s){return s.stage==='capture' && s.chrome==='field';}));
-    fill('g-confirm',    S.filter(function(s){return s.stage==='confirm';}));
+    fill('g-configure',  S.filter(function(s){return s.stage==='configure' && applies(s);}));
+    fill('g-capture-pm', S.filter(function(s){return s.stage==='capture' && s.chrome==='pm' && applies(s);}));
+    fill('g-capture-op', S.filter(function(s){return s.stage==='capture' && s.chrome==='field' && applies(s);}));
+    fill('g-confirm',    S.filter(function(s){return s.stage==='confirm' && applies(s);}));
   })();
   </script>
   </main>
