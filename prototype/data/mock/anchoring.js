@@ -191,3 +191,228 @@ export const testingStandards = [
     ]
   }
 ];
+
+export const evidenceRequirements = [
+  {
+    "code": "EV-1",
+    "colour": "#6e7d5c",
+    "icon": "<rect x=\"3\" y=\"6\" width=\"14\" height=\"10\" rx=\"2\"/><circle cx=\"10\" cy=\"11\" r=\"2.6\"/><path d=\"M7 6l1.1-2h3.8L13 6\"/>",
+    "name": "Drill-complete photo",
+    "badge": "Required",
+    "badgeClass": "req",
+    "summary": "Photo · Blocks confirmation",
+    "type": "Photo",
+    "status": "Blocks confirmation",
+    "spec": "At least one clear photo of the completed drill hole and collar, captured before grouting.",
+    "criteria": [
+      {
+        "k": "Minimum",
+        "v": "1 photo"
+      },
+      {
+        "k": "Subject",
+        "v": "Drilled collar, in frame and in focus"
+      },
+      {
+        "k": "Capture",
+        "v": "Geotagged on operator device"
+      },
+      {
+        "k": "When",
+        "v": "Before grouting commences"
+      }
+    ],
+    "appliesTo": [
+      {
+        "k": "Designs",
+        "cls": "k-design",
+        "v": "All anchor designs"
+      },
+      {
+        "k": "Operations",
+        "cls": "k-work",
+        "v": "Drilling & anchoring"
+      },
+      {
+        "k": "Zones (optional)",
+        "cls": "k-design",
+        "v": "All zones"
+      }
+    ],
+    "reason": "Client/WSP require a photographic record before grouting hides the evidence."
+  },
+  {
+    "code": "EV-2",
+    "colour": "#6e8b3d",
+    "icon": "<path d=\"M2.5 11h3.2l2-5.5 3 9.5 2.2-6 1.3 2H17.5\"/>",
+    "name": "Anchor test result",
+    "badge": "Required",
+    "badgeClass": "req",
+    "summary": "Test result · Blocks confirmation",
+    "type": "Test result",
+    "status": "Blocks confirmation",
+    "spec": "A proof / load test result, evaluated automatically against the assigned Testing Standard.",
+    "criteria": [
+      {
+        "k": "Source",
+        "v": "Paper test sheet, photo-captured"
+      },
+      {
+        "k": "Evaluation",
+        "v": "Pass / fail vs Testing Standard"
+      },
+      {
+        "k": "On fail",
+        "v": "Raises a test-fail exception"
+      }
+    ],
+    "appliesTo": [
+      {
+        "k": "Designs",
+        "cls": "k-design",
+        "v": "All tested designs"
+      },
+      {
+        "k": "Operations",
+        "cls": "k-work",
+        "v": "Proof & load testing"
+      },
+      {
+        "k": "Zones (optional)",
+        "cls": "k-design",
+        "v": "All zones"
+      }
+    ],
+    "reason": "Load capacity against the engineer-issued spec is the core deliverable; a record without a test result is not releasable."
+  },
+  {
+    "code": "EV-3",
+    "colour": "#6e7d5c",
+    "icon": "<rect x=\"3\" y=\"6\" width=\"14\" height=\"10\" rx=\"2\"/><circle cx=\"10\" cy=\"11\" r=\"2.6\"/><path d=\"M7 6l1.1-2h3.8L13 6\"/>",
+    "name": "Grout record photo",
+    "badge": "Required",
+    "badgeClass": "req",
+    "summary": "Photo · Blocks confirmation",
+    "type": "Photo",
+    "status": "Blocks confirmation",
+    "spec": "A photo or batch record of the grouting operation for the anchor.",
+    "criteria": [
+      {
+        "k": "Minimum",
+        "v": "1 photo or batch docket"
+      },
+      {
+        "k": "Captures",
+        "v": "Grout batch and volume against spec"
+      },
+      {
+        "k": "When",
+        "v": "At grouting"
+      }
+    ],
+    "appliesTo": [
+      {
+        "k": "Designs",
+        "cls": "k-design",
+        "v": "All grouted designs"
+      },
+      {
+        "k": "Operations",
+        "cls": "k-work",
+        "v": "Grouting"
+      },
+      {
+        "k": "Zones (optional)",
+        "cls": "k-design",
+        "v": "All zones"
+      }
+    ],
+    "reason": "Grout traceability to the design specification is a standing client requirement on dam works."
+  },
+  {
+    "code": "EV-4",
+    "colour": "#2b4721",
+    "icon": "<path d=\"M3 16.5s1.8-1 3.5-1 2.8 1 4.5 1 3.5-1.5 3.5-1.5\"/><path d=\"M5.5 13l6.5-6.5 2 2L7.5 15l-3 1z\"/>",
+    "name": "Operator sign-off",
+    "badge": "Required",
+    "badgeClass": "req",
+    "summary": "Sign-off · Blocks confirmation",
+    "type": "Sign-off",
+    "status": "Blocks confirmation",
+    "spec": "The operator confirms the capture is complete and accurate before submission to the QA queue.",
+    "criteria": [
+      {
+        "k": "Who",
+        "v": "Drilling operator on shift"
+      },
+      {
+        "k": "When",
+        "v": "At submission to the QA queue"
+      }
+    ],
+    "appliesTo": [
+      {
+        "k": "Designs",
+        "cls": "k-design",
+        "v": "All anchor designs"
+      },
+      {
+        "k": "Operations",
+        "cls": "k-work",
+        "v": "All work types"
+      },
+      {
+        "k": "Zones (optional)",
+        "cls": "k-design",
+        "v": "All zones"
+      }
+    ],
+    "reason": "Accountability for the field record sits with the operator who did the work."
+  },
+  {
+    "code": "EV-5",
+    "colour": "#2b4721",
+    "icon": "<path d=\"M3 16.5s1.8-1 3.5-1 2.8 1 4.5 1 3.5-1.5 3.5-1.5\"/><path d=\"M5.5 13l6.5-6.5 2 2L7.5 15l-3 1z\"/>",
+    "name": "Engineer witness / sign-off",
+    "badge": "Conditional",
+    "badgeClass": "cond",
+    "summary": "Sign-off · Conditional check",
+    "type": "Sign-off",
+    "status": "Conditional check",
+    "spec": "Engineer confirmation, required only on records flagged for ground condition or a resolved exception.",
+    "criteria": [
+      {
+        "k": "Who",
+        "v": "WSP engineer · N. Hayes"
+      },
+      {
+        "k": "When",
+        "v": "Before release of flagged records"
+      },
+      {
+        "k": "Trigger",
+        "v": "Ground-condition or performance flag"
+      }
+    ],
+    "appliesTo": [
+      {
+        "k": "Designs",
+        "cls": "k-design",
+        "v": "Ground anchors"
+      },
+      {
+        "k": "Operations",
+        "cls": "k-work",
+        "v": "Flagged records"
+      },
+      {
+        "k": "Zones (optional)",
+        "cls": "k-design",
+        "v": "All zones"
+      }
+    ],
+    "reason": "Independent engineering verification is expected before exception records go outward to the client."
+  }
+];
+
+export const evidenceFoot = "5 requirements defined · 4 block confirmation · ready for Safety & Risk";
