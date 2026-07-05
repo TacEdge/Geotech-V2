@@ -313,7 +313,9 @@
 </div>
 
 <script>(function(){function fit(){var ps=document.querySelectorAll('.page');if(!ps.length)return;var vw=document.documentElement.clientWidth;ps.forEach(function(p){p.style.zoom='';});var pw=ps[0].getBoundingClientRect().width;var z=Math.min(1,(vw-6)/pw);ps.forEach(function(p){p.style.zoom=z;});}window.addEventListener('resize',fit);if(document.readyState!=='loading')fit();else document.addEventListener('DOMContentLoaded',fit);window.addEventListener('load',fit);})();</script>
-<script>if(window.navigator.standalone){document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest("a");if(a&&a.getAttribute("href")&&a.target!=="_blank"&&a.host===location.host){e.preventDefault();location.href=a.href;}},true);}</script>
 
+  <script defer src="../js/build.js"></script>
+  <script defer src="../js/versioner.js"></script>
+  <script defer src="../js/standalone.js"></script>
 </body>
 </html>

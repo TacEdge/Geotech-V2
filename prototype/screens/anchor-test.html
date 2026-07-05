@@ -591,8 +591,6 @@ body{font-family:var(--ui);color:var(--ink);background:var(--stage);min-height:1
   upd();
 })();
 </script>
-<script>(function(){try{var b=getComputedStyle(document.documentElement).getPropertyValue("--build").replace(/[\s"']/g,"");if(!b)return;document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest("a");if(!a)return;var h=a.getAttribute("href");if(!h)return;if(/^(https?:|#|mailto:|tel:)/i.test(h))return;if(!/\.html($|[?#])/i.test(h))return;if(/[?&]v=/.test(h))return;a.setAttribute("href",h+(h.indexOf("?")<0?"?":"&")+"v="+b);},true);}catch(_){}})();</script>
-<script>if(window.navigator.standalone){document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest("a");if(a&&a.getAttribute("href")&&a.target!=="_blank"&&a.host===location.host){e.preventDefault();location.href=a.href;}},true);}</script>
 <style>
 .fnav{position:fixed;inset:0;z-index:140;display:none}
 .fnav.open{display:block}
@@ -633,5 +631,8 @@ body{font-family:var(--ui);color:var(--ink);background:var(--stage);min-height:1
   </div>
 </div>
 <script>(function(){var f=document.getElementById('fnav'),b=document.getElementById('fnavBtn');if(!f||!b)return;function o(){f.classList.add('open');}function c(){f.classList.remove('open');}b.addEventListener('click',o);document.getElementById('fnavX').addEventListener('click',c);document.getElementById('fnavOv').addEventListener('click',c);document.addEventListener('keydown',function(e){if(e.key==='Escape')c();});var here=(location.pathname.split('/').pop()||'').replace(/\?.*/,'');[].forEach.call(f.querySelectorAll('.fnav-list a'),function(a){var k=a.getAttribute('href').replace(/\?.*/,'');if(k===here){a.classList.add('cur');a.insertAdjacentHTML('beforeend','<span class="cur-tag">You’re here</span>');a.addEventListener('click',function(e){e.preventDefault();c();});}});})();</script>
+  <script defer src="../js/build.js"></script>
+  <script defer src="../js/versioner.js"></script>
+  <script defer src="../js/standalone.js"></script>
 </body>
 </html>

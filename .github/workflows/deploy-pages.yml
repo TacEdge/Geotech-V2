@@ -29,6 +29,9 @@ jobs:
         with:
           enablement: true
 
+      - name: Stamp build version
+        run: echo "window.__TE_BUILD='${GITHUB_SHA:0:7}';" > prototype/js/build.js
+
       - name: Upload prototype as Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
