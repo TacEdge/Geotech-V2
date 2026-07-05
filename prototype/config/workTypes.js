@@ -281,6 +281,26 @@ export const WORK_TYPES = {
       flagAt: '> ×4.0'
     },
     spec: { name: 'Screw pile design set', rev: 'Rev C · 18 Jun 2026' },
-    design: { depth: '12.0 m', load: '450 kN', testRegime: 'Installation torque + proof load' }
+    design: { depth: '12.0 m', load: '450 kN', testRegime: 'Installation torque + proof load' },
+    // Capture modules this work type loads, by config/modules.js id.
+    moduleIds: ['torque_log', 'verticality_cutoff', 'evidence'],
+    // Acceptance criteria as typed rule objects (kinds from config/qa.js RULE_TYPES).
+    // Data only: there is no rule engine. The QA screens read these to describe
+    // what a record must satisfy before it can be confirmed.
+    rules: [
+      {
+        type: 'threshold', field: 'torque', op: '>=', value: 8, unit: 'kNm',
+        qualifier: { field: 'depth', op: '>=', value: 4.0, unit: 'm' },
+        label: 'Torque ≥ 8 kNm sustained at ≥ 4.0 m depth'
+      },
+      {
+        type: 'threshold', field: 'verticality', op: '<=', value: 2, unit: '°',
+        label: 'Verticality ≤ 2° from vertical'
+      },
+      {
+        type: 'threshold', field: 'cutoff', op: 'tolerance', value: 10, unit: 'mm',
+        label: 'Cut-off within ± 10 mm to design level'
+      }
+    ]
   }
 };

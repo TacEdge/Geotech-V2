@@ -45,6 +45,34 @@ export const PROJECTS = {
       { id: 'RB05', zone: 'Tailrace Face', grid: 'C2', depthDesign: 6.0, depthFinal: 5.98, materialUsed: 2, variance: 1.0, test: 'Pass', state: 'approved' },
       { id: 'RB09', zone: 'Right Abutment', grid: 'D1', depthDesign: 4.5, depthFinal: null, materialUsed: null, variance: null, test: null, state: 'provisional' }
     ]
+  },
+
+  // Phase 1 · Piling vertical demo. Fictional project; client/engineer are
+  // placeholders for the owner to confirm. draft:true until the content pack is
+  // validated (removed in Stage 1.4). Piling work type, screw-pile template.
+  'cashmere-ridge': {
+    id: 'CR-SP-2026',
+    name: 'Cashmere Ridge Retention',
+    client: 'TBC · owner to confirm',
+    contractor: 'Rock Control',
+    engineer: 'TBC · owner to confirm',
+    workType: 'piling',
+    draft: true,
+    zones: ['Upper Bench'],
+    items: [
+      { id: 'SP-01', zone: 'Upper Bench', grid: 'A1', depthDesign: 12.0, torqueDesign: 8, depthFinal: 12.1, torqueFinal: 9.2, variance: 0.8, test: 'Pass', state: 'approved' },
+      { id: 'SP-02', zone: 'Upper Bench', grid: 'A2', depthDesign: 12.0, torqueDesign: 8, depthFinal: 12.3, torqueFinal: 8.6, variance: 2.5, test: 'Pass', state: 'approved' },
+      { id: 'SP-03', zone: 'Upper Bench', grid: 'A3', depthDesign: 12.0, torqueDesign: 8, depthFinal: 11.8, torqueFinal: 8.1, variance: 1.7, test: 'Pass', state: 'approved' },
+      { id: 'SP-04', zone: 'Upper Bench', grid: 'B1', depthDesign: 12.0, torqueDesign: 8, depthFinal: 12.2, torqueFinal: 8.9, variance: 1.7, test: null, state: 'provisional' },
+      { id: 'SP-05', zone: 'Upper Bench', grid: 'B2', depthDesign: 12.0, torqueDesign: 8, depthFinal: 12.0, torqueFinal: 7.8, variance: 0.0, test: null, state: 'pending', flag: 'torque below target' },
+      { id: 'SP-06', zone: 'Upper Bench', grid: 'B3', depthDesign: 12.0, torqueDesign: 8, depthFinal: 12.4, torqueFinal: 9.0, variance: 3.3, test: null, state: 'provisional' },
+      { id: 'SP-07', zone: 'Upper Bench', grid: 'C1', depthDesign: 12.5, torqueDesign: 8, depthFinal: null, torqueFinal: null, variance: null, test: null, state: 'planned' },
+      { id: 'SP-08', zone: 'Upper Bench', grid: 'C2', depthDesign: 12.5, torqueDesign: 8, depthFinal: null, torqueFinal: null, variance: null, test: null, state: 'planned' },
+      { id: 'SP-09', zone: 'Upper Bench', grid: 'C3', depthDesign: 12.5, torqueDesign: 8, depthFinal: null, torqueFinal: null, variance: null, test: null, state: 'planned' },
+      { id: 'SP-10', zone: 'Upper Bench', grid: 'D1', depthDesign: 13.0, torqueDesign: 8, depthFinal: null, torqueFinal: null, variance: null, test: null, state: 'planned' },
+      { id: 'SP-11', zone: 'Upper Bench', grid: 'D2', depthDesign: 13.0, torqueDesign: 8, depthFinal: null, torqueFinal: null, variance: null, test: null, state: 'planned' },
+      { id: 'SP-12', zone: 'Upper Bench', grid: 'D3', depthDesign: 13.0, torqueDesign: 8, depthFinal: null, torqueFinal: null, variance: null, test: null, state: 'planned' }
+    ]
   }
 };
 

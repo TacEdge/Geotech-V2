@@ -6,8 +6,9 @@
    work types are added here as their content lands (e.g. piling.js in Phase 1).
    ========================================================================== */
 import * as anchoring from './anchoring.js';
+import * as piling from './piling.js';
 
-export const PACKS = { anchoring: anchoring };
+export const PACKS = { anchoring: anchoring, piling: piling };
 
 /** The content pack for a work-type key, or null if none is populated yet. */
 export function packFor(workTypeKey) {
