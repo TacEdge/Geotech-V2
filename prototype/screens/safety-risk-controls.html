@@ -213,113 +213,47 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);font-size:16
   <div class="eq-grid">
     <div class="leftcol">
       <div class="libpanel">
-        <div class="lib-h"><span class="pt">Safety documents</span><span class="pc">· 3</span>
+        <div class="lib-h"><span class="pt">Safety documents</span><span class="pc" id="srCount">· 3</span>
           <button class="new-d"><svg width="15" height="15" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><line x1="10" y1="4" x2="10" y2="16"/><line x1="4" y1="10" x2="16" y2="10"/></svg> Upload</button>
         </div>
-        <button class="wrow sel" data-code="JSA-1"><span class="wsw" style="color:#2b4721"><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2.5 4 5v4.5c0 3.6 2.6 6.6 6 8 3.4-1.4 6-4.4 6-8V5z"/><path d="M7.5 10l1.8 1.8L13 8"/></svg></span><span class="wname2">JSA · Spillway anchoring works</span><span class="wbadge active">Active</span><span class="wmenu"><svg width="18" height="18" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="4.5" r="1.3" fill="currentColor"/><circle cx="10" cy="10" r="1.3" fill="currentColor"/><circle cx="10" cy="15.5" r="1.3" fill="currentColor"/></svg></span></button>
-        <button class="wrow" data-code="SWMS-1"><span class="wsw" style="color:#6e7d5c"><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2.5 4 5v4.5c0 3.6 2.6 6.6 6 8 3.4-1.4 6-4.4 6-8V5z"/><path d="M7.5 10l1.8 1.8L13 8"/></svg></span><span class="wname2">SWMS · Rope-access drilling</span><span class="wmenu"><svg width="18" height="18" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="4.5" r="1.3" fill="currentColor"/><circle cx="10" cy="10" r="1.3" fill="currentColor"/><circle cx="10" cy="15.5" r="1.3" fill="currentColor"/></svg></span></button>
-        <button class="wrow" data-code="SWMS-2"><span class="wsw" style="color:#b07d2b"><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2.5 4 5v4.5c0 3.6 2.6 6.6 6 8 3.4-1.4 6-4.4 6-8V5z"/><path d="M7.5 10l1.8 1.8L13 8"/></svg></span><span class="wname2">SWMS · Crane &amp; lifting</span><span class="wmenu"><svg width="18" height="18" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="4.5" r="1.3" fill="currentColor"/><circle cx="10" cy="10" r="1.3" fill="currentColor"/><circle cx="10" cy="15.5" r="1.3" fill="currentColor"/></svg></span></button>
+        <span id="srList" style="display:contents"></span>
       </div>
     </div>
 
-    <div class="detailwrap"><div class="detail" id="d-JSA-1" data-code="JSA-1">
-      <div class="docsheet">
-      <div class="d-head">
-        <div class="d-head-l">
-          <div class="d-code-row"><span class="d-icon" style="color:#2b4721"><svg width="22" height="22" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2.5 4 5v4.5c0 3.6 2.6 6.6 6 8 3.4-1.4 6-4.4 6-8V5z"/><path d="M7.5 10l1.8 1.8L13 8"/></svg></span><span class="d-code">JSA · Spillway anchoring works</span></div>
-          <div class="d-tags"><span class="d-type">JSA</span><span class="wbadge active">Active</span><span class="d-status">Governs all drilling &amp; anchoring</span></div>
-        </div>
-        <div class="d-acts"><button class="btn-o"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M1.5 10S4.5 4.5 10 4.5 18.5 10 18.5 10 15.5 15.5 10 15.5 1.5 10 1.5 10z"/><circle cx="10" cy="10" r="2.4"/></svg> Open</button><button class="btn-o"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h11l-3-3M17 13H6l3 3"/></svg> Replace</button></div>
-      </div>
-      <div class="srcmeta">Uploaded 12 May 2026 · Tim R. · PDF · 1.4 MB</div>
-
-      <div class="ds-governs">
-        <div class="card-h">Governs <button class="edit">Edit scope</button></div>
-        <div class="cbody"><div class="scope-grid">
-          <div class="scope-col"><div class="sk">Work types</div><span class="apc k-work">All drilling &amp; anchoring</span></div>
-          <div class="scope-col"><div class="sk">Zones</div><span class="apc k-design">All zones</span></div>
-        </div></div>
-      </div>
-      </div>
-
-      <div class="card">
-        <div class="card-h">Sign-on gate</div>
-        <div class="cbody">
-          <div class="gate-line"><span class="gd on"></span><div><b>Active.</b> No one can start drilling until they have signed on and acknowledged this JSA.</div></div>
-          <div class="gate-line"><span class="gd on"></span><div><b>Today:</b> 0 of 6 crew signed on so far.</div></div>
-        </div>
-      </div>
-    </div><div class="detail" id="d-SWMS-1" data-code="SWMS-1" style="display:none">
-      <div class="docsheet">
-      <div class="d-head">
-        <div class="d-head-l">
-          <div class="d-code-row"><span class="d-icon" style="color:#6e7d5c"><svg width="22" height="22" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2.5 4 5v4.5c0 3.6 2.6 6.6 6 8 3.4-1.4 6-4.4 6-8V5z"/><path d="M7.5 10l1.8 1.8L13 8"/></svg></span><span class="d-code">SWMS · Rope-access drilling</span></div>
-          <div class="d-tags"><span class="d-type">SWMS</span><span class="wbadge active">Active</span><span class="d-status">Governs rope-access drilling</span></div>
-        </div>
-        <div class="d-acts"><button class="btn-o"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M1.5 10S4.5 4.5 10 4.5 18.5 10 18.5 10 15.5 15.5 10 15.5 1.5 10 1.5 10z"/><circle cx="10" cy="10" r="2.4"/></svg> Open</button><button class="btn-o"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h11l-3-3M17 13H6l3 3"/></svg> Replace</button></div>
-      </div>
-      <div class="srcmeta">Uploaded 12 May 2026 · Tim R. · PDF · 0.9 MB</div>
-
-      <div class="ds-governs">
-        <div class="card-h">Governs <button class="edit">Edit scope</button></div>
-        <div class="cbody"><div class="scope-grid">
-          <div class="scope-col"><div class="sk">Work types</div><span class="apc k-work">Rope-access drilling</span></div>
-          <div class="scope-col"><div class="sk">Zones</div><span class="apc k-design">Spillway Face · Left Abutment</span></div>
-        </div></div>
-      </div>
-      </div>
-
-      <div class="card">
-        <div class="card-h">Sign-on gate</div>
-        <div class="cbody">
-          <div class="gate-line"><span class="gd on"></span><div><b>Active.</b> Acknowledged at sign-on alongside the JSA before rope-access work.</div></div>
-          <div class="gate-line"><span class="gd on"></span><div><b>Today:</b> 0 of 6 crew signed on so far.</div></div>
-        </div>
-      </div>
-    </div><div class="detail" id="d-SWMS-2" data-code="SWMS-2" style="display:none">
-      <div class="docsheet">
-      <div class="d-head">
-        <div class="d-head-l">
-          <div class="d-code-row"><span class="d-icon" style="color:#6e7d5c"><svg width="22" height="22" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2.5 4 5v4.5c0 3.6 2.6 6.6 6 8 3.4-1.4 6-4.4 6-8V5z"/><path d="M7.5 10l1.8 1.8L13 8"/></svg></span><span class="d-code">SWMS · Crane &amp; lifting</span></div>
-          <div class="d-tags"><span class="d-type">SWMS</span><span class="wbadge draft">Draft</span><span class="d-status">Not yet active</span></div>
-        </div>
-        <div class="d-acts"><button class="btn-o"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M1.5 10S4.5 4.5 10 4.5 18.5 10 18.5 10 15.5 15.5 10 15.5 1.5 10 1.5 10z"/><circle cx="10" cy="10" r="2.4"/></svg> Open</button><button class="btn-o"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h11l-3-3M17 13H6l3 3"/></svg> Replace</button></div>
-      </div>
-      <div class="srcmeta">Uploaded 24 May 2026 · Tim R. · PDF · 0.7 MB</div>
-
-      <div class="ds-governs">
-        <div class="card-h">Governs <button class="edit">Edit scope</button></div>
-        <div class="cbody"><div class="scope-grid">
-          <div class="scope-col"><div class="sk">Work types</div><span class="apc k-work">Crane &amp; lifting</span></div>
-          <div class="scope-col"><div class="sk">Zones</div><span class="apc k-design">Crest Gallery</span></div>
-        </div></div>
-      </div>
-      </div>
-
-      <div class="card">
-        <div class="card-h">Sign-on gate</div>
-        <div class="cbody">
-          <div class="gate-line"><span class="gd off"></span><div><b>Not active.</b> This document is not yet part of the sign-on gate. Set it active to bring it into acknowledgement at sign-on.</div></div>
-        </div>
-      </div>
-    </div></div>
+    <div class="detailwrap" id="srDetails"></div>
   </div>
 
   <div class="eq-foot">
-    <div class="ss-item ok"><svg width="17" height="17" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"/></svg> 2 safety documents active · scoped · sign-on gate wired</div>
+    <div class="ss-item ok"><svg width="17" height="17" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"/></svg> <span id="srFoot">2 safety documents active · scoped · sign-on gate wired</span></div>
     <a class="continue-btn" href="overview.html">Finish setup <svg width="17" height="17" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10h11M11 5l5 5-5 5"/></svg></a>
   </div>
 </div>
 
-<script>
-(function(){try{
-  function show(c){
-    document.querySelectorAll('.detail').forEach(function(d){d.style.display=(d.dataset.code===c)?'block':'none';});
-    document.querySelectorAll('.wrow').forEach(function(r){r.classList.toggle('sel',r.dataset.code===c);});
+  <script type="module">
+  import { packFor } from '../data/mock/index.js';
+  import { activeProject } from '../config/projects.js';
+  function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+  var AT='viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"';
+  var OPEN="<svg width=\"16\" height=\"16\" viewBox=\"0 0 20 20\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M1.5 10S4.5 4.5 10 4.5 18.5 10 18.5 10 15.5 15.5 10 15.5 1.5 10 1.5 10z\"/><circle cx=\"10\" cy=\"10\" r=\"2.4\"/></svg>", REPLACE="<svg width=\"16\" height=\"16\" viewBox=\"0 0 20 20\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M3 7h11l-3-3M17 13H6l3 3\"/></svg>", MENU="<svg width=\"18\" height=\"18\" viewBox=\"0 0 20 20\" fill=\"none\"><circle cx=\"10\" cy=\"4.5\" r=\"1.3\" fill=\"currentColor\"/><circle cx=\"10\" cy=\"10\" r=\"1.3\" fill=\"currentColor\"/><circle cx=\"10\" cy=\"15.5\" r=\"1.3\" fill=\"currentColor\"/></svg>";
+  function ic(inner,sz){return '<svg width="'+sz+'" height="'+sz+'" '+AT+'>'+inner+'</svg>';}
+  var pack = packFor(activeProject().workType);
+  if (pack && pack.safetyDocs) {
+    var D = pack.safetyDocs;
+    function btn(d,i){ return '<button class="wrow'+(i===0?' sel':'')+'" data-code="'+d.code+'"><span class="wsw" style="color:'+d.colour+'">'+ic(d.icon,18)+'</span><span class="wname2">'+esc(d.name)+'</span>'+(d.listBadge?'<span class="wbadge '+d.listBadge.cls+'">'+esc(d.listBadge.text)+'</span>':'')+'<span class="wmenu">'+MENU+'</span></button>'; }
+    function sheet(d,i){
+      var badge = d.badge?'<span class="wbadge '+d.badge.cls+'">'+esc(d.badge.text)+'</span>':'';
+      var scope = d.scope.map(function(s){return '<div class="scope-col"><div class="sk">'+esc(s.sk)+'</div><span class="apc '+s.cls+'">'+esc(s.v)+'</span></div>';}).join('');
+      var gate = d.gate.map(function(g){return '<div class="gate-line"><span class="gd '+g.state+'"></span><div>'+g.html+'</div></div>';}).join('');
+      return '<div class="detail" id="d-'+d.code+'"'+(i===0?'':' style="display:none"')+' data-code="'+d.code+'"><div class="docsheet"><div class="d-head"><div class="d-head-l"><div class="d-code-row"><span class="d-icon" style="color:'+d.colour+'">'+ic(d.icon,22)+'</span><span class="d-code">'+esc(d.name)+'</span></div><div class="d-tags"><span class="d-type">'+esc(d.type)+'</span>'+badge+'<span class="d-status">'+esc(d.status)+'</span></div></div><div class="d-acts"><button class="btn-o">'+OPEN+' Open</button><button class="btn-o">'+REPLACE+' Replace</button></div></div><div class="srcmeta">'+esc(d.srcmeta)+'</div><div class="ds-governs"><div class="card-h">Governs <button class="edit">Edit scope</button></div><div class="cbody"><div class="scope-grid">'+scope+'</div></div></div></div><div class="card"><div class="card-h">Sign-on gate</div><div class="cbody">'+gate+'</div></div></div>'; }
+    document.getElementById('srList').innerHTML = D.map(btn).join('');
+    document.getElementById('srDetails').innerHTML = D.map(sheet).join('');
+    var c=document.getElementById('srCount'); if(c) c.textContent='· '+D.length;
+    var ft=document.getElementById('srFoot'); if(ft) ft.textContent=pack.safetyFoot;
+    function show(c){document.querySelectorAll('.detail').forEach(function(x){x.style.display=(x.dataset.code===c)?'block':'none';});document.querySelectorAll('.wrow').forEach(function(r){r.classList.toggle('sel',r.dataset.code===c);});}
+    document.querySelectorAll('.wrow').forEach(function(r){r.addEventListener('click',function(){show(r.dataset.code);});});
   }
-  document.querySelectorAll('.wrow').forEach(function(r){r.addEventListener('click',function(){show(r.dataset.code);});});
-}catch(e){}})();
-</script>
+  </script>
+
   <script defer src="../js/build.js"></script>
   <script defer src="../js/versioner.js"></script>
   <script defer src="../js/standalone.js"></script>

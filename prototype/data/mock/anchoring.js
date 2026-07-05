@@ -652,3 +652,115 @@ export const evidenceRequirements = [
 ];
 
 export const evidenceFoot = "5 requirements defined · 4 block confirmation · ready for Safety & Risk";
+
+export const safetyDocs = [
+  {
+    "code": "JSA-1",
+    "colour": "#2b4721",
+    "icon": "<path d=\"M10 2.5 4 5v4.5c0 3.6 2.6 6.6 6 8 3.4-1.4 6-4.4 6-8V5z\"/><path d=\"M7.5 10l1.8 1.8L13 8\"/>",
+    "name": "JSA · Spillway anchoring works",
+    "listBadge": {
+      "cls": "active",
+      "text": "Active"
+    },
+    "type": "JSA",
+    "status": "Governs all drilling & anchoring",
+    "badge": {
+      "cls": "active",
+      "text": "Active"
+    },
+    "srcmeta": "Uploaded 12 May 2026 · Tim R. · PDF · 1.4 MB",
+    "scope": [
+      {
+        "sk": "Work types",
+        "cls": "k-work",
+        "v": "All drilling & anchoring"
+      },
+      {
+        "sk": "Zones",
+        "cls": "k-design",
+        "v": "All zones"
+      }
+    ],
+    "gate": [
+      {
+        "state": "on",
+        "html": "<b>Active.</b> No one can start drilling until they have signed on and acknowledged this JSA."
+      },
+      {
+        "state": "on",
+        "html": "<b>Today:</b> 0 of 6 crew signed on so far."
+      }
+    ]
+  },
+  {
+    "code": "SWMS-1",
+    "colour": "#6e7d5c",
+    "icon": "<path d=\"M10 2.5 4 5v4.5c0 3.6 2.6 6.6 6 8 3.4-1.4 6-4.4 6-8V5z\"/><path d=\"M7.5 10l1.8 1.8L13 8\"/>",
+    "name": "SWMS · Rope-access drilling",
+    "listBadge": null,
+    "type": "SWMS",
+    "status": "Governs rope-access drilling",
+    "badge": {
+      "cls": "active",
+      "text": "Active"
+    },
+    "srcmeta": "Uploaded 12 May 2026 · Tim R. · PDF · 0.9 MB",
+    "scope": [
+      {
+        "sk": "Work types",
+        "cls": "k-work",
+        "v": "Rope-access drilling"
+      },
+      {
+        "sk": "Zones",
+        "cls": "k-design",
+        "v": "Spillway Face · Left Abutment"
+      }
+    ],
+    "gate": [
+      {
+        "state": "on",
+        "html": "<b>Active.</b> Acknowledged at sign-on alongside the JSA before rope-access work."
+      },
+      {
+        "state": "on",
+        "html": "<b>Today:</b> 0 of 6 crew signed on so far."
+      }
+    ]
+  },
+  {
+    "code": "SWMS-2",
+    "colour": "#b07d2b",
+    "icon": "<path d=\"M10 2.5 4 5v4.5c0 3.6 2.6 6.6 6 8 3.4-1.4 6-4.4 6-8V5z\"/><path d=\"M7.5 10l1.8 1.8L13 8\"/>",
+    "name": "SWMS · Crane & lifting",
+    "listBadge": null,
+    "type": "SWMS",
+    "status": "Not yet active",
+    "badge": {
+      "cls": "draft",
+      "text": "Draft"
+    },
+    "srcmeta": "Uploaded 24 May 2026 · Tim R. · PDF · 0.7 MB",
+    "scope": [
+      {
+        "sk": "Work types",
+        "cls": "k-work",
+        "v": "Crane & lifting"
+      },
+      {
+        "sk": "Zones",
+        "cls": "k-design",
+        "v": "Crest Gallery"
+      }
+    ],
+    "gate": [
+      {
+        "state": "off",
+        "html": "<b>Not active.</b> This document is not yet part of the sign-on gate. Set it active to bring it into acknowledgement at sign-on."
+      }
+    ]
+  }
+];
+
+export const safetyFoot = "2 safety documents active · scoped · sign-on gate wired";
