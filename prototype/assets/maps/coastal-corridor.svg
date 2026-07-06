@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 853" role="img" aria-label="Coastal Corridor rockfall site plan (placeholder artwork)">
+  <!-- PLACEHOLDER site plan · Coastal Corridor Rockfall · replace with survey artwork.
+       On-brand coastal batter: sea at the toe, two batter faces (A, B), crest road. -->
+  <defs>
+    <linearGradient id="cc-sea" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0" stop-color="#3f6f6a"/>
+      <stop offset="1" stop-color="#5c8a83"/>
+    </linearGradient>
+    <linearGradient id="cc-batter" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#cdbf9f"/>
+      <stop offset="1" stop-color="#a99871"/>
+    </linearGradient>
+    <linearGradient id="cc-bench" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#d8ceb2"/>
+      <stop offset="1" stop-color="#c3b591"/>
+    </linearGradient>
+  </defs>
+
+  <!-- ground base -->
+  <rect x="0" y="0" width="1280" height="853" fill="#e6dfcb"/>
+
+  <!-- upper bench / crest plateau -->
+  <rect x="0" y="0" width="1280" height="150" fill="url(#cc-bench)"/>
+  <!-- crest road line -->
+  <line x1="0" y1="150" x2="1280" y2="150" stroke="#8a7c55" stroke-width="4"/>
+  <g stroke="#8a7c55" stroke-width="1.5" stroke-dasharray="14 12" opacity="0.6">
+    <line x1="0" y1="141" x2="1280" y2="141"/>
+  </g>
+
+  <!-- batter face (rock slope) between crest and toe -->
+  <rect x="0" y="150" width="1280" height="470" fill="url(#cc-batter)"/>
+  <!-- slope contour lines -->
+  <g stroke="#8f7f57" stroke-width="1.4" fill="none" opacity="0.55">
+    <path d="M0 210 Q 320 196 640 210 T 1280 210"/>
+    <path d="M0 285 Q 320 271 640 285 T 1280 285"/>
+    <path d="M0 360 Q 320 346 640 360 T 1280 360"/>
+    <path d="M0 435 Q 320 421 640 435 T 1280 435"/>
+    <path d="M0 510 Q 320 496 640 510 T 1280 510"/>
+    <path d="M0 585 Q 320 571 640 585 T 1280 585"/>
+  </g>
+  <!-- fall-line ticks suggesting the batter gradient -->
+  <g stroke="#7d6e49" stroke-width="1.2" opacity="0.4">
+    <line x1="210" y1="150" x2="210" y2="620"/>
+    <line x1="470" y1="150" x2="470" y2="620"/>
+    <line x1="740" y1="150" x2="740" y2="620"/>
+    <line x1="1010" y1="150" x2="1010" y2="620"/>
+  </g>
+
+  <!-- zone divider between Batter A and Batter B -->
+  <line x1="620" y1="150" x2="620" y2="620" stroke="#6f6244" stroke-width="2.5" stroke-dasharray="10 8" opacity="0.7"/>
+
+  <!-- toe bund -->
+  <rect x="0" y="620" width="1280" height="40" fill="#b6a67e"/>
+  <line x1="0" y1="620" x2="1280" y2="620" stroke="#7d6e49" stroke-width="3"/>
+
+  <!-- sea at the toe -->
+  <rect x="0" y="660" width="1280" height="193" fill="url(#cc-sea)"/>
+  <g stroke="#dcefe9" stroke-width="2" fill="none" opacity="0.35">
+    <path d="M0 705 Q 80 695 160 705 T 320 705 T 480 705 T 640 705 T 800 705 T 960 705 T 1120 705 T 1280 705"/>
+    <path d="M0 760 Q 80 750 160 760 T 320 760 T 480 760 T 640 760 T 800 760 T 960 760 T 1120 760 T 1280 760"/>
+    <path d="M0 815 Q 80 805 160 815 T 320 815 T 480 815 T 640 815 T 800 815 T 960 815 T 1120 815 T 1280 815"/>
+  </g>
+
+  <!-- labels -->
+  <g font-family="'JetBrains Mono', ui-monospace, monospace" font-weight="700" fill="#5a4f36">
+    <text x="30" y="60" font-size="24" letter-spacing="3">CREST ROAD</text>
+    <text x="250" y="400" font-size="30" letter-spacing="4" text-anchor="middle">BATTER A</text>
+    <text x="960" y="400" font-size="30" letter-spacing="4" text-anchor="middle">BATTER B</text>
+    <text x="30" y="700" font-size="22" letter-spacing="3" fill="#e7f1ec">TOE · SEA</text>
+    <text x="1140" y="835" font-size="16" letter-spacing="2" fill="#cfe4dd" opacity="0.8">PLACEHOLDER</text>
+  </g>
+</svg>
