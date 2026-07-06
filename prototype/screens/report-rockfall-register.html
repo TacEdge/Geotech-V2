@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en-NZ">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#2b4721">
+<title>Rockfall Register — Coastal Corridor</title>
+  <link rel="stylesheet" href="../styles/fonts.css">
+  <link rel="stylesheet" href="../styles/tokens.css">
+  <link rel="stylesheet" href="../styles/base.css">
+  <link rel="stylesheet" href="../styles/components.css">
+<link rel="stylesheet" href="../styles/report.css">
+<style>
+  /* Rockfall register status chips (extends the shared report shell). */
+  .chip.ok{background:#e7eddf;color:var(--forest);border:1px solid var(--sage);}
+  .chip.prog{background:#dbe9ea;color:#2f7d86;border:1px solid #b9d3d6;}
+  .chip.flag{background:#f0e3c4;color:var(--amber);border:1px solid var(--amber);}
+  .chip.plan{background:#eceadf;color:#7a8270;border:1px solid var(--line-2);}
+</style>
+</head>
+<body>
+<div class="viewerbar"><a class="vb-back" href="engineer-view.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg> Engineer View</a><span class="vb-title">Rockfall Register · Coastal Corridor</span><span class="vb-act">PDF · A4</span></div>
+
+<div class="page">
+  <div class="masthead">
+    <div><div class="brand-name">TACEDGE</div><div class="brand-tag">Rockfall Protection Register</div></div>
+    <div class="doc-meta"><div class="title">Rockfall Register</div><div class="ref" id="docRef">TE-GEO-CC-RR · REV DRAFT</div></div>
+  </div>
+
+  <div class="ident">
+    <div class="f"><div class="k">Project</div><div class="v big" id="idProject">Coastal Corridor Rockfall</div></div>
+    <div class="f"><div class="k">Contractor</div><div class="v" id="idContractor">Rock Control Ltd</div></div>
+    <div class="f"><div class="k">Engineer</div><div class="v" id="idEngineer">TBC</div></div>
+    <div class="f"><div class="k">Design set</div><div class="v" id="idDesign">Rev C · 18 Jun 2026</div></div>
+    <div class="f"><div class="k">Acceptance</div><div class="v">Overlap ≥ 300 mm · pull ≥ 50 kN</div></div>
+  </div>
+
+  <div class="stat-row" id="statRow"></div>
+
+  <h2 class="section"><span class="num">01</span> Drapery Mesh Panel Register <span class="src" id="panelSrc">DM1 · per lot</span></h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Panel</th><th>Lot</th><th>Zone</th><th class="num">Area m²</th>
+        <th class="num">Overlap mm</th><th>Fixing serials</th><th>State</th>
+      </tr>
+    </thead>
+    <tbody id="panelBody"></tbody>
+  </table>
+
+  <h2 class="section"><span class="num">02</span> Crest Pin Register <span class="src" id="pinSrc">CP1 · per item</span></h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Pin</th><th>Zone</th><th class="num">Design depth m</th><th class="num">Final depth m</th>
+        <th class="num">Pull kN</th><th>Result</th><th>State</th>
+      </tr>
+    </thead>
+    <tbody id="pinBody"></tbody>
+  </table>
+
+  <h2 class="section"><span class="num">03</span> Component Certificates <span class="src">Traceable per mesh batch</span></h2>
+  <table>
+    <thead>
+      <tr><th>Ref</th><th>Item</th><th>Batch</th><th>Lots</th><th>Status</th></tr>
+    </thead>
+    <tbody id="certBody"></tbody>
+  </table>
+
+  <div class="signoff">
+    <div class="sig"><div class="role">Prepared by</div><div class="name">S. Kela</div><div class="meta">Site engineer · Rock Control</div></div>
+    <div class="sig"><div class="role">Reviewed by</div><div class="name">Tim R.</div><div class="meta">Project manager · Rock Control</div></div>
+    <div class="sig"><div class="role">Accepted by</div><div class="name">TBC</div><div class="meta">Design engineer</div></div>
+  </div>
+  <div class="standards">Acceptance per the rockfall protection design set (mesh overlap ≥ 300 mm laced, fixing serials recorded, crest pins proof tested ≥ 50 kN with 5 min hold, lots confirmed once linked pins pass). Draft register · content for owner and validator review.</div>
+  <div class="foot"><span>TACEDGE GEOTECH · ROCKFALL REGISTER</span><span id="footRef">COASTAL CORRIDOR · DRAFT</span></div>
+</div>
+
+<script type="module">
+import { activeProject } from '../config/projects.js';
+import { packFor } from '../data/mock/index.js';
+function set(id, v){ var e = document.getElementById(id); if (e) e.textContent = v; }
+function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+var proj = activeProject();
+var pack = packFor(proj.workType) || {};
+// This register is a rockfall deliverable; only render for a rockfall project.
+if (proj.workType === 'rockfall') {
+  set('idProject', proj.name);
+  set('idContractor', proj.contractor);
+  set('idEngineer', proj.engineer);
+  if (pack.engineerSource) set('idDesign', pack.engineerSource.rev);
+
+  var panels = (proj.items || []).filter(function(it){ return it.geometry === 'area'; });
+  var pins = (proj.items || []).filter(function(it){ return it.geometry === 'point'; });
+  var installs = {}; (pack.panelInstalls || []).forEach(function(p){ installs[p.panel] = p; });
+  var pulls = {}; (pack.pullTests || []).forEach(function(p){ pulls[p.pin] = p; });
+
+  function panelChip(state){
+    if (state === 'approved') return '<span class="chip ok">Confirmed</span>';
+    if (state === 'provisional') return '<span class="chip prog">Installed</span>';
+    return '<span class="chip plan">Planned</span>';
+  }
+  function pinChip(it, pull){
+    if (pull && pull.state === 'reopened') return '<span class="chip flag">Reopened</span>';
+    if (it.state === 'approved') return '<span class="chip ok">Confirmed</span>';
+    if (it.state === 'provisional') return '<span class="chip prog">Installed</span>';
+    return '<span class="chip plan">Planned</span>';
+  }
+
+  var confirmed = 0, installed = 0, planned = 0, lotSet = {};
+  document.getElementById('panelBody').innerHTML = panels.map(function(it){
+    if (it.state === 'approved') confirmed++; else if (it.state === 'provisional') installed++; else planned++;
+    lotSet[it.lot] = true;
+    var rec = installs[it.id];
+    var serials = rec ? rec.fixings.join(', ') : '—';
+    return '<tr>' +
+      '<td class="id">' + esc(it.id) + '</td>' +
+      '<td>' + esc(it.lot) + '</td>' +
+      '<td>' + esc(it.zone) + '</td>' +
+      '<td class="num">' + it.area + '</td>' +
+      '<td class="num">' + (it.overlapFinal != null ? it.overlapFinal : '—') + '</td>' +
+      '<td class="mono">' + esc(serials) + '</td>' +
+      '<td>' + panelChip(it.state) + '</td>' +
+    '</tr>';
+  }).join('');
+
+  var pinsConfirmed = 0, pinsFlagged = 0;
+  document.getElementById('pinBody').innerHTML = pins.map(function(it){
+    var pull = pulls[it.id];
+    if (pull && pull.state === 'reopened') pinsFlagged++;
+    else if (it.state === 'approved') pinsConfirmed++;
+    return '<tr>' +
+      '<td class="id">' + esc(it.id) + '</td>' +
+      '<td>' + esc(it.zone) + '</td>' +
+      '<td class="num">' + it.depthDesign.toFixed(1) + '</td>' +
+      '<td class="num">' + (it.depthFinal != null ? it.depthFinal.toFixed(1) : '—') + '</td>' +
+      '<td class="num">' + (pull ? pull.held_kN : (it.pullFinal != null ? it.pullFinal : '—')) + '</td>' +
+      '<td class="mono">' + (pull ? esc(pull.result) : '—') + '</td>' +
+      '<td>' + pinChip(it, pull) + '</td>' +
+    '</tr>';
+  }).join('');
+
+  document.getElementById('certBody').innerHTML = (pack.componentCerts || []).map(function(c){
+    return '<tr><td class="id">' + esc(c.ref) + '</td><td>' + esc(c.item) + '</td><td class="mono">' + esc(c.batch) + '</td><td>' + esc(c.lots) + '</td><td>' + esc(c.status) + '</td></tr>';
+  }).join('');
+
+  document.getElementById('statRow').innerHTML =
+    '<div class="stat"><div class="n mono">' + panels.length + '</div><div class="l">Panels</div></div>' +
+    '<div class="stat"><div class="n mono">' + pins.length + '</div><div class="l">Crest pins</div></div>' +
+    '<div class="stat"><div class="n mono">' + Object.keys(lotSet).length + '</div><div class="l">Lots</div></div>' +
+    '<div class="stat"><div class="n mono">' + pinsConfirmed + '</div><div class="l">Pins confirmed</div></div>' +
+    '<div class="stat"><div class="n mono">' + pinsFlagged + '</div><div class="l">Reopened</div></div>' +
+    '<div class="stat"><div class="n mono">' + (pack.componentCerts || []).length + '</div><div class="l">Certificates</div></div>';
+}
+</script>
+
+<script defer src="../components/report-shell.js"></script>
+  <script defer src="../js/build.js"></script>
+  <script defer src="../js/versioner.js"></script>
+  <script defer src="../js/standalone.js"></script>
+</body>
+</html>

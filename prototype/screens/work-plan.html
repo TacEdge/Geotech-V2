@@ -118,6 +118,8 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);font-size:16
 .sum-bar{height:8px;border-radius:99px;background:var(--line);margin:12px 0 9px;overflow:hidden}
 .sum-bar span{display:block;height:100%;background:var(--forest);border-radius:99px}
 .sum-sub{font-size:12.5px;color:var(--ink-40)}
+.seq-note{display:flex;align-items:flex-start;gap:8px;padding:11px 14px;margin:0 14px 14px;background:var(--sage-tint);border:1px solid #cdd5b9;border-radius:9px;font-size:12.5px;color:var(--ink-60);line-height:1.5}
+.seq-note svg{color:var(--forest);flex-shrink:0;margin-top:1px}.seq-note b{color:var(--forest-2)}
 .zrow{display:flex;width:100%;align-items:center;gap:11px;text-align:left;font-family:var(--ui);background:var(--card);border:none;border-top:1px solid var(--line);border-left:3px solid transparent;padding:13px 16px;cursor:pointer}
 .zrow:hover{background:#fbfaf5} .zrow.sel{background:var(--sage-tint);border-left-color:var(--forest)}
 .zsw{width:13px;height:13px;border-radius:4px;flex-shrink:0}
@@ -405,6 +407,16 @@ import { activeProject } from '../config/projects.js';
       setT('.ai-1',ps.bannerTitle); setT('.ai-2',ps.bannerSub);
       // Rewrite the foot status text node in place (keep the leading icon).
       if(ps.footText){var fs=document.getElementById('footStatus'); if(fs){var tn=fs.lastChild; if(tn&&tn.nodeType===3)tn.nodeValue=' '+ps.footText;}}
+      // Mixed work types (rockfall) declare a template sequence; surface it in
+      // the zones/designs panel so pins-before-panel-lots is explicit.
+      if(ps.sequenceNote){
+        var zd=document.getElementById('zdRows');
+        if(zd&&zd.parentNode&&!document.getElementById('seqNote')){
+          var n=document.createElement('div'); n.id='seqNote'; n.className='seq-note';
+          n.innerHTML='<svg width="15" height="15" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="8"/><path d="M10 6.5v5.5M10 14.4v.01"/></svg><span>'+ps.sequenceNote+'</span>';
+          zd.parentNode.appendChild(n);
+        }
+      }
     }
     function selPin(num){
       document.querySelectorAll('.pin').forEach(function(p){ var on=(+p.dataset.num===num); p.classList.toggle('sel',on); if(on)p.parentNode.appendChild(p); });

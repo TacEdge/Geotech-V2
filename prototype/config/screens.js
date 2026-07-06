@@ -420,6 +420,14 @@ window.TE_SCREENS = [
     workTypes: ['piling']
   },
   {
+    id: 'report-rockfall-register',
+    title: 'Rockfall Register Report',
+    stage: null,
+    chrome: 'none',
+    path: 'screens/report-rockfall-register.html',
+    workTypes: ['rockfall']
+  },
+  {
     id: 'module-preview',
     title: 'Module Preview',
     stage: null,

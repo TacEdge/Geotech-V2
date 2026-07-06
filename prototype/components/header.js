@@ -29,6 +29,12 @@ window.TE_HEADER = (function () {
       meta: 'Rock Control · client TBC · engineer TBC',
       short: 'Cashmere Ridge • Screw Piling',
       zone: 'Rock Control • today'
+    },
+    'coastal-corridor': {
+      name: 'Coastal Corridor · Rockfall',
+      meta: 'Rock Control · Kaimoana District Council · Aurora Geotechnical',
+      short: 'Coastal Corridor · Rockfall',
+      zone: 'Rock Control • today'
     }
   };
   function activeHeader() {

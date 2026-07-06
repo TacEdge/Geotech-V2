@@ -393,8 +393,11 @@ import { activeProject } from '../config/projects.js';
   var vp = document.getElementById('viewport');
   if (!vp) return;
   var img = '<image href="' + pack.spatialCanvas + '" x="0" y="0" width="1280" height="853" preserveAspectRatio="xMidYMid slice"/>';
-  var zlab = '<text class="zlab" x="580" y="250" text-anchor="middle">UPPER BENCH</text>';
-  var geoItems = Object.keys(pins).map(function(k){
+  // Mixed geometry (rockfall panels + pins) comes pre-shaped in the pack; the
+  // single-geometry work types (piling) build points from planPins here.
+  var mixed = pack.spatialItems && pack.spatialItems.length;
+  var zlab = mixed ? '' : '<text class="zlab" x="580" y="250" text-anchor="middle">UPPER BENCH</text>';
+  var geoItems = mixed ? pack.spatialItems : Object.keys(pins).map(function(k){
     var p = pins[k], rec = ba[p.id] || {}, ph = rec.phase || 'planned';
     return { id: p.id, zone: p.zone, phase: ph, x: p.cx, y: p.cy, label: p.id.replace('SP-', ''), geometry: 'point' };
   });
@@ -408,11 +411,12 @@ import { activeProject } from '../config/projects.js';
   if (cts[1]) cts[1].textContent = Object.keys(ba).filter(function(k){return /qa/i.test(ba[k].review);}).length;
   if (cts[2]) cts[2].textContent = count('active');
   if (cts[3]) cts[3].textContent = 0;
-  var ftot = document.querySelector('.ftotal'); if (ftot) ftot.textContent = Object.keys(pins).length + ' piles';
-  var find = document.getElementById('findinput'); if (find) find.placeholder = 'Find pile';
+  var noun = mixed ? 'items' : 'piles';
+  var ftot = document.querySelector('.ftotal'); if (ftot) ftot.textContent = geoItems.length + ' ' + noun;
+  var find = document.getElementById('findinput'); if (find) find.placeholder = mixed ? 'Find item' : 'Find pile';
   var setuptoggle = document.getElementById('setuptoggle');
-  if (setuptoggle) setuptoggle.firstChild.textContent = 'Unplotted piles (0) ';
-  var setupBody = document.querySelector('#setuppanel .setup-body'); if (setupBody) setupBody.innerHTML = '<div class="up-row"><span class="up-z">All piles plotted.</span></div>';
+  if (setuptoggle) setuptoggle.firstChild.textContent = 'Unplotted ' + noun + ' (0) ';
+  var setupBody = document.querySelector('#setuppanel .setup-body'); if (setupBody) setupBody.innerHTML = '<div class="up-row"><span class="up-z">All ' + noun + ' plotted.</span></div>';
   // Selected-pile detail in the rail.
   function renderSel(id){
     var a = ba[id]; if (!a) return;
@@ -429,15 +433,15 @@ import { activeProject } from '../config/projects.js';
       '<div class="sel-sec"><div class="sel-sec-t">Assignment</div>' +
         '<div class="sel-row"><span class="k">Assigned crew</span><span class="v">' + esc(a.crew) + '</span></div>' +
         '<div class="sel-row"><span class="k">Last updated</span><span class="v">' + esc(a.updated) + '</span></div></div>' +
-      '<div class="sel-acts"><button class="btn-p">Open Torque Log <span>&#8594;</span></button><button class="btn-o">Open Status Board <span>&#8594;</span></button></div>';
-    var hd = document.querySelector('.rail .panel .hd'); if (hd) hd.textContent = 'Selected pile';
+      '<div class="sel-acts"><button class="btn-p">' + (mixed ? 'Open Record' : 'Open Torque Log') + ' <span>&#8594;</span></button><button class="btn-o">Open Status Board <span>&#8594;</span></button></div>';
+    var hd = document.querySelector('.rail .panel .hd'); if (hd) hd.textContent = mixed ? 'Selected item' : 'Selected pile';
   }
   function select(id){
-    document.querySelectorAll('#viewport .pin').forEach(function(g){ var on = g.dataset.id === id; g.classList.toggle('sel', on); if (on) g.parentNode.appendChild(g); });
+    document.querySelectorAll('#viewport .pin, #viewport .area').forEach(function(g){ var on = g.dataset.id === id; g.classList.toggle('sel', on); if (on) g.parentNode.appendChild(g); });
     renderSel(id);
   }
-  document.querySelectorAll('#viewport .pin').forEach(function(g){ g.addEventListener('click', function(){ select(g.dataset.id); }); });
-  select('SP-05');
+  document.querySelectorAll('#viewport .pin, #viewport .area').forEach(function(g){ g.addEventListener('click', function(){ select(g.dataset.id); }); });
+  select(mixed ? geoItems[0].id : 'SP-05');
 })();
 </script>
   <script defer src="../js/build.js"></script>

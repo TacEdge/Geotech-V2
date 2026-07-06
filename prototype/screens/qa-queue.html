@@ -828,15 +828,12 @@ import { activeProject } from '../config/projects.js';
   }
   function detail(it, sel){
     var warn = it.state==='attn';
-    var note = warn ? '<div class="pq-note"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;color:#9a6a16"><path d="M12 4 21 19H3z"/><path d="M12 9.5v4"/><path d="M12 16.4v.01"/></svg><span>'+esc(it.gap)+' · final sustained torque below the 8 kNm target. Confirm the pile, monitor, or re-install.</span></div>' : '';
+    var noteBody = it.noteText ? esc(it.noteText) : (esc(it.gap)+' · final sustained torque below the 8 kNm target. Confirm the pile, monitor, or re-install.');
+    var note = warn ? '<div class="pq-note"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;color:#9a6a16"><path d="M12 4 21 19H3z"/><path d="M12 9.5v4"/><path d="M12 16.4v.01"/></svg><span>'+noteBody+'</span></div>' : '';
     return '<div class="pq-detail" id="pd-'+it.id+'" data-id="'+it.id+'"'+(sel?'':' style="display:none"')+'>'+
       '<div class="pq-head"><span class="pq-id">'+esc(it.id)+'</span><span class="pq-pill '+(warn?'attn':'ready')+'">'+esc(it.pill)+'</span></div>'+
       '<div class="pq-sub">'+esc(it.zone)+' · Submitted by '+esc(it.by)+' · '+esc(it.ago)+'</div>'+
-      '<div class="pq-metrics">'+
-        '<div class="pq-mx"><div class="k">Final depth</div><div class="v">'+esc(it.depth)+'</div></div>'+
-        '<div class="pq-mx"><div class="k">Final torque</div><div class="v '+(warn?'warn':'ok')+'">'+esc(it.torque)+'</div></div>'+
-        '<div class="pq-mx"><div class="k">Verticality</div><div class="v ok">'+esc(it.vert)+'</div></div>'+
-      '</div>'+
+      '<div class="pq-metrics">'+(it.metrics||[{k:'Final depth',v:it.depth},{k:'Final torque',v:it.torque,cls:warn?'warn':'ok'},{k:'Verticality',v:it.vert,cls:'ok'}]).map(function(m){return '<div class="pq-mx"><div class="k">'+esc(m.k)+'</div><div class="v '+(m.cls||'ok')+'">'+esc(m.v)+'</div></div>';}).join('')+'</div>'+
       '<div class="pq-ev"><span class="ev-dots">'+dots(it.ev,it.evTotal)+'</span> '+it.ev+' of '+it.evTotal+' evidence items · '+esc(it.result)+'</div>'+
       note+
       '<div class="pq-acts"><button class="pq-btn reopen" data-reopen="'+it.id+'">Reopen</button><button class="pq-btn approve" data-approve="'+it.id+'">'+(warn?'Confirm with note':'Approve record')+'</button></div>'+
