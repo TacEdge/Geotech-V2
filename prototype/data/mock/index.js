@@ -7,8 +7,9 @@
    ========================================================================== */
 import * as anchoring from './anchoring.js';
 import * as piling from './piling.js';
+import * as rockfall from './rockfall.js';
 
-export const PACKS = { anchoring: anchoring, piling: piling };
+export const PACKS = { anchoring: anchoring, piling: piling, rockfall: rockfall };
 
 /** The content pack for a work-type key, or null if none is populated yet. */
 export function packFor(workTypeKey) {

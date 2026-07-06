@@ -37,12 +37,16 @@ export const MODULES = {
     id: 'verticality_cutoff', name: 'Verticality & Cut-off Record', screen: 'screens/verticality-cutoff.html',
     summary: 'two-axis verticality, cut-off, cap detail', sharedBy: ['piling']
   },
+  pin_install: {
+    id: 'pin_install', name: 'Pin Install Record', screen: 'screens/pin-install.html',
+    summary: 'depth, grout, serial, photos', sharedBy: ['rockfall']
+  },
   panel_install: {
-    id: 'panel_install', name: 'Panel Install Record', screen: null,
+    id: 'panel_install', name: 'Panel Install Record', screen: 'screens/panel-install.html',
     summary: 'laps, lacing, fixings', sharedBy: ['rockfall']
   },
   pull_test: {
-    id: 'pull_test', name: 'Pull Test Record', screen: null,
+    id: 'pull_test', name: 'Pull Test Record', screen: 'screens/pull-test.html',
     summary: 'load, hold, result', sharedBy: ['rockfall']
   },
   substrate_inspection: {
@@ -74,7 +78,7 @@ export const MODULES = {
     summary: 'L/min, date, weather', sharedBy: ['drainage']
   },
   inspection_checklist: {
-    id: 'inspection_checklist', name: 'Inspection Checklist', screen: null,
+    id: 'inspection_checklist', name: 'Inspection Checklist', screen: 'screens/inspection-checklist.html',
     summary: 'closeout walkdown', sharedBy: ['rockfall']
   }
 };

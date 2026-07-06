@@ -178,7 +178,67 @@ export const WORK_TYPES = {
       ['Panel Install Record', 'laps, lacing, fixings'],
       ['Inspection Checklist', 'closeout walkdown']
     ],
-    matrixChips: ['Pin Install', 'Pull Test', 'Panel Install', 'Inspection']
+    matrixChips: ['Pin Install', 'Pull Test', 'Panel Install', 'Inspection'],
+    // First mixed-geometry work type: two template-complete work-item designs
+    // with their own geometry, unit and confirmation basis. Catch fence and
+    // scaling stay configured examples only (names in the templates list).
+    workItemTemplates: [
+      {
+        code: 'DM1',
+        name: 'Drapery mesh',
+        geometry: 'area',
+        unit: 'm2',
+        confirmationBasis: 'per_lot',
+        item: { singular: 'panel', plural: 'panels', idPrefix: 'MP' },
+        spec: [
+          ['Mesh', 'High-tensile steel · 3.5 m roll'],
+          ['Overlap', '≥ 300 mm, laced'],
+          ['Fixings', 'Shackles, serials recorded']
+        ],
+        moduleIds: ['panel_install', 'inspection_checklist', 'evidence'],
+        rules: [
+          { type: 'threshold', field: 'overlap_mm', op: '>=', value: 300, unit: 'mm', label: 'Mesh overlap ≥ 300 mm, laced' },
+          { type: 'completeness', fields: ['serials'], label: 'Fixing shackle serials recorded' },
+          { type: 'sequence', requires: 'CP1 pins confirmed before lot confirmation', label: 'CP1 pins confirmed before a lot can be confirmed' }
+        ]
+      },
+      {
+        code: 'CP1',
+        name: 'Crest pins',
+        geometry: 'point',
+        unit: 'each',
+        confirmationBasis: 'per_item',
+        item: { singular: 'pin', plural: 'pins', idPrefix: 'PN' },
+        spec: [
+          ['Bar', '25 mm bar · 3.0 m'],
+          ['Grout', 'Class G cement grout'],
+          ['Spacing', '3.0 m centres'],
+          ['Proof load', '50 kN · 5 min hold']
+        ],
+        moduleIds: ['pin_install', 'pull_test', 'evidence'],
+        rules: [
+          { type: 'threshold', field: 'pull_load_kN', op: '>=', value: 50, unit: 'kN', label: 'Pull test ≥ 50 kN, 5 min hold, no creep' },
+          { type: 'completeness', fields: ['depth', 'grout_batch'], label: 'Depth and grout batch recorded' }
+        ]
+      }
+    ],
+    evidenceRequirements: [
+      { kind: 'photo', scope: 'per panel', label: 'Photo per mesh panel' },
+      { kind: 'photo', scope: 'per pin', label: 'Photo per crest pin' },
+      { kind: 'certificate', scope: 'per mesh batch', label: 'Component certificate per mesh batch' }
+    ],
+    // Union of module ids across both templates (config/modules.js ids).
+    moduleIds: ['pin_install', 'pull_test', 'panel_install', 'inspection_checklist', 'evidence'],
+    item: { singular: 'panel', plural: 'panels', idPrefix: 'MP' },
+    // Union of the typed acceptance rules; per-template detail lives in
+    // workItemTemplates. Module screens filter this list by field.
+    rules: [
+      { type: 'threshold', field: 'overlap_mm', op: '>=', value: 300, unit: 'mm', label: 'Mesh overlap ≥ 300 mm, laced' },
+      { type: 'completeness', fields: ['serials'], label: 'Fixing shackle serials recorded' },
+      { type: 'sequence', requires: 'CP1 pins confirmed before lot confirmation', label: 'CP1 pins confirmed before a lot can be confirmed' },
+      { type: 'threshold', field: 'pull_load_kN', op: '>=', value: 50, unit: 'kN', label: 'Pull test ≥ 50 kN, 5 min hold, no creep' },
+      { type: 'completeness', fields: ['depth', 'grout_batch'], label: 'Depth and grout batch recorded' }
+    ]
   },
 
   drainage: {

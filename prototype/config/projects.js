@@ -73,6 +73,50 @@ export const PROJECTS = {
       { id: 'SP-11', zone: 'Upper Bench', grid: 'D2', depthDesign: 13.0, torqueDesign: 8, depthFinal: null, torqueFinal: null, variance: null, test: null, state: 'planned' },
       { id: 'SP-12', zone: 'Upper Bench', grid: 'D3', depthDesign: 13.0, torqueDesign: 8, depthFinal: null, torqueFinal: null, variance: null, test: null, state: 'planned' }
     ]
+  },
+
+  // Coastal Corridor Rockfall · first mixed-geometry project (mesh panels +
+  // crest pins) and first per-lot confirmation. Client and engineer are
+  // placeholders for the owner to confirm. draft:true until the pack is validated.
+  'coastal-corridor': {
+    id: 'CC-RF-2026',
+    name: 'Coastal Corridor Rockfall',
+    client: 'TBC · owner to confirm',
+    contractor: 'Rock Control',
+    engineer: 'TBC · owner to confirm',
+    workType: 'rockfall',
+    draft: true,
+    zones: ['Batter A', 'Batter B'],
+    lots: [
+      { id: 'Lot A', zone: 'Batter A', members: ['MP-01', 'MP-02', 'MP-03', 'MP-04'], state: 'confirmable' },
+      { id: 'Lot B', zone: 'Batter B', members: ['MP-05', 'MP-06', 'MP-07', 'MP-08'], state: 'pending' }
+    ],
+    items: [
+      { id: "MP-01", zone: "Batter A", template: "DM1", geometry: "area", lot: "Lot A", area: 30, overlapDesign: 300, overlapFinal: 330, points: [[90,208],[217,208],[217,592],[90,592]], state: "approved" },
+      { id: "MP-02", zone: "Batter A", template: "DM1", geometry: "area", lot: "Lot A", area: 34, overlapDesign: 300, overlapFinal: 325, points: [[217,208],[344,208],[344,592],[217,592]], state: "approved" },
+      { id: "MP-03", zone: "Batter A", template: "DM1", geometry: "area", lot: "Lot A", area: 28, overlapDesign: 300, overlapFinal: 338, points: [[344,208],[471,208],[471,592],[344,592]], state: "approved" },
+      { id: "MP-04", zone: "Batter A", template: "DM1", geometry: "area", lot: "Lot A", area: 36, overlapDesign: 300, overlapFinal: 320, points: [[471,208],[598,208],[598,592],[471,592]], state: "approved" },
+      { id: "MP-05", zone: "Batter B", template: "DM1", geometry: "area", lot: "Lot B", area: 32, overlapDesign: 300, overlapFinal: 315, points: [[650,208],[780,208],[780,592],[650,592]], state: "provisional" },
+      { id: "MP-06", zone: "Batter B", template: "DM1", geometry: "area", lot: "Lot B", area: 38, overlapDesign: 300, overlapFinal: 322, points: [[780,208],[910,208],[910,592],[780,592]], state: "provisional" },
+      { id: "MP-07", zone: "Batter B", template: "DM1", geometry: "area", lot: "Lot B", area: 26, overlapDesign: 300, overlapFinal: null, points: [[910,208],[1040,208],[1040,592],[910,592]], state: "planned" },
+      { id: "MP-08", zone: "Batter B", template: "DM1", geometry: "area", lot: "Lot B", area: 40, overlapDesign: 300, overlapFinal: null, points: [[1040,208],[1170,208],[1170,592],[1040,592]], state: "planned" },
+      { id: "PN-01", zone: "Batter A", template: "CP1", geometry: "point", x: 120, y: 185, depthDesign: 3, pullDesign: 50, depthFinal: 3, pullFinal: 58, state: "approved" },
+      { id: "PN-02", zone: "Batter A", template: "CP1", geometry: "point", x: 185, y: 185, depthDesign: 3, pullDesign: 50, depthFinal: 3.1, pullFinal: 55, state: "approved" },
+      { id: "PN-03", zone: "Batter A", template: "CP1", geometry: "point", x: 250, y: 185, depthDesign: 3, pullDesign: 50, depthFinal: 2.9, pullFinal: 61, state: "approved" },
+      { id: "PN-04", zone: "Batter A", template: "CP1", geometry: "point", x: 315, y: 185, depthDesign: 3, pullDesign: 50, depthFinal: 3, pullFinal: 54, state: "approved" },
+      { id: "PN-05", zone: "Batter A", template: "CP1", geometry: "point", x: 380, y: 185, depthDesign: 3, pullDesign: 50, depthFinal: 3, pullFinal: 42, state: "reopened", flag: "re-drill and re-grout" },
+      { id: "PN-06", zone: "Batter A", template: "CP1", geometry: "point", x: 445, y: 185, depthDesign: 3, pullDesign: 50, depthFinal: 3, pullFinal: 57, state: "approved" },
+      { id: "PN-07", zone: "Batter A", template: "CP1", geometry: "point", x: 510, y: 185, depthDesign: 3, pullDesign: 50, depthFinal: 3, pullFinal: null, state: "provisional" },
+      { id: "PN-08", zone: "Batter A", template: "CP1", geometry: "point", x: 575, y: 185, depthDesign: 3, pullDesign: 50, depthFinal: 3.1, pullFinal: null, state: "provisional" },
+      { id: "PN-09", zone: "Batter B", template: "CP1", geometry: "point", x: 705, y: 185, depthDesign: 3, pullDesign: 50, depthFinal: 3, pullFinal: null, state: "provisional" },
+      { id: "PN-10", zone: "Batter B", template: "CP1", geometry: "point", x: 770, y: 185, depthDesign: 3, pullDesign: 50, depthFinal: 3, pullFinal: null, state: "provisional" },
+      { id: "PN-11", zone: "Batter B", template: "CP1", geometry: "point", x: 835, y: 185, depthDesign: 3, pullDesign: 50, depthFinal: null, pullFinal: null, state: "planned" },
+      { id: "PN-12", zone: "Batter B", template: "CP1", geometry: "point", x: 900, y: 185, depthDesign: 3, pullDesign: 50, depthFinal: null, pullFinal: null, state: "planned" },
+      { id: "PN-13", zone: "Batter B", template: "CP1", geometry: "point", x: 965, y: 185, depthDesign: 3, pullDesign: 50, depthFinal: null, pullFinal: null, state: "planned" },
+      { id: "PN-14", zone: "Batter B", template: "CP1", geometry: "point", x: 1030, y: 185, depthDesign: 3, pullDesign: 50, depthFinal: null, pullFinal: null, state: "planned" },
+      { id: "PN-15", zone: "Batter B", template: "CP1", geometry: "point", x: 1095, y: 185, depthDesign: 3, pullDesign: 50, depthFinal: null, pullFinal: null, state: "planned" },
+      { id: "PN-16", zone: "Batter B", template: "CP1", geometry: "point", x: 1160, y: 185, depthDesign: 3, pullDesign: 50, depthFinal: null, pullFinal: null, state: "planned" }
+    ]
   }
 };
 
