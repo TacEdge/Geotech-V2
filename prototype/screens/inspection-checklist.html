@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en-NZ">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TacEdge Geotech · Inspection Checklist</title>
+  <link rel="stylesheet" href="../styles/fonts.css">
+  <link rel="stylesheet" href="../styles/tokens.css">
+  <link rel="stylesheet" href="../styles/base.css">
+  <link rel="stylesheet" href="../styles/components.css">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--ui);color:var(--ink);background:var(--cream);min-height:100vh;-webkit-font-smoothing:antialiased}
+
+.signed{display:flex;align-items:center;gap:9px;background:var(--sage-tint);color:var(--forest-2);
+  font-size:12.5px;padding:9px 16px;border-bottom:1px solid #cdd5b9}
+.signed .tick{width:17px;height:17px;border-radius:50%;background:var(--forest);color:var(--cream);display:grid;place-items:center;flex-shrink:0}
+.signed b{font-weight:700}
+.signed .jsa{margin-left:auto;font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.1em;color:var(--forest);background:var(--card);border:1px solid #cdd5b9;border-radius:var(--r-pill);padding:3px 9px}
+
+.wrap{max-width:560px;margin:0 auto;padding:16px 16px 120px}
+.phead h1{font-size:22px;font-weight:700;color:var(--ink);line-height:1.15}
+.phead .psub{font-size:13px;color:var(--ink-60);margin-top:4px}
+
+.pilesel{display:flex;gap:8px;margin-top:14px;overflow-x:auto;padding-bottom:2px}
+.pilesel .ps{flex-shrink:0;display:flex;flex-direction:column;gap:2px;align-items:flex-start;
+  background:var(--card);border:1.5px solid var(--line-2);border-radius:var(--r-md);
+  padding:9px 14px;cursor:pointer;font-family:var(--ui)}
+.pilesel .ps .pn{font-family:var(--mono);font-size:14px;font-weight:700;color:var(--ink)}
+.pilesel .ps .pz{font-size:11px;color:var(--ink-40)}
+.pilesel .ps.sel{border-color:var(--forest);background:var(--sage-tint)}
+.pilesel .ps.sel .pn{color:var(--forest)}
+
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);box-shadow:var(--shadow-sm);padding:16px;margin-top:14px}
+.card .clab{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-40);margin-bottom:4px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.card .clab .st{margin-left:auto;text-transform:none;letter-spacing:0;font-family:var(--ui);font-size:11.5px;font-weight:600;color:var(--forest-2);background:var(--sage-tint);border-radius:var(--r-pill);padding:3px 10px}
+.card .clab .st.wait{color:var(--ochre);background:var(--ochre-tint)}
+
+.chk{list-style:none;display:flex;flex-direction:column}
+.chk li{display:flex;align-items:center;gap:12px;padding:13px 0;border-bottom:1px solid var(--line);cursor:pointer}
+.chk li:last-child{border-bottom:none}
+.chk li .box{width:24px;height:24px;border-radius:7px;border:1.8px solid var(--line-2);flex-shrink:0;display:grid;place-items:center;color:transparent;background:var(--plan)}
+.chk li.on .box{background:var(--forest);border-color:var(--forest);color:var(--cream)}
+.chk li .box svg{width:14px;height:14px}
+.chk li .lbl{font-size:14.5px;color:var(--ink)}
+.chk li.on .lbl{color:var(--ink)}
+
+.sign{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.sign .sf .k{font-size:11px;color:var(--ink-40)}
+.sign .sf .v{font-size:14px;font-weight:600;color:var(--ink);margin-top:3px}
+.sign .scrawl{grid-column:1 / -1;height:66px;border:1.5px dashed var(--line-2);border-radius:var(--r-md);background:var(--plan);display:flex;align-items:center;justify-content:center;color:var(--ink-40);font-size:12.5px;font-weight:600}
+.sign .scrawl.done{font-family:'Caveat',cursive;font-size:30px;color:var(--forest);border-style:solid;border-color:#cdd5b9;background:var(--card)}
+
+.dock{position:fixed;left:0;right:0;bottom:0;background:var(--card);border-top:1px solid var(--line);
+  padding:12px 16px calc(12px + env(safe-area-inset-bottom));box-shadow:0 -4px 18px rgba(43,71,33,.06)}
+.dock .btn{width:100%;max-width:560px;margin:0 auto;display:flex;align-items:center;gap:12px;
+  background:var(--forest);color:var(--cream);border:none;border-radius:var(--r-md);
+  padding:14px 18px;cursor:pointer;font-family:var(--ui)}
+.dock .btn:hover{background:var(--forest-2)}
+.dock .btn .bico{flex-shrink:0}
+.dock .btn .bt{display:flex;flex-direction:column;align-items:flex-start;text-align:left;flex:1}
+.dock .btn .bt1{font-size:15px;font-weight:600}
+.dock .btn .bt2{font-size:12px;color:var(--sage)}
+.dock .btn.done{background:var(--sage-tint);color:var(--forest-2)}
+.dock .btn.done .bt2{color:var(--forest)}
+</style>
+<link rel="manifest" href="../manifest.json">
+<meta name="theme-color" content="#2b4721">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="TacEdge">
+<link rel="apple-touch-icon" href="../assets/icons/apple-touch-icon.png?v=2026-06-26.7">
+  <script src="../config/screens.js"></script>
+  <script src="../components/header.js"></script>
+</head>
+<body class="field">
+  <header></header>
+  <script>TE_HEADER.fill('inspection-checklist')</script>
+
+  <div class="signed">
+    <span class="tick"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>
+    <span>Signed on <b>07:04</b> &middot; lot walkdown</span><span class="jsa">JSA-311 ACK</span>
+  </div>
+
+  <main class="wrap">
+    <div class="phead">
+      <h1>Inspection Checklist</h1>
+      <div class="psub" id="psub">Lot closeout walkdown</div>
+    </div>
+
+    <div class="pilesel" id="pilesel"></div>
+
+    <div class="card">
+      <div class="clab">Walkdown <span class="st" id="lotSt">—</span></div>
+      <ul class="chk" id="chk"></ul>
+    </div>
+
+    <div class="card">
+      <div class="clab">Sign-off</div>
+      <div class="sign" id="sign"></div>
+    </div>
+  </main>
+
+  <div class="dock">
+    <button class="btn" id="submitQA">
+      <svg class="bico" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+      <span class="bt"><span class="bt1" id="dockT">Submit walkdown</span><span class="bt2" id="dockS">Lot inspection recorded</span></span>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+    </button>
+  </div>
+
+  <script type="module">
+  import { packFor } from '../data/mock/index.js';
+  function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+  var CHK='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>';
+  var pack = packFor('rockfall');
+  if (pack && pack.lots && pack.lots.length) {
+    var lots = pack.lots;
+    var byLot = {}; (pack.inspections || []).forEach(function(r){ byLot[r.lot] = r; });
+    // The checklist item labels are the config-supplied list (from the first
+    // inspection). A lot with no record yet shows the same items, unchecked.
+    var template = ((pack.inspections || [])[0] || { items: [] }).items.map(function(i){ return i.label; });
+
+    function render(idx){
+      var lot = lots[idx], rec = byLot[lot.id];
+      var items = rec ? rec.items : template.map(function(l){ return { label: l, ok: false }; });
+      document.getElementById('psub').textContent = 'Lot closeout walkdown · ' + lot.id;
+      var st = document.getElementById('lotSt');
+      st.textContent = rec ? 'Submitted' : 'Not started';
+      st.className = 'st' + (rec ? '' : ' wait');
+      document.getElementById('chk').innerHTML = items.map(function(it){
+        return '<li class="' + (it.ok ? 'on' : '') + '" tabindex="0" role="checkbox" aria-checked="' + (it.ok ? 'true' : 'false') + '">' +
+          '<span class="box">' + CHK + '</span><span class="lbl">' + esc(it.label) + '</span></li>';
+      }).join('');
+      // Let the walkdown be ticked on this device (display only).
+      document.querySelectorAll('.chk li').forEach(function(li){
+        function toggle(){ var on = li.classList.toggle('on'); li.setAttribute('aria-checked', on ? 'true' : 'false'); }
+        li.addEventListener('click', toggle);
+        li.addEventListener('keydown', function(e){ if (e.key === ' ' || e.key === 'Enter'){ e.preventDefault(); toggle(); } });
+      });
+      document.getElementById('sign').innerHTML =
+        '<div class="sf"><div class="k">Inspected by</div><div class="v">' + esc(rec ? rec.by : '—') + '</div></div>' +
+        '<div class="sf"><div class="k">Date</div><div class="v">' + esc(rec ? rec.date : '—') + '</div></div>' +
+        '<div class="scrawl' + (rec ? ' done' : '') + '">' + (rec ? esc(rec.by) : 'Sign to complete') + '</div>';
+      document.querySelectorAll('.pilesel .ps').forEach(function(el, i){ el.classList.toggle('sel', i === idx); });
+    }
+
+    document.getElementById('pilesel').innerHTML = lots.map(function(l, i){
+      return '<button class="ps' + (i === 0 ? ' sel' : '') + '" data-i="' + i + '"><span class="pn">' + esc(l.id) + '</span><span class="pz">' + esc(l.zone) + '</span></button>';
+    }).join('');
+    document.querySelectorAll('.pilesel .ps').forEach(function(el){
+      el.addEventListener('click', function(){ render(+el.dataset.i); });
+    });
+    render(0);
+
+    var dock = document.getElementById('submitQA');
+    dock.addEventListener('click', function(){
+      dock.classList.add('done');
+      document.getElementById('dockT').textContent = 'Walkdown submitted';
+      document.getElementById('dockS').textContent = 'PM will confirm the lot once pins and panels are cleared';
+      document.querySelector('.dock .bico').innerHTML = CHK;
+    });
+  }
+  </script>
+
+  <script defer src="../js/build.js"></script>
+  <script defer src="../js/versioner.js"></script>
+  <script defer src="../js/standalone.js"></script>
+</body>
+</html>

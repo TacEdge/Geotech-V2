@@ -77,13 +77,13 @@ export const PROJECTS = {
 
   // Coastal Corridor Rockfall · first mixed-geometry project (mesh panels +
   // crest pins) and first per-lot confirmation. Client and engineer are
-  // placeholders for the owner to confirm. draft:true until the pack is validated.
+  // notional pending owner confirmation; draft:true until the pack is validated.
   'coastal-corridor': {
     id: 'CC-RF-2026',
     name: 'Coastal Corridor Rockfall',
-    client: 'TBC · owner to confirm',
+    client: 'Kaimoana District Council',
     contractor: 'Rock Control',
-    engineer: 'TBC · owner to confirm',
+    engineer: 'Aurora Geotechnical',
     workType: 'rockfall',
     draft: true,
     zones: ['Batter A', 'Batter B'],

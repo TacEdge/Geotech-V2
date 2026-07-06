@@ -246,6 +246,62 @@ window.TE_SCREENS = [
     desc: 'Two-axis tilt, cut-off and cap.'
   },
   {
+    id: 'pin-install',
+    title: 'Pin Install Record',
+    stage: 'capture',
+    chrome: 'field',
+    path: 'screens/pin-install.html',
+    moduleId: 'pin_install',
+    workTypes: ['rockfall'],
+    header:
+      '<header class="bar">\n      {{CONTOUR:field}}\n      <a class="iconbtn" href="../index.html" aria-label="Back to home" title="Back to home"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></a>\n      <div class="ctx"><span class="p">Coastal Corridor · Rockfall</span><span class="z">Rock Control · today</span></div>\n      <div class="right"><span class="fresh"><span class="d"></span>Live</span>\n        <span class="av">SK</span>\n      </div>\n    </header>',
+    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v11"/><path d="M8 8l4-4 4 4"/><rect x="7" y="16" width="10" height="4" rx="1"/></svg>',
+    cardTitle: 'Pin Install Record',
+    desc: 'Crest pin depth, grout, serial.'
+  },
+  {
+    id: 'pull-test',
+    title: 'Pull Test Record',
+    stage: 'capture',
+    chrome: 'field',
+    path: 'screens/pull-test.html',
+    moduleId: 'pull_test',
+    workTypes: ['rockfall'],
+    header:
+      '<header class="bar">\n      {{CONTOUR:field}}\n      <a class="iconbtn" href="../index.html" aria-label="Back to home" title="Back to home"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></a>\n      <div class="ctx"><span class="p">Coastal Corridor · Rockfall</span><span class="z">Rock Control · today</span></div>\n      <div class="right"><span class="fresh"><span class="d"></span>Live</span>\n        <span class="av">SK</span>\n      </div>\n    </header>',
+    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21V8"/><path d="M8 12l4-4 4 4"/><path d="M5 4h14"/></svg>',
+    cardTitle: 'Pull Test Record',
+    desc: 'Proof load, hold, result.'
+  },
+  {
+    id: 'panel-install',
+    title: 'Panel Install Record',
+    stage: 'capture',
+    chrome: 'field',
+    path: 'screens/panel-install.html',
+    moduleId: 'panel_install',
+    workTypes: ['rockfall'],
+    header:
+      '<header class="bar">\n      {{CONTOUR:field}}\n      <a class="iconbtn" href="../index.html" aria-label="Back to home" title="Back to home"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></a>\n      <div class="ctx"><span class="p">Coastal Corridor · Rockfall</span><span class="z">Rock Control · today</span></div>\n      <div class="right"><span class="fresh"><span class="d"></span>Live</span>\n        <span class="av">SK</span>\n      </div>\n    </header>',
+    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18M15 3v18"/></svg>',
+    cardTitle: 'Panel Install Record',
+    desc: 'Overlaps, serials, lot link.'
+  },
+  {
+    id: 'inspection-checklist',
+    title: 'Inspection Checklist',
+    stage: 'capture',
+    chrome: 'field',
+    path: 'screens/inspection-checklist.html',
+    moduleId: 'inspection_checklist',
+    workTypes: ['rockfall'],
+    header:
+      '<header class="bar">\n      {{CONTOUR:field}}\n      <a class="iconbtn" href="../index.html" aria-label="Back to home" title="Back to home"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></a>\n      <div class="ctx"><span class="p">Coastal Corridor · Rockfall</span><span class="z">Rock Control · today</span></div>\n      <div class="right"><span class="fresh"><span class="d"></span>Live</span>\n        <span class="av">SK</span>\n      </div>\n    </header>',
+    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h10a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/><path d="M9 8l1.4 1.4L13 6.5"/><path d="M9 14l1.4 1.4L13 12.5"/></svg>',
+    cardTitle: 'Inspection Checklist',
+    desc: 'Lot closeout walkdown.'
+  },
+  {
     id: 'daily-activity',
     title: 'Daily Activity Sheet',
     stage: 'capture',

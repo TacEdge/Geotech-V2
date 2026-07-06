@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en-NZ">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TacEdge Geotech · Panel Install Record</title>
+  <link rel="stylesheet" href="../styles/fonts.css">
+  <link rel="stylesheet" href="../styles/tokens.css">
+  <link rel="stylesheet" href="../styles/base.css">
+  <link rel="stylesheet" href="../styles/components.css">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--ui);color:var(--ink);background:var(--cream);min-height:100vh;-webkit-font-smoothing:antialiased}
+
+.signed{display:flex;align-items:center;gap:9px;background:var(--sage-tint);color:var(--forest-2);
+  font-size:12.5px;padding:9px 16px;border-bottom:1px solid #cdd5b9}
+.signed .tick{width:17px;height:17px;border-radius:50%;background:var(--forest);color:var(--cream);display:grid;place-items:center;flex-shrink:0}
+.signed b{font-weight:700}
+.signed .jsa{margin-left:auto;font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.1em;color:var(--forest);background:var(--card);border:1px solid #cdd5b9;border-radius:var(--r-pill);padding:3px 9px}
+
+.wrap{max-width:560px;margin:0 auto;padding:16px 16px 120px}
+.phead h1{font-size:22px;font-weight:700;color:var(--ink);line-height:1.15}
+.phead .psub{font-size:13px;color:var(--ink-60);margin-top:4px}
+
+.pilesel{display:flex;gap:8px;margin-top:14px;overflow-x:auto;padding-bottom:2px}
+.pilesel .ps{flex-shrink:0;display:flex;flex-direction:column;gap:2px;align-items:flex-start;
+  background:var(--card);border:1.5px solid var(--line-2);border-radius:var(--r-md);
+  padding:9px 14px;cursor:pointer;font-family:var(--ui)}
+.pilesel .ps .pn{font-family:var(--mono);font-size:14px;font-weight:700;color:var(--ink)}
+.pilesel .ps .pz{font-size:11px;color:var(--ink-40)}
+.pilesel .ps.sel{border-color:var(--forest);background:var(--sage-tint)}
+.pilesel .ps.sel .pn{color:var(--forest)}
+
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);box-shadow:var(--shadow-sm);padding:16px;margin-top:14px}
+.card .clab{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-40);margin-bottom:12px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.card .clab .lot{margin-left:auto;text-transform:none;letter-spacing:0;font-family:var(--ui);font-size:11.5px;font-weight:600;color:var(--forest-2);background:var(--sage-tint);border-radius:var(--r-pill);padding:3px 10px}
+
+.idrow{display:flex;align-items:flex-end;justify-content:space-between;gap:14px}
+.idrow .pid{font-family:var(--mono);font-size:32px;font-weight:700;color:var(--forest);line-height:1}
+.idrow .pst{font-family:var(--mono);font-size:11px;font-weight:600;color:var(--forest-2);background:var(--sage-tint);border-radius:var(--r-pill);padding:5px 11px}
+.meta{display:grid;grid-template-columns:1fr 1fr;gap:10px 14px;margin-top:16px}
+.meta .m .k{font-size:11px;color:var(--ink-40)}
+.meta .m .v{font-family:var(--mono);font-size:14px;font-weight:600;color:var(--ink);margin-top:2px}
+
+.check{display:flex;align-items:center;gap:12px}
+.check .cn{font-family:var(--mono);font-size:30px;font-weight:700;color:var(--forest);line-height:1}
+.check .cx{flex:1}
+.check .c1{font-size:14px;font-weight:600;color:var(--ink)}
+.check .c2{font-size:12px;color:var(--ink-40);margin-top:2px}
+.check .cb{font-family:var(--mono);font-size:11px;font-weight:700;color:var(--forest-2);background:var(--sage-tint);border-radius:var(--r-pill);padding:5px 11px}
+
+.serials{display:flex;flex-wrap:wrap;gap:8px}
+.serials .sc{font-family:var(--mono);font-size:12.5px;font-weight:600;color:var(--ink);background:var(--plan);border:1.5px solid var(--line-2);border-radius:var(--r-sm);padding:6px 11px}
+
+.linked{display:flex;align-items:center;gap:12px}
+.linked .lk{width:34px;height:34px;border-radius:50%;flex-shrink:0;display:grid;place-items:center}
+.linked .lk.ok{background:var(--sage-tint);color:var(--forest)} .linked .lk.wait{background:var(--ochre-tint);color:var(--ochre)}
+.linked .lk svg{width:18px;height:18px}
+.linked .lx{flex:1}
+.linked .l1{font-size:14px;font-weight:600;color:var(--ink)}
+.linked .l2{font-size:12px;color:var(--ink-60);margin-top:2px}
+
+.rules{list-style:none;display:flex;flex-direction:column;gap:9px}
+.rules li{display:flex;align-items:flex-start;gap:10px;font-size:13.5px;color:var(--ink)}
+.rules li .rc{width:18px;height:18px;border-radius:50%;background:var(--sage-tint);color:var(--forest);display:grid;place-items:center;flex-shrink:0;margin-top:1px}
+.rules li .rc svg{width:11px;height:11px}
+
+.photos{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.ph{aspect-ratio:4/3;border:1.5px dashed var(--line-2);border-radius:var(--r-md);background:var(--plan);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;color:var(--ink-40)}
+.ph svg{width:24px;height:24px}
+.ph span{font-size:11.5px;font-weight:600}
+
+.dock{position:fixed;left:0;right:0;bottom:0;background:var(--card);border-top:1px solid var(--line);
+  padding:12px 16px calc(12px + env(safe-area-inset-bottom));box-shadow:0 -4px 18px rgba(43,71,33,.06)}
+.dock .btn{width:100%;max-width:560px;margin:0 auto;display:flex;align-items:center;gap:12px;
+  background:var(--forest);color:var(--cream);border:none;border-radius:var(--r-md);
+  padding:14px 18px;cursor:pointer;font-family:var(--ui)}
+.dock .btn:hover{background:var(--forest-2)}
+.dock .btn .bico{flex-shrink:0}
+.dock .btn .bt{display:flex;flex-direction:column;align-items:flex-start;text-align:left;flex:1}
+.dock .btn .bt1{font-size:15px;font-weight:600}
+.dock .btn .bt2{font-size:12px;color:var(--sage)}
+.dock .btn.done{background:var(--sage-tint);color:var(--forest-2)}
+.dock .btn.done .bt2{color:var(--forest)}
+</style>
+<link rel="manifest" href="../manifest.json">
+<meta name="theme-color" content="#2b4721">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="TacEdge">
+<link rel="apple-touch-icon" href="../assets/icons/apple-touch-icon.png?v=2026-06-26.7">
+  <script src="../config/screens.js"></script>
+  <script src="../components/header.js"></script>
+</head>
+<body class="field">
+  <header></header>
+  <script>TE_HEADER.fill('panel-install')</script>
+
+  <div class="signed">
+    <span class="tick"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>
+    <span>Signed on <b>07:04</b> &middot; cleared to install</span><span class="jsa">JSA-311 ACK</span>
+  </div>
+
+  <main class="wrap">
+    <div class="phead">
+      <h1>Panel Install Record</h1>
+      <div class="psub" id="psub">Drapery mesh panel</div>
+    </div>
+
+    <div class="pilesel" id="pilesel"></div>
+
+    <div class="card">
+      <div class="idrow">
+        <div class="pid" id="pid">—</div>
+        <div class="pst" id="pst">—</div>
+      </div>
+      <div class="meta" id="meta"></div>
+    </div>
+
+    <div class="card">
+      <div class="clab">Overlap &amp; lacing</div>
+      <div class="check">
+        <span class="cn" id="ovVal">—</span>
+        <span class="cx"><span class="c1" id="ovLbl">Mesh overlap</span><span class="c2" id="ovLace">—</span></span>
+        <span class="cb" id="ovChip">—</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="clab">Fixing serials</div>
+      <div class="serials" id="serials"></div>
+    </div>
+
+    <div class="card">
+      <div class="clab">Linked crest pins</div>
+      <div class="linked" id="linked"></div>
+    </div>
+
+    <div class="card">
+      <div class="clab">Acceptance criteria</div>
+      <ul class="rules" id="rules"></ul>
+    </div>
+
+    <div class="card">
+      <div class="clab">Photos</div>
+      <div class="photos">
+        <div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="14" rx="2"/><circle cx="12" cy="13" r="3.5"/><path d="M8 6l1.5-2h5L16 6"/></svg><span>Panel face</span></div>
+        <div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="14" rx="2"/><circle cx="12" cy="13" r="3.5"/><path d="M8 6l1.5-2h5L16 6"/></svg><span>Overlap lacing</span></div>
+      </div>
+    </div>
+  </main>
+
+  <div class="dock">
+    <button class="btn" id="submitQA">
+      <svg class="bico" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+      <span class="bt"><span class="bt1" id="dockT">Submit for QA</span><span class="bt2" id="dockS">Overlaps, serials and photos recorded</span></span>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+    </button>
+  </div>
+
+  <script type="module">
+  import { packFor } from '../data/mock/index.js';
+  import { WORK_TYPES } from '../config/workTypes.js';
+  import { PROJECTS } from '../config/projects.js';
+  function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+  var CHK='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>';
+  var CLOCK='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>';
+  var pack = packFor('rockfall');
+  var wt = WORK_TYPES.rockfall;
+  var project = PROJECTS['coastal-corridor'];
+  var dm1 = (wt.workItemTemplates || []).filter(function(t){return t.code==='DM1';})[0] || { rules: [] };
+  if (pack && project) {
+    var panels = project.items.filter(function(it){return it.geometry === 'area';});
+    var installs = {}; (pack.panelInstalls || []).forEach(function(p){ installs[p.panel] = p; });
+    var lotsById = {}; (pack.lots || []).forEach(function(l){ lotsById[l.id] = l; });
+    var ovRule = (dm1.rules || []).filter(function(r){return r.field==='overlap_mm';})[0] || { value: 300, unit: 'mm' };
+    document.getElementById('rules').innerHTML = dm1.rules.map(function(r){
+      return '<li><span class="rc">' + CHK + '</span><span>' + esc(r.label) + '</span></li>';
+    }).join('');
+
+    function render(idx){
+      var it = panels[idx], rec = installs[it.id], lot = lotsById[it.lot] || {};
+      document.getElementById('psub').textContent = 'Drapery mesh · DM1 · ' + it.lot;
+      document.getElementById('pid').textContent = it.id;
+      var stName = it.state === 'approved' ? 'Confirmed' : (rec ? 'Submitted' : (it.state === 'provisional' ? 'Installed' : 'Planned'));
+      document.getElementById('pst').textContent = stName;
+      document.getElementById('meta').innerHTML =
+        '<div class="m"><div class="k">Lot</div><div class="v">' + esc(it.lot) + '</div></div>' +
+        '<div class="m"><div class="k">Zone</div><div class="v">' + esc(it.zone) + '</div></div>' +
+        '<div class="m"><div class="k">Panel area</div><div class="v">' + it.area + ' m&sup2;</div></div>' +
+        '<div class="m"><div class="k">Captured by</div><div class="v">' + esc(rec ? rec.by : '—') + '</div></div>';
+
+      var ov = rec ? rec.overlap_mm : it.overlapFinal;
+      var ovEl = document.getElementById('ovVal'), chip = document.getElementById('ovChip');
+      if (ov != null) {
+        ovEl.textContent = ov; document.getElementById('ovLbl').textContent = 'Mesh overlap (mm)';
+        document.getElementById('ovLace').textContent = rec ? rec.lacing : 'Laced';
+        var pass = ov >= ovRule.value;
+        chip.textContent = pass ? '≥ ' + ovRule.value + ' mm' : 'below ' + ovRule.value + ' mm';
+      } else {
+        ovEl.textContent = '—'; document.getElementById('ovLace').textContent = 'Not yet installed'; chip.textContent = 'pending';
+      }
+
+      var fx = rec ? rec.fixings : null;
+      document.getElementById('serials').innerHTML = fx && fx.length
+        ? fx.map(function(s){ return '<span class="sc">' + esc(s) + '</span>'; }).join('')
+        : '<span class="c2" style="font-size:13px;color:var(--ink-40)">Serials recorded at install.</span>';
+
+      var conf = lot.pinsConfirmed || 0, total = (lot.pins || []).length, ready = total && conf >= total;
+      document.getElementById('linked').innerHTML =
+        '<span class="lk ' + (ready ? 'ok' : 'wait') + '">' + (ready ? CHK : CLOCK) + '</span>' +
+        '<span class="lx"><span class="l1">' + conf + ' of ' + total + ' crest pins confirmed</span>' +
+        '<span class="l2">DM1 sequence · CP1 pins confirmed before ' + esc(it.lot) + ' can be confirmed</span></span>';
+      document.querySelectorAll('.pilesel .ps').forEach(function(el, i){ el.classList.toggle('sel', i === idx); });
+    }
+
+    document.getElementById('pilesel').innerHTML = panels.map(function(it, i){
+      return '<button class="ps' + (i === 0 ? ' sel' : '') + '" data-i="' + i + '"><span class="pn">' + esc(it.id) + '</span><span class="pz">' + esc(it.lot) + '</span></button>';
+    }).join('');
+    document.querySelectorAll('.pilesel .ps').forEach(function(el){
+      el.addEventListener('click', function(){ render(+el.dataset.i); });
+    });
+    // Open on MP-02, the panel with a captured record.
+    var start = panels.map(function(it){return it.id;}).indexOf('MP-02');
+    render(start < 0 ? 0 : start);
+
+    var dock = document.getElementById('submitQA');
+    dock.addEventListener('click', function(){
+      dock.classList.add('done');
+      document.getElementById('dockT').textContent = 'Submitted for QA';
+      document.getElementById('dockS').textContent = 'PM will confirm against the acceptance criteria';
+      document.querySelector('.dock .bico').innerHTML = CHK;
+    });
+  }
+  </script>
+
+  <script defer src="../js/build.js"></script>
+  <script defer src="../js/versioner.js"></script>
+  <script defer src="../js/standalone.js"></script>
+</body>
+</html>
