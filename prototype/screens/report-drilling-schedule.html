@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en-NZ">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#2b4721">
+<title>Drilling Schedule — Slip Site</title>
+  <link rel="stylesheet" href="../styles/fonts.css">
+  <link rel="stylesheet" href="../styles/tokens.css">
+  <link rel="stylesheet" href="../styles/base.css">
+  <link rel="stylesheet" href="../styles/components.css">
+<link rel="stylesheet" href="../styles/report.css">
+<style>
+  .chip.ok{background:#e7eddf;color:var(--forest);border:1px solid var(--sage);}
+  .chip.prog{background:#dbe9ea;color:#2f7d86;border:1px solid #b9d3d6;}
+  .chip.reopen{background:#f0e3c4;color:var(--amber);border:1px solid var(--amber);}
+  .chip.plan{background:#eceadf;color:#7a8270;border:1px solid var(--line-2);}
+  td.lnk a{color:var(--forest);font-weight:600;text-decoration:none;}
+  td.lnk a:hover{text-decoration:underline;}
+</style>
+</head>
+<body>
+<div class="viewerbar"><a class="vb-back" href="engineer-view.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg> Engineer View</a><span class="vb-title">Drilling Schedule · Slip Site</span><span class="vb-act">PDF · A4</span></div>
+
+<div class="page">
+  <div class="masthead">
+    <div><div class="brand-name">TACEDGE</div><div class="brand-tag">Drilling Schedule</div></div>
+    <div class="doc-meta"><div class="title">Drilling Schedule</div><div class="ref" id="docRef">TE-GEO-SS-DS · REV DRAFT</div></div>
+  </div>
+
+  <div class="ident">
+    <div class="f"><div class="k">Project</div><div class="v big" id="idProject">Slip Site Investigation</div></div>
+    <div class="f"><div class="k">Contractor</div><div class="v" id="idContractor">Rock Control</div></div>
+    <div class="f"><div class="k">Engineer</div><div class="v" id="idEngineer">Southern Geotechnical</div></div>
+    <div class="f"><div class="k">Programme</div><div class="v" id="idProg">8 holes · 2 zones</div></div>
+    <div class="f"><div class="k">Basis</div><div class="v">Record complete · per run</div></div>
+  </div>
+
+  <div class="stat-row" id="statRow"></div>
+
+  <h2 class="section"><span class="num">01</span> Borehole Schedule <span class="src">Each hole links to its log sheet</span></h2>
+  <table>
+    <thead>
+      <tr><th>Hole</th><th>Zone</th><th class="num">Design m</th><th class="num">Drilled m</th><th class="num">Runs</th><th class="num">Samples</th><th>Log</th><th>State</th></tr>
+    </thead>
+    <tbody id="schedBody"></tbody>
+  </table>
+
+  <div class="signoff">
+    <div class="sig"><div class="role">Prepared by</div><div class="name">P. Rewa</div><div class="meta">Field logger · Rock Control</div></div>
+    <div class="sig"><div class="role">Reviewed by</div><div class="name">Tim R.</div><div class="meta">Project manager · Rock Control</div></div>
+    <div class="sig"><div class="role">Accepted by</div><div class="name">TBC</div><div class="meta">Engineer · Southern Geotechnical</div></div>
+  </div>
+  <div class="standards">The deliverable is the set of per-hole borehole logs. QA confirms each record; recovery and RQD are recorded findings, not pass or fail. Geology is placeholder pending Rock Control driller validation. Draft schedule · content for owner and validator review.</div>
+  <div class="foot"><span>TACEDGE GEOTECH · DRILLING SCHEDULE</span><span id="footRef">SLIP SITE · DRAFT</span></div>
+</div>
+
+<script type="module">
+import { activeProject } from '../config/projects.js';
+import { packFor } from '../data/mock/index.js';
+function set(id, v){ var e = document.getElementById(id); if (e) e.textContent = v; }
+function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+var proj = activeProject();
+var pack = packFor('drilling') || {};
+var holes = pack.holes || [];
+if (holes.length) {
+  if (proj.workType === 'drilling') { set('idProject', proj.name); set('idContractor', proj.contractor); set('idEngineer', proj.engineer); }
+  function stateChip(h){
+    if (h.state === 'complete') return '<span class="chip ok">Released</span>';
+    if (h.state === 'in_progress') return '<span class="chip prog">Logging</span>';
+    if (h.state === 'set_up') return '<span class="chip plan">Set up</span>';
+    return '<span class="chip plan">Planned</span>';
+  }
+  var released = 0, logging = 0, planned = 0, drilledTotal = 0, designTotal = 0, sampleTotal = 0;
+  document.getElementById('schedBody').innerHTML = holes.map(function(h){
+    if (h.state === 'complete') released++; else if (h.state === 'in_progress') logging++; else planned++;
+    drilledTotal += h.drilled; designTotal += h.designDepth; sampleTotal += (h.samples || []).length;
+    var runs = (h.runs || []).length, samples = (h.samples || []).length;
+    var reopened = (h.runs || []).some(function(r){ return r.state === 'reopened'; });
+    var logCell = h.logReleased ? '<a href="report-borehole-log.html?bh=' + h.id + '">Log sheet →</a>'
+      : (runs ? '<a href="report-borehole-log.html?bh=' + h.id + '">Draft →</a>' : '—');
+    return '<tr>' +
+      '<td class="id">' + esc(h.id) + '</td><td>' + esc(h.zone) + '</td>' +
+      '<td class="num">' + h.designDepth.toFixed(1) + '</td>' +
+      '<td class="num">' + h.drilled.toFixed(1) + '</td>' +
+      '<td class="num">' + runs + '</td><td class="num">' + samples + '</td>' +
+      '<td class="lnk">' + logCell + '</td>' +
+      '<td>' + stateChip(h) + (reopened ? ' <span class="chip reopen">R3 re-log</span>' : '') + '</td>' +
+    '</tr>';
+  }).join('');
+
+  set('idProg', holes.length + ' holes · ' + drilledTotal.toFixed(1) + ' of ' + designTotal.toFixed(1) + ' m');
+  document.getElementById('statRow').innerHTML =
+    '<div class="stat"><div class="n mono">' + holes.length + '</div><div class="l">Holes</div></div>' +
+    '<div class="stat"><div class="n mono">' + released + '</div><div class="l">Released</div></div>' +
+    '<div class="stat"><div class="n mono">' + logging + '</div><div class="l">Logging</div></div>' +
+    '<div class="stat"><div class="n mono">' + planned + '</div><div class="l">Planned</div></div>' +
+    '<div class="stat"><div class="n mono">' + drilledTotal.toFixed(0) + '<small> m</small></div><div class="l">Drilled</div></div>' +
+    '<div class="stat"><div class="n mono">' + sampleTotal + '</div><div class="l">Samples</div></div>';
+}
+</script>
+
+<script defer src="../components/report-shell.js"></script>
+  <script defer src="../js/build.js"></script>
+  <script defer src="../js/versioner.js"></script>
+  <script defer src="../js/standalone.js"></script>
+</body>
+</html>

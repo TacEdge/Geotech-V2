@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en-NZ">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#2b4721">
+<title>Borehole Log — Slip Site</title>
+  <link rel="stylesheet" href="../styles/fonts.css">
+  <link rel="stylesheet" href="../styles/tokens.css">
+  <link rel="stylesheet" href="../styles/base.css">
+  <link rel="stylesheet" href="../styles/components.css">
+<link rel="stylesheet" href="../styles/report.css">
+<style>
+  .chip.ok{background:#e7eddf;color:var(--forest);border:1px solid var(--sage);}
+  .chip.reopen{background:#f0e3c4;color:var(--amber);border:1px solid var(--amber);}
+  .chip.plan{background:#eceadf;color:#7a8270;border:1px solid var(--line-2);}
+</style>
+</head>
+<body>
+<div class="viewerbar"><a class="vb-back" href="engineer-view.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg> Engineer View</a><span class="vb-title" id="vbTitle">Borehole Log · Slip Site</span><span class="vb-act">PDF · A4</span></div>
+
+<div class="page">
+  <div class="masthead">
+    <div><div class="brand-name">TACEDGE</div><div class="brand-tag">Borehole Log</div></div>
+    <div class="doc-meta"><div class="title">Borehole Log</div><div class="ref" id="docRef">TE-GEO-SS-BH01 · REV DRAFT</div></div>
+  </div>
+
+  <div class="ident">
+    <div class="f"><div class="k">Project</div><div class="v big" id="idProject">Slip Site Investigation</div></div>
+    <div class="f"><div class="k">Hole</div><div class="v" id="idHole">BH-01</div></div>
+    <div class="f"><div class="k">Zone</div><div class="v" id="idZone">Upper Slip</div></div>
+    <div class="f"><div class="k">Depth</div><div class="v" id="idDepth">22.5 m</div></div>
+    <div class="f"><div class="k">Basis</div><div class="v">Record complete · per run</div></div>
+  </div>
+
+  <div class="loghead" id="loghead"></div>
+
+  <h2 class="section"><span class="num">01</span> Soils &amp; SPT <span class="src">To rockhead</span></h2>
+  <table>
+    <thead><tr><th>From m</th><th>To m</th><th>Description</th><th>SPT depth</th><th>N value</th></tr></thead>
+    <tbody id="soilBody"></tbody>
+  </table>
+
+  <h2 class="section"><span class="num">02</span> Core Runs <span class="src">Recovery &amp; RQD are recorded findings</span></h2>
+  <table>
+    <thead><tr><th>Run</th><th>From m</th><th>To m</th><th class="num">Recovery %</th><th class="num">RQD %</th><th>Lithology</th><th>State</th></tr></thead>
+    <tbody id="runBody"></tbody>
+  </table>
+
+  <h2 class="section"><span class="num">03</span> Water &amp; Completion</h2>
+  <div class="twocol">
+    <div class="panel"><h3>Water observations</h3><table id="waterTbl"><tbody id="waterBody"></tbody></table></div>
+    <div class="panel"><h3>Completion</h3><dl class="kv" id="compKv"></dl></div>
+  </div>
+
+  <div class="signoff">
+    <div class="sig"><div class="role">Logged by</div><div class="name" id="sgLogger">P. Rewa</div><div class="meta">Field logger · Rock Control</div></div>
+    <div class="sig"><div class="role">Checked by</div><div class="name">Tim R.</div><div class="meta">Project manager · Rock Control</div></div>
+    <div class="sig"><div class="role">Accepted by</div><div class="name">TBC</div><div class="meta">Engineer · Southern Geotechnical</div></div>
+  </div>
+  <div class="standards">QA confirms the record, not the ground. A run is complete once from, to, recovery, RQD and lithology are logged; low recovery or RQD is a finding, not a failure. Geology is placeholder pending Rock Control driller validation. Draft log · content for owner and validator review.</div>
+  <div class="foot"><span>TACEDGE GEOTECH · BOREHOLE LOG</span><span id="footRef">SLIP SITE · DRAFT</span></div>
+</div>
+
+<script type="module">
+import { activeProject } from '../config/projects.js';
+import { packFor } from '../data/mock/index.js';
+function set(id, v){ var e = document.getElementById(id); if (e) e.textContent = v; }
+function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function num(v){ return v == null ? '—' : v; }
+var proj = activeProject();
+var pack = packFor('drilling') || {};
+var holes = pack.holes || [];
+// Hole from the query param, defaulting to the first released hole.
+var want; try { want = new URLSearchParams(location.search).get('bh'); } catch (_) { want = null; }
+var hole = holes.filter(function(h){ return h.id === want; })[0] || holes.filter(function(h){ return h.logReleased; })[0] || holes[0];
+if (hole) {
+  var ago = pack.agoPhrase || function(n){ return n + ' days ago'; };
+  set('idProject', proj.workType === 'drilling' ? proj.name : 'Slip Site Investigation');
+  set('idHole', hole.id);
+  set('idZone', hole.zone);
+  set('idDepth', hole.drilled.toFixed(1) + ' / ' + hole.designDepth.toFixed(1) + ' m');
+  set('docRef', 'TE-GEO-SS-' + hole.id.replace('-', '') + ' · REV DRAFT');
+  set('vbTitle', 'Borehole Log · ' + hole.id);
+  set('footRef', hole.id + ' · DRAFT');
+  set('sgLogger', hole.logger);
+
+  document.getElementById('loghead').innerHTML = [
+    ['Rig', hole.rig], ['Method', hole.method], ['Driller', hole.driller],
+    ['Logger', hole.logger], ['Casing', hole.casing], ['Log', hole.logReleased ? 'Released' : 'Draft']
+  ].map(function(f){ return '<div class="lf"><div class="k">' + esc(f[0]) + '</div><div class="v">' + esc(f[1]) + '</div></div>'; }).join('');
+
+  var spts = hole.spts || [];
+  document.getElementById('soilBody').innerHTML = (hole.soils || []).map(function(s, i){
+    var sp = spts[i];
+    return '<tr><td class="num">' + s.from.toFixed(1) + '</td><td class="num">' + s.to.toFixed(1) + '</td><td class="gc">' + esc(s.desc) + '</td>' +
+      '<td class="num">' + (sp ? sp.depth.toFixed(1) + ' m' : '') + '</td><td class="num">' + (sp ? (sp.n == null ? esc(sp.blows) : sp.n) : '') + '</td></tr>';
+  }).join('') || '<tr><td colspan="5" class="gc">No soils logged.</td></tr>';
+
+  document.getElementById('runBody').innerHTML = (hole.runs || []).map(function(r){
+    var reopen = r.state === 'reopened';
+    var chip = reopen ? '<span class="chip reopen">Reopened</span>' : '<span class="chip ok">Confirmed</span>';
+    var lith = esc(r.lithology) + (r.comment ? ' · ' + esc(r.comment) : '');
+    return '<tr' + (reopen ? ' class="reopen"' : '') + '><td class="id">' + esc(r.id) + '</td>' +
+      '<td class="num">' + r.from.toFixed(1) + '</td><td class="num">' + r.to.toFixed(1) + '</td>' +
+      '<td class="num">' + num(r.recovery_pct) + '</td><td class="num">' + num(r.rqd_pct) + '</td>' +
+      '<td class="gc">' + lith + '</td><td>' + chip + '</td></tr>';
+  }).join('') || '<tr><td colspan="7" class="gc">Not yet cored.</td></tr>';
+
+  document.getElementById('waterBody').innerHTML = (hole.water || []).map(function(w){
+    return '<tr><td class="id">' + esc(w.type) + '</td><td class="num">' + w.depth.toFixed(1) + ' m</td><td class="gc">' + esc(w.note) + '</td></tr>';
+  }).join('') || '<tr><td class="gc">No water observations.</td></tr>';
+
+  var c = hole.completion;
+  document.getElementById('compKv').innerHTML = c
+    ? [['Backfill', c.method], ['Reinstated', c.reinstated ? 'Yes · ' + c.note : 'No'], ['Backfilled', ago(c.backfilledDaysAgo)], ['Log', hole.logReleased ? 'Released' : 'Draft']]
+        .map(function(f){ return '<dt>' + esc(f[0]) + '</dt><dd>' + esc(f[1]) + '</dd>'; }).join('')
+    : '<dt>Status</dt><dd>' + esc(hole.note || 'Not yet completed') + '</dd>';
+}
+</script>
+
+<script defer src="../components/report-shell.js"></script>
+  <script defer src="../js/build.js"></script>
+  <script defer src="../js/versioner.js"></script>
+  <script defer src="../js/standalone.js"></script>
+</body>
+</html>

@@ -397,7 +397,7 @@ import { activeProject } from '../config/projects.js';
       var pgrid=document.querySelector('.plan-grid'); if(pgrid)pgrid.style.gridTemplateColumns='1fr';
     }
     if(pack.planZones){
-      var zr=pack.planZones.map(function(z){return '<button class="zrow" data-zone="'+z.key+'">'+'<span class="zsw" style="background:'+z.colour+'"></span>'+'<span class="zn">'+z.label+'</span>'+'<span class="zdes">'+z.design+'</span>'+'<span class="zct"><b>'+z.count+'</b> / '+z.count+'</span></button>';}).join('');
+      var zr=pack.planZones.map(function(z){var zct=z.progress?('<b>'+z.progress.drilled+'</b> / '+z.progress.design+' '+(z.progress.unit||'')):('<b>'+z.count+'</b> / '+z.count);return '<button class="zrow" data-zone="'+z.key+'">'+'<span class="zsw" style="background:'+z.colour+'"></span>'+'<span class="zn">'+z.label+'</span>'+'<span class="zdes">'+z.design+'</span>'+'<span class="zct">'+zct+'</span></button>';}).join('');
       var zc=document.getElementById('zdRows'); if(zc)zc.innerHTML=zr;
     }
     if(pack.planSummary){

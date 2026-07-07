@@ -520,6 +520,22 @@ window.TE_SCREENS = [
     workTypes: ['shotcrete']
   },
   {
+    id: 'report-borehole-log',
+    title: 'Borehole Log Report',
+    stage: null,
+    chrome: 'none',
+    path: 'screens/report-borehole-log.html',
+    workTypes: ['drilling']
+  },
+  {
+    id: 'report-drilling-schedule',
+    title: 'Drilling Schedule Report',
+    stage: null,
+    chrome: 'none',
+    path: 'screens/report-drilling-schedule.html',
+    workTypes: ['drilling']
+  },
+  {
     id: 'module-preview',
     title: 'Module Preview',
     stage: null,

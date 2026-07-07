@@ -41,6 +41,12 @@ window.TE_HEADER = (function () {
       meta: 'Rock Control · Southern Aggregates · WSP engineer',
       short: 'Quarry Face · Shotcrete',
       zone: 'Rock Control • today'
+    },
+    'slip-site': {
+      name: 'Slip Site · Drilling',
+      meta: 'Rock Control · Alpine District Council · Southern Geotechnical',
+      short: 'Slip Site · Drilling',
+      zone: 'Rock Control • today'
     }
   };
   function activeHeader() {
