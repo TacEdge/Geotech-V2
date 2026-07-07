@@ -153,6 +153,31 @@ export const PROJECTS = {
       { id: "SC-14", zone: "Bench 2", template: "S1", geometry: "area", lot: "SL-03", area: 27, points: [[870,520],[1014,520],[1014,755],[870,755]], state: "planned" },
       { id: "SC-15", zone: "Bench 2", template: "S1", geometry: "area", lot: "SL-03", area: 23, points: [[1020,520],[1154,520],[1154,755],[1020,755]], state: "planned" }
     ]
+  },
+
+  // Slip Site Investigation · drilling. First report-as-deliverable project:
+  // the borehole log IS the product, confirmed per core run. Client and
+  // engineer are fictional placeholders; geology is placeholder throughout.
+  // draft:true until the Rock Control driller validates the pack.
+  'slip-site': {
+    id: 'SSI-DR-2026',
+    name: 'Slip Site Investigation',
+    client: 'Alpine District Council',
+    contractor: 'Rock Control',
+    engineer: 'Southern Geotechnical',
+    workType: 'drilling',
+    draft: true,
+    zones: ['Upper Slip', 'Lower Terrace'],
+    items: [
+      { id: 'BH-01', zone: 'Upper Slip', template: 'HQ3', geometry: 'point', x: 300, y: 245, depthDesign: 22.5, depthDrilled: 22.5, state: 'approved' },
+      { id: 'BH-02', zone: 'Upper Slip', template: 'HQ3', geometry: 'point', x: 520, y: 250, depthDesign: 22.5, depthDrilled: 14.2, state: 'provisional' },
+      { id: 'BH-03', zone: 'Upper Slip', template: 'HQ3', geometry: 'point', x: 745, y: 250, depthDesign: 18.0, depthDrilled: 0, state: 'planned' },
+      { id: 'BH-04', zone: 'Upper Slip', template: 'HQ3', geometry: 'point', x: 960, y: 300, depthDesign: 15.0, depthDrilled: 15.0, state: 'approved' },
+      { id: 'BH-05', zone: 'Lower Terrace', template: 'HQ3', geometry: 'point', x: 300, y: 600, depthDesign: 20.0, depthDrilled: 20.0, state: 'approved' },
+      { id: 'BH-06', zone: 'Lower Terrace', template: 'HQ3', geometry: 'point', x: 520, y: 605, depthDesign: 25.0, depthDrilled: 0, state: 'planned' },
+      { id: 'BH-07', zone: 'Lower Terrace', template: 'HQ3', geometry: 'point', x: 745, y: 600, depthDesign: 12.0, depthDrilled: 0, state: 'planned' },
+      { id: 'BH-08', zone: 'Lower Terrace', template: 'HQ3', geometry: 'point', x: 960, y: 610, depthDesign: 16.0, depthDrilled: 0, state: 'planned' }
+    ]
   }
 };
 

@@ -81,18 +81,18 @@ export const WORK_TYPES = {
     icon: 'drill',
     status: 'configured',
     geometry: 'point',
-    unit: 'each',
-    confirmationBasis: 'per_item',
+    unit: 'm',
+    confirmationBasis: 'per_run',
     description: 'Investigation and production holes where the drill record is the deliverable.',
     templates: ['Cored investigation', 'Open hole', 'Instrumentation'],
     exampleTemplate: {
       name: 'Cored investigation · HQ3',
       rows: [
         ['Template', 'Cored investigation · HQ3'],
-        ['Design depth', '25.0 m'],
         ['Core size', 'HQ3 · 63.5 mm'],
         ['Run length', '1.5 m'],
-        ['Logging', 'RQD and recovery per run']
+        ['Sampling', 'SPT at 1.5 m in soils'],
+        ['Logging', 'Recovery, RQD, lithology per run']
       ]
     },
     presets: [
@@ -100,15 +100,61 @@ export const WORK_TYPES = {
       ['Core boxes', '1.0 m rows, labelled'],
       ['Sampling', 'SPT at 1.5 m intervals'],
       ['Photos', 'Per box, wet and dry'],
-      ['QA rule', 'Recovery ≥ 95% per run']
+      ['QA rule', 'Every run fully logged']
     ],
     modules: [
       ['Borehole Log', 'lithology, RQD, recovery'],
       ['Core Photos', 'per box, wet and dry'],
       ['Sample Register', 'depth, type, custody'],
-      ['Water / Flush Log', 'strikes, losses, returns']
+      ['Water Observations', 'strikes, rest levels']
     ],
-    matrixChips: ['Borehole Log', 'Core Photos', 'Samples', 'Flush Log']
+    matrixChips: ['Borehole Log', 'Core Photos', 'Samples', 'Water'],
+    // One deep template. Confirmation is per run: each 1.5 m core run is logged
+    // and confirmed on its own, and runs roll up under their hole. Open hole and
+    // instrumentation stay configured examples only. QA confirms the RECORD,
+    // never the ground: the rules are completeness and custody only. Low
+    // recovery or RQD is a finding, not a failure.
+    workItemTemplates: [
+      {
+        code: 'HQ3',
+        name: 'Cored investigation',
+        geometry: 'point',
+        unit: 'm',
+        confirmationBasis: 'per_run',
+        runIs: 'core run',
+        item: { singular: 'hole', plural: 'holes', idPrefix: 'BH' },
+        runItem: { singular: 'run', plural: 'runs', idPrefix: 'R' },
+        spec: [
+          ['Core size', 'HQ3 · 63.5 mm'],
+          ['Run length', '1.5 m'],
+          ['SPT', '1.5 m intervals in soils'],
+          ['Core boxes', '1.0 m rows, labelled'],
+          ['Photos', 'Per box, wet and dry']
+        ],
+        moduleIds: ['borehole_log', 'core_photos', 'sample_register', 'evidence'],
+        rules: [
+          { type: 'completeness', scope: 'run', fields: ['from', 'to', 'recovery_pct', 'rqd_pct', 'lithology'], label: 'Every run logged · from, to, recovery, RQD, lithology' },
+          { type: 'completeness', scope: 'box', fields: ['photo_wet', 'photo_dry'], label: 'Each core box photographed wet and dry' },
+          { type: 'completeness', scope: 'sample', fields: ['depth', 'type', 'sample_id', 'dispatch_docket'], label: 'Every sample has depth, type, ID and dispatch docket' },
+          { type: 'sequence', order: ['borehole_log', 'core_photos', 'sample_register'], note: 'Logged and photographed before dispatch', label: 'Logged and photographed before dispatch' }
+        ]
+      }
+    ],
+    evidenceRequirements: [
+      { kind: 'photo', scope: 'per box', label: 'Core box photo, wet and dry' },
+      { kind: 'record', scope: 'per sample batch', label: 'Dispatch docket' },
+      { kind: 'photo', scope: 'per hole', label: 'Completion photo at collar' }
+    ],
+    moduleIds: ['borehole_log', 'core_photos', 'sample_register', 'evidence'],
+    item: { singular: 'hole', plural: 'holes', idPrefix: 'BH' },
+    runItem: { singular: 'run', plural: 'runs', idPrefix: 'R' },
+    // Union of the typed rules; completeness and custody only, no thresholds.
+    rules: [
+      { type: 'completeness', scope: 'run', fields: ['from', 'to', 'recovery_pct', 'rqd_pct', 'lithology'], label: 'Every run logged · from, to, recovery, RQD, lithology' },
+      { type: 'completeness', scope: 'box', fields: ['photo_wet', 'photo_dry'], label: 'Each core box photographed wet and dry' },
+      { type: 'completeness', scope: 'sample', fields: ['depth', 'type', 'sample_id', 'dispatch_docket'], label: 'Every sample has depth, type, ID and dispatch docket' },
+      { type: 'sequence', order: ['borehole_log', 'core_photos', 'sample_register'], note: 'Logged and photographed before dispatch', label: 'Logged and photographed before dispatch' }
+    ]
   },
 
   shotcrete: {

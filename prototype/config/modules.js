@@ -62,12 +62,16 @@ export const MODULES = {
     summary: 'pins, probes, cores', sharedBy: ['shotcrete']
   },
   borehole_log: {
-    id: 'borehole_log', name: 'Borehole Log', screen: null,
+    id: 'borehole_log', name: 'Borehole Log', screen: 'screens/borehole-log.html',
     summary: 'lithology, RQD, recovery', sharedBy: ['drilling']
   },
   core_photos: {
-    id: 'core_photos', name: 'Core Photos', screen: null,
+    id: 'core_photos', name: 'Core Photos', screen: 'screens/core-photos.html',
     summary: 'per box, wet and dry', sharedBy: ['drilling']
+  },
+  sample_register: {
+    id: 'sample_register', name: 'Sample Register', screen: 'screens/sample-register.html',
+    summary: 'depth, type, custody', sharedBy: ['drilling']
   },
   pipe_install: {
     id: 'pipe_install', name: 'Pipe Install Record', screen: null,
