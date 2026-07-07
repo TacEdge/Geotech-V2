@@ -302,6 +302,48 @@ window.TE_SCREENS = [
     desc: 'Lot closeout walkdown.'
   },
   {
+    id: 'substrate-inspection',
+    title: 'Substrate Inspection',
+    stage: 'capture',
+    chrome: 'field',
+    path: 'screens/substrate-inspection.html',
+    moduleId: 'substrate_inspection',
+    workTypes: ['shotcrete'],
+    header:
+      '<header class="bar">\n      {{CONTOUR:field}}\n      <a class="iconbtn" href="../index.html" aria-label="Back to home" title="Back to home"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></a>\n      <div class="ctx"><span class="p">Quarry Face · Shotcrete</span><span class="z">Rock Control · today</span></div>\n      <div class="right"><span class="fresh"><span class="d"></span>Live</span>\n        <span class="av">JN</span>\n      </div>\n    </header>',
+    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 18h16M4 18l3-9 5 3 4-6 4 12"/><circle cx="7" cy="9" r="1"/></svg>',
+    cardTitle: 'Substrate Inspection',
+    desc: 'Prep, mesh, witness hold.'
+  },
+  {
+    id: 'application-record',
+    title: 'Application Record',
+    stage: 'capture',
+    chrome: 'field',
+    path: 'screens/application-record.html',
+    moduleId: 'application_record',
+    workTypes: ['shotcrete'],
+    header:
+      '<header class="bar">\n      {{CONTOUR:field}}\n      <a class="iconbtn" href="../index.html" aria-label="Back to home" title="Back to home"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></a>\n      <div class="ctx"><span class="p">Quarry Face · Shotcrete</span><span class="z">Rock Control · today</span></div>\n      <div class="right"><span class="fresh"><span class="d"></span>Live</span>\n        <span class="av">JN</span>\n      </div>\n    </header>',
+    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4"/><path d="M10 12h5M10 15.5h5"/></svg>',
+    cardTitle: 'Application Record',
+    desc: 'Dockets, nozzleman, test panel.'
+  },
+  {
+    id: 'thickness-check',
+    title: 'Thickness Check',
+    stage: 'capture',
+    chrome: 'field',
+    path: 'screens/thickness-check.html',
+    moduleId: 'thickness_check',
+    workTypes: ['shotcrete'],
+    header:
+      '<header class="bar">\n      {{CONTOUR:field}}\n      <a class="iconbtn" href="../index.html" aria-label="Back to home" title="Back to home"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></a>\n      <div class="ctx"><span class="p">Quarry Face · Shotcrete</span><span class="z">Rock Control · today</span></div>\n      <div class="right"><span class="fresh"><span class="d"></span>Live</span>\n        <span class="av">JN</span>\n      </div>\n    </header>',
+    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h16M4 17h16"/><path d="M8 4v16"/></svg>',
+    cardTitle: 'Thickness Check',
+    desc: 'Probe readings vs 100 / 75 mm.'
+  },
+  {
     id: 'daily-activity',
     title: 'Daily Activity Sheet',
     stage: 'capture',
