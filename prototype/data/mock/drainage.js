@@ -57,11 +57,11 @@ export const drains = [
 export const drainDetail = {
   'DR-01': { installedDaysAgo: 20, flowTestedDaysAgo: 19, weather: 'Dry · 13°C', joints: 5, collarGrout: 'Class G · 1.0 m' },
   'DR-02': { installedDaysAgo: 19, flowTestedDaysAgo: 18, weather: 'Dry · 12°C', joints: 5, collarGrout: 'Class G · 1.0 m' },
-  'DR-03': { installedDaysAgo: 18, flowTestedDaysAgo: 17, weather: 'Overcast · 11°C', joints: 6, collarGrout: 'Class G · 1.0 m' },
+  'DR-03': { installedDaysAgo: 18, flowTestedDaysAgo: 17, weather: 'Overcast · 11°C', joints: 6, collarGrout: 'Class G · 1.0 m', strike: 'Damp seam at 14 m' },
   'DR-04': { installedDaysAgo: 16, flowTestedDaysAgo: 15, weather: 'Dry · 14°C', joints: 5, collarGrout: 'Class G · 1.0 m' },
   'DR-05': { installedDaysAgo: 14, flowTestedDaysAgo: 13, weather: 'Showers · 10°C', joints: 5, collarGrout: 'Class G · 1.0 m' },
   'DR-06': { installedDaysAgo: 12, flowTestedDaysAgo: 11, weather: 'Dry · 12°C', joints: 4, collarGrout: 'Class G · 1.0 m' },
-  'DR-07': { installedDaysAgo: 9, flowTestedDaysAgo: 8, weather: 'Dry · 13°C', joints: 5, collarGrout: 'Class G · 1.0 m' },
+  'DR-07': { installedDaysAgo: 9, flowTestedDaysAgo: 8, weather: 'Dry · 13°C', joints: 5, collarGrout: 'Class G · 1.0 m', strike: 'Flowing seam at 22 m' },
   'DR-08': { installedDaysAgo: 3, flowTestedDaysAgo: null, weather: 'Dry · 12°C', joints: 5, collarGrout: 'not yet placed' },
   'DR-09': { installedDaysAgo: 1, flowTestedDaysAgo: null, weather: 'Dry · 11°C', joints: 5, collarGrout: 'Class G · 1.0 m' }
 };

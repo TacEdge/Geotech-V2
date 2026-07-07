@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en-NZ">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TacEdge Geotech · Pipe Install</title>
+  <link rel="stylesheet" href="../styles/fonts.css">
+  <link rel="stylesheet" href="../styles/tokens.css">
+  <link rel="stylesheet" href="../styles/base.css">
+  <link rel="stylesheet" href="../styles/components.css">
+<link rel="stylesheet" href="../styles/capture.css">
+<style>
+.card .clab{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-40);margin-bottom:8px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.card .clab .tp{margin-left:auto;text-transform:none;letter-spacing:0;font-family:var(--mono);font-size:11px;font-weight:600;color:var(--forest-2);background:var(--sage-tint);border-radius:var(--r-pill);padding:2px 9px}
+.frow{display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding:11px 0;border-bottom:1px solid var(--line)}
+.frow:last-child{border-bottom:none}
+.frow .fk{font-size:13px;color:var(--ink-60);flex-shrink:0}
+.frow .fv{text-align:right}
+.frow .fv .v1{font-size:15px;font-weight:700;color:var(--ink);font-family:var(--mono)}
+.frow .fv .v2{font-size:11.5px;color:var(--ink-40);margin-top:2px}
+.st{display:inline-block;font-family:var(--ui);font-size:10.5px;font-weight:700;padding:2px 8px;border-radius:var(--r-pill);margin-left:8px}
+.st.ok{color:var(--forest-2);background:var(--sage-tint)}
+.st.fail{color:var(--brick);background:#f3e0dc}
+.st.neutral{color:var(--ink-40);background:var(--plan)}
+.empty{padding:16px 2px;text-align:center;color:var(--ink-40);font-size:13px}
+</style>
+<link rel="manifest" href="../manifest.json">
+<meta name="theme-color" content="#2b4721">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="TacEdge">
+<link rel="apple-touch-icon" href="../assets/icons/apple-touch-icon.png?v=2026-06-26.7">
+  <script src="../config/screens.js"></script>
+  <script src="../components/header.js"></script>
+</head>
+<body class="field">
+  <header></header>
+  <script>TE_HEADER.fill('pipe-install')</script>
+
+  <div class="signed">
+    <span class="tick"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>
+    <span>Signed on <b>06:50</b> &middot; pipe install</span><span class="jsa">JSA-620 ACK</span>
+  </div>
+
+  <main class="wrap">
+    <div class="phead">
+      <h1>Pipe Install</h1>
+      <div class="psub" id="psub">Drain run</div>
+    </div>
+
+    <div class="pilesel" id="pilesel"></div>
+
+    <div id="body"></div>
+  </main>
+
+  <div class="dock">
+    <button class="btn" id="submitQA">
+      <svg class="bico" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+      <span class="bt"><span class="bt1" id="dockT">Record install</span><span class="bt2" id="dockS">As-built and pipe recorded</span></span>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+    </button>
+  </div>
+
+  <script type="module">
+  import { packFor } from '../data/mock/index.js';
+  import { renderSelector } from '../components/selector.js';
+  function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+  var CHK='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>';
+  var pack = packFor('drainage');
+  function withinLen(it){ return it.asbuilt_length_m != null && Math.abs(it.asbuilt_length_m - it.design_length_m) <= 0.5; }
+  function withinIncl(it){ return it.inclination_deg != null && Math.abs(it.inclination_deg - it.design_inclination_deg) <= 1.0; }
+  function frow(k, v1, v2, st){
+    return '<div class="frow"><span class="fk">' + esc(k) + '</span><span class="fv"><span class="v1">' + v1 +
+      (st ? '<span class="st ' + st.cls + '">' + esc(st.txt) + '</span>' : '') + '</span>' +
+      (v2 ? '<span class="v2">' + esc(v2) + '</span>' : '') + '</span></div>';
+  }
+  if (pack && pack.drains) {
+    var det = pack.drainDetail || {};
+    // One selector across both templates; the overlay switches on item.template.
+    var items = pack.drains.concat(pack.collectorRuns || []);
+    function hd1(it){
+      var d = det[it.id] || {};
+      var lenV = it.asbuilt_length_m != null ? it.asbuilt_length_m.toFixed(1) + ' m' : 'pending';
+      var lenSt = it.asbuilt_length_m == null ? null : (withinLen(it) ? { cls: 'ok', txt: 'within ± 0.5 m' } : { cls: 'fail', txt: 'outside ± 0.5 m' });
+      var incV = it.inclination_deg != null ? '+' + it.inclination_deg.toFixed(1) + '°' : 'pending';
+      var incSt = it.inclination_deg == null ? null : (withinIncl(it) ? { cls: 'ok', txt: 'within ± 1.0°' } : { cls: 'fail', txt: 'outside ± 1.0°' });
+      var rows = frow('As-drilled length', lenV, 'design ' + it.design_length_m.toFixed(1) + ' m', lenSt) +
+        frow('Inclination', incV, 'design +' + it.design_inclination_deg.toFixed(1) + '°', incSt) +
+        frow('Water strikes', esc(d.strike || 'None recorded'), '', null) +
+        frow('Pipe', it.pipeLengths != null ? it.pipeLengths + ' × 6 m' : 'pending', '40 mm slotted PVC' + (d.joints ? ' · ' + d.joints + ' joints' : ''), null) +
+        frow('Collar grout', esc(d.collarGrout || 'pending'), '', null);
+      var noteCard = it.note ? '<div class="card"><div class="clab">Note</div><div class="empty" style="text-align:left;color:var(--brick)">' + esc(it.note) + '</div></div>' : '';
+      return '<div class="card"><div class="clab">As-built <span class="tp">HD1 · horizontal drain</span></div>' + rows + '</div>' + noteCard;
+    }
+    function td1(it){
+      var rows = (it.layers || []).map(function(l){ return frow(l.label, '', '', { cls: l.ok ? 'ok' : 'neutral', txt: l.ok ? 'Placed' : 'Pending' }); }).join('') +
+        frow('As-built length', it.asbuilt_length_m.toFixed(1) + ' m', 'design ' + it.design_length_m.toFixed(1) + ' m', null);
+      return '<div class="card"><div class="clab">Trench build-up <span class="tp">TD1 · collector trench</span></div>' + rows + '</div>';
+    }
+    function render(idx){
+      var it = items[idx];
+      var isHD = it.template === 'HD1';
+      document.getElementById('psub').textContent = (isHD ? 'Drain run · ' : 'Trench run · ') + it.zone;
+      document.getElementById('body').innerHTML = isHD ? hd1(it) : td1(it);
+      document.querySelectorAll('.pilesel .ps').forEach(function(el, i){ el.classList.toggle('sel', i === idx); });
+    }
+    renderSelector(document.getElementById('pilesel'), items.map(function(it){
+      return { primary: it.id, secondary: it.template, cls: it.state === 'reopened' ? 'fail' : null };
+    }), { onSelect: render });
+    render(0);
+    var dock = document.getElementById('submitQA');
+    dock.addEventListener('click', function(){
+      dock.classList.add('done');
+      document.getElementById('dockT').textContent = 'Install recorded';
+      document.getElementById('dockS').textContent = 'Flow test or inspection follows';
+      document.querySelector('.dock .bico').innerHTML = CHK;
+    });
+  }
+  </script>
+
+  <script defer src="../js/build.js"></script>
+  <script defer src="../js/versioner.js"></script>
+  <script defer src="../js/standalone.js"></script>
+</body>
+</html>

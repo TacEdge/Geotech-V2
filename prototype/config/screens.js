@@ -386,6 +386,48 @@ window.TE_SCREENS = [
     desc: 'Depth, type, custody.'
   },
   {
+    id: 'pipe-install',
+    title: 'Pipe Install',
+    stage: 'capture',
+    chrome: 'field',
+    path: 'screens/pipe-install.html',
+    moduleId: 'pipe_install',
+    workTypes: ['drainage'],
+    header:
+      '<header class="bar">\n      {{CONTOUR:field}}\n      <a class="iconbtn" href="../index.html" aria-label="Back to home" title="Back to home"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></a>\n      <div class="ctx"><span class="p">Terrace Slip · Drainage</span><span class="z">Rock Control · today</span></div>\n      <div class="right"><span class="fresh"><span class="d"></span>Live</span>\n        <span class="av">SK</span>\n      </div>\n    </header>',
+    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h13a3 3 0 0 0 3-3V6"/><path d="M3 9v6"/><circle cx="19" cy="6" r="2"/></svg>',
+    cardTitle: 'Pipe Install',
+    desc: 'Length, inclination, pipe, collar.'
+  },
+  {
+    id: 'flow-test',
+    title: 'Flow Test',
+    stage: 'capture',
+    chrome: 'field',
+    path: 'screens/flow-test.html',
+    moduleId: 'flow_test',
+    workTypes: ['drainage'],
+    header:
+      '<header class="bar">\n      {{CONTOUR:field}}\n      <a class="iconbtn" href="../index.html" aria-label="Back to home" title="Back to home"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></a>\n      <div class="ctx"><span class="p">Terrace Slip · Drainage</span><span class="z">Rock Control · today</span></div>\n      <div class="right"><span class="fresh"><span class="d"></span>Live</span>\n        <span class="av">SK</span>\n      </div>\n    </header>',
+    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3s6 7 6 11a6 6 0 0 1-12 0c0-4 6-11 6-11z"/></svg>',
+    cardTitle: 'Flow Test',
+    desc: 'L/min at collar, zero permitted.'
+  },
+  {
+    id: 'backfill-inspection',
+    title: 'Backfill Inspection',
+    stage: 'capture',
+    chrome: 'field',
+    path: 'screens/backfill-inspection.html',
+    moduleId: 'backfill_inspection',
+    workTypes: ['drainage'],
+    header:
+      '<header class="bar">\n      {{CONTOUR:field}}\n      <a class="iconbtn" href="../index.html" aria-label="Back to home" title="Back to home"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></a>\n      <div class="ctx"><span class="p">Terrace Slip · Drainage</span><span class="z">Rock Control · today</span></div>\n      <div class="right"><span class="fresh"><span class="d"></span>Live</span>\n        <span class="av">SK</span>\n      </div>\n    </header>',
+    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 18h16M4 18v-6l8-5 8 5v6M9 18v-4h6v4"/></svg>',
+    cardTitle: 'Backfill Inspection',
+    desc: 'Layers, before-backfill hold.'
+  },
+  {
     id: 'daily-activity',
     title: 'Daily Activity Sheet',
     stage: 'capture',
