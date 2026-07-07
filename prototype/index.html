@@ -154,6 +154,7 @@
     display:grid;place-items:center;flex-shrink:0}
   .demo-ic svg{width:20px;height:20px}
   .demo-tx{flex:1;min-width:0}
+  .demo-eyebrow{font-family:var(--mono);font-size:var(--fs-2xs);letter-spacing:.16em;text-transform:uppercase;color:var(--forest);font-weight:700;margin-bottom:3px}
   .demo-t{font-family:var(--display);font-weight:700;font-size:var(--fs-md);color:var(--ink)}
   .demo-s{font-size:var(--fs-sm);color:var(--ink-60);margin-top:2px}
   .demo-btn{display:inline-flex;align-items:center;gap:8px;height:38px;padding:0 15px;flex-shrink:0;
@@ -194,15 +195,8 @@
       </div>
     </section>
 
-    <!-- Platform explainer: sits outside the three operating workflows -->
-    <a class="demo" href="screens/platform.html">
-      <span class="demo-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.4"/><path d="M12 3.5v2.3M12 18.2v2.3M3.5 12h2.3M18.2 12h2.3M6 6l1.6 1.6M16.4 16.4L18 18M18 6l-1.6 1.6M7.6 16.4L6 18"/></svg></span>
-      <div class="demo-tx">
-        <div class="demo-t">Configurable Engine Demo</div>
-        <div class="demo-s">Platform explainer: one core workflow, multiple work types.</div>
-      </div>
-      <span class="demo-btn"><span class="pl"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>Watch demo <svg class="ar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span>
-    </a>
+    <!-- Platform explainer: rendered once from the manifest, outside the three workflows -->
+    <div id="explainer"></div>
 
     <!-- 1 CONFIGURE -->
     <section class="phase s1">
@@ -214,7 +208,7 @@
         </div>
         <span class="ph-role">PM · Desktop</span>
       </div>
-      <div class="grid" id="g-configure"></div>
+      <div id="g-configure"></div>
     </section>
 
     <!-- 2 CAPTURE FIELD REALITY -->
@@ -266,7 +260,40 @@
       return '<a class="card" href="'+s.path+'"><span class="cic">'+s.icon+'</span><h3>'+s.cardTitle+'</h3><p>'+s.desc+'</p></a>';
     }
     function fill(id, list){ var el=document.getElementById(id); if(el) el.innerHTML = list.map(card).join(''); }
-    fill('g-configure',  S.filter(function(s){return s.stage==='configure' && applies(s);}));
+
+    // Platform explainer: rendered once, from the single stage:'platform' entry.
+    var plat = S.filter(function(s){return s.stage==='platform';})[0];
+    var ex = document.getElementById('explainer');
+    if (plat && ex) {
+      ex.innerHTML =
+        '<a class="demo" href="'+plat.path+'">'+
+          '<span class="demo-ic">'+plat.icon+'</span>'+
+          '<div class="demo-tx">'+
+            (plat.eyebrow ? '<div class="demo-eyebrow">'+plat.eyebrow+'</div>' : '')+
+            '<div class="demo-t">'+plat.cardTitle+'</div>'+
+            '<div class="demo-s">'+plat.desc+'</div>'+
+          '</div>'+
+          '<span class="demo-btn">Explore the engine <svg class="ar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span>'+
+        '</a>';
+    }
+
+    // Configure: three labelled groups, ordered, from `group` metadata.
+    var GROUPS = [
+      { key:'define-job',  label:'Define the job' },
+      { key:'define-work', label:'Define the work' },
+      { key:'ready-field', label:'Ready the field' }
+    ];
+    var cfg = S.filter(function(s){return s.stage==='configure' && applies(s);});
+    var gc = document.getElementById('g-configure');
+    if (gc) {
+      gc.innerHTML = GROUPS.map(function(g){
+        var cards = cfg.filter(function(s){return s.group===g.key;});
+        if (!cards.length) return '';
+        return '<div class="subgroup"><div class="sglabel">'+g.label+'</div>'+
+               '<div class="grid">'+cards.map(card).join('')+'</div></div>';
+      }).join('');
+    }
+
     fill('g-capture-pm', S.filter(function(s){return s.stage==='capture' && s.chrome==='pm' && applies(s);}));
     fill('g-capture-op', S.filter(function(s){return s.stage==='capture' && s.chrome==='field' && applies(s);}));
     fill('g-confirm',    S.filter(function(s){return s.stage==='confirm' && applies(s);}));
