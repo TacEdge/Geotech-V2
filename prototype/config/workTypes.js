@@ -114,7 +114,7 @@ export const WORK_TYPES = {
   shotcrete: {
     label: 'Shotcrete',
     icon: 'spray',
-    status: 'configured',
+    status: 'live',
     geometry: 'area',
     unit: 'm2',
     confirmationBasis: 'per_lot',
