@@ -141,6 +141,7 @@ table.tq tr.pass td.rz{color:var(--forest-2);font-weight:700}
   <script type="module">
   import { packFor } from '../data/mock/index.js';
   import { WORK_TYPES } from '../config/workTypes.js';
+  import { renderSelector } from '../components/selector.js';
   function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
   var CHK='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>';
   var pack = packFor('piling');
@@ -184,12 +185,9 @@ table.tq tr.pass td.rz{color:var(--forest-2);font-weight:700}
       document.querySelectorAll('.pilesel .ps').forEach(function(el, i){ el.classList.toggle('sel', i === idx); });
     }
 
-    document.getElementById('pilesel').innerHTML = logs.map(function(r, i){
-      return '<button class="ps' + (i === 0 ? ' sel' : '') + '" data-i="' + i + '"><span class="pn">' + esc(r.pile) + '</span><span class="pz">' + esc(r.zone) + '</span></button>';
-    }).join('');
-    document.querySelectorAll('.pilesel .ps').forEach(function(el){
-      el.addEventListener('click', function(){ render(+el.dataset.i); });
-    });
+    renderSelector(document.getElementById('pilesel'), logs.map(function(r){
+      return { primary: r.pile, secondary: r.zone };
+    }), { onSelect: render });
     render(0);
 
     var dock = document.getElementById('submitQA');

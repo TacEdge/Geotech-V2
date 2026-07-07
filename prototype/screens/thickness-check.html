@@ -90,6 +90,7 @@
   <script type="module">
   import { packFor } from '../data/mock/index.js';
   import { WORK_TYPES } from '../config/workTypes.js';
+  import { renderSelector } from '../components/selector.js';
   function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
   var CHK='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>';
   var WARN='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4l9 16H3z"/><path d="M12 10v4"/><path d="M12 17.4v.01"/></svg>';
@@ -132,13 +133,9 @@
       document.getElementById('noteWrap').innerHTML = extra;
       document.querySelectorAll('.pilesel .ps').forEach(function(el, i){ el.classList.toggle('sel', i === idx); });
     }
-    document.getElementById('pilesel').innerHTML = recs.map(function(r, i){
-      var fail = !r.pass;
-      return '<button class="ps' + (i === 0 ? ' sel' : '') + (fail ? ' fail' : '') + '" data-i="' + i + '"><span class="pn">' + esc(r.panel) + '</span><span class="pz">' + esc(r.lot) + '</span></button>';
-    }).join('');
-    document.querySelectorAll('.pilesel .ps').forEach(function(el){
-      el.addEventListener('click', function(){ render(+el.dataset.i); });
-    });
+    renderSelector(document.getElementById('pilesel'), recs.map(function(r){
+      return { primary: r.panel, secondary: r.lot, cls: r.pass ? null : 'fail' };
+    }), { onSelect: render });
     render(0);
     var dock = document.getElementById('submitQA');
     dock.addEventListener('click', function(){

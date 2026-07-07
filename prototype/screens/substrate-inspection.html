@@ -92,6 +92,7 @@
   <script type="module">
   import { packFor } from '../data/mock/index.js';
   import { renderChecklist } from '../components/checklist.js';
+  import { renderSelector } from '../components/selector.js';
   function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
   var CHK='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>';
   var CLOCK='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>';
@@ -120,12 +121,9 @@
       }
       document.querySelectorAll('.pilesel .ps').forEach(function(el, i){ el.classList.toggle('sel', i === idx); });
     }
-    document.getElementById('pilesel').innerHTML = recs.map(function(r, i){
-      return '<button class="ps' + (i === 0 ? ' sel' : '') + '" data-i="' + i + '"><span class="pn">' + esc(r.panel) + '</span><span class="pz">' + esc(r.lot) + '</span></button>';
-    }).join('');
-    document.querySelectorAll('.pilesel .ps').forEach(function(el){
-      el.addEventListener('click', function(){ render(+el.dataset.i); });
-    });
+    renderSelector(document.getElementById('pilesel'), recs.map(function(r){
+      return { primary: r.panel, secondary: r.lot };
+    }), { onSelect: render });
     render(0);
     var dock = document.getElementById('submitQA');
     dock.addEventListener('click', function(){
