@@ -33,6 +33,19 @@ window.TE_SCREENS = [
     desc: 'One core workflow, multiple work types.'
   },
   {
+    id: 'work-types',
+    title: 'Work Types',
+    stage: 'configure',
+    chrome: 'pm',
+    path: 'screens/work-types.html',
+    header:
+      '<header class="topbar">\n  {{CONTOUR:desktop}}\n  <a class="burger" href="../index.html" aria-label="All screens" title="All screens"><span></span><span></span><span></span></a>\n  <div class="brand"><span class="wordmark">TACEDGE</span><span class="vert"></span><span class="tag">Ground Engineering</span></div>\n  <div class="proj"><span class="name">Benmore Dam – Spillway Anchoring</span><span class="meta">Rock Control · Meridian Energy · WSP engineer · Setup</span></div>\n  <div class="right"><span class="sync"><span class="dot"></span>Synced 2 min ago</span><span class="who"><span class="av">TR</span>Tim R · PM <span class="car">&#9662;</span></span></div>\n</header>',
+    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l9 5-9 5-9-5 9-5z"/><path d="M3 12l9 5 9-5"/><path d="M3 16l9 5 9-5"/></svg>',
+    group: 'define-job',
+    cardTitle: 'Work Types',
+    desc: 'Choose the work types this project runs.'
+  },
+  {
     id: 'layout',
     title: 'Layout',
     stage: 'configure',

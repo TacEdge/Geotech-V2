@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en-NZ"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TacEdge Ground Engineering · Work Types</title>
+  <link rel="stylesheet" href="../styles/fonts.css">
+  <link rel="stylesheet" href="../styles/tokens.css">
+  <link rel="stylesheet" href="../styles/base.css">
+  <link rel="stylesheet" href="../styles/components.css">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{max-width:100%}
+body{font-family:var(--ui);color:var(--ink);background:var(--cream);font-size:16px;line-height:1.45;min-height:100vh}
+
+/* top bar */
+.topbar{position:relative;background:var(--forest);color:var(--cream);display:flex;align-items:center;gap:20px;padding:0 22px;height:64px;overflow:hidden}
+.topbar .contour{position:absolute;inset:0;pointer-events:none;opacity:.08}
+.burger{display:flex;flex-direction:column;gap:4px;background:none;border:none;cursor:pointer;padding:6px;flex-shrink:0}
+.burger span{width:20px;height:2px;background:var(--cream);border-radius:2px}
+.brand{display:flex;align-items:center;gap:12px;z-index:1;flex-shrink:0}
+.wordmark{font-family:var(--display);font-weight:700;font-size:20px;letter-spacing:.28em;padding-left:2px}
+.brand .vert{width:1px;height:22px;background:rgba(243,239,230,.28)}
+.brand .tag{font-family:var(--mono);font-size:10px;letter-spacing:.22em;color:var(--sage);text-transform:uppercase}
+.proj{display:flex;flex-direction:column;justify-content:center;z-index:1;min-width:0;margin-left:8px}
+.proj .name{font-weight:700;font-size:16px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.proj .meta{font-size:12px;color:var(--sage)}
+.topbar .right{margin-left:auto;display:flex;align-items:center;gap:22px;z-index:1;flex-shrink:0}
+.sync{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--sage)}
+.sync .dot{width:7px;height:7px;border-radius:50%;background:#9fc27e;box-shadow:0 0 0 3px rgba(159,194,126,.18)}
+.who{display:flex;align-items:center;gap:9px;font-size:13px}
+.who .av{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;background:var(--olive);color:var(--cream);font-family:var(--mono);font-size:11px;font-weight:700;border:1px solid rgba(243,239,230,.25)}
+.who .car{color:var(--sage);font-size:10px}
+
+.content2{padding:22px 24px 44px;max-width:1160px;margin:0 auto;width:100%}
+.eq-head{display:flex;align-items:flex-start;gap:16px;flex-wrap:wrap;margin-bottom:18px}
+.eq-title{font-family:var(--display);font-weight:700;font-size:24px;color:var(--ink)}
+.eq-sub{font-size:13.5px;color:var(--ink-60);margin-top:5px;max-width:680px}
+.eq-sub b{color:var(--ink);font-weight:700}
+.selpill{margin-left:auto;display:inline-flex;align-items:center;gap:7px;height:32px;padding:0 14px;border-radius:99px;background:var(--sage-tint);color:var(--forest-2);font-family:var(--ui);font-size:13px;font-weight:600;white-space:nowrap}
+.selpill .d{width:8px;height:8px;border-radius:50%;background:var(--live);box-shadow:0 0 0 3px rgba(159,194,126,.2)}
+
+/* work-type selector grid */
+.wt-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-bottom:12px}
+.wt-card{position:relative;display:flex;flex-direction:column;align-items:center;gap:9px;background:var(--card);border:1.5px solid var(--line);border-radius:var(--r-lg);padding:18px 9px 13px;cursor:pointer;text-align:center;font-family:var(--ui);box-shadow:var(--shadow-sm);transition:border-color .15s ease,box-shadow .15s ease,transform .15s ease}
+.wt-card:hover{border-color:var(--olive-edge);box-shadow:var(--shadow-md);transform:translateY(-1px)}
+.wt-card:focus-visible{outline:2px solid var(--forest);outline-offset:2px}
+.wt-card.on{border-color:var(--forest);box-shadow:0 0 0 3px rgba(43,71,33,.12),var(--shadow-sm)}
+.wt-ic{width:44px;height:44px;border-radius:50%;color:var(--forest);display:grid;place-items:center;transition:background .15s ease,color .15s ease}
+.wt-ic svg{width:25px;height:25px}
+.wt-card.sel .wt-ic{background:var(--forest);color:var(--cream)}
+.wt-lb{font-size:12.5px;font-weight:700;color:var(--ink);line-height:1.2}
+.wt-st{font-family:var(--mono);font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-40)}
+.wt-card.sel .wt-st{color:var(--forest-2)}
+.wt-check{position:absolute;top:8px;right:8px;width:19px;height:19px;color:var(--forest)}
+.wt-check svg{width:19px;height:19px}
+
+.wt-caption{display:flex;align-items:flex-start;gap:8px;font-size:12.5px;color:var(--ink-40);line-height:1.5;margin:2px 2px 22px}
+.wt-caption svg{color:var(--olive);flex-shrink:0;margin-top:1px}
+
+/* preview panel */
+.wt-panel{background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);box-shadow:var(--shadow-sm);overflow:hidden}
+.wp-head{display:flex;align-items:flex-start;gap:15px;padding:20px 22px 16px;border-bottom:1px solid var(--line)}
+.wp-ic{width:48px;height:48px;flex-shrink:0;border-radius:13px;background:var(--sage-tint);color:var(--forest);display:grid;place-items:center}
+.wp-ic svg{width:27px;height:27px}
+.wp-ht{flex:1;min-width:0}
+.wp-title{font-family:var(--display);font-size:21px;font-weight:700;color:var(--ink);line-height:1.14}
+.wp-desc{font-size:13.5px;color:var(--ink-60);margin-top:5px;max-width:640px}
+.wp-badges{display:flex;flex-wrap:wrap;gap:7px;margin-top:11px}
+.wp-badge{font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;font-weight:700;padding:4px 10px;border-radius:99px;background:var(--tint);color:var(--ink-60);text-transform:uppercase}
+.wp-badge.live{background:var(--sage-tint);color:var(--forest-2)}
+.wp-mark{flex-shrink:0;display:inline-flex;align-items:center;gap:7px;height:30px;padding:0 13px;border-radius:99px;font-size:12.5px;font-weight:600;white-space:nowrap}
+.wp-mark.sel{background:var(--sage-tint);color:var(--forest-2)}
+.wp-mark.uns{background:var(--tint);color:var(--ink-40)}
+.wp-mark svg{width:15px;height:15px}
+
+.wp-cols{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line)}
+.wp-col{background:var(--card);padding:18px 22px}
+.wp-k{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-40);margin-bottom:12px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{display:inline-flex;align-items:center;height:28px;padding:0 13px;border-radius:var(--r-pill);background:var(--tint);color:var(--ink);font-size:12.5px;font-weight:600}
+.chip.ex{background:none;border:1px dashed var(--line-2);color:var(--ink-40);font-weight:500}
+.modrow{display:flex;align-items:flex-start;gap:11px;padding:11px 0;border-top:1px solid var(--line)}
+.modrow:first-of-type{border-top:none}
+.mod-ic{width:30px;height:30px;border-radius:8px;background:var(--sage-tint);color:var(--forest);display:grid;place-items:center;flex-shrink:0}
+.mod-ic svg{width:16px;height:16px}
+.mod-main{flex:1;min-width:0}
+.mod-n{font-size:13.5px;font-weight:600;color:var(--ink)}
+.mod-s{font-family:var(--mono);font-size:11px;color:var(--ink-40);margin-top:2px}
+.mod-st{font-size:10.5px;font-weight:700;padding:3px 9px;border-radius:99px;white-space:nowrap;flex-shrink:0;margin-top:2px}
+.mod-st.built{color:var(--forest);background:var(--sage-tint)}
+.mod-st.cfg{color:var(--ochre);background:var(--ochre-tint);border:1px solid #eadbb8}
+
+@media (max-width:820px){ .wt-grid{grid-template-columns:repeat(3,1fr)} .wp-cols{grid-template-columns:1fr} }
+@media (max-width:480px){
+ body{font-size:15px}.topbar{padding:0 14px;gap:12px}.proj .meta{display:none}
+ .content2{padding:16px}.wt-grid{grid-template-columns:repeat(2,1fr)}
+ .wp-head{flex-wrap:wrap}
+}
+</style><link rel="manifest" href="../manifest.json">
+<meta name="theme-color" content="#2b4721">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="TacEdge">
+<link rel="apple-touch-icon" href="../assets/icons/apple-touch-icon.png?v=2026-06-26.7">  <script src="../config/screens.js"></script>
+  <script src="../components/header.js"></script>
+</head>
+<body>
+<header></header>
+  <script>TE_HEADER.fill('work-types')</script>
+
+<div class="content2">
+  <div class="eq-head">
+    <div>
+      <div class="eq-title">Work Types</div>
+      <div class="eq-sub"><b id="projName">Project</b> · A project can run one work type or several.</div>
+    </div>
+    <span class="selpill"><span class="d"></span><span id="selCount">1 selected</span></span>
+  </div>
+
+  <div class="wt-grid" id="wtGrid" role="group" aria-label="Work types in this project"></div>
+
+  <div class="wt-caption">
+    <svg width="15" height="15" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="8"/><path d="M10 9v4"/><path d="M10 6.5v.01"/></svg>
+    Ticked types run in this project and load their templates, capture modules and QA rules. Tap any type to preview what it configures.
+  </div>
+
+  <div class="wt-panel" id="wtPanel" aria-live="polite"></div>
+</div>
+
+<script type="module">
+import { activeProject } from '../config/projects.js';
+import { WORK_TYPES } from '../config/workTypes.js';
+import { MODULES } from '../config/modules.js';
+
+var ICONS = {
+  anchor:'<circle cx="12" cy="5" r="2"/><path d="M12 7v13M5 12a7 7 0 0014 0M4 12H3M21 12h-2"/>',
+  drill:'<path d="M12 3v10M8 9l4 4 4-4"/><rect x="7" y="16" width="10" height="4" rx="1"/>',
+  spray:'<rect x="8" y="8" width="8" height="12" rx="2"/><path d="M10 8V5h4v3"/><path d="M18 5h2M18 8h2M18 11h2"/>',
+  mesh:'<rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18M15 3v18"/>',
+  drop:'<path d="M12 3s6 7 6 11a6 6 0 01-12 0c0-4 6-11 6-11z"/>',
+  piles:'<path d="M6 3v13M12 3v13M18 3v13M3 16h18M5 20h14"/>'
+};
+var CHECK = '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="currentColor"/><path d="M8 12.5l2.4 2.4 5.2-5.6" fill="none" stroke="#fcf2e8" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+var CUBE = '<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2l7 4-7 4-7-4 7-4z"/><path d="M3 10l7 4 7-4"/></svg>';
+var TICK16 = '<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"/></svg>';
+function svg(n){ return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">'+(ICONS[n]||'')+'</svg>'; }
+function esc(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function set(id,v){ var e=document.getElementById(id); if(e) e.textContent=v; }
+
+var BASIS = { per_item:'confirmed per item', per_run:'confirmed per run', per_lot:'confirmed per lot' };
+var GEO = { point:'Point geometry', area:'Area geometry', line:'Line geometry' };
+
+var proj = activeProject();
+var selected = proj.workTypes || [];
+var KEYS = Object.keys(WORK_TYPES);
+var preview = selected[0] || KEYS[0];
+
+set('projName', proj.name);
+set('selCount', selected.length + (selected.length === 1 ? ' type selected' : ' types selected'));
+
+// A type's capture modules are the registry entries that name it in sharedBy.
+function modulesFor(k){
+  return Object.keys(MODULES).map(function(id){ return MODULES[id]; })
+    .filter(function(m){ return m.sharedBy.indexOf(k) !== -1; });
+}
+
+var grid = document.getElementById('wtGrid');
+grid.innerHTML = KEYS.map(function(k){
+  var c = WORK_TYPES[k];
+  var isSel = selected.indexOf(k) !== -1;
+  return '<button type="button" class="wt-card'+(isSel?' sel':'')+(k===preview?' on':'')+'" data-wt="'+k+'"'+
+    ' aria-pressed="'+(k===preview?'true':'false')+'"'+
+    ' aria-label="'+esc(c.label)+(isSel?', in this project':', not in this project')+'">'+
+    (isSel ? '<span class="wt-check">'+CHECK+'</span>' : '')+
+    '<span class="wt-ic">'+svg(c.icon)+'</span>'+
+    '<span class="wt-lb">'+esc(c.label)+'</span>'+
+    '<span class="wt-st">'+(isSel?'In this project':'Available')+'</span>'+
+  '</button>';
+}).join('');
+
+var panel = document.getElementById('wtPanel');
+function renderPanel(k){
+  var c = WORK_TYPES[k];
+  var isSel = selected.indexOf(k) !== -1;
+  var mods = modulesFor(k);
+  var builtN = mods.filter(function(m){ return !!m.screen; }).length;
+
+  var tplChips = c.templates.map(function(t, i){
+    return '<span class="chip'+(i===0?'':' ex')+'">'+esc(t)+'</span>';
+  }).join('');
+
+  var modRows = mods.map(function(m){
+    var built = !!m.screen;
+    return '<div class="modrow"><span class="mod-ic">'+CUBE+'</span>'+
+      '<div class="mod-main"><div class="mod-n">'+esc(m.name)+'</div>'+
+      '<div class="mod-s">'+esc(m.summary)+'</div></div>'+
+      '<span class="mod-st '+(built?'built':'cfg')+'">'+(built?'Built':'Configured')+'</span></div>';
+  }).join('');
+
+  var mark = isSel
+    ? '<span class="wp-mark sel">'+TICK16+' In this project</span>'
+    : '<span class="wp-mark uns">Available to add</span>';
+
+  panel.innerHTML =
+    '<div class="wp-head"><span class="wp-ic">'+svg(c.icon)+'</span>'+
+      '<div class="wp-ht"><div class="wp-title">'+esc(c.label)+'</div>'+
+        '<div class="wp-desc">'+esc(c.description)+'</div>'+
+        '<div class="wp-badges">'+
+          '<span class="wp-badge live">'+esc(c.status)+'</span>'+
+          '<span class="wp-badge">'+esc(GEO[c.geometry]||c.geometry)+'</span>'+
+          '<span class="wp-badge">'+esc(BASIS[c.confirmationBasis]||c.confirmationBasis)+'</span>'+
+        '</div>'+
+      '</div>'+ mark +
+    '</div>'+
+    '<div class="wp-cols">'+
+      '<div class="wp-col"><div class="wp-k">Templates · '+c.templates.length+'</div><div class="chips">'+tplChips+'</div></div>'+
+      '<div class="wp-col"><div class="wp-k">Capture modules · '+mods.length+'</div>'+modRows+'</div>'+
+    '</div>';
+}
+
+function select(k){
+  if (!WORK_TYPES[k]) return;
+  preview = k;
+  [].forEach.call(grid.querySelectorAll('.wt-card'), function(b){
+    var on = b.getAttribute('data-wt') === k;
+    b.classList.toggle('on', on);
+    b.setAttribute('aria-pressed', on ? 'true' : 'false');
+  });
+  renderPanel(k);
+}
+
+grid.addEventListener('click', function(e){
+  var b = e.target.closest && e.target.closest('.wt-card');
+  if (b) select(b.getAttribute('data-wt'));
+});
+
+renderPanel(preview);
+</script>
+
+  <script defer src="../js/build.js"></script>
+  <script defer src="../js/versioner.js"></script>
+  <script defer src="../js/standalone.js"></script>
+</body></html>
