@@ -21,7 +21,12 @@
   .vert{width:1px;height:22px;background:rgba(243,239,230,.28)}
   .tag{font-family:var(--mono);font-size:var(--fs-2xs);letter-spacing:.22em;
     color:var(--sage);text-transform:uppercase}
-  .topbar .right{margin-left:auto;font-size:var(--fs-sm);color:var(--sage)}
+  .topbar .right{margin-left:auto;display:flex;align-items:center;gap:14px;flex-shrink:0}
+  .who{display:flex;align-items:center;gap:9px;font-size:13px;color:var(--cream)}
+  .who .av{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;
+    background:var(--olive);color:var(--cream);font-family:var(--mono);font-size:11px;font-weight:700;
+    border:1px solid rgba(243,239,230,.25)}
+  .who .car{color:var(--sage);font-size:10px}
 
   .wrap{max-width:var(--content-max);margin:0 auto;padding:34px 28px 64px;width:100%}
 
@@ -116,6 +121,8 @@
   .ph-t .ph-n{color:var(--ink);margin-right:6px}
   .phase-head .ph-sub{color:var(--ink-40);font-size:var(--fs-sm);margin-top:3px;text-transform:none;letter-spacing:0}
   .pmgroup .grid{grid-template-columns:repeat(auto-fill,minmax(152px,1fr))}
+  /* Configure cards read as deliberate setup steps: wider, ~5 per row */
+  .phase.s1 .grid{grid-template-columns:repeat(auto-fill,minmax(228px,1fr))}
 
   .foot{margin-top:22px;color:var(--ink-40);font-size:var(--fs-sm);
     display:flex;align-items:flex-start;gap:8px;line-height:1.5}
@@ -137,6 +144,25 @@
   .step.s3{color:#9a6a16}.step.s3 .sn{background:var(--ochre-tint)}
   @media(max-width:860px){.steps{width:100%;max-width:none;margin-top:8px}}
   @media(max-width:680px){.hero{flex-direction:column;align-items:flex-start}.topbar .right{display:none}}
+
+  /* platform explainer strip (outside the three operating workflows) */
+  .demo{display:flex;align-items:center;gap:15px;border:1px solid var(--line);border-radius:var(--r-2xl);
+    background:rgba(255,255,255,.55);padding:15px 18px;margin-bottom:22px;text-decoration:none;color:inherit;
+    transition:border-color .15s ease,box-shadow .15s ease}
+  .demo:hover{border-color:var(--olive-edge);box-shadow:var(--shadow-sm)}
+  .demo-ic{width:38px;height:38px;border-radius:50%;background:var(--sage-tint);color:var(--forest);
+    display:grid;place-items:center;flex-shrink:0}
+  .demo-ic svg{width:20px;height:20px}
+  .demo-tx{flex:1;min-width:0}
+  .demo-t{font-family:var(--display);font-weight:700;font-size:var(--fs-md);color:var(--ink)}
+  .demo-s{font-size:var(--fs-sm);color:var(--ink-60);margin-top:2px}
+  .demo-btn{display:inline-flex;align-items:center;gap:8px;height:38px;padding:0 15px;flex-shrink:0;
+    border:1px solid var(--line-2);border-radius:var(--r-md);background:var(--card);color:var(--ink);
+    font-weight:600;font-size:var(--fs-sm)}
+  .demo:hover .demo-btn{border-color:var(--olive)}
+  .demo-btn .pl{display:flex;color:var(--forest)}.demo-btn .pl svg{width:15px;height:15px}
+  .demo-btn .ar{width:14px;height:14px;color:var(--ink-40)}
+  @media(max-width:680px){.demo{flex-wrap:wrap}.demo-btn{width:100%;justify-content:center;margin-top:4px}}
 </style>
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#2b4721">
@@ -152,6 +178,7 @@
     <img class="logo" src="assets/brand/tacedge-logo.png" alt="TACEDGE">
     <span class="vert"></span>
     <span class="tag">Ground&nbsp;Engineering</span>
+    <div class="right"><span class="who"><span class="av">PM</span>PM · Desktop <span class="car">&#9662;</span></span></div>
   </header>
 
   <main class="wrap">
@@ -166,6 +193,16 @@
         <div class="step s3"><span class="sn">3</span><span class="stt">Confirm &amp; Release</span><span class="sd">Verify records and release project evidence.</span></div>
       </div>
     </section>
+
+    <!-- Platform explainer: sits outside the three operating workflows -->
+    <a class="demo" href="screens/platform.html">
+      <span class="demo-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.4"/><path d="M12 3.5v2.3M12 18.2v2.3M3.5 12h2.3M18.2 12h2.3M6 6l1.6 1.6M16.4 16.4L18 18M18 6l-1.6 1.6M7.6 16.4L6 18"/></svg></span>
+      <div class="demo-tx">
+        <div class="demo-t">Configurable Engine Demo</div>
+        <div class="demo-s">Platform explainer: one core workflow, multiple work types.</div>
+      </div>
+      <span class="demo-btn"><span class="pl"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>Watch demo <svg class="ar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span>
+    </a>
 
     <!-- 1 CONFIGURE -->
     <section class="phase s1">

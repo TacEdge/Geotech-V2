@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en-NZ"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TacEdge Ground Engineering · Team & Publish</title>
+  <link rel="stylesheet" href="../styles/fonts.css">
+  <link rel="stylesheet" href="../styles/tokens.css">
+  <link rel="stylesheet" href="../styles/base.css">
+  <link rel="stylesheet" href="../styles/components.css">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{max-width:100%}
+body{font-family:var(--ui);color:var(--ink);background:var(--cream);font-size:16px;line-height:1.45;min-height:100vh}
+
+/* top bar */
+.topbar{position:relative;background:var(--forest);color:var(--cream);display:flex;align-items:center;gap:20px;padding:0 22px;height:64px;overflow:hidden}
+.topbar .contour{position:absolute;inset:0;pointer-events:none;opacity:.08}
+.burger{display:flex;flex-direction:column;gap:4px;background:none;border:none;cursor:pointer;padding:6px;flex-shrink:0}
+.burger span{width:20px;height:2px;background:var(--cream);border-radius:2px}
+.brand{display:flex;align-items:center;gap:12px;z-index:1;flex-shrink:0}
+.wordmark{font-family:var(--display);font-weight:700;font-size:20px;letter-spacing:.28em;padding-left:2px}
+.brand .vert{width:1px;height:22px;background:rgba(243,239,230,.28)}
+.brand .tag{font-family:var(--mono);font-size:10px;letter-spacing:.22em;color:var(--sage);text-transform:uppercase}
+.proj{display:flex;flex-direction:column;justify-content:center;z-index:1;min-width:0;margin-left:8px}
+.proj .name{font-weight:700;font-size:16px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.proj .meta{font-size:12px;color:var(--sage)}
+.topbar .right{margin-left:auto;display:flex;align-items:center;gap:22px;z-index:1;flex-shrink:0}
+.sync{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--sage)}
+.sync .dot{width:7px;height:7px;border-radius:50%;background:#9fc27e;box-shadow:0 0 0 3px rgba(159,194,126,.18)}
+.who{display:flex;align-items:center;gap:9px;font-size:13px}
+.who .av{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;background:var(--olive);color:var(--cream);font-family:var(--mono);font-size:11px;font-weight:700;border:1px solid rgba(243,239,230,.25)}
+.who .car{color:var(--sage);font-size:10px}
+
+/* setup bar */
+.setup-bar{display:flex;align-items:center;gap:16px;background:var(--card);border-bottom:1px solid var(--line);padding:0 24px;height:58px;overflow-x:auto}
+.setup-label{font-family:var(--mono);font-size:11px;letter-spacing:.13em;color:var(--ink-60);font-weight:700;border-left:3px solid var(--forest);padding-left:11px;white-space:nowrap;flex-shrink:0}
+.steps{display:flex;align-items:center;gap:14px;flex:1}
+.sstep{display:flex;align-items:center;gap:9px;font-size:14px;color:var(--ink-40);white-space:nowrap;text-decoration:none}
+.sstep .sn{width:26px;height:26px;border-radius:50%;border:1.5px solid var(--line-2);display:grid;place-items:center;font-family:var(--mono);font-size:12px;font-weight:700;color:var(--ink-40);flex-shrink:0}
+.sstep.active{color:var(--ink);font-weight:600} .sstep.active .sn{background:var(--forest);border-color:var(--forest);color:var(--cream)}
+.sstep.done{color:var(--ink-60)} .sstep.done .sn{background:var(--sage-tint);border-color:#cdd5b9;color:var(--forest)}
+.sarrow{color:var(--ink-40);font-size:14px;flex-shrink:0}
+
+.content2{padding:20px 24px 40px;max-width:1160px;margin:0 auto;width:100%}
+.eq-head{display:flex;align-items:flex-start;gap:16px;flex-wrap:wrap;margin-bottom:18px}
+.eq-title{font-family:var(--display);font-weight:700;font-size:24px;color:var(--ink)}
+.eq-sub{font-size:13.5px;color:var(--ink-60);margin-top:4px;max-width:640px}
+.saved-pill{margin-left:auto;display:inline-flex;align-items:center;gap:7px;height:32px;padding:0 14px;border-radius:99px;background:var(--sage-tint);color:var(--forest-2);font-family:var(--ui);font-size:13px;font-weight:600;white-space:nowrap}
+.saved-pill svg{color:var(--forest)}
+
+.grid{display:grid;grid-template-columns:1fr 380px;gap:18px;align-items:start}
+.grid>*{min-width:0}
+
+.panel{background:var(--card);border:1px solid var(--line);border-radius:13px;overflow:hidden}
+.p-h{padding:14px 18px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:10px}
+.p-h .pt{font-family:var(--display);font-weight:700;font-size:15px;color:var(--ink)}
+.p-h .pc{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--ink-60);background:var(--cream);border:1px solid var(--line-2);border-radius:99px;padding:1px 9px}
+.p-h .add{margin-left:auto;display:flex;align-items:center;gap:6px;background:none;border:none;color:var(--forest);font-family:var(--ui);font-size:13px;font-weight:600;cursor:pointer}
+
+.trow{display:flex;align-items:center;gap:14px;padding:14px 18px;border-top:1px solid var(--line)}
+.trow:first-child{border-top:none}
+.t-av{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:var(--sage-tint);color:var(--forest);font-family:var(--mono);font-size:13px;font-weight:700;flex-shrink:0}
+.t-main{flex:1;min-width:0}
+.t-name{font-size:14.5px;font-weight:600;color:var(--ink)}
+.t-org{font-size:12.5px;color:var(--ink-40);margin-top:2px}
+.t-role{font-size:12px;font-weight:700;font-family:var(--mono);letter-spacing:.03em;color:var(--olive);background:#e7ebd9;border-radius:99px;padding:4px 11px;white-space:nowrap;flex-shrink:0}
+.t-access{font-size:12.5px;color:var(--ink-60);width:118px;text-align:right;flex-shrink:0}
+.t-access b{color:var(--ink);font-weight:600}
+
+.pub{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:18px 20px}
+.pub h3{font-family:var(--display);font-weight:700;font-size:16px;color:var(--ink)}
+.pub .ps{font-size:13px;color:var(--ink-60);margin-top:5px;line-height:1.5}
+.check{margin:16px 0 4px}
+.crow{display:flex;align-items:flex-start;gap:10px;padding:9px 0;border-top:1px solid var(--line);font-size:13.5px;color:var(--ink)}
+.crow:first-child{border-top:none}
+.crow .ck{width:20px;height:20px;border-radius:50%;background:var(--sage-tint);color:var(--forest);display:grid;place-items:center;flex-shrink:0;margin-top:1px}
+.crow .ck svg{width:13px;height:13px}
+.pub-btn{display:flex;align-items:center;justify-content:center;gap:9px;width:100%;height:46px;margin-top:16px;border:none;border-radius:9px;background:var(--forest);color:var(--cream);font-family:var(--ui);font-size:14.5px;font-weight:600;cursor:pointer;transition:background .15s ease}
+.pub-btn:hover{background:var(--forest-2)}
+.pub-btn.is-ok{background:var(--sage-tint);color:var(--forest-2)}
+.pub-state{display:flex;align-items:center;gap:8px;margin-top:12px;font-size:12.5px;color:var(--ink-40)}
+.pub-state .d{width:8px;height:8px;border-radius:50%;background:var(--live);box-shadow:0 0 0 3px rgba(159,194,126,.2)}
+
+@media (max-width:900px){.grid{grid-template-columns:1fr}}
+@media (max-width:480px){
+ body{font-size:15px}.topbar{padding:0 14px;gap:12px}.proj .meta{display:none}
+ .setup-bar{padding:0 14px;gap:14px}.content2{padding:16px}
+ .t-access{width:auto}.trow{flex-wrap:wrap}
+}
+</style><link rel="manifest" href="../manifest.json">
+<meta name="theme-color" content="#2b4721">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="TacEdge">
+<link rel="apple-touch-icon" href="../assets/icons/apple-touch-icon.png?v=2026-06-26.7">  <script src="../config/screens.js"></script>
+  <script src="../components/header.js"></script>
+</head>
+<body>
+<header></header>
+  <script>TE_HEADER.fill('team-publish')</script>
+
+<nav class="setup-bar">
+  <span class="setup-label">PROJECT SETUP</span>
+  <div class="steps">
+    <a class="sstep done" href="work-plan.html"><span class="sn"><svg width="13" height="13" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"/></svg></span> Work Plan</a>
+    <span class="sarrow">&#8594;</span>
+    <a class="sstep done" href="testing-standards.html"><span class="sn"><svg width="13" height="13" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"/></svg></span> Testing Standards</a>
+    <span class="sarrow">&#8594;</span>
+    <a class="sstep done" href="evidence-qa.html"><span class="sn"><svg width="13" height="13" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"/></svg></span> Evidence</a>
+    <span class="sarrow">&#8594;</span>
+    <a class="sstep done" href="safety-risk-controls.html"><span class="sn"><svg width="13" height="13" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"/></svg></span> Safety &amp; Risk</a>
+    <span class="sarrow">&#8594;</span>
+    <a class="sstep active" href="team-publish.html"><span class="sn">7</span> Team &amp; Publish</a>
+  </div>
+</nav>
+
+<div class="content2">
+  <div class="eq-head">
+    <div>
+      <div class="eq-title">Team &amp; Publish</div>
+      <div class="eq-sub">Assign who does what, then publish the configured project to the field. Only published work reaches crew devices.</div>
+    </div>
+    <span class="saved-pill"><svg width="15" height="15" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"/></svg> Saved 2 min ago</span>
+  </div>
+
+  <div class="grid">
+    <div class="panel">
+      <div class="p-h"><span class="pt">Project team</span><span class="pc">4 people</span>
+        <button class="add"><svg width="15" height="15" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><line x1="10" y1="4" x2="10" y2="16"/><line x1="4" y1="10" x2="16" y2="10"/></svg> Add person</button>
+      </div>
+      <div class="trow">
+        <span class="t-av">TR</span>
+        <div class="t-main"><div class="t-name">Tim R.</div><div class="t-org">Rock Control</div></div>
+        <span class="t-role">Project Manager</span>
+        <span class="t-access"><b>Full</b> · Desktop</span>
+      </div>
+      <div class="trow">
+        <span class="t-av">NH</span>
+        <div class="t-main"><div class="t-name">N. Hayes</div><div class="t-org">WSP · Engineer</div></div>
+        <span class="t-role">Reviewer</span>
+        <span class="t-access"><b>Review</b> · Read-only</span>
+      </div>
+      <div class="trow">
+        <span class="t-av">SK</span>
+        <div class="t-main"><div class="t-name">S. Kereru</div><div class="t-org">Rock Control</div></div>
+        <span class="t-role">Field Lead</span>
+        <span class="t-access"><b>Capture</b> · Mobile</span>
+      </div>
+      <div class="trow">
+        <span class="t-av">PR</span>
+        <div class="t-main"><div class="t-name">P. Rewa</div><div class="t-org">Rock Control</div></div>
+        <span class="t-role">Operator</span>
+        <span class="t-access"><b>Capture</b> · Mobile</span>
+      </div>
+    </div>
+
+    <div class="pub">
+      <h3>Publish to field</h3>
+      <div class="ps">Push the templates, QA rules and safety docs to assigned crew devices. Field capture stays locked to this configuration until you republish.</div>
+      <div class="check">
+        <div class="crow"><span class="ck"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"/></svg></span> Work item templates set</div>
+        <div class="crow"><span class="ck"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"/></svg></span> Testing standards set</div>
+        <div class="crow"><span class="ck"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"/></svg></span> Safety docs active and scoped</div>
+        <div class="crow"><span class="ck"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"/></svg></span> 4 team members assigned</div>
+      </div>
+      <button class="pub-btn" id="pubBtn"><svg width="17" height="17" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M10 15V4M6 8l4-4 4 4"/><path d="M4 16h12"/></svg> Publish to field</button>
+      <div class="pub-state"><span class="d"></span><span id="pubState">Ready to publish · 3 crew devices online</span></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function(){
+    var b=document.getElementById('pubBtn'), s=document.getElementById('pubState');
+    if(!b) return;
+    var ok='<svg width="17" height="17" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"/></svg>';
+    b.addEventListener('click',function(){
+      b.classList.add('is-ok'); b.innerHTML=ok+' Published to field';
+      if(s) s.textContent='Published just now · 3 crew devices in sync';
+    });
+  })();
+</script>
+
+  <script defer src="../js/build.js"></script>
+  <script defer src="../js/versioner.js"></script>
+  <script defer src="../js/standalone.js"></script>
+</body></html>

@@ -26,9 +26,9 @@ window.TE_SCREENS = [
     path: 'screens/platform.html',
     header:
       '<header class="topbar">\n    <a class="burger" href="../index.html" aria-label="All screens" title="All screens"><span></span><span></span><span></span></a>\n    <img class="logo" src="../assets/brand/tacedge-logo.png" alt="TACEDGE">\n    <span class="vert"></span>\n    <span class="tag">Ground Engineering</span>\n    <div class="right"><span class="who"><span class="av">TR</span>Tim R · PM</span></div>\n  </header>',
-    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/></svg>',
-    cardTitle: 'Configurable Engine',
-    desc: 'One core, multiple geotech work types.'
+    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l9 5-9 5-9-5 9-5z"/><path d="M3 12l9 5 9-5"/><path d="M3 16l9 5 9-5"/></svg>',
+    cardTitle: 'Work Types',
+    desc: 'Define geotech work types.'
   },
   {
     id: 'layout',
@@ -39,7 +39,7 @@ window.TE_SCREENS = [
     header:
       '<header class="topbar">\n  {{CONTOUR:desktop}}\n  <a class="burger" href="../index.html" aria-label="All screens" title="All screens"><span></span><span></span><span></span></a>\n  <div class="brand"><span class="wordmark">TACEDGE</span><span class="vert"></span><span class="tag">Ground Engineering</span></div>\n  <div class="proj"><span class="name">Benmore Dam – Spillway Anchoring</span><span class="meta">Rock Control · Meridian Energy · WSP engineer · Setup</span></div>\n  <div class="right"><span class="sync"><span class="dot"></span>Synced 2 min ago</span><span class="who"><span class="av">TR</span>Tim R · PM <span class="car">&#9662;</span></span></div>\n</header>',
     icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>',
-    cardTitle: 'Layout',
+    cardTitle: 'Layout / Work Areas',
     desc: 'Define zones and locations.'
   },
   {
@@ -101,6 +101,18 @@ window.TE_SCREENS = [
     icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4a6 6 0 016 6v2H6v-2a6 6 0 016-6z"/><path d="M4 16h16M4 14v2M20 14v2"/></svg>',
     cardTitle: 'Safety &amp; Risk Controls',
     desc: 'Gate sign-on with JSA/SWMS.'
+  },
+  {
+    id: 'team-publish',
+    title: 'Team & Publish',
+    stage: 'configure',
+    chrome: 'pm',
+    path: 'screens/team-publish.html',
+    header:
+      '<header class="topbar">\n  {{CONTOUR:desktop}}\n  <a class="burger" href="../index.html" aria-label="All screens" title="All screens"><span></span><span></span><span></span></a>\n  <div class="brand"><span class="wordmark">TACEDGE</span><span class="vert"></span><span class="tag">Ground Engineering</span></div>\n  <div class="proj"><span class="name">Benmore Dam – Spillway Anchoring</span><span class="meta">Rock Control · Meridian Energy · WSP engineer · Setup</span></div>\n  <div class="right"><span class="sync"><span class="dot"></span>Synced 2 min ago</span><span class="who"><span class="av">TR</span>Tim R · PM <span class="car">&#9662;</span></span></div>\n</header>',
+    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3.3 3-5.5 6-5.5s6 2.2 6 5.5"/><circle cx="17.5" cy="9" r="2.2"/><path d="M16 14.3c2.4.1 4.5 1.7 4.5 4.2"/></svg>',
+    cardTitle: 'Team &amp; Publish',
+    desc: 'Assign roles and publish to field.'
   },
   {
     id: 'overview',
