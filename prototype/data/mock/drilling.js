@@ -267,7 +267,7 @@ export const boardZones = [
   { name: 'Lower Terrace', pct: 25, count: '4 holes · 1 released', ids: ['BH-05', 'BH-06', 'BH-07', 'BH-08'] }
 ];
 
-/* --- Work Item Design (one deep template, HQ3) ---------------------------- */
+/* --- Work Item Template (one deep template, HQ3) ---------------------------- */
 export const designSheets = [
   {
     code: 'HQ3', colour: '#5b7a8c', name: 'Cored investigation', summary: 'Point · per core run',

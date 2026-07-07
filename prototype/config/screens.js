@@ -60,7 +60,7 @@ window.TE_SCREENS = [
   },
   {
     id: 'work-item-design',
-    title: 'Work Item Design',
+    title: 'Work Item Template',
     stage: 'configure',
     chrome: 'pm',
     path: 'screens/work-item-design.html',
@@ -68,7 +68,7 @@ window.TE_SCREENS = [
       '<header class="topbar">\n  {{CONTOUR:desktop}}\n  <a class="burger" href="../index.html" aria-label="All screens" title="All screens"><span></span><span></span><span></span></a>\n  <div class="brand"><span class="wordmark">TACEDGE</span><span class="vert"></span><span class="tag">Ground Engineering</span></div>\n  <div class="proj"><span class="name">Benmore Dam – Spillway Anchoring</span><span class="meta">Rock Control · Meridian Energy · WSP engineer · Setup</span></div>\n  <div class="right"><span class="sync"><span class="dot"></span>Synced 2 min ago</span><span class="who"><span class="av">TR</span>Tim R · PM <span class="car">&#9662;</span></span></div>\n</header>',
     group: 'define-work',
     icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20l4-1 10-10-3-3L5 16z"/><path d="M14 6l3 3"/></svg>',
-    cardTitle: 'Work Item Design',
+    cardTitle: 'Work Item Template',
     desc: 'Set reusable work item templates.'
   },
   {

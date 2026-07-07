@@ -148,7 +148,7 @@ export const boardZones = [
   { name: 'Toe', pct: 50, count: '2 runs · 1 confirmed', ids: ['TD-01','TD-02','OUT-1'] }
 ];
 
-/* --- Work Item Design (two templates, HD1 and TD1) ------------------------ */
+/* --- Work Item Template (two templates, HD1 and TD1) ------------------------ */
 export const designSheets = [
   {
     code: 'HD1', colour: '#3f7d86', name: 'Horizontal drains', summary: 'Line · per drain run',

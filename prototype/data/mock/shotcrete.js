@@ -225,7 +225,7 @@ export const boardZones = [
 ];
 
 
-/* --- Work Item Design (one deep template, S1) ----------------------------- */
+/* --- Work Item Template (one deep template, S1) ----------------------------- */
 export const designSheets = [
   {
     code: 'S1', colour: '#6e8b3d', name: 'Mesh reinforced', summary: 'Area · per spray lot',

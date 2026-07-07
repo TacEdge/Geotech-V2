@@ -221,7 +221,7 @@ export const evidenceRequirements = [
 ];
 export const evidenceFoot = '4 requirements defined · 3 block confirmation · ready for Safety & Risk';
 
-/* --- Work Item Design ----------------------------------------------------- */
+/* --- Work Item Template ----------------------------------------------------- */
 export const designSheets = [
   {
     code: 'SP1', colour: '#6e8b3d', name: 'Standard screw pile', summary: '12.0 m · 8 kNm',
@@ -410,7 +410,7 @@ export const boardAttention = [
   { id: 'SP-05', text: 'Torque below target', zone: 'Upper Bench' }
 ];
 
-/* Engineer source shown on Testing Standards + Work Item Design. */
+/* Engineer source shown on Testing Standards + Work Item Template. */
 export const engineerSource = { name: 'Cashmere Ridge design set', rev: 'Rev C · 18 Jun 2026' };
 
 /* --- Closeout (piling conditions) ----------------------------------------- */

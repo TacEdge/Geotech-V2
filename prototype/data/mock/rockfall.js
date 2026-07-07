@@ -180,7 +180,7 @@ export const boardZones = [
 ];
 
 
-/* --- Work Item Design (two templates: DM1 area, CP1 point) ----------------- */
+/* --- Work Item Template (two templates: DM1 area, CP1 point) ----------------- */
 export const designSheets = [
   {
     code: 'DM1', colour: '#6e8b3d', name: 'Drapery mesh', summary: 'Area · per lot',
