@@ -9,21 +9,16 @@
    ("Sprayed 12 days ago", "Day 12 of 28 · due in 16 days"). Relative phrasing
    keeps the narrative fresh whenever it is viewed and, because the offsets are
    constants, keeps the harness stable (no absolute-date digit drift). agoPhrase
-   is exported so every screen phrases an offset the same way.
+   now lives in ./dates.js (drilling is its second consumer) and is re-exported
+   here so every shotcrete screen still reaches it via pack.agoPhrase.
 
    All records are fictional and flagged draft until WSP validation.
    ========================================================================== */
+export { agoPhrase } from './dates.js';
+
 export const draft = true;
 
 export const engineerSource = { name: 'Quarry Face design set', rev: 'Rev A · 20 Jun 2026' };
-
-/** Relative phrase for a whole-day offset in the past. */
-export function agoPhrase(days) {
-  if (days == null) return 'not yet';
-  if (days === 0) return 'today';
-  if (days === 1) return 'yesterday';
-  return days + ' days ago';
-}
 
 /* Spray lots (shifts). Each carries batch dockets, one test panel and the
    28-day core clock. day7 / day28 are the strength results as they arrive. */
