@@ -342,31 +342,99 @@ export const WORK_TYPES = {
     unit: 'm',
     confirmationBasis: 'per_run',
     description: 'Drilled and trenched drains that control groundwater.',
-    templates: ['Horizontal drains', 'Trench drains', 'Weep holes'],
+    templates: ['Horizontal drains', 'Collector trench', 'Weep holes'],
     exampleTemplate: {
       name: 'Horizontal drain · HD1',
       rows: [
         ['Template', 'Horizontal drain · HD1'],
         ['Design length', '30.0 m'],
         ['Inclination', '+5°'],
-        ['Screen', '40 mm slotted PVC'],
-        ['Acceptance', 'Flow recorded at collar']
+        ['Screen', '40 mm slotted PVC · 6 m'],
+        ['Acceptance', 'Length ± 0.5 m · flow recorded']
       ]
     },
     presets: [
       ['Pipe', '40 mm slotted PVC · 6 m lengths'],
       ['Collar', 'Class G grout · top 1.0 m'],
-      ['Flow unit', 'L/min at collar'],
+      ['Flow', 'Recorded at collar in L/min'],
       ['Evidence', 'Photo at collar and outfall'],
-      ['QA rule', 'As-built length ± 0.5 m']
+      ['QA rule', 'Length ± 0.5 m · flow is a finding']
     ],
     modules: [
-      ['Drill Log', 'depth, inclination, strikes'],
-      ['Pipe Install Record', 'lengths, joints, photos'],
-      ['Flow Test Record', 'L/min, date, weather'],
-      ['Evidence & Photos', 'collar and outfall']
+      ['Pipe Install Record', 'length, inclination, pipe, collar'],
+      ['Flow Test Record', 'L/min at collar · zero permitted'],
+      ['Backfill Inspection', 'layers, before-backfill hold'],
+      ['Evidence & Photos', 'collar, outfall, layers']
     ],
-    matrixChips: ['Drill Log', 'Pipe Install', 'Flow Test', 'Photos']
+    matrixChips: ['Pipe Install', 'Flow Test', 'Backfill', 'Photos'],
+    // Two live templates carry the two QA philosophies on purpose. HD1
+    // (horizontal drilled drains) pairs genuine construction thresholds
+    // (as-built length and inclination reopen work) with flow as a FINDING: a
+    // dry drain recorded is complete, never a failure. TD1 (collector trench)
+    // carries the before-backfill witness hold. Weep holes stay a configured
+    // example.
+    workItemTemplates: [
+      {
+        code: 'HD1',
+        name: 'Horizontal drains',
+        geometry: 'line', unit: 'm', confirmationBasis: 'per_run',
+        runIs: 'drain run',
+        item: { singular: 'drain', plural: 'drains', idPrefix: 'DR' },
+        runItem: { singular: 'run', plural: 'runs', idPrefix: 'DR' },
+        spec: [
+          ['Design length', '30.0 m'],
+          ['Inclination', '+5°'],
+          ['Pipe', '40 mm slotted PVC · 6 m lengths'],
+          ['Collar', 'Class G grout · top 1.0 m'],
+          ['Flow', 'Recorded at collar in L/min']
+        ],
+        moduleIds: ['pipe_install', 'flow_test', 'evidence'],
+        rules: [
+          { type: 'threshold', field: 'asbuilt_length_m', op: 'within', value: 0.5, of: 'design_length_m', label: 'As-built length within ± 0.5 m of design' },
+          { type: 'threshold', field: 'inclination_deg', op: 'within', value: 1.0, of: 'design_inclination_deg', label: 'Inclination within ± 1.0° of design' },
+          { type: 'completeness', fields: ['flow_L_min', 'collar_photo'], note: 'Flow recorded even if zero', label: 'Flow and collar photo recorded (flow may be zero)' },
+          { type: 'sequence', order: ['pipe_install', 'flow_test'], label: 'Install, then flow test' }
+        ]
+      },
+      {
+        code: 'TD1',
+        name: 'Collector trench',
+        geometry: 'line', unit: 'm', confirmationBasis: 'per_run',
+        runIs: 'trench run',
+        item: { singular: 'run', plural: 'runs', idPrefix: 'TD' },
+        runItem: { singular: 'run', plural: 'runs', idPrefix: 'TD' },
+        spec: [
+          ['Build-up', 'Geotextile-wrapped aggregate'],
+          ['Pipe', '110 mm slotted'],
+          ['Fall', 'To outfall'],
+          ['Hold point', 'Inspected before backfill']
+        ],
+        moduleIds: ['pipe_install', 'backfill_inspection', 'evidence'],
+        rules: [
+          { type: 'witness_hold', module: 'backfill_inspection', note: 'Inspected before backfill', label: 'Inspected and witnessed before backfill (hold point)' },
+          { type: 'completeness', fields: ['layer_photos', 'material_certs'], label: 'Layer photos and material certificates recorded' },
+          { type: 'sequence', order: ['pipe_install', 'backfill_inspection'], label: 'Install, then before-backfill inspection' }
+        ]
+      }
+    ],
+    evidenceRequirements: [
+      { kind: 'photo', scope: 'per drain', label: 'Collar and outfall photos (HD1)' },
+      { kind: 'photo', scope: 'per trench run', label: 'Layer photos before backfill (TD1)' },
+      { kind: 'certificate', scope: 'per trench run', label: 'Aggregate and geotextile certificates (TD1)' }
+    ],
+    moduleIds: ['pipe_install', 'flow_test', 'backfill_inspection', 'evidence'],
+    item: { singular: 'drain', plural: 'drains', idPrefix: 'DR' },
+    runItem: { singular: 'run', plural: 'runs', idPrefix: 'DR' },
+    // Union of both templates' typed rules; the thresholds reopen work, the
+    // flow completeness is a finding (zero permitted), the witness is a hold.
+    rules: [
+      { type: 'threshold', field: 'asbuilt_length_m', op: 'within', value: 0.5, of: 'design_length_m', label: 'As-built length within ± 0.5 m of design' },
+      { type: 'threshold', field: 'inclination_deg', op: 'within', value: 1.0, of: 'design_inclination_deg', label: 'Inclination within ± 1.0° of design' },
+      { type: 'completeness', fields: ['flow_L_min', 'collar_photo'], note: 'Flow recorded even if zero', label: 'Flow and collar photo recorded (flow may be zero)' },
+      { type: 'witness_hold', module: 'backfill_inspection', note: 'Inspected before backfill', label: 'Inspected and witnessed before backfill (hold point)' },
+      { type: 'completeness', fields: ['layer_photos', 'material_certs'], label: 'Layer photos and material certificates recorded' },
+      { type: 'sequence', order: ['pipe_install', 'flow_test'], label: 'Install, then flow test (HD1); install, then inspect (TD1)' }
+    ]
   },
 
   piling: {

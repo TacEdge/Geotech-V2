@@ -178,6 +178,38 @@ export const PROJECTS = {
       { id: 'BH-07', zone: 'Lower Terrace', template: 'HQ3', geometry: 'point', x: 745, y: 600, depthDesign: 12.0, depthDrilled: 0, state: 'planned' },
       { id: 'BH-08', zone: 'Lower Terrace', template: 'HQ3', geometry: 'point', x: 960, y: 610, depthDesign: 16.0, depthDrilled: 0, state: 'planned' }
     ]
+  },
+
+  // Terrace Slip Drainage · drainage. The final work type: linear geometry,
+  // two templates (horizontal drilled drains HD1, collector trench TD1), and
+  // the two QA philosophies (thresholds reopen, flow is a finding). Client and
+  // engineer are fictional placeholders; draft:true until Rock Control
+  // validation.
+  'terrace-slip': {
+    id: 'TSD-DR-2026',
+    name: 'Terrace Slip Drainage',
+    client: 'Alpine District Council',
+    contractor: 'Rock Control',
+    engineer: 'Southern Geotechnical',
+    workType: 'drainage',
+    draft: true,
+    zones: ['Slip Face', 'Toe'],
+    items: [
+      { id: 'DR-01', zone: 'Slip Face', template: 'HD1', geometry: 'line', points: [[200,300],[560,380]], state: 'approved' },
+      { id: 'DR-02', zone: 'Slip Face', template: 'HD1', geometry: 'line', points: [[200,300],[600,420]], state: 'approved' },
+      { id: 'DR-03', zone: 'Slip Face', template: 'HD1', geometry: 'line', points: [[200,300],[620,460]], state: 'approved' },
+      { id: 'DR-04', zone: 'Slip Face', template: 'HD1', geometry: 'line', points: [[200,300],[600,500]], state: 'approved' },
+      { id: 'DR-05', zone: 'Slip Face', template: 'HD1', geometry: 'line', points: [[200,300],[560,540]], state: 'approved' },
+      { id: 'DR-06', zone: 'Slip Face', template: 'HD1', geometry: 'line', points: [[200,300],[500,560]], state: 'approved' },
+      { id: 'DR-07', zone: 'Slip Face', template: 'HD1', geometry: 'line', points: [[220,560],[580,470]], state: 'approved' },
+      { id: 'DR-08', zone: 'Slip Face', template: 'HD1', geometry: 'line', points: [[220,560],[520,500]], state: 'reopened' },
+      { id: 'DR-09', zone: 'Slip Face', template: 'HD1', geometry: 'line', points: [[220,560],[620,560]], state: 'provisional' },
+      { id: 'DR-10', zone: 'Slip Face', template: 'HD1', geometry: 'line', points: [[220,560],[600,600]], state: 'planned' },
+      { id: 'DR-11', zone: 'Slip Face', template: 'HD1', geometry: 'line', points: [[220,560],[560,630]], state: 'planned' },
+      { id: 'DR-12', zone: 'Slip Face', template: 'HD1', geometry: 'line', points: [[220,560],[500,650]], state: 'planned' },
+      { id: 'TD-01', zone: 'Toe', template: 'TD1', geometry: 'line', points: [[300,715],[900,720]], state: 'approved' },
+      { id: 'TD-02', zone: 'Toe', template: 'TD1', geometry: 'line', points: [[300,760],[820,758]], state: 'onhold' }
+    ]
   }
 };
 

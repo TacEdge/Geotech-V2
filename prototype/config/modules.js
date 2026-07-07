@@ -74,12 +74,16 @@ export const MODULES = {
     summary: 'depth, type, custody', sharedBy: ['drilling']
   },
   pipe_install: {
-    id: 'pipe_install', name: 'Pipe Install Record', screen: null,
-    summary: 'lengths, joints, photos', sharedBy: ['drainage']
+    id: 'pipe_install', name: 'Pipe Install Record', screen: 'screens/pipe-install.html',
+    summary: 'length, inclination, pipe, collar', sharedBy: ['drainage']
   },
   flow_test: {
-    id: 'flow_test', name: 'Flow Test Record', screen: null,
-    summary: 'L/min, date, weather', sharedBy: ['drainage']
+    id: 'flow_test', name: 'Flow Test Record', screen: 'screens/flow-test.html',
+    summary: 'L/min at collar, zero permitted', sharedBy: ['drainage']
+  },
+  backfill_inspection: {
+    id: 'backfill_inspection', name: 'Backfill Inspection', screen: 'screens/backfill-inspection.html',
+    summary: 'layers, before-backfill hold', sharedBy: ['drainage']
   },
   inspection_checklist: {
     id: 'inspection_checklist', name: 'Inspection Checklist', screen: 'screens/inspection-checklist.html',

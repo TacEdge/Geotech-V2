@@ -10,8 +10,9 @@ import * as piling from './piling.js';
 import * as rockfall from './rockfall.js';
 import * as shotcrete from './shotcrete.js';
 import * as drilling from './drilling.js';
+import * as drainage from './drainage.js';
 
-export const PACKS = { anchoring: anchoring, piling: piling, rockfall: rockfall, shotcrete: shotcrete, drilling: drilling };
+export const PACKS = { anchoring: anchoring, piling: piling, rockfall: rockfall, shotcrete: shotcrete, drilling: drilling, drainage: drainage };
 
 /** The content pack for a work-type key, or null if none is populated yet. */
 export function packFor(workTypeKey) {
