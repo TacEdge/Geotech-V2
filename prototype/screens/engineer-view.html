@@ -370,6 +370,18 @@ table.rawtab td.res{color:var(--forest-2);font-weight:600}
             var dr = document.getElementById('drillReports'); if (dr) { dr.innerHTML = rows; dr.hidden = false; }
           }
         } catch (_) {}
+        // Drainage's deliverable is the drainage register. Swap the anchoring
+        // reports for it.
+        try {
+          if (activeProject().workType === 'drainage') {
+            ['anchRep1', 'anchRep2'].forEach(function(id){ var e = document.getElementById(id); if (e) e.hidden = true; });
+            var dpack = packFor('drainage') || {}, nd = (dpack.drains || []).length, nt = (dpack.collectorRuns || []).length;
+            var FILE2 = '<svg width="18" height="18" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2.5h7l4.5 4.5V19.5H6z"/><path d="M13 2.5v4.5h4.5"/></svg>';
+            var OPEN2 = '<svg width="18" height="18" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4h4v4"/><path d="M18 4 10 12"/><path d="M16 12v5a1.5 1.5 0 0 1-1.5 1.5H6A1.5 1.5 0 0 1 4.5 17V8.5A1.5 1.5 0 0 1 6 7h5"/></svg>';
+            var drow = '<a class="rep-row" href="report-drainage-register.html"><span class="rep-ic">' + FILE2 + '</span><div class="rep-main"><div class="rep-l1"><span class="rep-id">Drainage Register</span><span class="rep-tag acc">TS-DR</span></div><div class="rep-meta">' + nd + ' drains · ' + nt + ' collector runs · outfall</div></div><span class="rep-dl" title="Open report">' + OPEN2 + '</span></a>';
+            var dv = document.getElementById('drillReports'); if (dv) { dv.innerHTML = drow; dv.hidden = false; }
+          }
+        } catch (_) {}
       </script>
       <div class="panel">
         <div class="phrow"><div class="p-h">Releases</div><a class="pmore">View all</a></div>

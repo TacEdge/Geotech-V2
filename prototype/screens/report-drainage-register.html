@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en-NZ">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#2b4721">
+<title>Drainage Register — Terrace Slip</title>
+  <link rel="stylesheet" href="../styles/fonts.css">
+  <link rel="stylesheet" href="../styles/tokens.css">
+  <link rel="stylesheet" href="../styles/base.css">
+  <link rel="stylesheet" href="../styles/components.css">
+<link rel="stylesheet" href="../styles/report.css">
+<style>
+  .chip.ok{background:#e7eddf;color:var(--forest);border:1px solid var(--sage);}
+  .chip.dry{background:#eceadf;color:#6a7260;border:1px solid var(--line-2);}
+  .chip.flag{background:#f0d9d3;color:var(--brick);border:1px solid #d9a99f;}
+  .chip.hold{background:#f0e3c4;color:var(--amber);border:1px solid var(--amber);}
+  .chip.plan{background:#eceadf;color:#7a8270;border:1px solid var(--line-2);}
+</style>
+</head>
+<body>
+<div class="viewerbar"><a class="vb-back" href="engineer-view.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg> Engineer View</a><span class="vb-title">Drainage Register · Terrace Slip</span><span class="vb-act">PDF · A4</span></div>
+
+<div class="page">
+  <div class="masthead">
+    <div><div class="brand-name">TACEDGE</div><div class="brand-tag">Drainage Register</div></div>
+    <div class="doc-meta"><div class="title">Drainage Register</div><div class="ref" id="docRef">TE-GEO-TS-DR · REV DRAFT</div></div>
+  </div>
+
+  <div class="ident">
+    <div class="f"><div class="k">Project</div><div class="v big" id="idProject">Terrace Slip Drainage</div></div>
+    <div class="f"><div class="k">Contractor</div><div class="v" id="idContractor">Rock Control</div></div>
+    <div class="f"><div class="k">Engineer</div><div class="v" id="idEngineer">Southern Geotechnical</div></div>
+    <div class="f"><div class="k">Acceptance</div><div class="v">Length ± 0.5 m · incl ± 1.0°</div></div>
+    <div class="f"><div class="k">Flow</div><div class="v">Recorded · a finding</div></div>
+  </div>
+
+  <div class="stat-row" id="statRow"></div>
+
+  <h2 class="section"><span class="num">01</span> Horizontal Drain Register <span class="src">Length, inclination, flow at completion</span></h2>
+  <table>
+    <thead>
+      <tr><th>Drain</th><th>Collar</th><th class="num">Design m</th><th class="num">As-built m</th><th class="num">Incl °</th><th class="num">Flow L/min</th><th>State</th></tr>
+    </thead>
+    <tbody id="drainBody"></tbody>
+  </table>
+
+  <h2 class="section"><span class="num">02</span> Collector Trench Register <span class="src">Inspection and certificates</span></h2>
+  <table>
+    <thead>
+      <tr><th>Run</th><th class="num">Design m</th><th class="num">As-built m</th><th>Inspection</th><th>Certificates</th><th>State</th></tr>
+    </thead>
+    <tbody id="trenchBody"></tbody>
+  </table>
+
+  <h2 class="section"><span class="num">03</span> Outfall</h2>
+  <div class="twocol">
+    <div class="panel"><h3>Outfall record</h3><dl class="kv" id="outKv"></dl></div>
+    <div class="panel"><h3>Two QA philosophies</h3><p>As-built length and inclination are construction thresholds: outside tolerance reopens the run (DR-08). Flow at completion is a finding, zero permitted: a dry drain recorded (DR-04) is complete, never a failure. Flow is recorded once; there is no ongoing monitoring.</p></div>
+  </div>
+
+  <div class="signoff">
+    <div class="sig"><div class="role">Prepared by</div><div class="name">S. Kela</div><div class="meta">Site engineer · Rock Control</div></div>
+    <div class="sig"><div class="role">Reviewed by</div><div class="name">Tim R.</div><div class="meta">Project manager · Rock Control</div></div>
+    <div class="sig"><div class="role">Accepted by</div><div class="name">TBC</div><div class="meta">Engineer · Southern Geotechnical</div></div>
+  </div>
+  <div class="standards">Acceptance per the drainage design (as-built length within ± 0.5 m, inclination within ± 1.0°, before-backfill inspection witnessed, materials certified). Flow at completion is a recorded finding, not a pass mark; zero flow is a valid result. Draft register · content for owner and validator review.</div>
+  <div class="foot"><span>TACEDGE GEOTECH · DRAINAGE REGISTER</span><span id="footRef">TERRACE SLIP · DRAFT</span></div>
+</div>
+
+<script type="module">
+import { activeProject } from '../config/projects.js';
+import { packFor } from '../data/mock/index.js';
+function set(id, v){ var e = document.getElementById(id); if (e) e.textContent = v; }
+function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function n1(v){ return v == null ? '—' : v.toFixed(1); }
+var proj = activeProject();
+var pack = packFor('drainage') || {};
+var drains = pack.drains || [], runs = pack.collectorRuns || [];
+if (drains.length) {
+  if (proj.workType === 'drainage') { set('idProject', proj.name); set('idContractor', proj.contractor); set('idEngineer', proj.engineer); }
+
+  function drainChip(d){
+    if (d.state === 'reopened') return '<span class="chip flag">Reopened</span>';
+    if (d.state === 'complete') return d.flowState === 'dry' ? '<span class="chip ok">Confirmed <span style="opacity:.7">· dry</span></span>' : '<span class="chip ok">Confirmed</span>';
+    if (d.state === 'in_progress') return '<span class="chip plan">Installing</span>';
+    return '<span class="chip plan">Planned</span>';
+  }
+  var confirmed = 0, dry = 0, reopened = 0, flowSum = 0, flowN = 0;
+  document.getElementById('drainBody').innerHTML = drains.map(function(d){
+    if (d.state === 'complete') confirmed++;
+    if (d.flowState === 'dry') dry++;
+    if (d.state === 'reopened') reopened++;
+    if (d.flow_L_min != null) { flowSum += d.flow_L_min; flowN++; }
+    var flowCell = d.flow_L_min == null ? '—' : (d.flowState === 'dry' ? '0.0 <span style="color:#6a7260">dry</span>' : d.flow_L_min.toFixed(1));
+    return '<tr>' +
+      '<td class="id">' + esc(d.id) + '</td><td>' + esc(d.collar) + '</td>' +
+      '<td class="num">' + n1(d.design_length_m) + '</td>' +
+      '<td class="num">' + n1(d.asbuilt_length_m) + '</td>' +
+      '<td class="num">' + (d.inclination_deg == null ? '—' : '+' + d.inclination_deg.toFixed(1)) + '</td>' +
+      '<td class="num">' + flowCell + '</td>' +
+      '<td>' + drainChip(d) + '</td>' +
+    '</tr>';
+  }).join('');
+
+  function runChip(r){
+    if (r.state === 'complete') return '<span class="chip ok">Confirmed</span>';
+    if (r.state === 'held') return '<span class="chip hold">Held</span>';
+    return '<span class="chip plan">Planned</span>';
+  }
+  document.getElementById('trenchBody').innerHTML = runs.map(function(r){
+    var insp = r.witnessedBy ? 'Witnessed · ' + esc(r.witnessedBy) : 'Awaiting witness';
+    var certs = r.material_certs ? 'On file' : 'Pending';
+    return '<tr>' +
+      '<td class="id">' + esc(r.id) + '</td>' +
+      '<td class="num">' + n1(r.design_length_m) + '</td>' +
+      '<td class="num">' + n1(r.asbuilt_length_m) + '</td>' +
+      '<td>' + insp + '</td><td>' + certs + '</td>' +
+      '<td>' + runChip(r) + '</td>' +
+    '</tr>';
+  }).join('');
+
+  var out = pack.outfall || {};
+  document.getElementById('outKv').innerHTML =
+    '<dt>Reference</dt><dd>' + esc(out.id || '—') + '</dd>' +
+    '<dt>Zone</dt><dd>' + esc(out.zone || '—') + '</dd>' +
+    '<dt>Photo</dt><dd>' + (out.photo ? 'On file' : 'Pending') + '</dd>' +
+    '<dt>Note</dt><dd>' + esc(out.note || '—') + '</dd>';
+
+  document.getElementById('statRow').innerHTML =
+    '<div class="stat"><div class="n mono">' + drains.length + '</div><div class="l">Drains</div></div>' +
+    '<div class="stat"><div class="n mono">' + runs.length + '</div><div class="l">Trench runs</div></div>' +
+    '<div class="stat"><div class="n mono">' + confirmed + '</div><div class="l">Confirmed</div></div>' +
+    '<div class="stat"><div class="n mono">' + dry + '</div><div class="l">Dry · recorded</div></div>' +
+    '<div class="stat"><div class="n mono">' + reopened + '</div><div class="l">Reopened</div></div>' +
+    '<div class="stat"><div class="n mono">' + (flowN ? (flowSum / flowN).toFixed(1) : '0.0') + '<small> L/min</small></div><div class="l">Mean flow</div></div>';
+}
+</script>
+
+<script defer src="../components/report-shell.js"></script>
+  <script defer src="../js/build.js"></script>
+  <script defer src="../js/versioner.js"></script>
+  <script defer src="../js/standalone.js"></script>
+</body>
+</html>

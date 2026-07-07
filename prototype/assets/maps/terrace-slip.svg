@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 853" role="img" aria-label="Terrace Slip Drainage site plan (placeholder artwork)">
+  <!-- PLACEHOLDER site plan · Terrace Slip Drainage · replace with survey.
+       A slip face (drilled horizontal drains radiate from two collar benches)
+       and a toe (collector trench runs to an outfall). Indicative only. -->
+  <defs>
+    <linearGradient id="ts-face" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#c7cbb6"/>
+      <stop offset="1" stop-color="#aeb597"/>
+    </linearGradient>
+    <linearGradient id="ts-toe" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#bcb79c"/>
+      <stop offset="1" stop-color="#a49f83"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="0" y="0" width="1280" height="853" fill="#d9d2bf"/>
+
+  <!-- Slip face -->
+  <rect x="0" y="0" width="1280" height="690" fill="url(#ts-face)"/>
+  <g stroke="#97a07f" stroke-width="1.2" opacity="0.45">
+    <path d="M0 210 C 320 190, 720 235, 1280 200"/>
+    <path d="M0 330 C 300 315, 760 355, 1280 325"/>
+    <path d="M0 450 C 340 430, 700 472, 1280 445"/>
+    <path d="M0 570 C 320 552, 720 592, 1280 560"/>
+  </g>
+  <!-- collar benches -->
+  <circle cx="200" cy="300" r="9" fill="#5a4f36"/><circle cx="220" cy="560" r="9" fill="#5a4f36"/>
+  <text x="30" y="60" font-family="'JetBrains Mono', ui-monospace, monospace" font-weight="700" font-size="22" letter-spacing="3" fill="#55603f">SLIP FACE</text>
+  <text x="238" y="296" font-family="'JetBrains Mono', ui-monospace, monospace" font-weight="700" font-size="13" letter-spacing="1" fill="#5a4f36">UPPER BENCH</text>
+  <text x="258" y="556" font-family="'JetBrains Mono', ui-monospace, monospace" font-weight="700" font-size="13" letter-spacing="1" fill="#5a4f36">LOWER BENCH</text>
+
+  <!-- toe -->
+  <path d="M0 690 C 300 668, 700 706, 1280 682 L 1280 853 L 0 853 Z" fill="url(#ts-toe)"/>
+  <path d="M0 690 C 300 668, 700 706, 1280 682" fill="none" stroke="#7d6e49" stroke-width="3"/>
+  <text x="30" y="740" font-family="'JetBrains Mono', ui-monospace, monospace" font-weight="700" font-size="22" letter-spacing="3" fill="#4f4931">TOE</text>
+
+  <!-- outfall marker -->
+  <circle cx="940" cy="735" r="13" fill="none" stroke="#2f5b6b" stroke-width="3"/>
+  <circle cx="940" cy="735" r="4" fill="#2f5b6b"/>
+  <text x="960" y="740" font-family="'JetBrains Mono', ui-monospace, monospace" font-weight="700" font-size="14" letter-spacing="1" fill="#2f5b6b">OUTFALL</text>
+
+  <text x="1140" y="832" font-family="'JetBrains Mono', ui-monospace, monospace" font-weight="700" font-size="16" letter-spacing="2" fill="#8a7c55" opacity="0.8">PLACEHOLDER</text>
+</svg>

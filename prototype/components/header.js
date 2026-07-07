@@ -47,6 +47,12 @@ window.TE_HEADER = (function () {
       meta: 'Rock Control · Alpine District Council · Southern Geotechnical',
       short: 'Slip Site · Drilling',
       zone: 'Rock Control • today'
+    },
+    'terrace-slip': {
+      name: 'Terrace Slip · Drainage',
+      meta: 'Rock Control · Alpine District Council · Southern Geotechnical',
+      short: 'Terrace Slip · Drainage',
+      zone: 'Rock Control • today'
     }
   };
   function activeHeader() {

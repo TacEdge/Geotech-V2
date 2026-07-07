@@ -578,6 +578,14 @@ window.TE_SCREENS = [
     workTypes: ['drilling']
   },
   {
+    id: 'report-drainage-register',
+    title: 'Drainage Register Report',
+    stage: null,
+    chrome: 'none',
+    path: 'screens/report-drainage-register.html',
+    workTypes: ['drainage']
+  },
+  {
     id: 'module-preview',
     title: 'Module Preview',
     stage: null,
