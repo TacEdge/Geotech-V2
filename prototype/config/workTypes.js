@@ -149,7 +149,7 @@ export const WORK_TYPES = {
   rockfall: {
     label: 'Rockfall protection',
     icon: 'mesh',
-    status: 'configured',
+    status: 'live',
     geometry: 'area',  // panels area + pins point; mix noted per template
     unit: 'm2',
     confirmationBasis: 'per_lot',
