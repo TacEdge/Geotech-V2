@@ -110,13 +110,16 @@ body{font-size:15px}
 .q-item:hover{border-color:var(--olive-edge)}
 .q-item.bd-ready{border-left-color:var(--olive)}
 .q-item.bd-attn{border-left-color:var(--brick)}
+.q-item.bd-pending{border-left-color:#2f7d86}
 .q-item.is-sel{background:var(--sage-tint);border-color:#cdd6b4;border-left-color:var(--forest)}
 .qi-top{display:flex;align-items:center;justify-content:space-between;gap:10px}
 .qi-id{font-size:18px;font-weight:700;letter-spacing:-.01em}
 .qi-pill{font-size:11.5px;font-weight:600;padding:4px 10px;border-radius:99px;white-space:nowrap}
 .qi-pill.ready{background:#e7ede0;color:#4f5d3e}
 .qi-pill.attn{background:var(--ochre-tint);color:#8a5f1e}
+.qi-pill.pending{background:#dbe9ea;color:#2f7d86}
 .qi-zone{font-size:13px;color:var(--ink-60)}
+.qi-prog{font-size:12px;color:#2f7d86;font-weight:600;margin-top:5px}
 .qi-ev{display:flex;align-items:center;gap:9px}
 .ev-dots{display:flex;gap:3px}.ev-d{width:7px;height:7px;border-radius:50%;display:block}
 .ev-lab{font-size:12px;color:var(--ink-40)}
@@ -791,6 +794,7 @@ body{font-size:15px}
 .pq-pill{font-size:11px;font-weight:700;padding:3px 11px;border-radius:99px}
 .pq-pill.ready{color:var(--forest);background:var(--sage-tint)}
 .pq-pill.attn{color:var(--ochre);background:var(--ochre-tint);border:1px solid #eadbb8}
+.pq-pill.pending{color:#2f7d86;background:#dbe9ea;border:1px solid #b9d3d6}
 .pq-sub{font-size:13px;color:var(--ink-60);margin-top:8px}
 .pq-metrics{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:16px}
 .pq-mx{background:var(--cream);border:1px solid var(--line);border-radius:10px;padding:12px 13px}
@@ -802,6 +806,7 @@ body{font-size:15px}
 .pq-ev .ev-dots{display:flex;gap:5px}
 .pq-ev .ev-d{width:9px;height:9px;border-radius:50%}
 .pq-note{display:flex;align-items:flex-start;gap:9px;margin-top:16px;padding:12px 14px;background:var(--ochre-tint);border:1px solid #eadbb8;border-radius:10px;font-size:13px;color:var(--ink);line-height:1.5}
+.pq-note.pend{background:#dbe9ea;border-color:#b9d3d6}
 .pq-acts{display:flex;gap:10px;margin-top:18px}
 .pq-btn{flex:1;display:flex;align-items:center;justify-content:center;gap:8px;height:44px;border-radius:9px;font-family:var(--ui);font-size:14px;font-weight:600;cursor:pointer;border:1px solid var(--line-2);background:var(--card);color:var(--ink)}
 .pq-btn.approve{background:var(--forest);color:var(--cream);border-color:var(--forest)}
@@ -819,30 +824,42 @@ import { activeProject } from '../config/projects.js';
   if (!pack || !pack.qaQueue) return;
   var q = pack.qaQueue, esc = function(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');};
   function dots(ev, tot){ var s=''; for (var i=0;i<tot;i++){ s+='<span class="ev-d" style="background:'+(i<ev?'#6e7d5c':'#d9d3c4')+'"></span>'; } return s; }
+  // Lane/border/pill class for a record state. pending = deferred acceptance
+  // (e.g. 28-day cores): submitted, but the clock has not run out yet.
+  function stcls(s){ return s==='attn' ? 'attn' : (s==='pending' ? 'pending' : 'ready'); }
   function item(it, sel){
-    return '<button class="q-item bd-'+(it.state==='attn'?'attn':'ready')+(sel?' is-sel':'')+'" data-pt="'+it.id+'">'+
-      '<div class="qi-top"><span class="qi-id">'+esc(it.id)+'</span><span class="qi-pill '+(it.state==='attn'?'attn':'ready')+'">'+esc(it.pill)+'</span></div>'+
+    var c = stcls(it.state);
+    return '<button class="q-item bd-'+c+(sel?' is-sel':'')+'" data-pt="'+it.id+'">'+
+      '<div class="qi-top"><span class="qi-id">'+esc(it.id)+'</span><span class="qi-pill '+c+'">'+esc(it.pill)+'</span></div>'+
       '<div class="qi-zone">'+esc(it.zone)+' · '+esc(it.by)+' · '+esc(it.ago)+'</div>'+
+      (it.progress?'<div class="qi-prog">'+esc(it.progress)+'</div>':'')+
       '<div class="qi-ev"><span class="ev-dots">'+dots(it.ev,it.evTotal)+'</span><span class="ev-lab">'+it.ev+'/'+it.evTotal+' evidence</span></div>'+
     '</button>';
   }
   function detail(it, sel){
-    var warn = it.state==='attn';
+    var warn = it.state==='attn', pend = it.state==='pending', c = stcls(it.state);
     var noteBody = it.noteText ? esc(it.noteText) : (esc(it.gap)+' · final sustained torque below the 8 kNm target. Confirm the pile, monitor, or re-install.');
-    var note = warn ? '<div class="pq-note"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;color:#9a6a16"><path d="M12 4 21 19H3z"/><path d="M12 9.5v4"/><path d="M12 16.4v.01"/></svg><span>'+noteBody+'</span></div>' : '';
+    var note = warn ? '<div class="pq-note"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;color:#9a6a16"><path d="M12 4 21 19H3z"/><path d="M12 9.5v4"/><path d="M12 16.4v.01"/></svg><span>'+noteBody+'</span></div>'
+      : (pend ? '<div class="pq-note pend"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;color:#2f7d86"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span>'+esc(it.progress||'Awaiting deferred test result.')+'. The result is recorded when it arrives.</span></div>' : '');
+    var acts = pend
+      ? '<div class="pq-acts"><button class="pq-btn approve" disabled>Awaiting results</button></div>'
+      : '<div class="pq-acts"><button class="pq-btn reopen" data-reopen="'+it.id+'">Reopen</button><button class="pq-btn approve" data-approve="'+it.id+'">'+(warn?'Confirm with note':'Approve record')+'</button></div>';
     return '<div class="pq-detail" id="pd-'+it.id+'" data-id="'+it.id+'"'+(sel?'':' style="display:none"')+'>'+
-      '<div class="pq-head"><span class="pq-id">'+esc(it.id)+'</span><span class="pq-pill '+(warn?'attn':'ready')+'">'+esc(it.pill)+'</span></div>'+
+      '<div class="pq-head"><span class="pq-id">'+esc(it.id)+'</span><span class="pq-pill '+c+'">'+esc(it.pill)+'</span></div>'+
       '<div class="pq-sub">'+esc(it.zone)+' · Submitted by '+esc(it.by)+' · '+esc(it.ago)+'</div>'+
       '<div class="pq-metrics">'+(it.metrics||[{k:'Final depth',v:it.depth},{k:'Final torque',v:it.torque,cls:warn?'warn':'ok'},{k:'Verticality',v:it.vert,cls:'ok'}]).map(function(m){return '<div class="pq-mx"><div class="k">'+esc(m.k)+'</div><div class="v '+(m.cls||'ok')+'">'+esc(m.v)+'</div></div>';}).join('')+'</div>'+
       '<div class="pq-ev"><span class="ev-dots">'+dots(it.ev,it.evTotal)+'</span> '+it.ev+' of '+it.evTotal+' evidence items · '+esc(it.result)+'</div>'+
       note+
-      '<div class="pq-acts"><button class="pq-btn reopen" data-reopen="'+it.id+'">Reopen</button><button class="pq-btn approve" data-approve="'+it.id+'">'+(warn?'Confirm with note':'Approve record')+'</button></div>'+
+      acts+
     '</div>';
   }
   var ready = q.items.filter(function(x){return x.state==='ready';});
+  var pending = q.items.filter(function(x){return x.state==='pending';});
   var attn = q.items.filter(function(x){return x.state==='attn';});
+  var pendSec = pending.length ? '<section class="q-sec"><div class="q-sec-h">Pending results <span class="q-sec-c">'+pending.length+'</span></div>'+pending.map(function(it){return item(it,false);}).join('')+'</section>' : '';
   var listHtml = '<div class="queue">'+
     '<section class="q-sec"><div class="q-sec-h">Ready to confirm <span class="q-sec-c">'+ready.length+'</span></div>'+ready.map(function(it,i){return item(it,i===0);}).join('')+'</section>'+
+    pendSec+
     '<section class="q-sec"><div class="q-sec-h">Needs attention <span class="q-sec-c">'+attn.length+'</span></div>'+attn.map(function(it){return item(it,false);}).join('')+'</section>'+
     '<div class="reopen-note">Reopened records will appear here when available.</div></div>';
   var detHtml = '<div class="detailwrap">'+q.items.map(function(it,i){return detail(it,i===0);}).join('')+'</div>';

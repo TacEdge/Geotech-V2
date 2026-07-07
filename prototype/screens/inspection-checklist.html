@@ -90,6 +90,7 @@
 
   <script type="module">
   import { packFor } from '../data/mock/index.js';
+  import { renderChecklist } from '../components/checklist.js';
   function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
   var CHK='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>';
   var pack = packFor('rockfall');
@@ -107,16 +108,7 @@
       var st = document.getElementById('lotSt');
       st.textContent = rec ? 'Submitted' : 'Not started';
       st.className = 'st' + (rec ? '' : ' wait');
-      document.getElementById('chk').innerHTML = items.map(function(it){
-        return '<li class="' + (it.ok ? 'on' : '') + '" tabindex="0" role="checkbox" aria-checked="' + (it.ok ? 'true' : 'false') + '">' +
-          '<span class="box">' + CHK + '</span><span class="lbl">' + esc(it.label) + '</span></li>';
-      }).join('');
-      // Let the walkdown be ticked on this device (display only).
-      document.querySelectorAll('.chk li').forEach(function(li){
-        function toggle(){ var on = li.classList.toggle('on'); li.setAttribute('aria-checked', on ? 'true' : 'false'); }
-        li.addEventListener('click', toggle);
-        li.addEventListener('keydown', function(e){ if (e.key === ' ' || e.key === 'Enter'){ e.preventDefault(); toggle(); } });
-      });
+      renderChecklist(document.getElementById('chk'), items);
       document.getElementById('sign').innerHTML =
         '<div class="sf"><div class="k">Inspected by</div><div class="v">' + esc(rec ? rec.by : '—') + '</div></div>' +
         '<div class="sf"><div class="k">Date</div><div class="v">' + esc(rec ? rec.date : '—') + '</div></div>' +
