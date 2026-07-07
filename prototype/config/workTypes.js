@@ -143,7 +143,54 @@ export const WORK_TYPES = {
       ['Application Record', 'area, layers, nozzleman'],
       ['Thickness Check', 'pins, probes, cores']
     ],
-    matrixChips: ['Substrate', 'Batch', 'Application', 'Thickness']
+    matrixChips: ['Substrate', 'Batch', 'Application', 'Thickness'],
+    // One deep template. A lot is a spray shift: the panels sprayed in one
+    // shift share batch dockets and one test panel, and the lot carries the
+    // 28-day core clock. Fibre reinforced and sealing coat stay examples only.
+    workItemTemplates: [
+      {
+        code: 'S1',
+        name: 'Mesh reinforced',
+        geometry: 'area',
+        unit: 'm2',
+        confirmationBasis: 'per_lot',
+        lotIs: 'spray shift',
+        item: { singular: 'panel', plural: 'panels', idPrefix: 'SC' },
+        lotItem: { singular: 'spray lot', plural: 'spray lots', idPrefix: 'SL' },
+        spec: [
+          ['Design thickness', '100 mm · min 75 mm'],
+          ['Mix', '40 MPa · 10 mm aggregate'],
+          ['Reinforcement', 'SE62 mesh · 50 mm cover'],
+          ['Test panel', '1 per shift']
+        ],
+        moduleIds: ['substrate_inspection', 'application_record', 'thickness_check', 'evidence'],
+        rules: [
+          { type: 'witness_hold', module: 'substrate_inspection', note: 'Substrate signed off before spraying', label: 'Substrate signed off before spraying (hold point)' },
+          { type: 'sequence', order: ['substrate_inspection', 'application_record', 'thickness_check'], label: 'Substrate, then spray, then thickness, in order' },
+          { type: 'threshold', field: 'thickness_mean_mm', op: '>=', value: 100, unit: 'mm', label: 'Mean thickness ≥ 100 mm' },
+          { type: 'threshold', field: 'thickness_min_mm', op: '>=', value: 75, unit: 'mm', label: 'Minimum thickness ≥ 75 mm' },
+          { type: 'deferred_result', test: 'core_28d', op: '>=', value_MPa: 40, days: 28, label: '28-day core strength ≥ 40 MPa' },
+          { type: 'completeness', fields: ['dockets', 'nozzleman_ticket'], label: 'Batch dockets and nozzleman ticket recorded' }
+        ]
+      }
+    ],
+    evidenceRequirements: [
+      { kind: 'photo', scope: 'per panel', label: 'Photo of substrate before spray' },
+      { kind: 'record', scope: 'per lot', label: 'Batch dockets' },
+      { kind: 'certificate', scope: 'per lot', label: 'Lab strength certificate' }
+    ],
+    moduleIds: ['substrate_inspection', 'application_record', 'thickness_check', 'evidence'],
+    item: { singular: 'panel', plural: 'panels', idPrefix: 'SC' },
+    lotItem: { singular: 'spray lot', plural: 'spray lots', idPrefix: 'SL' },
+    // Union of the typed acceptance rules; module screens filter this by field.
+    rules: [
+      { type: 'witness_hold', module: 'substrate_inspection', note: 'Substrate signed off before spraying', label: 'Substrate signed off before spraying (hold point)' },
+      { type: 'sequence', order: ['substrate_inspection', 'application_record', 'thickness_check'], label: 'Substrate, then spray, then thickness, in order' },
+      { type: 'threshold', field: 'thickness_mean_mm', op: '>=', value: 100, unit: 'mm', label: 'Mean thickness ≥ 100 mm' },
+      { type: 'threshold', field: 'thickness_min_mm', op: '>=', value: 75, unit: 'mm', label: 'Minimum thickness ≥ 75 mm' },
+      { type: 'deferred_result', test: 'core_28d', op: '>=', value_MPa: 40, days: 28, label: '28-day core strength ≥ 40 MPa' },
+      { type: 'completeness', fields: ['dockets', 'nozzleman_ticket'], label: 'Batch dockets and nozzleman ticket recorded' }
+    ]
   },
 
   rockfall: {

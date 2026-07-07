@@ -117,6 +117,42 @@ export const PROJECTS = {
       { id: "PN-15", zone: "Batter B", template: "CP1", geometry: "point", x: 1095, y: 185, depthDesign: 3, pullDesign: 50, depthFinal: null, pullFinal: null, state: "planned" },
       { id: "PN-16", zone: "Batter B", template: "CP1", geometry: "point", x: 1160, y: 185, depthDesign: 3, pullDesign: 50, depthFinal: null, pullFinal: null, state: "planned" }
     ]
+  },
+
+  // Quarry Face Stabilisation · shotcrete. First deferred-QA project: a lot is
+  // a spray shift carrying the 28-day core clock, and a substrate hold point
+  // gates spraying. Client and engineer are notional; draft:true until WSP.
+  'quarry-face': {
+    id: 'QF-SC-2026',
+    name: 'Quarry Face Stabilisation',
+    client: 'Southern Aggregates',
+    contractor: 'Rock Control',
+    engineer: 'WSP',
+    workType: 'shotcrete',
+    draft: true,
+    zones: ['Bench 1', 'Bench 2'],
+    lots: [
+      { id: 'SL-01', zone: 'Bench 1', members: ['SC-01', 'SC-02', 'SC-03', 'SC-04', 'SC-05'], state: 'confirmed', sprayedDaysAgo: 35 },
+      { id: 'SL-02', zone: 'Bench 1 · Bench 2', members: ['SC-06', 'SC-07', 'SC-08', 'SC-09', 'SC-10'], state: 'pending_results', sprayedDaysAgo: 12 },
+      { id: 'SL-03', zone: 'Bench 2', members: ['SC-11', 'SC-12', 'SC-13', 'SC-14', 'SC-15'], state: 'held', sprayedDaysAgo: null }
+    ],
+    items: [
+      { id: "SC-01", zone: "Bench 1", template: "S1", geometry: "area", lot: "SL-01", area: 28, points: [[80,205],[216,205],[216,440],[80,440]], state: "approved" },
+      { id: "SC-02", zone: "Bench 1", template: "S1", geometry: "area", lot: "SL-01", area: 24, points: [[222,205],[358,205],[358,440],[222,440]], state: "approved" },
+      { id: "SC-03", zone: "Bench 1", template: "S1", geometry: "area", lot: "SL-01", area: 32, points: [[364,205],[500,205],[500,440],[364,440]], state: "approved" },
+      { id: "SC-04", zone: "Bench 1", template: "S1", geometry: "area", lot: "SL-01", area: 20, points: [[506,205],[642,205],[642,440],[506,440]], state: "approved" },
+      { id: "SC-05", zone: "Bench 1", template: "S1", geometry: "area", lot: "SL-01", area: 30, points: [[648,205],[784,205],[784,440],[648,440]], state: "approved" },
+      { id: "SC-06", zone: "Bench 1", template: "S1", geometry: "area", lot: "SL-02", area: 26, points: [[790,205],[926,205],[926,440],[790,440]], state: "provisional" },
+      { id: "SC-07", zone: "Bench 1", template: "S1", geometry: "area", lot: "SL-02", area: 34, points: [[932,205],[1068,205],[1068,440],[932,440]], state: "provisional" },
+      { id: "SC-08", zone: "Bench 1", template: "S1", geometry: "area", lot: "SL-02", area: 22, points: [[1074,205],[1194,205],[1194,440],[1074,440]], state: "provisional" },
+      { id: "SC-09", zone: "Bench 2", template: "S1", geometry: "area", lot: "SL-02", area: 30, points: [[120,520],[264,520],[264,755],[120,755]], state: "provisional" },
+      { id: "SC-10", zone: "Bench 2", template: "S1", geometry: "area", lot: "SL-02", area: 25, points: [[270,520],[414,520],[414,755],[270,755]], state: "provisional" },
+      { id: "SC-11", zone: "Bench 2", template: "S1", geometry: "area", lot: "SL-03", area: 33, points: [[420,520],[564,520],[564,755],[420,755]], state: "planned" },
+      { id: "SC-12", zone: "Bench 2", template: "S1", geometry: "area", lot: "SL-03", area: 21, points: [[570,520],[714,520],[714,755],[570,755]], state: "planned" },
+      { id: "SC-13", zone: "Bench 2", template: "S1", geometry: "area", lot: "SL-03", area: 29, points: [[720,520],[864,520],[864,755],[720,755]], state: "planned" },
+      { id: "SC-14", zone: "Bench 2", template: "S1", geometry: "area", lot: "SL-03", area: 27, points: [[870,520],[1014,520],[1014,755],[870,755]], state: "planned" },
+      { id: "SC-15", zone: "Bench 2", template: "S1", geometry: "area", lot: "SL-03", area: 23, points: [[1020,520],[1154,520],[1154,755],[1020,755]], state: "planned" }
+    ]
   }
 };
 

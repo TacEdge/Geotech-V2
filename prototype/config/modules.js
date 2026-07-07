@@ -50,15 +50,15 @@ export const MODULES = {
     summary: 'load, hold, result', sharedBy: ['rockfall']
   },
   substrate_inspection: {
-    id: 'substrate_inspection', name: 'Substrate Inspection', screen: null,
+    id: 'substrate_inspection', name: 'Substrate Inspection', screen: 'screens/substrate-inspection.html',
     summary: 'prep, drainage, mesh fixing', sharedBy: ['shotcrete']
   },
   application_record: {
-    id: 'application_record', name: 'Application Record', screen: null,
+    id: 'application_record', name: 'Application Record', screen: 'screens/application-record.html',
     summary: 'area, layers, nozzleman', sharedBy: ['shotcrete']
   },
   thickness_check: {
-    id: 'thickness_check', name: 'Thickness Check', screen: null,
+    id: 'thickness_check', name: 'Thickness Check', screen: 'screens/thickness-check.html',
     summary: 'pins, probes, cores', sharedBy: ['shotcrete']
   },
   borehole_log: {
