@@ -18,6 +18,7 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);font-size:va
 .burger{display:flex;flex-direction:column;gap:4px;background:none;border:none;cursor:pointer;padding:6px;flex-shrink:0}
 .burger span{width:20px;height:2px;background:var(--cream);border-radius:2px}
 .wordmark{font-family:var(--display);font-weight:700;font-size:20px;letter-spacing:.28em;padding-left:2px}
+.logo{height:28px;width:auto;display:block;padding-left:2px}
 .vert{width:1px;height:22px;background:rgba(243,239,230,.28)}
 .tag{font-family:var(--mono);font-size:var(--fs-2xs);letter-spacing:.22em;color:var(--sage);text-transform:uppercase}
 .org{display:flex;flex-direction:column;justify-content:center;margin-left:6px;min-width:0}
@@ -82,7 +83,7 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);font-size:va
     <div class="head">
       <div>
         <h1>Projects</h1>
-        <div class="sub">7 active projects</div>
+        <div class="sub">6 active projects</div>
       </div>
       <a class="newbtn" href="layout.html">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
@@ -94,7 +95,7 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);font-size:va
 
       <a class="pcard" href="overview.html" data-project="benmore">
         <div class="pc-top"><span class="te-pill is-pend">In delivery</span></div>
-        <h3>Benmore Dam — Spillway</h3>
+        <h3>Anchoring — Benmore Dam</h3>
         <div class="pc-meta">Meridian Energy · Waitaki Valley</div>
         <div class="pc-prog">Anchoring · 14 / 54 confirmed</div>
         <div class="pbar"><span style="width:26%"></span></div>
@@ -103,25 +104,25 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);font-size:va
 
       <a class="pcard" href="overview.html" data-project="cashmere-ridge">
         <div class="pc-top"><span class="te-pill is-pend">In delivery</span></div>
-        <h3>Cashmere Ridge — Retention</h3>
+        <h3>Piling / Retaining — Cashmere Ridge</h3>
         <div class="pc-meta">Rock Control · Canterbury</div>
-        <div class="pc-prog">Screw piling · 3 / 12 confirmed</div>
+        <div class="pc-prog">Piling / Retaining · 3 / 12 confirmed</div>
         <div class="pbar"><span style="width:25%"></span></div>
         <div class="pc-foot"><span class="ts"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> Updated today</span></div>
       </a>
 
       <a class="pcard" href="overview.html" data-project="coastal-corridor">
         <div class="pc-top"><span class="te-pill is-pend">In delivery</span></div>
-        <h3>Coastal Corridor — Rockfall</h3>
+        <h3>Rockfall Protection — Coastal Corridor</h3>
         <div class="pc-meta">Kaimoana District Council · Coast Road</div>
-        <div class="pc-prog">Drapery mesh · 6 / 24 confirmed</div>
+        <div class="pc-prog">Rockfall Protection · 6 / 24 confirmed</div>
         <div class="pbar"><span style="width:25%"></span></div>
         <div class="pc-foot"><span class="ts"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> Updated today</span></div>
       </a>
 
       <a class="pcard" href="overview.html" data-project="quarry-face">
         <div class="pc-top"><span class="te-pill is-pend">In delivery</span></div>
-        <h3>Quarry Face — Stabilisation</h3>
+        <h3>Shotcrete — Quarry Face</h3>
         <div class="pc-meta">Southern Aggregates · Otago</div>
         <div class="pc-prog">Shotcrete · 5 / 15 confirmed</div>
         <div class="pbar"><span style="width:33%"></span></div>
@@ -130,7 +131,7 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);font-size:va
 
       <a class="pcard" href="overview.html" data-project="slip-site">
         <div class="pc-top"><span class="te-pill is-pend">In delivery</span></div>
-        <h3>Slip Site — Investigation</h3>
+        <h3>Drilling — Slip Site</h3>
         <div class="pc-meta">Alpine District Council · Otago</div>
         <div class="pc-prog">Drilling · 3 / 8 logs released</div>
         <div class="pbar"><span style="width:38%"></span></div>
@@ -139,20 +140,11 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);font-size:va
 
       <a class="pcard" href="overview.html" data-project="terrace-slip">
         <div class="pc-top"><span class="te-pill is-pend">In delivery</span></div>
-        <h3>Terrace Slip — Drainage</h3>
+        <h3>Drainage — Terrace Slip</h3>
         <div class="pc-meta">Alpine District Council · Otago</div>
         <div class="pc-prog">Drainage · 8 / 14 confirmed</div>
         <div class="pbar"><span style="width:57%"></span></div>
         <div class="pc-foot"><span class="ts"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> Updated today</span></div>
-      </a>
-
-      <a class="pcard" href="overview.html" data-project="aviemore">
-        <div class="pc-top"><span class="te-pill is-muted">In setup</span></div>
-        <h3>Aviemore Dam — Tailrace</h3>
-        <div class="pc-meta">Meridian Energy · Waitaki Valley</div>
-        <div class="pc-prog">Rock bolting · 0 / 38 placed</div>
-        <div class="pbar"><span style="width:2%"></span></div>
-        <div class="pc-foot"><span class="ts"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> Created today</span></div>
       </a>
 
     </div>

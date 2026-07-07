@@ -13,7 +13,7 @@ window.TE_SCREENS = [
     chrome: 'pm',
     path: 'screens/projects.html',
     header:
-      '<header class="topbar">\n    <a class="burger" href="../index.html" aria-label="All screens" title="All screens"><span></span><span></span><span></span></a>\n    <span class="wordmark">TACEDGE</span>\n    <span class="vert"></span>\n    <span class="tag">Ground Engineering</span>\n    <div class="org"><span class="on">Rock Control</span><span class="om">Geotechnical contractor</span></div>\n    <div class="right"><span class="who"><span class="av">TR</span>Tim R · PM</span></div>\n  </header>',
+      '<header class="topbar">\n    <a class="burger" href="../index.html" aria-label="All screens" title="All screens"><span></span><span></span><span></span></a>\n    <img class="logo" src="../assets/brand/tacedge-logo.png" alt="TACEDGE">\n    <span class="vert"></span>\n    <span class="tag">Ground Engineering</span>\n    <div class="right"><span class="who"><span class="av">TR</span>Tim R · PM</span></div>\n  </header>',
     icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18"/></svg>',
     cardTitle: 'Projects',
     desc: 'Create and manage projects.'
@@ -25,7 +25,7 @@ window.TE_SCREENS = [
     chrome: 'pm',
     path: 'screens/platform.html',
     header:
-      '<header class="topbar">\n    <a class="burger" href="../index.html" aria-label="All screens" title="All screens"><span></span><span></span><span></span></a>\n    <span class="wordmark">TACEDGE</span>\n    <span class="vert"></span>\n    <span class="tag">Ground Engineering</span>\n    <div class="org"><span class="on">Rock Control</span><span class="om">Geotechnical contractor</span></div>\n    <div class="right"><span class="who"><span class="av">TR</span>Tim R · PM</span></div>\n  </header>',
+      '<header class="topbar">\n    <a class="burger" href="../index.html" aria-label="All screens" title="All screens"><span></span><span></span><span></span></a>\n    <img class="logo" src="../assets/brand/tacedge-logo.png" alt="TACEDGE">\n    <span class="vert"></span>\n    <span class="tag">Ground Engineering</span>\n    <div class="right"><span class="who"><span class="av">TR</span>Tim R · PM</span></div>\n  </header>',
     icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/></svg>',
     cardTitle: 'Configurable Engine',
     desc: 'One core, multiple geotech work types.'
