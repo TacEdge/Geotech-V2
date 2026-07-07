@@ -120,7 +120,23 @@
   .foot{margin-top:22px;color:var(--ink-40);font-size:var(--fs-sm);
     display:flex;align-items:flex-start;gap:8px;line-height:1.5}
   .foot svg{width:16px;height:16px;color:var(--ink-40);flex-shrink:0;margin-top:2px}
-  @media(max-width:680px){.hero{flex-direction:column;align-items:flex-start}.cta-wrap{align-items:flex-start}.topbar .right{display:none}}
+  /* brand logo */
+  .logo{height:30px;width:auto;display:block}
+  /* hero heading + three-step indicator */
+  .hero-lead{max-width:560px}
+  .hero-lead h1{font-family:var(--display);font-weight:700;font-size:var(--fs-2xl);line-height:1.08;color:var(--ink);letter-spacing:.01em}
+  .hero-lead p{color:var(--ink-60);font-size:var(--fs-md);margin-top:10px;max-width:520px}
+  .steps{display:flex;align-items:flex-start;flex-shrink:0;width:46%;max-width:520px}
+  .step{flex:1;display:flex;flex-direction:column;align-items:center;text-align:center;position:relative;padding:0 6px}
+  .step .sn{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font-family:var(--display);font-weight:700;font-size:15px;color:currentColor;border:1.5px solid currentColor;position:relative;z-index:1}
+  .step:not(:last-child)::after{content:"";position:absolute;top:17px;left:50%;width:100%;height:1.5px;background:var(--line);z-index:0}
+  .step .stt{font-weight:700;font-size:var(--fs-md);color:var(--ink);margin-top:10px}
+  .step .sd{font-size:var(--fs-xs);color:var(--ink-40);margin-top:4px;line-height:1.35}
+  .step.s1{color:var(--forest)}.step.s1 .sn{background:var(--sage-tint)}
+  .step.s2{color:#2f7d86}.step.s2 .sn{background:#dbe9ea}
+  .step.s3{color:#9a6a16}.step.s3 .sn{background:var(--ochre-tint)}
+  @media(max-width:860px){.steps{width:100%;max-width:none;margin-top:8px}}
+  @media(max-width:680px){.hero{flex-direction:column;align-items:flex-start}.topbar .right{display:none}}
 </style>
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#2b4721">
@@ -133,24 +149,21 @@
 </head>
 <body>
   <header class="topbar">
-    <span class="wordmark">TACEDGE</span>
+    <img class="logo" src="assets/brand/tacedge-logo.png" alt="TACEDGE">
     <span class="vert"></span>
     <span class="tag">Ground&nbsp;Engineering</span>
-    <span class="right">Rock Control · Benmore Dam</span>
   </header>
 
   <main class="wrap">
     <section class="hero">
-      <div>
-        <h1>Spillway Anchoring — Benmore Dam</h1>
-        <p>Clickable TacEdge Ground Engineering prototype from setup to field capture, QA, reporting and engineer handover.</p>
+      <div class="hero-lead">
+        <h1>Configure. Capture. Confirm &amp; Release.</h1>
+        <p>One workflow for setting up work, capturing field records, verifying QA, and releasing evidence.</p>
       </div>
-      <div class="cta-wrap">
-        <a class="start" href="screens/projects.html">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-          Start walkthrough
-        </a>
-        <span class="cta-note">Explore the full end-to-end flow</span>
+      <div class="steps">
+        <div class="step s1"><span class="sn">1</span><span class="stt">Configure</span><span class="sd">Set the project up once.</span></div>
+        <div class="step s2"><span class="sn">2</span><span class="stt">Capture</span><span class="sd">Capture field reality.</span></div>
+        <div class="step s3"><span class="sn">3</span><span class="stt">Confirm &amp; Release</span><span class="sd">Verify records and release project evidence.</span></div>
       </div>
     </section>
 
@@ -194,7 +207,7 @@
       <div class="phase-head">
         <span class="ph-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg></span>
         <div class="ph-tx">
-          <div class="ph-t"><span class="ph-n">3</span>Confirm &amp; release</div>
+          <div class="ph-t"><span class="ph-n">3</span>Confirm &amp; Release</div>
           <div class="ph-sub">Confirm records, release reports, and hand over.</div>
         </div>
         <span class="ph-role">PM · QA · Engineer</span>

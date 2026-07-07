@@ -16,7 +16,7 @@ window.TE_SCREENS = [
       '<header class="topbar">\n    <a class="burger" href="../index.html" aria-label="All screens" title="All screens"><span></span><span></span><span></span></a>\n    <span class="wordmark">TACEDGE</span>\n    <span class="vert"></span>\n    <span class="tag">Ground Engineering</span>\n    <div class="org"><span class="on">Rock Control</span><span class="om">Geotechnical contractor</span></div>\n    <div class="right"><span class="who"><span class="av">TR</span>Tim R · PM</span></div>\n  </header>',
     icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18"/></svg>',
     cardTitle: 'Projects',
-    desc: 'Pick or create a project.'
+    desc: 'Create and manage projects.'
   },
   {
     id: 'platform',
