@@ -35,6 +35,12 @@ window.TE_HEADER = (function () {
       meta: 'Rock Control · Kaimoana District Council · Aurora Geotechnical',
       short: 'Coastal Corridor · Rockfall',
       zone: 'Rock Control • today'
+    },
+    'quarry-face': {
+      name: 'Quarry Face · Shotcrete',
+      meta: 'Rock Control · Southern Aggregates · WSP engineer',
+      short: 'Quarry Face · Shotcrete',
+      zone: 'Rock Control • today'
     }
   };
   function activeHeader() {

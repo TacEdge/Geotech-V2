@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en-NZ">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#2b4721">
+<title>Shotcrete Register — Quarry Face</title>
+  <link rel="stylesheet" href="../styles/fonts.css">
+  <link rel="stylesheet" href="../styles/tokens.css">
+  <link rel="stylesheet" href="../styles/base.css">
+  <link rel="stylesheet" href="../styles/components.css">
+<link rel="stylesheet" href="../styles/report.css">
+<style>
+  .chip.ok{background:#e7eddf;color:var(--forest);border:1px solid var(--sage);}
+  .chip.prog{background:#dbe9ea;color:#2f7d86;border:1px solid #b9d3d6;}
+  .chip.pend{background:#dbe9ea;color:#2f7d86;border:1px solid #b9d3d6;}
+  .chip.flag{background:#f0e3c4;color:var(--amber);border:1px solid var(--amber);}
+  .chip.plan{background:#eceadf;color:#7a8270;border:1px solid var(--line-2);}
+</style>
+</head>
+<body>
+<div class="viewerbar"><a class="vb-back" href="engineer-view.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg> Engineer View</a><span class="vb-title">Shotcrete Register · Quarry Face</span><span class="vb-act">PDF · A4</span></div>
+
+<div class="page">
+  <div class="masthead">
+    <div><div class="brand-name">TACEDGE</div><div class="brand-tag">Shotcrete Register</div></div>
+    <div class="doc-meta"><div class="title">Shotcrete Register</div><div class="ref" id="docRef">TE-GEO-QF-SR · REV DRAFT</div></div>
+  </div>
+
+  <div class="ident">
+    <div class="f"><div class="k">Project</div><div class="v big" id="idProject">Quarry Face Stabilisation</div></div>
+    <div class="f"><div class="k">Contractor</div><div class="v" id="idContractor">Rock Control Ltd</div></div>
+    <div class="f"><div class="k">Engineer</div><div class="v" id="idEngineer">WSP</div></div>
+    <div class="f"><div class="k">Design set</div><div class="v" id="idDesign">Rev A · 20 Jun 2026</div></div>
+    <div class="f"><div class="k">Acceptance</div><div class="v">Thickness 100/75 mm · core ≥ 40 MPa</div></div>
+  </div>
+
+  <div class="stat-row" id="statRow"></div>
+
+  <h2 class="section"><span class="num">01</span> Spray Lot Register <span class="src">Dockets · test panel · 7 &amp; 28-day</span></h2>
+  <table>
+    <thead>
+      <tr><th>Lot</th><th>Zone</th><th class="num">Panels</th><th class="num">Delivered m³</th><th>Test panel</th><th class="num">7-day</th><th class="num">28-day</th><th>Certificate</th><th>State</th></tr>
+    </thead>
+    <tbody id="lotBody"></tbody>
+  </table>
+
+  <h2 class="section"><span class="num">02</span> Panel Register <span class="src">Thickness mean and minimum</span></h2>
+  <table>
+    <thead>
+      <tr><th>Panel</th><th>Lot</th><th>Zone</th><th class="num">Area m²</th><th class="num">Mean mm</th><th class="num">Min mm</th><th>State</th></tr>
+    </thead>
+    <tbody id="panelBody"></tbody>
+  </table>
+
+  <h2 class="section"><span class="num">03</span> Nozzleman Tickets <span class="src">Certified applicators</span></h2>
+  <table>
+    <thead><tr><th>Nozzleman</th><th>Ticket</th><th>Validity</th></tr></thead>
+    <tbody id="nozBody"></tbody>
+  </table>
+
+  <div class="signoff">
+    <div class="sig"><div class="role">Prepared by</div><div class="name">J. Neho</div><div class="meta">Nozzleman · Rock Control</div></div>
+    <div class="sig"><div class="role">Reviewed by</div><div class="name">Tim R.</div><div class="meta">Project manager · Rock Control</div></div>
+    <div class="sig"><div class="role">Accepted by</div><div class="name">TBC</div><div class="meta">Design engineer</div></div>
+  </div>
+  <div class="standards">Acceptance per the shotcrete design set (mean thickness ≥ 100 mm, minimum ≥ 75 mm, 28-day core strength ≥ 40 MPa, substrate signed off before spraying, batch dockets and nozzleman tickets on file). Draft register · content for owner and validator review.</div>
+  <div class="foot"><span>TACEDGE GEOTECH · SHOTCRETE REGISTER</span><span id="footRef">QUARRY FACE · DRAFT</span></div>
+</div>
+
+<script type="module">
+import { activeProject } from '../config/projects.js';
+import { packFor } from '../data/mock/index.js';
+function set(id, v){ var e = document.getElementById(id); if (e) e.textContent = v; }
+function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+var proj = activeProject();
+var pack = packFor(proj.workType) || {};
+if (proj.workType === 'shotcrete') {
+  set('idProject', proj.name);
+  set('idContractor', proj.contractor);
+  set('idEngineer', proj.engineer);
+  if (pack.engineerSource) set('idDesign', pack.engineerSource.rev);
+
+  var panels = (proj.items || []).filter(function(it){ return it.geometry === 'area'; });
+  var app = {}; (pack.applicationRecords || []).forEach(function(a){ app[a.lot] = a; });
+  var thick = {}; (pack.thicknessChecks || []).forEach(function(t){ thick[t.panel] = t; });
+  var certs = {}; (pack.certificates || []).forEach(function(c){ certs[c.lot] = c; });
+
+  function lotChip(s){ return s === 'confirmed' ? '<span class="chip ok">Confirmed</span>' : (s === 'pending_results' ? '<span class="chip pend">Pending 28-day</span>' : '<span class="chip plan">Held</span>'); }
+  function panelChip(it, t){
+    if (t && t.state === 'reopened') return '<span class="chip flag">Re-sprayed</span>';
+    if (it.state === 'approved') return '<span class="chip ok">Confirmed</span>';
+    if (it.state === 'provisional') return '<span class="chip prog">Sprayed</span>';
+    return '<span class="chip plan">Held</span>';
+  }
+
+  var confirmed = 0, pending = 0, held = 0;
+  document.getElementById('lotBody').innerHTML = (pack.lots || []).map(function(l){
+    if (l.state === 'confirmed') confirmed++; else if (l.state === 'pending_results') pending++; else held++;
+    var a = app[l.id];
+    var d7 = l.day7 ? l.day7.mpa + ' MPa' : '—';
+    var d28 = l.day28 ? (l.day28.pending ? 'pending' : l.day28.mpa + ' MPa') : '—';
+    return '<tr>' +
+      '<td class="id">' + esc(l.id) + '</td><td>' + esc(l.zone) + '</td>' +
+      '<td class="num">' + l.members.length + '</td>' +
+      '<td class="num">' + (a ? a.delivered_m3.toFixed(1) : '—') + '</td>' +
+      '<td class="mono">' + esc(l.testPanel || '—') + '</td>' +
+      '<td class="num">' + d7 + '</td><td class="num">' + d28 + '</td>' +
+      '<td class="mono">' + esc(l.certificate || '—') + '</td>' +
+      '<td>' + lotChip(l.state) + '</td>' +
+    '</tr>';
+  }).join('');
+
+  document.getElementById('panelBody').innerHTML = panels.map(function(it){
+    var t = thick[it.id];
+    return '<tr>' +
+      '<td class="id">' + esc(it.id) + '</td><td>' + esc(it.lot) + '</td><td>' + esc(it.zone) + '</td>' +
+      '<td class="num">' + it.area + '</td>' +
+      '<td class="num">' + (t ? t.mean_mm : '—') + '</td>' +
+      '<td class="num">' + (t ? t.min_mm : '—') + '</td>' +
+      '<td>' + panelChip(it, t) + '</td>' +
+    '</tr>';
+  }).join('');
+
+  document.getElementById('nozBody').innerHTML = (pack.nozzlemen || []).map(function(n){
+    return '<tr><td class="id">' + esc(n.name) + '</td><td class="mono">' + esc(n.ticket) + '</td><td>' + esc(n.expiry) + '</td></tr>';
+  }).join('');
+
+  document.getElementById('statRow').innerHTML =
+    '<div class="stat"><div class="n mono">' + panels.length + '</div><div class="l">Panels</div></div>' +
+    '<div class="stat"><div class="n mono">' + (pack.lots || []).length + '</div><div class="l">Spray lots</div></div>' +
+    '<div class="stat"><div class="n mono">' + confirmed + '</div><div class="l">Confirmed</div></div>' +
+    '<div class="stat"><div class="n mono">' + pending + '</div><div class="l">Pending 28-day</div></div>' +
+    '<div class="stat"><div class="n mono">' + held + '</div><div class="l">Held</div></div>' +
+    '<div class="stat"><div class="n mono">' + (pack.certificates || []).length + '</div><div class="l">Certificates</div></div>';
+}
+</script>
+
+<script defer src="../components/report-shell.js"></script>
+  <script defer src="../js/build.js"></script>
+  <script defer src="../js/versioner.js"></script>
+  <script defer src="../js/standalone.js"></script>
+</body>
+</html>

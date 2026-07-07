@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 853" role="img" aria-label="Quarry Face site plan (placeholder artwork)">
+  <!-- PLACEHOLDER site plan · Quarry Face Stabilisation · replace with survey.
+       Two rock benches (Bench 1 upper, Bench 2 lower) with a crest and a haul floor. -->
+  <defs>
+    <linearGradient id="qf-rock" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#b9ad93"/>
+      <stop offset="1" stop-color="#9c8f74"/>
+    </linearGradient>
+    <linearGradient id="qf-rock2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ab9e83"/>
+      <stop offset="1" stop-color="#8d8069"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="0" y="0" width="1280" height="853" fill="#d9d2bf"/>
+
+  <!-- crest -->
+  <rect x="0" y="0" width="1280" height="120" fill="#cfc6a9"/>
+  <line x1="0" y1="120" x2="1280" y2="120" stroke="#8a7c55" stroke-width="3"/>
+  <text x="30" y="52" font-family="'JetBrains Mono', ui-monospace, monospace" font-weight="700" font-size="22" letter-spacing="3" fill="#5a4f36">CREST</text>
+
+  <!-- Bench 1 face -->
+  <rect x="0" y="120" width="1280" height="330" fill="url(#qf-rock)"/>
+  <g stroke="#847652" stroke-width="1.3" opacity="0.5">
+    <path d="M0 190 L1280 178"/><path d="M0 260 L1280 250"/><path d="M0 330 L1280 322"/><path d="M0 400 L1280 392"/>
+  </g>
+  <g stroke="#6f6244" stroke-width="1" opacity="0.35">
+    <path d="M180 120 L150 450"/><path d="M470 120 L500 450"/><path d="M760 120 L740 450"/><path d="M1050 120 L1080 450"/>
+  </g>
+  <text x="30" y="300" font-family="'JetBrains Mono', ui-monospace, monospace" font-weight="700" font-size="26" letter-spacing="4" fill="#5a4f36">BENCH 1</text>
+
+  <!-- bench floor / berm -->
+  <rect x="0" y="450" width="1280" height="46" fill="#c3b791"/>
+  <line x1="0" y1="450" x2="1280" y2="450" stroke="#7d6e49" stroke-width="2.5"/>
+  <line x1="0" y1="496" x2="1280" y2="496" stroke="#7d6e49" stroke-width="2.5"/>
+
+  <!-- Bench 2 face -->
+  <rect x="0" y="496" width="1280" height="300" fill="url(#qf-rock2)"/>
+  <g stroke="#7b6d49" stroke-width="1.3" opacity="0.5">
+    <path d="M0 560 L1280 552"/><path d="M0 625 L1280 618"/><path d="M0 690 L1280 684"/><path d="M0 755 L1280 748"/>
+  </g>
+  <g stroke="#665a3f" stroke-width="1" opacity="0.35">
+    <path d="M220 496 L250 796"/><path d="M560 496 L540 796"/><path d="M900 496 L920 796"/></g>
+  <text x="30" y="670" font-family="'JetBrains Mono', ui-monospace, monospace" font-weight="700" font-size="26" letter-spacing="4" fill="#4f452f">BENCH 2</text>
+
+  <!-- haul floor -->
+  <rect x="0" y="796" width="1280" height="57" fill="#b7ac8b"/>
+  <line x1="0" y1="796" x2="1280" y2="796" stroke="#7d6e49" stroke-width="3"/>
+  <text x="30" y="832" font-family="'JetBrains Mono', ui-monospace, monospace" font-weight="700" font-size="16" letter-spacing="2" fill="#6a5f43">HAUL FLOOR</text>
+  <text x="1150" y="832" font-family="'JetBrains Mono', ui-monospace, monospace" font-weight="700" font-size="16" letter-spacing="2" fill="#8a7c55" opacity="0.8">PLACEHOLDER</text>
+</svg>

@@ -470,6 +470,14 @@ window.TE_SCREENS = [
     workTypes: ['rockfall']
   },
   {
+    id: 'report-shotcrete-register',
+    title: 'Shotcrete Register Report',
+    stage: null,
+    chrome: 'none',
+    path: 'screens/report-shotcrete-register.html',
+    workTypes: ['shotcrete']
+  },
+  {
     id: 'module-preview',
     title: 'Module Preview',
     stage: null,
