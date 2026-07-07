@@ -1,5 +1,5 @@
 /* ============================================================================
-   TacEdge Geotech V2.0 · tiny render helpers (shared, dependency-free).
+   TacEdge Ground Engineering · tiny render helpers (shared, dependency-free).
    Just enough to inject config/mock data into a screen. No state library.
    ========================================================================== */
 export function esc(s) {

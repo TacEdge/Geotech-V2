@@ -1,5 +1,5 @@
 /* ============================================================================
-   TacEdge Geotech V2.0 · Relative-date phrasing
+   TacEdge Ground Engineering · Relative-date phrasing
    ----------------------------------------------------------------------------
    Mock dates are stored as integer day-offsets, not absolute dates, and
    rendered as relative phrases ("Sprayed 12 days ago", "Backfilled today").

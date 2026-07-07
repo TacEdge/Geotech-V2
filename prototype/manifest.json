@@ -1,7 +1,7 @@
 {
-  "name": "TacEdge Geotech",
+  "name": "TacEdge Ground Engineering",
   "short_name": "TacEdge",
-  "description": "TacEdge Geotech V2.0 — Spillway Anchoring prototype",
+  "description": "TacEdge Ground Engineering — Spillway Anchoring prototype",
   "lang": "en-NZ",
   "start_url": "./index.html",
   "scope": "./",

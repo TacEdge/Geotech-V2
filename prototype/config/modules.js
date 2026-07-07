@@ -1,5 +1,5 @@
 /* ============================================================================
-   TacEdge Geotech V2.0 · Capture-module registry
+   TacEdge Ground Engineering · Capture-module registry
    ----------------------------------------------------------------------------
    The global catalogue of field capture modules. Work-type templates reference
    these by id; the manifest and index use them to decide which capture cards a

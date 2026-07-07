@@ -1,5 +1,5 @@
 /* ============================================================================
-   TacEdge Geotech V2.0 · Mock-data pack registry
+   TacEdge Ground Engineering · Mock-data pack registry
    ----------------------------------------------------------------------------
    Maps a work-type key to its content pack. Setup screens render the active
    project's work-type pack. Anchoring is the one deeply populated pack; other

@@ -1,5 +1,5 @@
 /* ============================================================================
-   TacEdge Geotech V2.0 · Piling content pack (mock, draft)
+   TacEdge Ground Engineering · Piling content pack (mock, draft)
    ----------------------------------------------------------------------------
    Field-module records for the Cashmere Ridge screw-piling demo. Stage 1.1
    ships the capture-side data: two filled Torque Log records (torque-vs-depth

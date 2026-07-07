@@ -1,5 +1,5 @@
 /* ============================================================================
-   TacEdge Geotech V2.0 · Report shell (runtime half)
+   TacEdge Ground Engineering · Report shell (runtime half)
    ----------------------------------------------------------------------------
    The shared behaviour for engineer-facing report screens: fit each A4 .page
    to the viewport width (never magnifying past 1:1) so the print document is

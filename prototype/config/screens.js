@@ -13,7 +13,7 @@ window.TE_SCREENS = [
     chrome: 'pm',
     path: 'screens/projects.html',
     header:
-      '<header class="topbar">\n    <a class="burger" href="../index.html" aria-label="All screens" title="All screens"><span></span><span></span><span></span></a>\n    <span class="wordmark">TACEDGE</span>\n    <span class="vert"></span>\n    <span class="tag">Geotech</span>\n    <div class="org"><span class="on">Rock Control</span><span class="om">Geotechnical contractor</span></div>\n    <div class="right"><span class="who"><span class="av">TR</span>Tim R · PM</span></div>\n  </header>',
+      '<header class="topbar">\n    <a class="burger" href="../index.html" aria-label="All screens" title="All screens"><span></span><span></span><span></span></a>\n    <span class="wordmark">TACEDGE</span>\n    <span class="vert"></span>\n    <span class="tag">Ground Engineering</span>\n    <div class="org"><span class="on">Rock Control</span><span class="om">Geotechnical contractor</span></div>\n    <div class="right"><span class="who"><span class="av">TR</span>Tim R · PM</span></div>\n  </header>',
     icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18"/></svg>',
     cardTitle: 'Projects',
     desc: 'Pick or create a project.'
@@ -25,7 +25,7 @@ window.TE_SCREENS = [
     chrome: 'pm',
     path: 'screens/platform.html',
     header:
-      '<header class="topbar">\n    <a class="burger" href="../index.html" aria-label="All screens" title="All screens"><span></span><span></span><span></span></a>\n    <span class="wordmark">TACEDGE</span>\n    <span class="vert"></span>\n    <span class="tag">Geotech</span>\n    <div class="org"><span class="on">Rock Control</span><span class="om">Geotechnical contractor</span></div>\n    <div class="right"><span class="who"><span class="av">TR</span>Tim R · PM</span></div>\n  </header>',
+      '<header class="topbar">\n    <a class="burger" href="../index.html" aria-label="All screens" title="All screens"><span></span><span></span><span></span></a>\n    <span class="wordmark">TACEDGE</span>\n    <span class="vert"></span>\n    <span class="tag">Ground Engineering</span>\n    <div class="org"><span class="on">Rock Control</span><span class="om">Geotechnical contractor</span></div>\n    <div class="right"><span class="who"><span class="av">TR</span>Tim R · PM</span></div>\n  </header>',
     icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/></svg>',
     cardTitle: 'Configurable Engine',
     desc: 'One core, multiple geotech work types.'
@@ -37,7 +37,7 @@ window.TE_SCREENS = [
     chrome: 'pm',
     path: 'screens/layout.html',
     header:
-      '<header class="topbar">\n  {{CONTOUR:desktop}}\n  <a class="burger" href="../index.html" aria-label="All screens" title="All screens"><span></span><span></span><span></span></a>\n  <div class="brand"><span class="wordmark">TACEDGE</span><span class="vert"></span><span class="tag">Geotech</span></div>\n  <div class="proj"><span class="name">Benmore Dam – Spillway Anchoring</span><span class="meta">Rock Control · Meridian Energy · WSP engineer · Setup</span></div>\n  <div class="right"><span class="sync"><span class="dot"></span>Synced 2 min ago</span><span class="who"><span class="av">TR</span>Tim R · PM <span class="car">&#9662;</span></span></div>\n</header>',
+      '<header class="topbar">\n  {{CONTOUR:desktop}}\n  <a class="burger" href="../index.html" aria-label="All screens" title="All screens"><span></span><span></span><span></span></a>\n  <div class="brand"><span class="wordmark">TACEDGE</span><span class="vert"></span><span class="tag">Ground Engineering</span></div>\n  <div class="proj"><span class="name">Benmore Dam – Spillway Anchoring</span><span class="meta">Rock Control · Meridian Energy · WSP engineer · Setup</span></div>\n  <div class="right"><span class="sync"><span class="dot"></span>Synced 2 min ago</span><span class="who"><span class="av">TR</span>Tim R · PM <span class="car">&#9662;</span></span></div>\n</header>',
     icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>',
     cardTitle: 'Layout',
     desc: 'Define zones and locations.'
@@ -49,7 +49,7 @@ window.TE_SCREENS = [
     chrome: 'pm',
     path: 'screens/work-item-design.html',
     header:
-      '<header class="topbar">\n  {{CONTOUR:desktop}}\n  <a class="burger" href="../index.html" aria-label="All screens" title="All screens"><span></span><span></span><span></span></a>\n  <div class="brand"><span class="wordmark">TACEDGE</span><span class="vert"></span><span class="tag">Geotech</span></div>\n  <div class="proj"><span class="name">Benmore Dam – Spillway Anchoring</span><span class="meta">Rock Control · Meridian Energy · WSP engineer · Setup</span></div>\n  <div class="right"><span class="sync"><span class="dot"></span>Synced 2 min ago</span><span class="who"><span class="av">TR</span>Tim R · PM <span class="car">&#9662;</span></span></div>\n</header>',
+      '<header class="topbar">\n  {{CONTOUR:desktop}}\n  <a class="burger" href="../index.html" aria-label="All screens" title="All screens"><span></span><span></span><span></span></a>\n  <div class="brand"><span class="wordmark">TACEDGE</span><span class="vert"></span><span class="tag">Ground Engineering</span></div>\n  <div class="proj"><span class="name">Benmore Dam – Spillway Anchoring</span><span class="meta">Rock Control · Meridian Energy · WSP engineer · Setup</span></div>\n  <div class="right"><span class="sync"><span class="dot"></span>Synced 2 min ago</span><span class="who"><span class="av">TR</span>Tim R · PM <span class="car">&#9662;</span></span></div>\n</header>',
     icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20l4-1 10-10-3-3L5 16z"/><path d="M14 6l3 3"/></svg>',
     cardTitle: 'Work Item Design',
     desc: 'Set reusable anchor designs.'
@@ -61,7 +61,7 @@ window.TE_SCREENS = [
     chrome: 'pm',
     path: 'screens/work-plan.html',
     header:
-      '<header class="topbar">\n  {{CONTOUR:desktop}}\n  <a class="burger" href="../index.html" aria-label="All screens" title="All screens"><span></span><span></span><span></span></a>\n  <div class="brand"><span class="wordmark">TACEDGE</span><span class="vert"></span><span class="tag">Geotech</span></div>\n  <div class="proj"><span class="name">Benmore Dam – Spillway Anchoring</span><span class="meta">Rock Control · Meridian Energy · WSP engineer · Setup</span></div>\n  <div class="right"><span class="sync"><span class="dot"></span>Synced 2 min ago</span><span class="who"><span class="av">TR</span>Tim R · PM <span class="car">&#9662;</span></span></div>\n</header>',
+      '<header class="topbar">\n  {{CONTOUR:desktop}}\n  <a class="burger" href="../index.html" aria-label="All screens" title="All screens"><span></span><span></span><span></span></a>\n  <div class="brand"><span class="wordmark">TACEDGE</span><span class="vert"></span><span class="tag">Ground Engineering</span></div>\n  <div class="proj"><span class="name">Benmore Dam – Spillway Anchoring</span><span class="meta">Rock Control · Meridian Energy · WSP engineer · Setup</span></div>\n  <div class="right"><span class="sync"><span class="dot"></span>Synced 2 min ago</span><span class="who"><span class="av">TR</span>Tim R · PM <span class="car">&#9662;</span></span></div>\n</header>',
     icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5" width="16" height="16" rx="2"/><path d="M4 9h16M8 3v4M16 3v4"/></svg>',
     cardTitle: 'Work Plan',
     desc: 'Plan and commit the work.'
@@ -73,7 +73,7 @@ window.TE_SCREENS = [
     chrome: 'pm',
     path: 'screens/testing-standards.html',
     header:
-      '<header class="topbar">\n  {{CONTOUR:desktop}}\n  <a class="burger" href="../index.html" aria-label="All screens" title="All screens"><span></span><span></span><span></span></a>\n  <div class="brand"><span class="wordmark">TACEDGE</span><span class="vert"></span><span class="tag">Geotech</span></div>\n  <div class="proj"><span class="name">Benmore Dam – Spillway Anchoring</span><span class="meta">Rock Control · Meridian Energy · WSP engineer · Setup</span></div>\n  <div class="right"><span class="sync"><span class="dot"></span>Synced 2 min ago</span><span class="who"><span class="av">TR</span>Tim R · PM <span class="car">&#9662;</span></span></div>\n</header>',
+      '<header class="topbar">\n  {{CONTOUR:desktop}}\n  <a class="burger" href="../index.html" aria-label="All screens" title="All screens"><span></span><span></span><span></span></a>\n  <div class="brand"><span class="wordmark">TACEDGE</span><span class="vert"></span><span class="tag">Ground Engineering</span></div>\n  <div class="proj"><span class="name">Benmore Dam – Spillway Anchoring</span><span class="meta">Rock Control · Meridian Energy · WSP engineer · Setup</span></div>\n  <div class="right"><span class="sync"><span class="dot"></span>Synced 2 min ago</span><span class="who"><span class="av">TR</span>Tim R · PM <span class="car">&#9662;</span></span></div>\n</header>',
     icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg>',
     cardTitle: 'Testing Standards',
     desc: 'Set pass criteria once.'
@@ -85,7 +85,7 @@ window.TE_SCREENS = [
     chrome: 'pm',
     path: 'screens/evidence-qa.html',
     header:
-      '<header class="topbar">\n  {{CONTOUR:desktop}}\n  <a class="burger" href="../index.html" aria-label="All screens" title="All screens"><span></span><span></span><span></span></a>\n  <div class="brand"><span class="wordmark">TACEDGE</span><span class="vert"></span><span class="tag">Geotech</span></div>\n  <div class="proj"><span class="name">Benmore Dam – Spillway Anchoring</span><span class="meta">Rock Control · Meridian Energy · WSP engineer · Setup</span></div>\n  <div class="right"><span class="sync"><span class="dot"></span>Synced 2 min ago</span><span class="who"><span class="av">TR</span>Tim R · PM <span class="car">&#9662;</span></span></div>\n</header>',
+      '<header class="topbar">\n  {{CONTOUR:desktop}}\n  <a class="burger" href="../index.html" aria-label="All screens" title="All screens"><span></span><span></span><span></span></a>\n  <div class="brand"><span class="wordmark">TACEDGE</span><span class="vert"></span><span class="tag">Ground Engineering</span></div>\n  <div class="proj"><span class="name">Benmore Dam – Spillway Anchoring</span><span class="meta">Rock Control · Meridian Energy · WSP engineer · Setup</span></div>\n  <div class="right"><span class="sync"><span class="dot"></span>Synced 2 min ago</span><span class="who"><span class="av">TR</span>Tim R · PM <span class="car">&#9662;</span></span></div>\n</header>',
     icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4-3 7-7 8-4-1-7-4-7-8V6z"/><path d="M9 12l2 2 4-4"/></svg>',
     cardTitle: 'Evidence &amp; QA Requirements',
     desc: 'Define what makes a record confirmable.'
@@ -97,7 +97,7 @@ window.TE_SCREENS = [
     chrome: 'pm',
     path: 'screens/safety-risk-controls.html',
     header:
-      '<header class="topbar">\n  {{CONTOUR:desktop}}\n  <a class="burger" href="../index.html" aria-label="All screens" title="All screens"><span></span><span></span><span></span></a>\n  <div class="brand"><span class="wordmark">TACEDGE</span><span class="vert"></span><span class="tag">Geotech</span></div>\n  <div class="proj"><span class="name">Benmore Dam – Spillway Anchoring</span><span class="meta">Rock Control · Meridian Energy · WSP engineer · Setup</span></div>\n  <div class="right"><span class="sync"><span class="dot"></span>Synced 2 min ago</span><span class="who"><span class="av">TR</span>Tim R · PM <span class="car">&#9662;</span></span></div>\n</header>',
+      '<header class="topbar">\n  {{CONTOUR:desktop}}\n  <a class="burger" href="../index.html" aria-label="All screens" title="All screens"><span></span><span></span><span></span></a>\n  <div class="brand"><span class="wordmark">TACEDGE</span><span class="vert"></span><span class="tag">Ground Engineering</span></div>\n  <div class="proj"><span class="name">Benmore Dam – Spillway Anchoring</span><span class="meta">Rock Control · Meridian Energy · WSP engineer · Setup</span></div>\n  <div class="right"><span class="sync"><span class="dot"></span>Synced 2 min ago</span><span class="who"><span class="av">TR</span>Tim R · PM <span class="car">&#9662;</span></span></div>\n</header>',
     icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4a6 6 0 016 6v2H6v-2a6 6 0 016-6z"/><path d="M4 16h16M4 14v2M20 14v2"/></svg>',
     cardTitle: 'Safety &amp; Risk Controls',
     desc: 'Gate sign-on with JSA/SWMS.'
@@ -109,7 +109,7 @@ window.TE_SCREENS = [
     chrome: 'pm',
     path: 'screens/overview.html',
     header:
-      '<header class="topbar">\n  {{CONTOUR:desktop}}\n  <a class="burger" href="../index.html" aria-label="All screens" title="All screens"><span></span><span></span><span></span></a>\n  <div class="brand"><span class="wordmark">TACEDGE</span><span class="vert"></span><span class="tag">Geotech</span></div>\n  <div class="proj"><span class="name">Benmore Dam – Spillway Anchoring</span><span class="meta">Rock Control · Meridian Energy · WSP engineer</span></div>\n  <div class="right"><span class="sync"><span class="dot"></span>Synced 2 min ago</span><span class="who"><span class="av">TR</span>Tim R · PM <span class="car">&#9662;</span></span></div>\n</header>',
+      '<header class="topbar">\n  {{CONTOUR:desktop}}\n  <a class="burger" href="../index.html" aria-label="All screens" title="All screens"><span></span><span></span><span></span></a>\n  <div class="brand"><span class="wordmark">TACEDGE</span><span class="vert"></span><span class="tag">Ground Engineering</span></div>\n  <div class="proj"><span class="name">Benmore Dam – Spillway Anchoring</span><span class="meta">Rock Control · Meridian Energy · WSP engineer</span></div>\n  <div class="right"><span class="sync"><span class="dot"></span>Synced 2 min ago</span><span class="who"><span class="av">TR</span>Tim R · PM <span class="car">&#9662;</span></span></div>\n</header>',
     icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>',
     cardTitle: 'Overview',
     desc: "What needs the PM's attention."
@@ -121,7 +121,7 @@ window.TE_SCREENS = [
     chrome: 'pm',
     path: 'screens/status-board.html',
     header:
-      '<header class="topbar">\n  {{CONTOUR:desktop}}\n  <a class="burger" href="../index.html" aria-label="All screens" title="All screens"><span></span><span></span><span></span></a>\n  <div class="brand"><span class="wordmark">TACEDGE</span><span class="vert"></span><span class="tag">Geotech</span></div>\n  <div class="proj">\n    <span class="name">Benmore Dam – Spillway Anchoring</span>\n    <span class="meta">Rock Control · Meridian Energy · WSP engineer</span>\n  </div>\n  <div class="right">\n    <span class="sync"><span class="dot"></span>Synced 2 min ago</span>\n    <span class="who"><span class="av">TR</span>Tim R · PM <span class="car">&#9662;</span></span>\n  </div>\n</header>',
+      '<header class="topbar">\n  {{CONTOUR:desktop}}\n  <a class="burger" href="../index.html" aria-label="All screens" title="All screens"><span></span><span></span><span></span></a>\n  <div class="brand"><span class="wordmark">TACEDGE</span><span class="vert"></span><span class="tag">Ground Engineering</span></div>\n  <div class="proj">\n    <span class="name">Benmore Dam – Spillway Anchoring</span>\n    <span class="meta">Rock Control · Meridian Energy · WSP engineer</span>\n  </div>\n  <div class="right">\n    <span class="sync"><span class="dot"></span>Synced 2 min ago</span>\n    <span class="who"><span class="av">TR</span>Tim R · PM <span class="car">&#9662;</span></span>\n  </div>\n</header>',
     icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="4" height="16" rx="1"/><rect x="10" y="4" width="4" height="11" rx="1"/><rect x="17" y="4" width="4" height="14" rx="1"/></svg>',
     cardTitle: 'Status Board',
     desc: 'Project status at a glance.'
@@ -133,7 +133,7 @@ window.TE_SCREENS = [
     chrome: 'pm',
     path: 'screens/spatial-map.html',
     header:
-      '<header class="topbar">\n  {{CONTOUR:desktop}}\n  <a class="burger" href="../index.html" aria-label="All screens" title="All screens"><span></span><span></span><span></span></a>\n  <div class="brand"><span class="wordmark">TACEDGE</span><span class="vert"></span><span class="tag">Geotech</span></div>\n  <div class="proj"><span class="name">Benmore Dam – Spillway Anchoring</span><span class="meta">Rock Control · Meridian Energy · WSP engineer</span></div>\n  <div class="right"><span class="sync"><span class="dot"></span>Synced 2 min ago</span><span class="who"><span class="av">TR</span>Tim R · PM <span class="car">&#9662;</span></span></div>\n</header>',
+      '<header class="topbar">\n  {{CONTOUR:desktop}}\n  <a class="burger" href="../index.html" aria-label="All screens" title="All screens"><span></span><span></span><span></span></a>\n  <div class="brand"><span class="wordmark">TACEDGE</span><span class="vert"></span><span class="tag">Ground Engineering</span></div>\n  <div class="proj"><span class="name">Benmore Dam – Spillway Anchoring</span><span class="meta">Rock Control · Meridian Energy · WSP engineer</span></div>\n  <div class="right"><span class="sync"><span class="dot"></span>Synced 2 min ago</span><span class="who"><span class="av">TR</span>Tim R · PM <span class="car">&#9662;</span></span></div>\n</header>',
     icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 11-8 11s-8-5-8-11a8 8 0 0116 0z"/><circle cx="12" cy="10" r="2.5"/></svg>',
     cardTitle: 'Spatial Map',
     desc: 'Every anchor on the site.'
@@ -482,7 +482,7 @@ window.TE_SCREENS = [
     chrome: 'pm',
     path: 'screens/qa-queue.html',
     header:
-      '<header class="topbar">\n  {{CONTOUR:desktop}}\n  <a class="burger" href="../index.html" aria-label="All screens" title="All screens"><span></span><span></span><span></span></a>\n  <div class="brand"><span class="wordmark">TACEDGE</span><span class="vert"></span><span class="tag">Geotech</span></div>\n  <div class="proj"><span class="name">Benmore Dam – Spillway Anchoring</span><span class="meta">Rock Control · Meridian Energy · WSP engineer</span></div>\n  <div class="right"><span class="sync"><span class="dot"></span>Synced 2 min ago</span><span class="who"><span class="av">TR</span>Tim R · PM <span class="car">&#9662;</span></span></div>\n</header>',
+      '<header class="topbar">\n  {{CONTOUR:desktop}}\n  <a class="burger" href="../index.html" aria-label="All screens" title="All screens"><span></span><span></span><span></span></a>\n  <div class="brand"><span class="wordmark">TACEDGE</span><span class="vert"></span><span class="tag">Ground Engineering</span></div>\n  <div class="proj"><span class="name">Benmore Dam – Spillway Anchoring</span><span class="meta">Rock Control · Meridian Energy · WSP engineer</span></div>\n  <div class="right"><span class="sync"><span class="dot"></span>Synced 2 min ago</span><span class="who"><span class="av">TR</span>Tim R · PM <span class="car">&#9662;</span></span></div>\n</header>',
     icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg>',
     cardTitle: 'QA Queue',
     desc: 'Confirm a record, or reopen with a reason.'
@@ -494,7 +494,7 @@ window.TE_SCREENS = [
     chrome: 'pm',
     path: 'screens/reporting.html',
     header:
-      '<header class="topbar">\n  {{CONTOUR:desktop}}\n  <a class="burger" href="../index.html" aria-label="All screens" title="All screens"><span></span><span></span><span></span></a>\n  <div class="brand"><span class="wordmark">TACEDGE</span><span class="vert"></span><span class="tag">Geotech</span></div>\n  <div class="proj"><span class="name">Benmore Dam – Spillway Anchoring</span><span class="meta">Rock Control · Meridian Energy · WSP engineer</span></div>\n  <div class="right"><span class="sync"><span class="dot"></span>Synced 2 min ago</span><span class="who"><span class="av">TR</span>Tim R · PM <span class="car">&#9662;</span></span></div>\n</header>',
+      '<header class="topbar">\n  {{CONTOUR:desktop}}\n  <a class="burger" href="../index.html" aria-label="All screens" title="All screens"><span></span><span></span><span></span></a>\n  <div class="brand"><span class="wordmark">TACEDGE</span><span class="vert"></span><span class="tag">Ground Engineering</span></div>\n  <div class="proj"><span class="name">Benmore Dam – Spillway Anchoring</span><span class="meta">Rock Control · Meridian Energy · WSP engineer</span></div>\n  <div class="right"><span class="sync"><span class="dot"></span>Synced 2 min ago</span><span class="who"><span class="av">TR</span>Tim R · PM <span class="car">&#9662;</span></span></div>\n</header>',
     icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4"/><path d="M10 15v2M13 13v4M16 15v2"/></svg>',
     cardTitle: 'Reporting',
     desc: 'Assemble and release confirmed work.'
@@ -506,7 +506,7 @@ window.TE_SCREENS = [
     chrome: 'pm',
     path: 'screens/closeout.html',
     header:
-      '<header class="topbar">\n  {{CONTOUR:desktop}}\n  <a class="burger" href="../index.html" aria-label="All screens" title="All screens"><span></span><span></span><span></span></a>\n  <div class="brand"><span class="wordmark">TACEDGE</span><span class="vert"></span><span class="tag">Geotech</span></div>\n  <div class="proj">\n    <span class="name">Benmore Dam – Spillway Anchoring</span>\n    <span class="meta">Rock Control · Meridian Energy · WSP engineer</span>\n  </div>\n  <div class="right">\n    <span class="sync"><span class="dot"></span>Synced 2 min ago</span>\n    <span class="who"><span class="av">TR</span>Tim R · PM <span class="car">&#9662;</span></span>\n  </div>\n</header>',
+      '<header class="topbar">\n  {{CONTOUR:desktop}}\n  <a class="burger" href="../index.html" aria-label="All screens" title="All screens"><span></span><span></span><span></span></a>\n  <div class="brand"><span class="wordmark">TACEDGE</span><span class="vert"></span><span class="tag">Ground Engineering</span></div>\n  <div class="proj">\n    <span class="name">Benmore Dam – Spillway Anchoring</span>\n    <span class="meta">Rock Control · Meridian Energy · WSP engineer</span>\n  </div>\n  <div class="right">\n    <span class="sync"><span class="dot"></span>Synced 2 min ago</span>\n    <span class="who"><span class="av">TR</span>Tim R · PM <span class="car">&#9662;</span></span>\n  </div>\n</header>',
     icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="4" rx="1"/><path d="M5 8v11a1 1 0 001 1h12a1 1 0 001-1V8"/><path d="M10 12h4"/></svg>',
     cardTitle: 'Project Closeout',
     desc: 'Final checks before archive.'
@@ -518,7 +518,7 @@ window.TE_SCREENS = [
     chrome: 'pm',
     path: 'screens/engineer-view.html',
     header:
-      '<header class="topbar">\n  {{CONTOUR:engineer}}\n  <div class="brand"><span class="wordmark">TACEDGE</span><span class="vert"></span><span class="tag">Geotech</span></div>\n  <div class="proj"><span class="name">Benmore Dam – Spillway Anchoring</span><span class="meta">Released by Rock Control · Meridian Energy</span></div>\n  <div class="right">\n    <span class="ro-pill"><svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="9" width="13" height="8" rx="2"/><path d="M6.5 9V6.5a3.5 3.5 0 0 1 7 0V9"/></svg> Read-only</span>\n    <span class="who"><span class="av">NH</span><span><span class="nm">N. Hayes</span> · <span class="role">WSP · Engineer</span></span></span>\n  </div>\n</header>',
+      '<header class="topbar">\n  {{CONTOUR:engineer}}\n  <div class="brand"><span class="wordmark">TACEDGE</span><span class="vert"></span><span class="tag">Ground Engineering</span></div>\n  <div class="proj"><span class="name">Benmore Dam – Spillway Anchoring</span><span class="meta">Released by Rock Control · Meridian Energy</span></div>\n  <div class="right">\n    <span class="ro-pill"><svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="9" width="13" height="8" rx="2"/><path d="M6.5 9V6.5a3.5 3.5 0 0 1 7 0V9"/></svg> Read-only</span>\n    <span class="who"><span class="av">NH</span><span><span class="nm">N. Hayes</span> · <span class="role">WSP · Engineer</span></span></span>\n  </div>\n</header>',
     icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="5"/><path d="M9 13l-1 8 4-2 4 2-1-8"/></svg>',
     cardTitle: 'Engineer View',
     desc: 'Confirmed, released work only.'

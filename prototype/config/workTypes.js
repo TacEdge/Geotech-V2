@@ -1,5 +1,5 @@
 /* ============================================================================
-   TacEdge Geotech V2.0 · Work-type catalogue (single source of truth)
+   TacEdge Ground Engineering · Work-type catalogue (single source of truth)
    ----------------------------------------------------------------------------
    Single source of truth for the Configurable Engine page. Every label,
    template, preset, capture module and matrix chip rendered below the work-type

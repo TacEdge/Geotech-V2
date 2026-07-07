@@ -1,5 +1,5 @@
 /* ============================================================================
-   TacEdge Geotech V2.0 · Geometry plotter (shared, classic global)
+   TacEdge Ground Engineering · Geometry plotter (shared, classic global)
    ----------------------------------------------------------------------------
    One code path for plotting work items onto a spatial canvas, driven by the
    item's template geometry. Every project (anchoring points, piling points,
