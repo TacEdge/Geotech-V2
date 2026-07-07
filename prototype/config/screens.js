@@ -169,7 +169,7 @@ window.TE_SCREENS = [
     chrome: 'field',
     path: 'screens/drill-log.html',
     moduleId: 'drill_log',
-    workTypes: ['anchoring', 'drainage'],
+    workTypes: ['anchoring'],
     header:
       '<header class="bar">\n      {{CONTOUR:field}}\n      <a class="iconbtn" href="../index.html" aria-label="Back to home" title="Back to home"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></a>\n      <div class="ctx"><span class="p">Benmore • Spillway Anchoring</span><span class="z">Rock Control • Today</span></div>\n      <div class="right"><span class="fresh"><span class="d"></span>Live</span>\n        <span class="av">SK</span>\n      </div>\n    </header>',
     icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v10M8 9l4 4 4-4"/><rect x="7" y="16" width="10" height="4" rx="1"/></svg>',

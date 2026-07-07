@@ -337,7 +337,7 @@ export const WORK_TYPES = {
   drainage: {
     label: 'Drainage',
     icon: 'drop',
-    status: 'configured',
+    status: 'live',
     geometry: 'line',
     unit: 'm',
     confirmationBasis: 'per_run',

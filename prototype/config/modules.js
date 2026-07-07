@@ -13,7 +13,7 @@ export const MODULES = {
   // --- Built (anchoring) -----------------------------------------------------
   drill_log: {
     id: 'drill_log', name: 'Drill Log', screen: 'screens/drill-log.html',
-    summary: 'depth, lithology, flush', sharedBy: ['anchoring', 'drainage']
+    summary: 'depth, lithology, flush', sharedBy: ['anchoring']
   },
   grout_log: {
     id: 'grout_log', name: 'Grout Log', screen: 'screens/grout-log.html',
