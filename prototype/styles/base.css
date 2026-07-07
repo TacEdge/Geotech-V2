@@ -1,5 +1,5 @@
 /* ============================================================================
-   TacEdge Geotech V2.0 - base layer (linked before each screen's inline styles).
+   TacEdge Ground Engineering - base layer (linked before each screen's inline styles).
    Reset plus the one global fix that ends the recurring [hidden] vs display bug:
    an element carrying the hidden attribute must stay hidden even when a later
    display rule would otherwise reveal it.

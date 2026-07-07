@@ -1,7 +1,7 @@
-# TacEdge Geotech V2.0 — Prototype
+# TacEdge Ground Engineering — Prototype
 
 A dependency-free, static, multi-page HTML/CSS/JS clickable prototype for the
-TacEdge Geotech field-and-office workflow, presented around a worked example:
+TacEdge Ground Engineering field-and-office workflow, presented around a worked example:
 Spillway Anchoring at Benmore Dam. It installs as a PWA and deploys to GitHub
 Pages.
 
