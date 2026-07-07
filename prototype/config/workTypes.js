@@ -79,7 +79,7 @@ export const WORK_TYPES = {
   drilling: {
     label: 'Drilling',
     icon: 'drill',
-    status: 'configured',
+    status: 'live',
     geometry: 'point',
     unit: 'm',
     confirmationBasis: 'per_run',
