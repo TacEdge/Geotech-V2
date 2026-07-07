@@ -45,3 +45,15 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);min-height:1
 .ph{aspect-ratio:4/3;border:1.5px dashed var(--line-2);border-radius:var(--r-md);background:var(--plan);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;color:var(--ink-40)}
 .ph svg{width:24px;height:24px}
 .ph span{font-size:11.5px;font-weight:600}
+/* Recorded witness block: the "Witnessed · name / Recorded on site" idiom for a
+   hold point captured as a field, never an approval flow. Shared by the
+   shotcrete substrate inspection and the drainage before-backfill inspection. */
+.witness{display:flex;align-items:center;gap:12px;background:var(--sage-tint);border:1px solid #cdd5b9;border-radius:var(--r-md);padding:14px 16px}
+.witness.await{background:var(--ochre-tint);border-color:#eadbb8}
+.witness .wic{width:36px;height:36px;border-radius:50%;background:var(--forest);color:var(--cream);display:grid;place-items:center;flex-shrink:0}
+.witness.await .wic{background:var(--ochre)}
+.witness .wic svg{width:19px;height:19px}
+.witness .wx{flex:1}
+.witness .w1{font-size:14.5px;font-weight:700;color:var(--ink)}
+.witness .w2{font-size:12.5px;color:var(--ink-60);margin-top:2px}
+.wcap{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-40);margin-top:9px}

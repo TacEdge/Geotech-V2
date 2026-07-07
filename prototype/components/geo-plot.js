@@ -9,6 +9,7 @@
    Each item: { id, zone, phase, label, geometry, sel }
      · geometry 'point' → { x, y }          the pin idiom (dot, ring, label)
      · geometry 'area'  → { points:[[x,y]] } status-filled polygon + centroid
+     · geometry 'line'  → { points:[[x,y]] } status-coloured run + collar tag
 
    Phase drives colour via the shared pin/area phase classes in the styles.
    GEO.plot(items, opts) returns an SVG markup string; the caller sets innerHTML.
@@ -45,13 +46,26 @@
       '<text class="alab" x="' + cx + '" y="' + cy + '">' + esc(it.label) + '</text></g>';
   }
 
+  function line(it) {
+    var pts = it.points || [];
+    var d = pts.map(function (p) { return p[0] + ',' + p[1]; }).join(' ');
+    var c = pts.length ? pts[0] : [0, 0];               // collar = first point of the run
+    var cls = 'line l-' + it.phase + (it.sel ? ' sel' : '');
+    return '<g class="' + cls + '" data-id="' + esc(it.id) + '" data-zone="' + esc(it.zone) +
+      '" data-phase="' + it.phase + '">' +
+      '<polyline class="lhit" points="' + d + '"/><polyline class="lstroke" points="' + d + '"/>' +
+      '<circle class="lcollar" cx="' + c[0] + '" cy="' + c[1] + '"/>' +
+      '<text class="llab" x="' + c[0] + '" y="' + (c[1] - 12) + '">' + esc(it.label) + '</text></g>';
+  }
+
   root.GEO = {
     esc: esc,
     plot: function (items, opts) {
       opts = opts || {};
-      var pt = opts.point || point, ar = opts.area || area;
+      var pt = opts.point || point, ar = opts.area || area, ln = opts.line || line;
       return (items || []).map(function (it) {
-        return it.geometry === 'area' ? ar(it) : pt(it);
+        return it.geometry === 'line' ? ln(it)
+          : (it.geometry === 'area' ? ar(it) : pt(it));
       }).join('');
     }
   };

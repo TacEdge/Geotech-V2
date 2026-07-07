@@ -93,6 +93,20 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);font-size:16
 .a-issue .afill{fill:#b23b2e}.a-issue .aline{stroke:#b23b2e}
 .a-complete .afill{fill:#2b4721}.a-complete .aline{stroke:#2b4721}
 .a-closed .afill{fill:#9a9d90}.a-closed .aline{stroke:#9a9d90}
+/* line geometry (drain runs): a status-coloured run with a collar tag, drawn
+   through the same GEO.plot path as points and areas. */
+.line{cursor:pointer}
+.line .lhit{fill:none;stroke:transparent;stroke-width:18;stroke-linecap:round}
+.line .lstroke{fill:none;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 2px 4px rgba(0,0,0,.55))}
+.line .lcollar{r:7;stroke:#fff;stroke-width:2.5}
+.line .llab{font-family:var(--mono);font-weight:700;font-size:17px;fill:#fdf8ef;text-anchor:middle;paint-order:stroke;stroke:rgba(12,16,10,.92);stroke-width:3.8px;stroke-linejoin:round}
+.line:hover .lstroke{stroke-width:5}.line.sel .lstroke{stroke-width:6}.line.sel .lcollar{r:9}.line.dim{opacity:.16;pointer-events:none}
+.l-planned .lstroke{stroke:#9a9d90}.l-planned .lcollar{fill:#cfd3c3}
+.l-active .lstroke{stroke:#8ba06f}.l-active .lcollar{fill:#8ba06f}
+.l-onhold .lstroke{stroke:#b07d2b}.l-onhold .lcollar{fill:#b07d2b}
+.l-issue .lstroke{stroke:#b23b2e}.l-issue .lcollar{fill:#b23b2e}
+.l-complete .lstroke{stroke:#2b4721}.l-complete .lcollar{fill:#2b4721}
+.l-closed .lstroke{stroke:#9a9d90}.l-closed .lcollar{fill:#cfd3c3}
 .zlab{font-family:var(--mono);font-size:18px;letter-spacing:3px;fill:#fdf8ef;paint-order:stroke;stroke:rgba(12,16,10,.85);stroke-width:3.4px;stroke-linejoin:round;opacity:.95}
 #gridref .gl{stroke:rgba(252,242,232,.22);stroke-width:1}
 #gridref .glab{font-family:var(--mono);font-weight:700;font-size:15px;fill:rgba(252,242,232,.5);text-anchor:middle;paint-order:stroke;stroke:rgba(12,16,10,.55);stroke-width:2.6px;stroke-linejoin:round}
@@ -439,10 +453,10 @@ import { activeProject } from '../config/projects.js';
     var hd = document.querySelector('.rail .panel .hd'); if (hd) hd.textContent = mixed ? 'Selected item' : 'Selected pile';
   }
   function select(id){
-    document.querySelectorAll('#viewport .pin, #viewport .area').forEach(function(g){ var on = g.dataset.id === id; g.classList.toggle('sel', on); if (on) g.parentNode.appendChild(g); });
+    document.querySelectorAll('#viewport .pin, #viewport .area, #viewport .line').forEach(function(g){ var on = g.dataset.id === id; g.classList.toggle('sel', on); if (on) g.parentNode.appendChild(g); });
     renderSel(id);
   }
-  document.querySelectorAll('#viewport .pin, #viewport .area').forEach(function(g){ g.addEventListener('click', function(){ select(g.dataset.id); }); });
+  document.querySelectorAll('#viewport .pin, #viewport .area, #viewport .line').forEach(function(g){ g.addEventListener('click', function(){ select(g.dataset.id); }); });
   select(mixed ? geoItems[0].id : 'SP-05');
 })();
 </script>
