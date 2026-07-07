@@ -378,7 +378,7 @@ import { packFor } from '../data/mock/index.js';
 import { activeProject } from '../config/projects.js';
 (function(){
   try{
-    var pack = packFor(activeProject().workType) || {};
+    var pack = packFor(activeProject().workTypes[0]) || {};
     var zones=document.getElementById('zones'), banner=document.getElementById('aibanner'),
         cont=document.getElementById('contBtn'), foot=document.getElementById('footStatus');
     function commit(){

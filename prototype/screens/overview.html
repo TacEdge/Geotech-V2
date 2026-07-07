@@ -363,7 +363,7 @@ import { packFor } from '../data/mock/index.js';
 import { activeProject } from '../config/projects.js';
 (function(){
   try{
-    var pack = packFor(activeProject().workType);
+    var pack = packFor(activeProject().workTypes[0]);
     if(pack && pack.overview){
       var ov=pack.overview, m=ov.metrics;
       var esc=function(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');};

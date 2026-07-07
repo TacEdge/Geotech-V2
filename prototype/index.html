@@ -251,11 +251,15 @@
   import { activeProject } from './config/projects.js';
   (function(){
     var S = window.TE_SCREENS || [];
-    // The active project's work type gates which capture modules appear; a
+    var pwt = ['anchoring'];
+    try { var ap = activeProject(); if (ap && ap.workTypes && ap.workTypes.length) pwt = ap.workTypes; } catch (_) {}
+    // A screen applies when its workTypes intersect the project's workTypes; a
     // screen with no workTypes is universal (shown for every work type).
-    var wt = 'anchoring';
-    try { wt = (activeProject() && activeProject().workType) || wt; } catch (_) {}
-    function applies(s){ return !s.workTypes || s.workTypes.indexOf(wt) !== -1; }
+    function applies(s){
+      if (!s.workTypes) return true;
+      for (var i = 0; i < s.workTypes.length; i++) { if (pwt.indexOf(s.workTypes[i]) !== -1) return true; }
+      return false;
+    }
     function card(s){
       return '<a class="card" href="'+s.path+'"><span class="cic">'+s.icon+'</span><h3>'+s.cardTitle+'</h3><p>'+s.desc+'</p></a>';
     }

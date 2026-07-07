@@ -312,7 +312,7 @@ import { activeProject } from '../config/projects.js';
 (function(){
   try{
     var escH=function(s){return (s==null?'':String(s)).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');};
-    var pack = packFor(activeProject().workType) || {};
+    var pack = packFor(activeProject().workTypes[0]) || {};
     var D = pack.boardAnchors || {};
     if(pack.boardStatus){
       var st=pack.boardStatus;

@@ -82,9 +82,9 @@ import { packFor } from '../data/mock/index.js';
 function set(id, v){ var e = document.getElementById(id); if (e) e.textContent = v; }
 function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
 var proj = activeProject();
-var pack = packFor(proj.workType) || {};
+var pack = packFor(proj.workTypes[0]) || {};
 // This register is a rockfall deliverable; only render for a rockfall project.
-if (proj.workType === 'rockfall') {
+if (proj.workTypes.indexOf('rockfall') !== -1) {
   set('idProject', proj.name);
   set('idContractor', proj.contractor);
   set('idEngineer', proj.engineer);

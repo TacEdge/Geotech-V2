@@ -241,7 +241,7 @@ var EDIT='<svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="cu
 var MCAL='<svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="4.5" width="13" height="12" rx="1.5"/><path d="M3.5 8h13M7 3v3M13 3v3"/></svg>';
 var MANC='<svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 16h12M4 16V8M16 16V8M10 3l6 5H4z"/><path d="M7.5 11v3M12.5 11v3"/></svg>';
 var ACC='<svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"/></svg>';
-var pack = packFor(activeProject().workType);
+var pack = packFor(activeProject().workTypes[0]);
 if (pack && pack.testingStandards) {
   var TS = pack.testingStandards, eng = pack.engineerSource;
   function btn(s, i){

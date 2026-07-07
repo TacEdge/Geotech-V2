@@ -64,7 +64,7 @@ var proj = activeProject();
 var pack = packFor('drilling') || {};
 var holes = pack.holes || [];
 if (holes.length) {
-  if (proj.workType === 'drilling') { set('idProject', proj.name); set('idContractor', proj.contractor); set('idEngineer', proj.engineer); }
+  if (proj.workTypes.indexOf('drilling') !== -1) { set('idProject', proj.name); set('idContractor', proj.contractor); set('idEngineer', proj.engineer); }
   function stateChip(h){
     if (h.state === 'complete') return '<span class="chip ok">Released</span>';
     if (h.state === 'in_progress') return '<span class="chip prog">Logging</span>';

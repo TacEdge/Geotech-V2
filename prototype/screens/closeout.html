@@ -298,7 +298,7 @@ import { activeProject } from '../config/projects.js';
   (function(){
     // Config-driven: render from the pack when this work type supplies a
     // closeout block. Anchoring's pack has none, so it keeps the static checks.
-    var pack; try { pack = packFor(activeProject().workType); } catch (_) { return; }
+    var pack; try { pack = packFor(activeProject().workTypes[0]); } catch (_) { return; }
     if (!pack || !pack.closeout) return;
     var co = pack.closeout, esc = function(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');};
     var warn = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="8" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>';

@@ -78,7 +78,7 @@ var proj = activeProject();
 var pack = packFor('drainage') || {};
 var drains = pack.drains || [], runs = pack.collectorRuns || [];
 if (drains.length) {
-  if (proj.workType === 'drainage') { set('idProject', proj.name); set('idContractor', proj.contractor); set('idEngineer', proj.engineer); }
+  if (proj.workTypes.indexOf('drainage') !== -1) { set('idProject', proj.name); set('idContractor', proj.contractor); set('idEngineer', proj.engineer); }
 
   function drainChip(d){
     if (d.state === 'reopened') return '<span class="chip flag">Reopened</span>';

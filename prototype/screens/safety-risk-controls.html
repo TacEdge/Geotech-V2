@@ -236,7 +236,7 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);font-size:16
   var AT='viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"';
   var OPEN="<svg width=\"16\" height=\"16\" viewBox=\"0 0 20 20\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M1.5 10S4.5 4.5 10 4.5 18.5 10 18.5 10 15.5 15.5 10 15.5 1.5 10 1.5 10z\"/><circle cx=\"10\" cy=\"10\" r=\"2.4\"/></svg>", REPLACE="<svg width=\"16\" height=\"16\" viewBox=\"0 0 20 20\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M3 7h11l-3-3M17 13H6l3 3\"/></svg>", MENU="<svg width=\"18\" height=\"18\" viewBox=\"0 0 20 20\" fill=\"none\"><circle cx=\"10\" cy=\"4.5\" r=\"1.3\" fill=\"currentColor\"/><circle cx=\"10\" cy=\"10\" r=\"1.3\" fill=\"currentColor\"/><circle cx=\"10\" cy=\"15.5\" r=\"1.3\" fill=\"currentColor\"/></svg>";
   function ic(inner,sz){return '<svg width="'+sz+'" height="'+sz+'" '+AT+'>'+inner+'</svg>';}
-  var pack = packFor(activeProject().workType);
+  var pack = packFor(activeProject().workTypes[0]);
   if (pack && pack.safetyDocs) {
     var D = pack.safetyDocs;
     function btn(d,i){ return '<button class="wrow'+(i===0?' sel':'')+'" data-code="'+d.code+'"><span class="wsw" style="color:'+d.colour+'">'+ic(d.icon,18)+'</span><span class="wname2">'+esc(d.name)+'</span>'+(d.listBadge?'<span class="wbadge '+d.listBadge.cls+'">'+esc(d.listBadge.text)+'</span>':'')+'<span class="wmenu">'+MENU+'</span></button>'; }

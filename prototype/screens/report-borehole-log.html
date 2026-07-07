@@ -76,7 +76,7 @@ var want; try { want = new URLSearchParams(location.search).get('bh'); } catch (
 var hole = holes.filter(function(h){ return h.id === want; })[0] || holes.filter(function(h){ return h.logReleased; })[0] || holes[0];
 if (hole) {
   var ago = pack.agoPhrase || function(n){ return n + ' days ago'; };
-  set('idProject', proj.workType === 'drilling' ? proj.name : 'Slip Site Investigation');
+  set('idProject', proj.workTypes.indexOf('drilling') !== -1 ? proj.name : 'Slip Site Investigation');
   set('idHole', hole.id);
   set('idZone', hole.zone);
   set('idDepth', hole.drilled.toFixed(1) + ' / ' + hole.designDepth.toFixed(1) + ' m');

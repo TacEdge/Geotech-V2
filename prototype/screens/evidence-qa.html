@@ -216,7 +216,7 @@ var DUP='<svg width="16" height="16" '+AT+'><rect x="6.5" y="6.5" width="10" hei
 var EDIT='<svg width="16" height="16" '+AT+'><path d="M14 3l3 3-9 9-4 1 1-4z"/></svg>';
 var APED='<svg width="13" height="13" '+AT+'><path d="M14 3l3 3-9 9-4 1 1-4z"/></svg>';
 function ic(inner,sz){return '<svg width="'+sz+'" height="'+sz+'" '+AT+'>'+inner+'</svg>';}
-var pack = packFor(activeProject().workType);
+var pack = packFor(activeProject().workTypes[0]);
 if (pack && pack.evidenceRequirements) {
   var R = pack.evidenceRequirements;
   function btn(r,i){return '<button class="wrow'+(i===0?' sel':'')+'" data-code="'+r.code+'"><span class="wsw" style="color:'+r.colour+'">'+ic(r.icon,18)+'</span><div class="wmain"><div class="wcode-row"><span class="wname2">'+esc(r.name)+'</span><span class="wbadge '+r.badgeClass+'">'+esc(r.badge)+'</span></div><div class="wsum">'+esc(r.summary)+'</div></div><span class="wmenu">'+MENU+'</span></button>';}

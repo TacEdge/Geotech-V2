@@ -399,7 +399,7 @@ import { activeProject } from '../config/projects.js';
 (function(){
   // Config-driven: a work type opts into a plotted site plan by declaring
   // spatialCanvas in its pack. Anchoring has none, so it keeps the dam canvas.
-  var pack; try { pack = packFor(activeProject().workType); } catch (_) { return; }
+  var pack; try { pack = packFor(activeProject().workTypes[0]); } catch (_) { return; }
   // Needs a site plan and a board. Points come from planPins (piling) or the
   // pre-shaped spatialItems (mixed/area work types); at least one is required.
   if (!pack || !pack.spatialCanvas || !pack.boardAnchors || (!pack.planPins && !pack.spatialItems)) return;

@@ -19,7 +19,7 @@ export const PROJECTS = {
     client: 'Meridian Energy',
     contractor: 'Rock Control',
     engineer: 'WSP',
-    workType: 'anchoring',
+    workTypes: ['anchoring'],
     zones: ['Spillway Face', 'Stilling Basin', 'Left Abutment', 'Crest Gallery'],
     items: [
       { id: 'B01', zone: 'Spillway Face', grid: 'A1', depthDesign: 17.5, depthFinal: 17.42, materialUsed: 46, variance: 1.21, test: 'Pass', state: 'approved' },
@@ -27,23 +27,6 @@ export const PROJECTS = {
       { id: 'B11', zone: 'Spillway Face', grid: 'E2', depthDesign: 17.5, depthFinal: null, materialUsed: null, variance: null, test: null, state: 'flagged', flag: 'missing photo' },
       { id: 'B12', zone: 'Spillway Face', grid: 'F2', depthDesign: 12.0, depthFinal: 12.4, materialUsed: 47, variance: 1.24, test: null, state: 'provisional' },
       { id: 'B17', zone: 'Spillway Face', grid: 'D3', depthDesign: 17.5, depthFinal: 17.63, materialUsed: 47, variance: 1.24, test: 'Pass', state: 'provisional' }
-    ]
-  },
-
-  // Existing second project (rock bolts) referenced in the platform footer.
-  // Anchoring work type, rock-bolt template. Dormant until a screen renders it.
-  aviemore: {
-    id: 'AVI-RB-2026',
-    name: 'Aviemore Dam · Rock Bolting',
-    client: 'Meridian Energy',
-    contractor: 'Rock Control',
-    engineer: 'WSP',
-    workType: 'anchoring',
-    zones: ['Tailrace Face', 'Right Abutment'],
-    items: [
-      { id: 'RB01', zone: 'Tailrace Face', grid: 'A1', depthDesign: 6.0, depthFinal: 6.02, materialUsed: 2, variance: 1.0, test: 'Pass', state: 'approved' },
-      { id: 'RB05', zone: 'Tailrace Face', grid: 'C2', depthDesign: 6.0, depthFinal: 5.98, materialUsed: 2, variance: 1.0, test: 'Pass', state: 'approved' },
-      { id: 'RB09', zone: 'Right Abutment', grid: 'D1', depthDesign: 4.5, depthFinal: null, materialUsed: null, variance: null, test: null, state: 'provisional' }
     ]
   },
 
@@ -56,7 +39,7 @@ export const PROJECTS = {
     client: 'TBC · owner to confirm',
     contractor: 'Rock Control',
     engineer: 'TBC · owner to confirm',
-    workType: 'piling',
+    workTypes: ['piling'],
     draft: true,
     zones: ['Upper Bench'],
     items: [
@@ -84,7 +67,7 @@ export const PROJECTS = {
     client: 'Kaimoana District Council',
     contractor: 'Rock Control',
     engineer: 'Aurora Geotechnical',
-    workType: 'rockfall',
+    workTypes: ['rockfall'],
     draft: true,
     zones: ['Batter A', 'Batter B'],
     lots: [
@@ -128,7 +111,7 @@ export const PROJECTS = {
     client: 'Southern Aggregates',
     contractor: 'Rock Control',
     engineer: 'WSP',
-    workType: 'shotcrete',
+    workTypes: ['shotcrete'],
     draft: true,
     zones: ['Bench 1', 'Bench 2'],
     lots: [
@@ -165,7 +148,7 @@ export const PROJECTS = {
     client: 'Alpine District Council',
     contractor: 'Rock Control',
     engineer: 'Southern Geotechnical',
-    workType: 'drilling',
+    workTypes: ['drilling'],
     draft: true,
     zones: ['Upper Slip', 'Lower Terrace'],
     items: [
@@ -191,7 +174,7 @@ export const PROJECTS = {
     client: 'Alpine District Council',
     contractor: 'Rock Control',
     engineer: 'Southern Geotechnical',
-    workType: 'drainage',
+    workTypes: ['drainage'],
     draft: true,
     zones: ['Slip Face', 'Toe'],
     items: [
@@ -222,10 +205,19 @@ export function activeProject() {
   return PROJECTS.benmore;
 }
 
-/** The active (or named) project's work-type configuration. */
+/** A project's primary work-type key (workTypes[0]). Compat seam after the
+    workType -> workTypes[] migration: every project is single-typed today, so
+    the primary type is the only type. Use this or intersect workTypes[] rather
+    than reading a bare .workType, which no longer exists. */
+export function primaryType(projectId) {
+  var p = (projectId && PROJECTS[projectId]) || activeProject();
+  return p.workTypes && p.workTypes[0];
+}
+
+/** The active (or named) project's primary work-type configuration. */
 export function workType(projectId) {
   var p = (projectId && PROJECTS[projectId]) || activeProject();
-  return WORK_TYPES[p.workType];
+  return WORK_TYPES[p.workTypes[0]];
 }
 
 /** Serialise a project as the export seam. No argument = the active project. */
@@ -234,7 +226,7 @@ export function serialise(projectId) {
   return JSON.stringify(
     {
       job: p,
-      workType: WORK_TYPES[p.workType],
+      workType: WORK_TYPES[p.workTypes[0]],
       exportedAt: '2026-06-27',
       schema: 'tacedge.geotech.job/v2'
     },

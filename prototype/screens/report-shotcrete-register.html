@@ -74,8 +74,8 @@ import { packFor } from '../data/mock/index.js';
 function set(id, v){ var e = document.getElementById(id); if (e) e.textContent = v; }
 function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
 var proj = activeProject();
-var pack = packFor(proj.workType) || {};
-if (proj.workType === 'shotcrete') {
+var pack = packFor(proj.workTypes[0]) || {};
+if (proj.workTypes.indexOf('shotcrete') !== -1) {
   set('idProject', proj.name);
   set('idContractor', proj.contractor);
   set('idEngineer', proj.engineer);
