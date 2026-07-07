@@ -344,6 +344,48 @@ window.TE_SCREENS = [
     desc: 'Probe readings vs 100 / 75 mm.'
   },
   {
+    id: 'borehole-log',
+    title: 'Borehole Log',
+    stage: 'capture',
+    chrome: 'field',
+    path: 'screens/borehole-log.html',
+    moduleId: 'borehole_log',
+    workTypes: ['drilling'],
+    header:
+      '<header class="bar">\n      {{CONTOUR:field}}\n      <a class="iconbtn" href="../index.html" aria-label="Back to home" title="Back to home"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></a>\n      <div class="ctx"><span class="p">Slip Site · Drilling</span><span class="z">Rock Control · today</span></div>\n      <div class="right"><span class="fresh"><span class="d"></span>Live</span>\n        <span class="av">PR</span>\n      </div>\n    </header>',
+    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v10"/><path d="M8 9l4 4 4-4"/><rect x="7" y="16" width="10" height="4" rx="1"/></svg>',
+    cardTitle: 'Borehole Log',
+    desc: 'Soils, SPT, runs, water.'
+  },
+  {
+    id: 'core-photos',
+    title: 'Core Photos',
+    stage: 'capture',
+    chrome: 'field',
+    path: 'screens/core-photos.html',
+    moduleId: 'core_photos',
+    workTypes: ['drilling'],
+    header:
+      '<header class="bar">\n      {{CONTOUR:field}}\n      <a class="iconbtn" href="../index.html" aria-label="Back to home" title="Back to home"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></a>\n      <div class="ctx"><span class="p">Slip Site · Drilling</span><span class="z">Rock Control · today</span></div>\n      <div class="right"><span class="fresh"><span class="d"></span>Live</span>\n        <span class="av">PR</span>\n      </div>\n    </header>',
+    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="14" rx="2"/><circle cx="12" cy="13" r="3.5"/><path d="M8 6l1.5-2h5L16 6"/></svg>',
+    cardTitle: 'Core Photos',
+    desc: 'Box register, wet and dry.'
+  },
+  {
+    id: 'sample-register',
+    title: 'Sample Register',
+    stage: 'capture',
+    chrome: 'field',
+    path: 'screens/sample-register.html',
+    moduleId: 'sample_register',
+    workTypes: ['drilling'],
+    header:
+      '<header class="bar">\n      {{CONTOUR:field}}\n      <a class="iconbtn" href="../index.html" aria-label="Back to home" title="Back to home"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></a>\n      <div class="ctx"><span class="p">Slip Site · Drilling</span><span class="z">Rock Control · today</span></div>\n      <div class="right"><span class="fresh"><span class="d"></span>Live</span>\n        <span class="av">PR</span>\n      </div>\n    </header>',
+    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2h6l4 4v14a2 2 0 0 1-2 2H8V4a2 2 0 0 1 2-2z"/><path d="M14 2v5h5"/><path d="M6 8v13a2 2 0 0 0 2 2h9"/></svg>',
+    cardTitle: 'Sample Register',
+    desc: 'Depth, type, custody.'
+  },
+  {
     id: 'daily-activity',
     title: 'Daily Activity Sheet',
     stage: 'capture',
