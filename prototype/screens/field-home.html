@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en-NZ">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TacEdge Ground Engineering · Field Home</title>
+  <link rel="stylesheet" href="../styles/fonts.css">
+  <link rel="stylesheet" href="../styles/tokens.css">
+  <link rel="stylesheet" href="../styles/base.css">
+  <link rel="stylesheet" href="../styles/components.css">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{max-width:100%}
+body{font-family:var(--ui);color:var(--ink);background:var(--stage);min-height:100vh;-webkit-font-smoothing:antialiased;display:flex;flex-direction:column;align-items:center}
+.mono{font-family:var(--mono);font-feature-settings:"tnum" 1}
+.stage{width:100%;max-width:480px;display:flex;flex-direction:column;align-items:stretch;padding:14px 12px 26px}
+.app{position:relative;width:100%;background:var(--cream);border-radius:var(--r-2xl);overflow:hidden;display:flex;flex-direction:column;min-height:800px;box-shadow:0 22px 46px -24px rgba(27,33,23,.55),0 1px 0 rgba(255,255,255,.7) inset}
+
+/* top bar */
+.bar{position:relative;background:var(--forest);color:var(--cream);display:flex;align-items:center;gap:9px;padding:0 12px 0 6px;height:60px;overflow:hidden;flex-shrink:0;z-index:3}
+.bar .contour{position:absolute;inset:0;pointer-events:none;opacity:.10}
+.iconbtn{display:grid;place-items:center;width:48px;height:48px;background:none;border:none;color:var(--cream);cursor:pointer;flex-shrink:0;border-radius:var(--r-md);text-decoration:none}
+.iconbtn:hover{background:rgba(255,255,255,.09)}
+.bar .ctx{display:flex;flex-direction:column;justify-content:center;min-width:0;z-index:1;line-height:1.16;margin-left:-2px}
+.bar .ctx .p{font-weight:700;font-size:var(--fs-base);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bar .ctx .z{font-size:var(--fs-xs);color:var(--sage)}
+.bar .right{margin-left:auto;display:flex;align-items:center;gap:8px;z-index:1;flex-shrink:0}
+.bar .day{font-size:var(--fs-xs);color:var(--sage);white-space:nowrap}
+.av{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:var(--olive);color:var(--cream);font-family:var(--mono);font-size:var(--fs-xs);font-weight:700;border:1px solid rgba(243,239,230,.25);flex-shrink:0}
+
+/* scroll body */
+.scroll{flex:1;overflow:auto}
+.pad{padding:16px 15px 22px;display:flex;flex-direction:column;gap:20px}
+
+/* sign-on block */
+.signon.signed{display:flex;align-items:center;gap:11px;padding:14px 15px;border:1px solid var(--olive-edge);background:var(--sage-tint);border-radius:var(--r-lg);text-decoration:none;color:inherit}
+.signon.signed .tick{width:30px;height:30px;border-radius:50%;background:var(--forest);color:var(--cream);display:grid;place-items:center;flex-shrink:0}
+.signon.signed .tick svg{width:17px;height:17px}
+.signon.signed .so-main{min-width:0;display:flex;flex-direction:column}
+.signon.signed .so-t{font-weight:700;font-size:var(--fs-md);color:var(--ink)}
+.signon.signed .so-s{font-size:var(--fs-sm);color:var(--ink-60);margin-top:1px}
+.jsa{margin-left:auto;display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:var(--fs-2xs);letter-spacing:.04em;color:var(--forest-2);background:rgba(255,255,255,.55);border:1px solid var(--olive-edge);border-radius:var(--r-pill);padding:5px 11px;white-space:nowrap;text-decoration:none;flex-shrink:0}
+.jsa svg{width:13px;height:13px}
+
+.signon.pending{border:1px solid var(--olive-edge);background:var(--sage-tint);border-radius:var(--r-lg);padding:16px 16px 18px}
+.signon.pending .pre{display:flex;align-items:center;gap:8px;font-size:var(--fs-sm);color:var(--ink-60);margin-bottom:12px}
+.signon.pending .pre svg{width:17px;height:17px;color:var(--olive);flex-shrink:0}
+.signbtn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;min-height:56px;background:var(--forest);color:var(--cream);border:none;border-radius:var(--r-lg);font-family:var(--ui);font-weight:700;font-size:var(--fs-lg);text-decoration:none}
+.signbtn:active{background:var(--forest-2)}
+.signbtn svg{width:20px;height:20px}
+
+/* section label */
+.sl{font-family:var(--mono);font-size:var(--fs-xs);letter-spacing:.16em;text-transform:uppercase;color:var(--ink-60);display:flex;align-items:baseline;gap:9px;margin-bottom:11px}
+.sl .sub{font-family:var(--ui);font-size:var(--fs-xs);letter-spacing:normal;text-transform:none;color:var(--ink-40);font-weight:400}
+.sec{display:flex;flex-direction:column}
+
+/* today tasks */
+.tasks{display:flex;flex-direction:column;gap:10px}
+.task{display:flex;align-items:center;gap:13px;padding:14px 15px;background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);text-decoration:none;color:inherit;min-height:64px}
+.task:active{background:var(--sage-tint)}
+.task .tic{width:40px;height:40px;border-radius:var(--r-md);background:var(--sage-tint);color:var(--forest);display:grid;place-items:center;flex-shrink:0}
+.task .tic svg{width:22px;height:22px}
+.task .tmain{flex:1;min-width:0;display:flex;flex-direction:column}
+.task .tt{display:block;font-weight:700;font-size:var(--fs-md);color:var(--ink);line-height:1.2}
+.task .tm{display:block;font-size:var(--fs-sm);color:var(--ink-60);margin-top:3px}
+.task .tm b{color:var(--olive);font-weight:600}
+.task .car{color:var(--ink-40);flex-shrink:0;display:flex}
+.task .car svg{width:20px;height:20px}
+.locknote{display:flex;align-items:center;gap:9px;padding:14px 15px;background:var(--card);border:1px dashed var(--line-2);border-radius:var(--r-lg);font-size:var(--fs-sm);color:var(--ink-40)}
+.locknote svg{width:17px;height:17px;flex-shrink:0}
+
+/* capture tiles */
+.tiles{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+.tile{display:flex;flex-direction:column;gap:9px;padding:15px 14px;background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);text-decoration:none;color:inherit;min-height:104px}
+.tile:active{background:var(--sage-tint)}
+.tile .tlic{width:40px;height:40px;border-radius:var(--r-md);background:var(--sage-tint);color:var(--forest);display:grid;place-items:center}
+.tile .tlic svg{width:23px;height:23px}
+.tile .tln{font-weight:700;font-size:var(--fs-md);color:var(--ink);line-height:1.2;margin-top:auto}
+
+/* locked (pending sign-on): dim Today + Capture but keep them visible */
+.locked{opacity:.5;pointer-events:none}
+
+/* utilities */
+.utils{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+.util{display:flex;flex-direction:column;align-items:center;text-align:center;gap:8px;padding:14px 8px;background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);text-decoration:none;color:inherit;min-height:92px;justify-content:center}
+.util:active{background:var(--sage-tint)}
+.util .uic{width:34px;height:34px;color:var(--olive);display:grid;place-items:center}
+.util .uic svg{width:24px;height:24px}
+.util .un{font-size:var(--fs-xs);font-weight:600;color:var(--ink);line-height:1.2}
+.util.alert .uic{color:var(--clay,#a6552f)}
+
+/* status line */
+.status{display:flex;align-items:center;gap:9px;margin-top:2px;padding:13px 15px;background:rgba(54,89,42,.06);border:1px solid var(--line);border-radius:var(--r-lg);font-size:var(--fs-sm);color:var(--ink-60)}
+.status .sd{width:8px;height:8px;border-radius:50%;background:var(--olive);flex-shrink:0}
+.status b{color:var(--ink);font-weight:700}
+</style>
+<link rel="manifest" href="../manifest.json">
+<meta name="theme-color" content="#2b4721">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="TacEdge">
+<link rel="apple-touch-icon" href="../assets/icons/apple-touch-icon.png?v=2026-07-07.3">
+  <script src="../config/screens.js"></script>
+</head>
+<body>
+<div class="stage">
+  <div class="app">
+    <header class="bar">
+      <svg class="contour" viewBox="0 0 480 60" preserveAspectRatio="xMaxYMid slice" aria-hidden="true">
+        <g fill="none" stroke="#f3efe6" stroke-width="1">
+          <path d="M300,-18 C 360 30, 392 10, 462 66 C 502 92, 540 40, 612 76"/>
+          <path d="M348,-34 C 408 12, 440 -4, 510 52 C 552 80, 590 26, 660 60"/>
+          <path d="M384,-44 C 444 6, 476 -12, 546 46 C 588 74, 622 22, 700 52"/>
+        </g>
+      </svg>
+      <a class="iconbtn" href="../index.html" aria-label="All screens" title="All screens"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="3.5" width="7" height="7" rx="1.7"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.7"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.7"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.7"/></svg></a>
+      <div class="ctx"><span class="p" id="hProj">Project</span><span class="z" id="hOrg">Rock Control</span></div>
+      <div class="right"><span class="day">Today</span><span class="av" id="hAv">SK</span></div>
+    </header>
+
+    <div class="scroll">
+      <div class="pad">
+        <div id="signon"></div>
+
+        <section class="sec sec-today" id="secToday">
+          <div class="sl">Today <span class="sub" id="taskCount"></span></div>
+          <div id="today"></div>
+        </section>
+
+        <section class="sec sec-capture" id="secCapture">
+          <div class="sl">Capture <span class="sub">This project's records</span></div>
+          <div class="tiles" id="tiles"></div>
+        </section>
+
+        <section class="sec">
+          <div class="sl">Always available</div>
+          <div class="utils" id="utils"></div>
+        </section>
+
+        <div class="status" id="status"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="module">
+import { activeProject, fieldTasks } from '../config/projects.js';
+import { MODULES } from '../config/modules.js';
+
+var S = window.TE_SCREENS || [];
+function esc(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function href(path){ return String(path||'').replace(/^screens\//,''); }
+function byId(id){ return S.filter(function(s){ return s.id===id; })[0]; }
+function iconForModule(mid){ var s=S.filter(function(x){return x.moduleId===mid;})[0]; return s ? s.icon : ''; }
+function set(id,v){ var e=document.getElementById(id); if(e) e.textContent=v; }
+
+var proj = activeProject();
+var pwt = proj.workTypes || [];
+function intersects(list){ for(var i=0;i<list.length;i++){ if(pwt.indexOf(list[i])!==-1) return true; } return false; }
+
+var f = proj.field || { signOn:{state:'signed'}, submittedToday:0 };
+var pending = f.signOn && f.signOn.state === 'pending';
+
+// header context
+set('hProj', proj.name);
+set('hOrg', (proj.contractor || 'Rock Control'));
+
+// sign-on block
+var TICK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>';
+var LOCK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/></svg>';
+var so = document.getElementById('signon');
+if (pending) {
+  so.className = 'signon pending';
+  so.innerHTML =
+    '<div class="pre">'+LOCK+'<span>Sign on to start today’s work.</span></div>'+
+    '<a class="signbtn" href="crew-sign-on.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M3 20c0-3 3-5 6-5s6 2 6 5"/><path d="M15.5 12.5l2 2 4-4"/></svg> Sign on</a>';
+} else {
+  so.innerHTML =
+    '<a class="signon signed" href="crew-sign-on.html">'+
+      '<span class="tick">'+TICK+'</span>'+
+      '<span class="so-main"><span class="so-t">Signed on</span><span class="so-s">'+esc(f.signOn.time || '')+'</span></span>'+
+      '<a class="jsa" href="safety-docs.html">'+TICK+' JSA acknowledged</a>'+
+    '</a>';
+}
+
+// today tasks
+var tasks = fieldTasks();
+var today = document.getElementById('today');
+if (pending) {
+  document.getElementById('secToday').classList.add('locked');
+  today.innerHTML = '<div class="locknote">'+LOCK+' Sign on to start today’s work.</div>';
+} else {
+  set('taskCount', tasks.length + (tasks.length===1?' job':' jobs'));
+  today.className = 'tasks';
+  today.innerHTML = tasks.map(function(t){
+    var mod = MODULES[t.moduleId] || {};
+    var ic = iconForModule(t.moduleId) || '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/></svg>';
+    return '<a class="task" href="'+href(mod.screen)+'">'+
+      '<span class="tic">'+ic+'</span>'+
+      '<span class="tmain"><span class="tt">'+esc(t.title)+'</span>'+
+        '<span class="tm">'+esc(t.area)+' · <b>'+esc(t.action)+'</b></span></span>'+
+      '<span class="car"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span>'+
+    '</a>';
+  }).join('');
+}
+
+// capture tiles: this project's work-type capture modules
+var captureTiles = S.filter(function(s){ return s.stage==='capture' && s.chrome==='field' && s.workTypes && intersects(s.workTypes); });
+var tiles = document.getElementById('tiles');
+tiles.innerHTML = captureTiles.map(function(s){
+  return '<a class="tile" href="'+href(s.path)+'"><span class="tlic">'+s.icon+'</span><span class="tln">'+esc(s.cardTitle)+'</span></a>';
+}).join('');
+if (pending) document.getElementById('secCapture').classList.add('locked');
+
+// utilities: always available, one tap, regardless of state
+var UTIL_IDS = ['spatial-map-operator','safety-docs','reference-documents-operator','daily-activity','incident'];
+document.getElementById('utils').innerHTML = UTIL_IDS.map(function(id){
+  var s = byId(id); if(!s) return '';
+  var alert = id==='incident' ? ' alert' : '';
+  return '<a class="util'+alert+'" href="'+href(s.path)+'"><span class="uic">'+s.icon+'</span><span class="un">'+esc(s.cardTitle)+'</span></a>';
+}).join('');
+
+// status line: records submitted today (no connectivity vocabulary)
+var n = f.submittedToday || 0;
+document.getElementById('status').innerHTML = '<span class="sd"></span>' +
+  (n > 0
+    ? '<span><b>'+n+' records</b> submitted today · last '+esc(f.lastSubmitted)+'</span>'
+    : '<span>No records submitted yet today</span>');
+</script>
+
+  <script defer src="../js/build.js"></script>
+  <script defer src="../js/versioner.js"></script>
+  <script defer src="../js/standalone.js"></script>
+</body>
+</html>
