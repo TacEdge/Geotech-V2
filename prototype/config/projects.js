@@ -20,6 +20,16 @@ export const PROJECTS = {
     contractor: 'Rock Control',
     engineer: 'WSP',
     workTypes: ['anchoring'],
+    field: {
+      signOn: { state: 'signed', time: '6:52 am' },
+      submittedToday: 4,
+      lastSubmitted: '2:14 pm',
+      todayTasks: [
+        { title: 'Anchors B11 to B14', area: 'Spillway Face', action: 'Drill and log', moduleId: 'drill_log' },
+        { title: 'Anchors B08 to B10', area: 'Spillway Face', action: 'Grout and record', moduleId: 'grout_log' },
+        { title: 'Anchor B05 proof test', area: 'Stilling Basin', action: 'Test and submit', moduleId: 'anchor_test' }
+      ]
+    },
     zones: ['Spillway Face', 'Stilling Basin', 'Left Abutment', 'Crest Gallery'],
     items: [
       { id: 'B01', zone: 'Spillway Face', grid: 'A1', depthDesign: 17.5, depthFinal: 17.42, materialUsed: 46, variance: 1.21, test: 'Pass', state: 'approved' },
@@ -40,6 +50,7 @@ export const PROJECTS = {
     contractor: 'Rock Control',
     engineer: 'TBC · owner to confirm',
     workTypes: ['piling'],
+    field: { signOn: { state: 'signed', time: '7:05 am' }, submittedToday: 3, lastSubmitted: '1:40 pm' },
     draft: true,
     zones: ['Upper Bench'],
     items: [
@@ -68,6 +79,7 @@ export const PROJECTS = {
     contractor: 'Rock Control',
     engineer: 'Aurora Geotechnical',
     workTypes: ['rockfall'],
+    field: { signOn: { state: 'signed', time: '6:48 am' }, submittedToday: 6, lastSubmitted: '3:02 pm' },
     draft: true,
     zones: ['Batter A', 'Batter B'],
     lots: [
@@ -112,6 +124,7 @@ export const PROJECTS = {
     contractor: 'Rock Control',
     engineer: 'WSP',
     workTypes: ['shotcrete'],
+    field: { signOn: { state: 'pending' }, submittedToday: 0, lastSubmitted: null },
     draft: true,
     zones: ['Bench 1', 'Bench 2'],
     lots: [
@@ -149,6 +162,7 @@ export const PROJECTS = {
     contractor: 'Rock Control',
     engineer: 'Southern Geotechnical',
     workTypes: ['drilling'],
+    field: { signOn: { state: 'signed', time: '7:10 am' }, submittedToday: 2, lastSubmitted: '11:20 am' },
     draft: true,
     zones: ['Upper Slip', 'Lower Terrace'],
     items: [
@@ -175,6 +189,7 @@ export const PROJECTS = {
     contractor: 'Rock Control',
     engineer: 'Southern Geotechnical',
     workTypes: ['drainage'],
+    field: { signOn: { state: 'signed', time: '6:58 am' }, submittedToday: 5, lastSubmitted: '2:35 pm' },
     draft: true,
     zones: ['Slip Face', 'Toe'],
     items: [
@@ -218,6 +233,52 @@ export function primaryType(projectId) {
 export function workType(projectId) {
   var p = (projectId && PROJECTS[projectId]) || activeProject();
   return WORK_TYPES[p.workTypes[0]];
+}
+
+/* Per-work-type field defaults: the verb a derived task shows, and the capture
+   module it falls back to when a template does not name one. */
+const FIELD_WORK = {
+  anchoring: { verb: 'Drill and grout', moduleId: 'drill_log' },
+  piling:    { verb: 'Install and proof', moduleId: 'torque_log' },
+  rockfall:  { verb: 'Install and test', moduleId: 'pin_install' },
+  shotcrete: { verb: 'Prep and spray', moduleId: 'substrate_inspection' },
+  drilling:  { verb: 'Drill and log', moduleId: 'borehole_log' },
+  drainage:  { verb: 'Install and flow test', moduleId: 'pipe_install' }
+};
+
+/** Today's field tasks for a project: the curated field.todayTasks if present,
+    else derived from the first upcoming work items grouped by work area and
+    template. Each task carries a target capture module id; task links never
+    preselect an item. */
+export function fieldTasks(projectId) {
+  var p = (projectId && PROJECTS[projectId]) || activeProject();
+  if (p.field && p.field.todayTasks) return p.field.todayTasks;
+  var wt = p.workTypes && p.workTypes[0];
+  var W = WORK_TYPES[wt] || {};
+  var meta = FIELD_WORK[wt] || { verb: 'Continue work', moduleId: 'evidence' };
+  var UPCOMING = ['planned', 'provisional', 'pending', 'onhold', 'reopened'];
+  var up = (p.items || []).filter(function (it) { return UPCOMING.indexOf(it.state) !== -1; });
+  function tpl(it) { return (W.workItemTemplates || []).filter(function (x) { return x.code === it.template; })[0]; }
+  var order = [], groups = {};
+  up.forEach(function (it) {
+    var key = it.zone + '|' + (it.template || '');
+    if (!groups[key]) {
+      var t = tpl(it);
+      var noun = (t && t.item && t.item.plural) || (W.item && W.item.plural) || 'items';
+      groups[key] = {
+        zone: it.zone, ids: [],
+        noun: noun.charAt(0).toUpperCase() + noun.slice(1),
+        moduleId: (t && t.moduleIds && t.moduleIds[0]) || meta.moduleId
+      };
+      order.push(key);
+    }
+    groups[key].ids.push(it.id);
+  });
+  return order.slice(0, 3).map(function (k) {
+    var g = groups[k], ids = g.ids;
+    var range = ids.length > 1 ? ids[0] + ' to ' + ids[ids.length - 1] : ids[0];
+    return { title: g.noun + ' ' + range, area: g.zone, action: meta.verb, moduleId: g.moduleId };
+  });
 }
 
 /** Serialise a project as the export seam. No argument = the active project. */
