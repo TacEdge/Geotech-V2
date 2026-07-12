@@ -75,18 +75,17 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);font-size:16
 .lib-h .pt{font-family:var(--display);font-weight:700;font-size:15px;color:var(--ink)}
 .lib-h .pc{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--ink-60);background:var(--cream);border:1px solid var(--line-2);border-radius:99px;padding:1px 9px}
 .new-d{margin-left:auto;display:flex;align-items:center;gap:6px;background:none;border:none;color:var(--forest);font-family:var(--ui);font-size:13px;font-weight:600;cursor:pointer}
-.wrow{display:flex;width:100%;align-items:flex-start;gap:12px;text-align:left;font-family:var(--ui);background:var(--card);border:none;border-top:1px solid var(--line);border-left:3px solid transparent;padding:14px 16px;cursor:pointer}
+.wrow{display:flex;width:100%;align-items:center;gap:12px;text-align:left;font-family:var(--ui);background:var(--card);border:none;border-top:1px solid var(--line);border-left:3px solid transparent;padding:15px 16px;cursor:pointer}
 .wrow:hover{background:#fbfaf5}
 .wrow.sel{background:var(--sage-tint);border-left-color:var(--forest)}
-.wsw{width:13px;height:13px;border-radius:4px;flex-shrink:0;margin-top:4px}
+.wsw{width:13px;height:13px;border-radius:4px;flex-shrink:0}
 .wmain{flex:1;min-width:0}
 .wcode{font-family:var(--mono);font-weight:700;font-size:14px;color:var(--ink)}
 .wname{font-size:13.5px;color:var(--ink);margin-top:3px;font-weight:500}
-.wsum{font-family:var(--mono);font-size:12px;color:var(--ink-40);margin-top:3px}
-.wbadge{font-size:11px;font-weight:700;padding:3px 10px;border-radius:99px;white-space:nowrap;flex-shrink:0;margin-top:1px}
+.wbadge{font-size:11px;font-weight:700;padding:3px 10px;border-radius:99px;white-space:nowrap;flex-shrink:0}
 .wbadge.inuse{color:var(--forest);background:var(--sage-tint)}
 .wbadge.draft{color:var(--ink-60);background:var(--cream);border:1px solid var(--line-2)}
-.wmenu{color:var(--ink-40);display:flex;flex-shrink:0;padding:2px;margin-top:-1px}
+.wmenu{color:var(--ink-40);display:flex;flex-shrink:0;padding:2px}
 
 .detailwrap{display:flex;flex-direction:column;gap:14px}
 .d-head{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:13px;padding:18px 20px}
@@ -245,7 +244,7 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);font-size:16
   var pack = packFor(activeProject().workTypes[0]), wt = workType();
   if (pack && pack.designSheets) {
     var DS = pack.designSheets, PRESETS = pack.materialPresets, plural = (wt.item && wt.item.plural) || 'items';
-    function btn(s,i){ return '<button class="wrow'+(i===0?' sel':'')+'" data-code="'+s.code+'"><span class="wsw" style="background:'+s.colour+'"></span><div class="wmain"><div class="wcode">'+s.code+'</div><div class="wname">'+esc(s.name)+'</div><div class="wsum">'+esc(s.summary)+'</div></div><span class="wbadge '+s.badgeClass+'">'+esc(s.badge)+'</span><span class="wmenu">'+MENU+'</span></button>'; }
+    function btn(s,i){ return '<button class="wrow'+(i===0?' sel':'')+'" data-code="'+s.code+'"><span class="wsw" style="background:'+s.colour+'"></span><div class="wmain"><div class="wcode">'+s.code+'</div><div class="wname">'+esc(s.name)+'</div></div><span class="wbadge '+s.badgeClass+'">'+esc(s.badge)+'</span><span class="wmenu">'+MENU+'</span></button>'; }
     function cons(c){ var L=[['Tendon / bar','tendon'],['Bar specification','barSpec'],['Hole diameter','hole'],['Grout specification','grout'],['Drill method','drill']]; var x='<div class="card-h">Construction</div><div class="kv-rows">'; L.forEach(function(l){ x+='<div class="kv-row"><span class="kk">'+esc(l[0])+'</span><span class="kvv">'+esc(c[l[1]])+'</span></div>'; }); return x+'<div class="kv-row notes"><span class="kk">Notes</span><span class="kvv">'+esc(c.notes)+'</span></div></div>'; }
     function matRow(r){ if(r.k==='Wastage allowance') return '<div class="kv-row"><span class="kk">Wastage allowance</span><span class="kvv" id="wasteVal">'+esc(r.v)+'</span></div>'; if(r.k==='Over-allowance result') return '<div class="kv-row"><span class="kk">Over-allowance result</span><span class="kvv"><span class="hi" id="wasteFlag">'+esc(r.v)+'</span></span></div>'; return '<div class="kv-row"><span class="kk">'+esc(r.k)+'</span><span class="kvv">'+esc(r.v)+'</span></div>'; }
     function sheet(s,i){
