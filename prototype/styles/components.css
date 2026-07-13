@@ -134,3 +134,13 @@ a.burger {
     transition-duration: 0.001ms !important;
   }
 }
+
+/* ============================================================================
+   Brand lockup in the desktop topbar. The actual TacEdge wordmark artwork
+   (brandmark + TAC light / EDGE bold), replacing the earlier styled text.
+   ========================================================================== */
+.topbar .wordmark-img {
+  height: 22px;
+  width: auto;
+  display: block;
+}
