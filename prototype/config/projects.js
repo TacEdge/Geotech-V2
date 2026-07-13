@@ -17,7 +17,7 @@ export const PROJECTS = {
     id: 'BEN-SPW-2026',
     name: 'Benmore Dam · Spillway Anchoring',
     client: 'Meridian Energy',
-    contractor: 'Rock Control',
+    contractor: 'Groundline Civil',
     engineer: 'WSP',
     workTypes: ['anchoring'],
     field: {
@@ -47,7 +47,7 @@ export const PROJECTS = {
     id: 'CR-SP-2026',
     name: 'Cashmere Ridge Retention',
     client: 'TBC · owner to confirm',
-    contractor: 'Rock Control',
+    contractor: 'Groundline Civil',
     engineer: 'TBC · owner to confirm',
     workTypes: ['piling'],
     field: { signOn: { state: 'signed', time: '7:05 am' }, submittedToday: 3, lastSubmitted: '1:40 pm' },
@@ -76,7 +76,7 @@ export const PROJECTS = {
     id: 'CC-RF-2026',
     name: 'Coastal Corridor Rockfall',
     client: 'Kaimoana District Council',
-    contractor: 'Rock Control',
+    contractor: 'Groundline Civil',
     engineer: 'Aurora Geotechnical',
     workTypes: ['rockfall'],
     field: { signOn: { state: 'signed', time: '6:48 am' }, submittedToday: 6, lastSubmitted: '3:02 pm' },
@@ -121,7 +121,7 @@ export const PROJECTS = {
     id: 'QF-SC-2026',
     name: 'Quarry Face Stabilisation',
     client: 'Southern Aggregates',
-    contractor: 'Rock Control',
+    contractor: 'Groundline Civil',
     engineer: 'WSP',
     workTypes: ['shotcrete'],
     field: { signOn: { state: 'pending' }, submittedToday: 0, lastSubmitted: null },
@@ -154,12 +154,12 @@ export const PROJECTS = {
   // Slip Site Investigation · drilling. First report-as-deliverable project:
   // the borehole log IS the product, confirmed per core run. Client and
   // engineer are fictional placeholders; geology is placeholder throughout.
-  // draft:true until the Rock Control driller validates the pack.
+  // draft:true until the Groundline Civil driller validates the pack.
   'slip-site': {
     id: 'SSI-DR-2026',
     name: 'Slip Site Investigation',
     client: 'Alpine District Council',
-    contractor: 'Rock Control',
+    contractor: 'Groundline Civil',
     engineer: 'Southern Geotechnical',
     workTypes: ['drilling'],
     field: { signOn: { state: 'signed', time: '7:10 am' }, submittedToday: 2, lastSubmitted: '11:20 am' },
@@ -180,13 +180,13 @@ export const PROJECTS = {
   // Terrace Slip Drainage · drainage. The final work type: linear geometry,
   // two templates (horizontal drilled drains HD1, collector trench TD1), and
   // the two QA philosophies (thresholds reopen, flow is a finding). Client and
-  // engineer are fictional placeholders; draft:true until Rock Control
+  // engineer are fictional placeholders; draft:true until Groundline Civil
   // validation.
   'terrace-slip': {
     id: 'TSD-DR-2026',
     name: 'Terrace Slip Drainage',
     client: 'Alpine District Council',
-    contractor: 'Rock Control',
+    contractor: 'Groundline Civil',
     engineer: 'Southern Geotechnical',
     workTypes: ['drainage'],
     field: { signOn: { state: 'signed', time: '6:58 am' }, submittedToday: 5, lastSubmitted: '2:35 pm' },

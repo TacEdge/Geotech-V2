@@ -15,7 +15,7 @@
    the narrative stays fresh and the screenshot harness stays stable.
 
    ALL geology is placeholder. Every lithology description, SPT value and water
-   observation is flagged validate:true for the Rock Control driller review.
+   observation is flagged validate:true for the Groundline Civil driller review.
    ========================================================================== */
 export { agoPhrase } from './dates.js';
 
@@ -375,7 +375,7 @@ export const safetyDocs = [
     code: 'JSA-1', colour: '#2b4721', icon: '<path d="M10 2.5 4 5v4.5c0 3.6 2.6 6.6 6 8 3.4-1.4 6-4.4 6-8V5z"/><path d="M7.5 10l1.8 1.8L13 8"/>',
     name: 'JSA · Investigation drilling', listBadge: { cls: 'active', text: 'Active' },
     type: 'JSA', status: 'Governs all drilling and coring', badge: { cls: 'active', text: 'Active' },
-    srcmeta: 'Uploaded · Rock Control · PDF · 1.0 MB',
+    srcmeta: 'Uploaded · Groundline Civil · PDF · 1.0 MB',
     scope: [ { sk: 'Work types', cls: 'k-work', v: 'Drilling + coring' }, { sk: 'Zones', cls: 'k-design', v: 'Upper Slip · Lower Terrace' } ],
     gate: [ { state: 'on', html: '<b>Active.</b> No one drills until they have signed on and acknowledged this JSA.' }, { state: 'on', html: '<b>Today:</b> 0 of 3 crew signed on so far.' } ]
   },
@@ -383,7 +383,7 @@ export const safetyDocs = [
     code: 'SWMS-1', colour: '#6e7d5c', icon: '<path d="M10 2.5 4 5v4.5c0 3.6 2.6 6.6 6 8 3.4-1.4 6-4.4 6-8V5z"/><path d="M7.5 10l1.8 1.8L13 8"/>',
     name: 'SWMS · Rig setup & spoil', listBadge: null,
     type: 'SWMS', status: 'Governs rig moves and spoil', badge: { cls: 'active', text: 'Active' },
-    srcmeta: 'Uploaded · Rock Control · PDF · 0.6 MB',
+    srcmeta: 'Uploaded · Groundline Civil · PDF · 0.6 MB',
     scope: [ { sk: 'Work types', cls: 'k-work', v: 'Rig setup' }, { sk: 'Zones', cls: 'k-design', v: 'Upper Slip · Lower Terrace' } ],
     gate: [ { state: 'on', html: '<b>Active.</b> Acknowledged at sign-on alongside the JSA before drilling.' }, { state: 'on', html: '<b>Today:</b> 0 of 3 crew signed on so far.' } ]
   }

@@ -26,33 +26,33 @@ window.TE_HEADER = (function () {
   var PROJECT_HEADERS = {
     'cashmere-ridge': {
       name: 'Cashmere Ridge · Screw Piling',
-      meta: 'Rock Control · client TBC · engineer TBC',
+      meta: 'Groundline Civil · client TBC · engineer TBC',
       short: 'Cashmere Ridge • Screw Piling',
-      zone: 'Rock Control • today'
+      zone: 'Groundline Civil • today'
     },
     'coastal-corridor': {
       name: 'Coastal Corridor · Rockfall',
-      meta: 'Rock Control · Kaimoana District Council · Aurora Geotechnical',
+      meta: 'Groundline Civil · Kaimoana District Council · Aurora Geotechnical',
       short: 'Coastal Corridor · Rockfall',
-      zone: 'Rock Control • today'
+      zone: 'Groundline Civil • today'
     },
     'quarry-face': {
       name: 'Quarry Face · Shotcrete',
-      meta: 'Rock Control · Southern Aggregates · WSP engineer',
+      meta: 'Groundline Civil · Southern Aggregates · WSP engineer',
       short: 'Quarry Face · Shotcrete',
-      zone: 'Rock Control • today'
+      zone: 'Groundline Civil • today'
     },
     'slip-site': {
       name: 'Slip Site · Drilling',
-      meta: 'Rock Control · Alpine District Council · Southern Geotechnical',
+      meta: 'Groundline Civil · Alpine District Council · Southern Geotechnical',
       short: 'Slip Site · Drilling',
-      zone: 'Rock Control • today'
+      zone: 'Groundline Civil • today'
     },
     'terrace-slip': {
       name: 'Terrace Slip · Drainage',
-      meta: 'Rock Control · Alpine District Council · Southern Geotechnical',
+      meta: 'Groundline Civil · Alpine District Council · Southern Geotechnical',
       short: 'Terrace Slip · Drainage',
-      zone: 'Rock Control • today'
+      zone: 'Groundline Civil • today'
     }
   };
   function activeHeader() {

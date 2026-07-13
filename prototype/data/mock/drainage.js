@@ -16,7 +16,7 @@
    that is roadmap, not product.
 
    Dates are integer day-offsets rendered via agoPhrase. All content is
-   placeholder, flagged draft until Rock Control validation.
+   placeholder, flagged draft until Groundline Civil validation.
    ========================================================================== */
 export { agoPhrase } from './dates.js';
 
@@ -291,7 +291,7 @@ export const safetyDocs = [
     code: 'JSA-1', colour: '#2b4721', icon: '<path d="M10 2.5 4 5v4.5c0 3.6 2.6 6.6 6 8 3.4-1.4 6-4.4 6-8V5z"/><path d="M7.5 10l1.8 1.8L13 8"/>',
     name: 'JSA · Drainage works', listBadge: { cls: 'active', text: 'Active' },
     type: 'JSA', status: 'Governs drilling, trenching and access', badge: { cls: 'active', text: 'Active' },
-    srcmeta: 'Uploaded · Rock Control · PDF · 1.0 MB',
+    srcmeta: 'Uploaded · Groundline Civil · PDF · 1.0 MB',
     scope: [ { sk: 'Work types', cls: 'k-work', v: 'Drilling + trenching' }, { sk: 'Zones', cls: 'k-design', v: 'Slip Face · Toe' } ],
     gate: [ { state: 'on', html: '<b>Active.</b> No one drills or excavates until they have signed on and acknowledged this JSA.' }, { state: 'on', html: '<b>Today:</b> 0 of 3 crew signed on so far.' } ]
   },
@@ -299,7 +299,7 @@ export const safetyDocs = [
     code: 'SWMS-1', colour: '#6e7d5c', icon: '<path d="M10 2.5 4 5v4.5c0 3.6 2.6 6.6 6 8 3.4-1.4 6-4.4 6-8V5z"/><path d="M7.5 10l1.8 1.8L13 8"/>',
     name: 'SWMS · Trench support & spoil', listBadge: null,
     type: 'SWMS', status: 'Governs open trench and spoil', badge: { cls: 'active', text: 'Active' },
-    srcmeta: 'Uploaded · Rock Control · PDF · 0.6 MB',
+    srcmeta: 'Uploaded · Groundline Civil · PDF · 0.6 MB',
     scope: [ { sk: 'Work types', cls: 'k-work', v: 'Trenching' }, { sk: 'Zones', cls: 'k-design', v: 'Toe' } ],
     gate: [ { state: 'on', html: '<b>Active.</b> Acknowledged at sign-on alongside the JSA before trenching.' }, { state: 'on', html: '<b>Today:</b> 0 of 3 crew signed on so far.' } ]
   }
