@@ -13,7 +13,7 @@
   <rect x="150" y="250" width="980" height="360" rx="26" fill="#e4ead6" stroke="#c4cdb0" stroke-width="2"/>
   <!-- retaining wall along the bench toe -->
   <g>
-    <rect x="150" y="600" width="980" height="26" rx="6" fill="#2b4721"/>
+    <rect x="150" y="600" width="980" height="26" rx="6" fill="#112411"/>
     <g stroke="#6e7d5c" stroke-width="2">
       <line x1="200" y1="626" x2="180" y2="672"/>
       <line x1="360" y1="626" x2="342" y2="672"/>
@@ -27,7 +27,7 @@
   <path d="M60 800 C 300 720, 500 680, 1130 660" fill="none" stroke="#d8cbb0" stroke-width="16" stroke-linecap="round"/>
   <!-- north arrow -->
   <g transform="translate(1180,120)" fill="#56604c">
-    <path d="M0 -34 L 12 12 L 0 2 L -12 12 Z" fill="#2b4721"/>
+    <path d="M0 -34 L 12 12 L 0 2 L -12 12 Z" fill="#112411"/>
     <text x="0" y="34" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="20" font-weight="700">N</text>
   </g>
   <!-- scale bar -->

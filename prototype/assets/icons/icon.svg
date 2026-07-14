@@ -3,7 +3,7 @@
     <clipPath id="r"><rect width="512" height="512" rx="96"/></clipPath>
   </defs>
   <g clip-path="url(#r)">
-    <rect width="512" height="512" fill="#2b4721"/>
+    <rect width="512" height="512" fill="#112411"/>
     <g fill="none" stroke="#f3efe6" stroke-width="2" opacity="0.10">
       <path d="M-20 150 C 120 90, 200 200, 360 130 C 460 90, 540 170, 600 130"/>
       <path d="M-20 210 C 120 150, 200 260, 360 190 C 460 150, 540 230, 600 190"/>

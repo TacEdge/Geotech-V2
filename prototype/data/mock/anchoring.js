@@ -567,7 +567,7 @@ export const evidenceRequirements = [
   },
   {
     "code": "EV-4",
-    "colour": "#2b4721",
+    "colour": "#112411",
     "icon": "<path d=\"M3 16.5s1.8-1 3.5-1 2.8 1 4.5 1 3.5-1.5 3.5-1.5\"/><path d=\"M5.5 13l6.5-6.5 2 2L7.5 15l-3 1z\"/>",
     "name": "Operator sign-off",
     "badge": "Required",
@@ -607,7 +607,7 @@ export const evidenceRequirements = [
   },
   {
     "code": "EV-5",
-    "colour": "#2b4721",
+    "colour": "#112411",
     "icon": "<path d=\"M3 16.5s1.8-1 3.5-1 2.8 1 4.5 1 3.5-1.5 3.5-1.5\"/><path d=\"M5.5 13l6.5-6.5 2 2L7.5 15l-3 1z\"/>",
     "name": "Engineer witness / sign-off",
     "badge": "Conditional",
@@ -656,7 +656,7 @@ export const evidenceFoot = "5 requirements defined · 4 block confirmation · r
 export const safetyDocs = [
   {
     "code": "JSA-1",
-    "colour": "#2b4721",
+    "colour": "#112411",
     "icon": "<path d=\"M10 2.5 4 5v4.5c0 3.6 2.6 6.6 6 8 3.4-1.4 6-4.4 6-8V5z\"/><path d=\"M7.5 10l1.8 1.8L13 8\"/>",
     "name": "JSA · Spillway anchoring works",
     "listBadge": {

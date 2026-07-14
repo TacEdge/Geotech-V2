@@ -372,7 +372,7 @@ export const evidenceFoot = 'Completeness and custody only · QA confirms the re
 /* --- Safety & Risk -------------------------------------------------------- */
 export const safetyDocs = [
   {
-    code: 'JSA-1', colour: '#2b4721', icon: '<path d="M10 2.5 4 5v4.5c0 3.6 2.6 6.6 6 8 3.4-1.4 6-4.4 6-8V5z"/><path d="M7.5 10l1.8 1.8L13 8"/>',
+    code: 'JSA-1', colour: '#112411', icon: '<path d="M10 2.5 4 5v4.5c0 3.6 2.6 6.6 6 8 3.4-1.4 6-4.4 6-8V5z"/><path d="M7.5 10l1.8 1.8L13 8"/>',
     name: 'JSA · Investigation drilling', listBadge: { cls: 'active', text: 'Active' },
     type: 'JSA', status: 'Governs all drilling and coring', badge: { cls: 'active', text: 'Active' },
     srcmeta: 'Uploaded · Groundline Civil · PDF · 1.0 MB',
