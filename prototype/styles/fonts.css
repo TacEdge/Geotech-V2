@@ -1,11 +1,11 @@
 /* ============================================================================
-   TacEdge Ground Engineering - font faces (self-hosted woff2).
+   TACEDGE Ground Engineering - font faces (self-hosted woff2).
    ----------------------------------------------------------------------------
    Decoded byte-for-byte from the base64 previously inlined in every screen, so
    rendering is identical. Faces are fetched lazily by the browser only when a
-   glyph needs them, so declaring all voices on every page costs nothing extra.
-   Two voices: desktop (Play / Be Vietnam Pro / JetBrains Mono) and field
-   (IBM Plex Sans / IBM Plex Mono, applied via body.field).
+   glyph needs them, so declaring the system on every page costs nothing extra.
+   ONE type system per Brand Guidelines v1.1:
+   Play (display) / Be Vietnam Pro (UI/body) / JetBrains Mono (utility).
    ========================================================================== */
 @font-face {
   font-family: 'Play';
@@ -69,53 +69,4 @@
   font-weight: 700;
   font-display: swap;
   src: url(../fonts/jetbrains-mono-700.woff2) format('woff2');
-}
-@font-face {
-  font-family: 'IBM Plex Sans';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url(../fonts/ibm-plex-sans-400.woff2) format('woff2');
-}
-@font-face {
-  font-family: 'IBM Plex Sans';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url(../fonts/ibm-plex-sans-500.woff2) format('woff2');
-}
-@font-face {
-  font-family: 'IBM Plex Sans';
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: url(../fonts/ibm-plex-sans-600.woff2) format('woff2');
-}
-@font-face {
-  font-family: 'IBM Plex Sans';
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url(../fonts/ibm-plex-sans-700.woff2) format('woff2');
-}
-@font-face {
-  font-family: 'IBM Plex Mono';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url(../fonts/ibm-plex-mono-400.woff2) format('woff2');
-}
-@font-face {
-  font-family: 'IBM Plex Mono';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url(../fonts/ibm-plex-mono-500.woff2) format('woff2');
-}
-@font-face {
-  font-family: 'IBM Plex Mono';
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url(../fonts/ibm-plex-mono-700.woff2) format('woff2');
 }

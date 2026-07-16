@@ -1,5 +1,5 @@
 /* ============================================================================
-   TacEdge Ground Engineering · Config-driven record selector
+   TACEDGE Ground Engineering · Config-driven record selector
    ----------------------------------------------------------------------------
    The horizontal chip row that lets a field screen page between its records
    (a pile, a pin, a panel, a spray lot). Every capture screen renders the same

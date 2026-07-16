@@ -1,5 +1,5 @@
 /* ============================================================================
-   TacEdge Ground Engineering · Config-driven checklist
+   TACEDGE Ground Engineering · Config-driven checklist
    ----------------------------------------------------------------------------
    A walkdown checklist rendered from a config-supplied item list. Each item is
    { label, ok }. Rows are tickable on the device (display only) and keyboard

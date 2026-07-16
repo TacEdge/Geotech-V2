@@ -1,5 +1,5 @@
 /* ============================================================================
-   TacEdge Geotech V2 — screenshot harness (dev-only, never deployed)
+   TACEDGE Geotech V2 — screenshot harness (dev-only, never deployed)
    ----------------------------------------------------------------------------
    Serves prototype/ on a local port and captures a full-page screenshot of
    index.html and every screen in prototype/screens/, at two viewports, into an

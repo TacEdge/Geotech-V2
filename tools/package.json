@@ -2,7 +2,7 @@
   "name": "tacedge-geotech-tools",
   "private": true,
   "version": "0.0.0",
-  "description": "Dev-only visual regression harness for the TacEdge Geotech V2 prototype. Never deployed; not part of the prototype/ artefact.",
+  "description": "Dev-only visual regression harness for the TACEDGE Geotech V2 prototype. Never deployed; not part of the prototype/ artefact.",
   "type": "commonjs",
   "scripts": {
     "shots": "node shots.js",

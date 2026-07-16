@@ -1,5 +1,5 @@
 /* ============================================================================
-   TacEdge Ground Engineering · QA vocabulary (typed data, no engine)
+   TACEDGE Ground Engineering · QA vocabulary (typed data, no engine)
    ----------------------------------------------------------------------------
    Named constants so screens and config share one vocabulary for record states
    and rule kinds. This is data only: there is no rule engine here, just the

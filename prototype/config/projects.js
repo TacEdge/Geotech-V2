@@ -1,5 +1,5 @@
 /* ============================================================================
-   TacEdge Ground Engineering · Project registry + export seam
+   TACEDGE Ground Engineering · Project registry + export seam
    ----------------------------------------------------------------------------
    The projects the prototype can walk through. The active project is chosen on
    the Projects screen (a sessionStorage write, then normal navigation) and read

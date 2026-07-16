@@ -1,5 +1,5 @@
 /* ============================================================================
-   TacEdge Geotech V2 — screenshot diff (dev-only, never deployed)
+   TACEDGE Geotech V2 — screenshot diff (dev-only, never deployed)
    ----------------------------------------------------------------------------
    Pixel-diffs two shot directories produced by shots.js and prints a per-image
    changed-pixel percentage. Writes a diff image into ./diffs for anything above
