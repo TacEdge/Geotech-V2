@@ -1,0 +1,72 @@
+<!doctype html><html lang="en-NZ"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>03 · Configure · Capture · Confirm — TACEDGE V2 Prototype Walkthrough</title>
+<link rel="stylesheet" href="assets/site.css"></head><body>
+<div class="shell">
+<nav class="nav noprint"><div class="brand"><img src="assets/tacedge-logo.png" alt="TACEDGE"></div><div class="kick">V2 Prototype Walkthrough</div><div class="grp">Orientation</div><a href="index.html" class=""><span class="n">00</span>Read First</a><a href="01-executive-summary.html" class=""><span class="n">01</span>Visual Executive Summary</a><a href="02-prototype-map.html" class=""><span class="n">02</span>Prototype Map</a><div class="grp">The product spine</div><a href="03-spine.html" class="on"><span class="n">03</span>Configure · Capture · Confirm</a><a href="04-pm-walkthrough.html" class=""><span class="n">04</span>Project Manager</a><a href="05-operator-walkthrough.html" class=""><span class="n">05</span>Operator</a><a href="06-qa-confirm.html" class=""><span class="n">06</span>QA &amp; Confirmation</a><a href="07-engineer.html" class=""><span class="n">07</span>Engineer &amp; Client</a><a href="08-work-types.html" class=""><span class="n">08</span>Work-Type Model</a><div class="grp">Reference</div><a href="09-screen-atlas.html" class=""><span class="n">09</span>Screen Atlas</a><a href="10-status-register.html" class=""><span class="n">10</span>Prototype Status Register</a><a href="11-gaps.html" class=""><span class="n">11</span>Gaps &amp; Contradictions</a><a href="12-scoping-questions.html" class=""><span class="n">12</span>Scoping Questions</a><a href="13-appendices.html" class=""><span class="n">13</span>Appendices</a><a href="print.html" class=""><span class="n">—</span>Print (A4 landscape)</a></nav>
+<main class="main"><div class="wrap">
+<div class="masthead"><span class="classified">Internal · Prototype interpretation</span><p class="eyebrow">TACEDGE Ground Engineering V2 · Prototype Walkthrough</p><h1>03 · Configure · Capture · Confirm</h1><p>Configure · Capture · Confirm — the current prototype, interpreted against the V2 Product Definition.</p></div>
+<div class="sec first">
+<p class="lead">The walkthrough is organised around the V2 operating spine. The prototype maps to it directly through the manifest <span class="mono">stage</span> field.</p>
+<div class="flow"><div class="step"><span class="a">PM</span><span class="t">Configure</span><span class="d">Front-load every decision into setup</span></div><span class="arr">&rarr;</span><div class="step"><span class="a">Operator</span><span class="t">Capture</span><span class="d">Record what physically varies + what is observed</span></div><span class="arr">&rarr;</span><div class="step"><span class="a">PM</span><span class="t">Confirm</span><span class="d">Review, resolve, confirm — release is the outcome</span></div></div>
+
+<h3>Configure — the PM front-loads decisions</h3>
+<div class="meta"><div class="r"><span class="k">Primary actor</span><span class="v">Project Manager</span></div><div class="r"><span class="k">Main screens</span><span class="v">Projects · Work Types · Layout · Work Item Template · Testing Standards · Evidence &amp; QA · Work Plan · Safety &amp; Risk · Team &amp; Publish</span></div><div class="r"><span class="k">Inputs</span><span class="v">Client + scope info, specifications, drawings</span></div><div class="r"><span class="k">Outputs</span><span class="v">A preset project the field inherits</span></div><div class="r"><span class="k">Prototype status</span><span class="v"><span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span></span></div></div>
+<div class="shot-row"><figure class="shot  ">
+    <img src="../../../public/v2-prototype-walkthrough/screenshots/projects__pm.png" alt="Projects — Office / desktop" loading="lazy">
+    <figcaption><span class="t">Projects</span> <span class="mono">screens/projects.html</span> <span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span> </figcaption>
+  </figure><figure class="shot  ">
+    <img src="../../../public/v2-prototype-walkthrough/screenshots/work-types__pm.png" alt="Work Types — Office / desktop" loading="lazy">
+    <figcaption><span class="t">Work Types</span> <span class="mono">screens/work-types.html</span> <span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span> </figcaption>
+  </figure></div>
+<div class="shot-row"><figure class="shot  ">
+    <img src="../../../public/v2-prototype-walkthrough/screenshots/work-item-design__pm.png" alt="Work Item Template — Office / desktop" loading="lazy">
+    <figcaption><span class="t">Work Item Template</span> <span class="mono">screens/work-item-design.html</span> <span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span> </figcaption>
+  </figure><figure class="shot  ">
+    <img src="../../../public/v2-prototype-walkthrough/screenshots/work-plan__pm.png" alt="Work Plan — Office / desktop" loading="lazy">
+    <figcaption><span class="t">Work Plan</span> <span class="mono">screens/work-plan.html</span> <span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span> </figcaption>
+  </figure></div>
+<p><strong>Product decision.</strong> A work type is a completion-criteria configuration on one spine — not a separate product. <strong>Prototype limitation.</strong> Nothing persists; specifications and templates are illustrative. <strong>Technical question.</strong> What is the runtime shape of a work-type declaration, and how do templates compose from specifications?</p>
+
+<h3>Capture — the operator records ground truth</h3>
+<div class="meta"><div class="r"><span class="k">Primary actor</span><span class="v">Operator</span></div><div class="r"><span class="k">Main screens</span><span class="v">Field Home · Crew Sign-On · Drill / Grout / Test · Daily Activity · Incident · Spatial Map (field)</span></div><div class="r"><span class="k">Inputs</span><span class="v">Planned work item + PM presets</span></div><div class="r"><span class="k">Outputs</span><span class="v">A submitted stage record</span></div><div class="r"><span class="k">Prototype status</span><span class="v"><span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span></span></div></div>
+<div class="shot-row"><figure class="shot field ">
+    <img src="../../../public/v2-prototype-walkthrough/screenshots/field-home__field.png" alt="Field Home — Field / mobile" loading="lazy">
+    <figcaption><span class="t">Field Home</span> <span class="mono">screens/field-home.html</span> <span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span> </figcaption>
+  </figure><figure class="shot field ">
+    <img src="../../../public/v2-prototype-walkthrough/screenshots/crew-sign-on__field.png" alt="Crew Sign-On — Field / mobile" loading="lazy">
+    <figcaption><span class="t">Crew Sign-On</span> <span class="mono">screens/crew-sign-on.html</span> <span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span> </figcaption>
+  </figure></div>
+<div class="shot-row"><figure class="shot field ">
+    <img src="../../../public/v2-prototype-walkthrough/screenshots/drill-log__field.png" alt="Drill Log — Field / mobile" loading="lazy">
+    <figcaption><span class="t">Drill Log</span> <span class="mono">screens/drill-log.html</span> <span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span> </figcaption>
+  </figure><figure class="shot field ">
+    <img src="../../../public/v2-prototype-walkthrough/screenshots/grout-log__field.png" alt="Grout Log — Field / mobile" loading="lazy">
+    <figcaption><span class="t">Grout Log</span> <span class="mono">screens/grout-log.html</span> <span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span> </figcaption>
+  </figure></div>
+<p><strong>Product decision.</strong> The operator primarily confirms and records what varies; records may be saved progressively and submitted for QA at an appropriate point. <strong>Prototype limitation.</strong> Save/submit change local state only; offline behaviour is asserted via chips. <strong>Technical question.</strong> Progressive save + submit-for-QA transition + offline write and resync.</p>
+
+<h3>Confirm — the PM reviews and confirms; release follows</h3>
+<div class="meta"><div class="r"><span class="k">Primary actor</span><span class="v">Project Manager</span></div><div class="r"><span class="k">Main screens</span><span class="v">QA Queue · Reporting · Closeout · (Engineer View is the outward result)</span></div><div class="r"><span class="k">Inputs</span><span class="v">Submitted stage records</span></div><div class="r"><span class="k">Outputs</span><span class="v">A confirmed record; released reporting</span></div><div class="r"><span class="k">Prototype status</span><span class="v"><span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span></span></div></div>
+<div class="shot-row"><figure class="shot  ">
+    <img src="../../../public/v2-prototype-walkthrough/screenshots/qa-queue__pm.png" alt="QA Queue — Office / desktop" loading="lazy">
+    <figcaption><span class="t">QA Queue</span> <span class="mono">screens/qa-queue.html</span> <span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span> </figcaption>
+  </figure><figure class="shot  ">
+    <img src="../../../public/v2-prototype-walkthrough/screenshots/reporting__pm.png" alt="Reporting — Office / desktop" loading="lazy">
+    <figcaption><span class="t">Reporting</span> <span class="mono">screens/reporting.html</span> <span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span> </figcaption>
+  </figure></div>
+<div class="callout"><span class="k">Release is the outcome of Confirm</span>Only the confirmed record is released outward to the engineer, client or contract. Reporting and closeout are assembled from the live confirmed record. Release is not a separate operational stage.</div>
+<p><strong>Prototype limitation.</strong> The submit → confirm → reopen transitions are shown as states but are not wired as a working state machine. <strong>Technical question.</strong> Review-state machine + operator edit-lock + confirmed-only-outward enforcement (load-bearing — see <a href="06-qa-confirm.html">Section 06</a>).</p>
+
+<h3>The four signals — kept distinct</h3>
+<p>The Product Definition keeps four signals separate. The prototype shows chips (Live/Offline, Ready/Provisional) but does not cleanly separate all four; this is a modelling question to resolve.</p>
+<div class="tbl-wrap"><table><thead><tr><th>Signal</th><th>What it answers</th><th>In the prototype</th></tr></thead><tbody>
+<tr><td>Work phase</td><td>Where the physical work is (Planned → Active → Complete)</td><td><span class="pill par">PARTIAL</span> shown on board/map</td></tr>
+<tr><td>Review state</td><td>Whether the record is trusted (In progress → Submitted → Confirmed → Re-opened)</td><td><span class="pill par">PARTIAL</span> shown in QA queue</td></tr>
+<tr><td>Testing flag</td><td>Whether the item is load-tested (independent boolean)</td><td><span class="pill con">CONCEPTUAL</span> implied only</td></tr>
+<tr><td>Freshness</td><td>How current the shown status is (Fresh / Ageing / Stale)</td><td><span class="pill con">CONCEPTUAL</span> Live/Offline chip only</td></tr>
+</tbody></table></div>
+</div>
+<div class="pagenav"><a href="02-prototype-map.html">← 02 · Prototype Map</a><a href="04-pm-walkthrough.html">04 · Project Manager →</a></div>
+<div class="foot"><span>Internal · TACEDGE Ground Engineering V2 · Prototype Walkthrough</span><span>Shared clarity for ground-engineering delivery.</span></div>
+</div></main></div></body></html>

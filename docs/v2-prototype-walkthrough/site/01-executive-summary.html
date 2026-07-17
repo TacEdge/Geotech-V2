@@ -1,0 +1,60 @@
+<!doctype html><html lang="en-NZ"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>01 · Visual Executive Summary — TACEDGE V2 Prototype Walkthrough</title>
+<link rel="stylesheet" href="assets/site.css"></head><body>
+<div class="shell">
+<nav class="nav noprint"><div class="brand"><img src="assets/tacedge-logo.png" alt="TACEDGE"></div><div class="kick">V2 Prototype Walkthrough</div><div class="grp">Orientation</div><a href="index.html" class=""><span class="n">00</span>Read First</a><a href="01-executive-summary.html" class="on"><span class="n">01</span>Visual Executive Summary</a><a href="02-prototype-map.html" class=""><span class="n">02</span>Prototype Map</a><div class="grp">The product spine</div><a href="03-spine.html" class=""><span class="n">03</span>Configure · Capture · Confirm</a><a href="04-pm-walkthrough.html" class=""><span class="n">04</span>Project Manager</a><a href="05-operator-walkthrough.html" class=""><span class="n">05</span>Operator</a><a href="06-qa-confirm.html" class=""><span class="n">06</span>QA &amp; Confirmation</a><a href="07-engineer.html" class=""><span class="n">07</span>Engineer &amp; Client</a><a href="08-work-types.html" class=""><span class="n">08</span>Work-Type Model</a><div class="grp">Reference</div><a href="09-screen-atlas.html" class=""><span class="n">09</span>Screen Atlas</a><a href="10-status-register.html" class=""><span class="n">10</span>Prototype Status Register</a><a href="11-gaps.html" class=""><span class="n">11</span>Gaps &amp; Contradictions</a><a href="12-scoping-questions.html" class=""><span class="n">12</span>Scoping Questions</a><a href="13-appendices.html" class=""><span class="n">13</span>Appendices</a><a href="print.html" class=""><span class="n">—</span>Print (A4 landscape)</a></nav>
+<main class="main"><div class="wrap">
+<div class="masthead"><span class="classified">Internal · Prototype interpretation</span><p class="eyebrow">TACEDGE Ground Engineering V2 · Prototype Walkthrough</p><h1>01 · Visual Executive Summary</h1><p>Configure · Capture · Confirm — the current prototype, interpreted against the V2 Product Definition.</p></div>
+<div class="sec first">
+<p class="lead">TACEDGE Ground Engineering is a field-operations capture-and-trust system for frontline ground-engineering delivery. It carries one connected record from the operator who does the work to the engineer who must rely on it.</p>
+<div class="callout"><span class="k">The product model</span><strong>Configure. Capture. Confirm.</strong> The PM configures the job once and front-loads the decisions; the operator captures ground truth with minimal decision load; the PM confirms the submitted record. Only the confirmed record is released outward. Release is the outcome of Confirm, not a fourth stage.</div>
+<h3>The operator → PM → engineer chain</h3>
+<div class="flow"><div class="step"><span class="a">Operator</span><span class="t">Capture</span><span class="d">Records field reality on mobile, offline-first</span></div><span class="arr">&rarr;</span><div class="step"><span class="a">PM</span><span class="t">Confirm</span><span class="d">Reviews, resolves exceptions, confirms the record</span></div><span class="arr">&rarr;</span><div class="step"><span class="a">Engineer</span><span class="t">Rely</span><span class="d">Sees only confirmed work, read-only, glance-first</span></div></div>
+<h3>Primary users</h3>
+<div class="cards">
+<div class="card"><span class="rl">Primary adoption condition</span><h4>Operator</h4><p>Captures at the point of work. The make-or-break adopter; the field surface is the most mature part of the prototype.</p></div>
+<div class="card"><span class="rl">Single decision authority</span><h4>Project Manager</h4><p>Front-loads setup, monitors live status, confirms records, controls outward release.</p></div>
+<div class="card"><span class="rl">External read tier</span><h4>Engineer (client)</h4><p>Relies on the confirmed record. Read-only, confirmed-only, curated.</p></div>
+</div>
+<h3>Representative surfaces</h3>
+<div class="shot-row"><figure class="shot field ">
+    <img src="../../../public/v2-prototype-walkthrough/screenshots/field-home__field.png" alt="Field Home — Field / mobile" loading="lazy">
+    <figcaption><span class="t">Field Home</span> <span class="mono">screens/field-home.html</span> <span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span> </figcaption>
+  </figure><figure class="shot  ">
+    <img src="../../../public/v2-prototype-walkthrough/screenshots/qa-queue__pm.png" alt="QA Queue — Office / desktop" loading="lazy">
+    <figcaption><span class="t">QA Queue</span> <span class="mono">screens/qa-queue.html</span> <span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span> </figcaption>
+  </figure></div>
+<div class="shot-row"><figure class="shot  ">
+    <img src="../../../public/v2-prototype-walkthrough/screenshots/status-board__pm.png" alt="Status Board — Office / desktop" loading="lazy">
+    <figcaption><span class="t">Status Board</span> <span class="mono">screens/status-board.html</span> <span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span> </figcaption>
+  </figure><figure class="shot  ">
+    <img src="../../../public/v2-prototype-walkthrough/screenshots/engineer-view__pm.png" alt="Engineer View — Engineer / read-only" loading="lazy">
+    <figcaption><span class="t">Engineer View</span> <span class="mono">screens/engineer-view.html</span> <span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span> </figcaption>
+  </figure></div>
+<h3>What the prototype demonstrates well</h3>
+<ul>
+<li>The <strong>field capture surface</strong> (anchoring: drill, grout, test) is high-fidelity and coherent.</li>
+<li>The <strong>QA queue</strong> shows a compiled work-item record with requirements, evidence and reopen/approve controls.</li>
+<li>The <strong>Configure spine</strong> (projects → work types → templates → work plan → publish) reads as one continuous setup.</li>
+<li>The <strong>engineer view</strong> demonstrates confirmed-only, read-only visibility.</li>
+<li>The <strong>configurable engine</strong> idea is shown across six work types with per-type capture screens.</li>
+</ul>
+<h3>What remains incomplete</h3>
+<ul>
+<li><strong>Offline / sync</strong> — the load-bearing product condition — is asserted with Live/Offline chips only; the sync and conflict model is not represented.</li>
+<li><strong>State model</strong> — work phase, review state, testing flag and freshness are not cleanly separated in the UI.</li>
+<li>Interactions are <strong>simulated</strong> throughout; nothing persists and there is no backend.</li>
+<li>Scope: the prototype implements capture screens for <strong>all six work types</strong>, beyond the Product Definition&rsquo;s V2 proof pair of anchoring + piling.</li>
+</ul>
+<h3>The most important scoping questions</h3>
+<ol>
+<li>What is the <strong>offline capture + sync + conflict model</strong>? (Largest technical risk.)</li>
+<li>How is the <strong>review-state machine</strong> (submit → confirm → reopen) implemented, with operator edit-lock and confirmed-only-outward enforcement?</li>
+<li>What is the runtime shape of a <strong>work-type configuration</strong>, and is V2 scoped to anchoring + piling or all six?</li>
+</ol>
+<p>See <a href="12-scoping-questions.html">Section 12</a> for the full set.</p>
+</div>
+<div class="pagenav"><a href="index.html">← 00 · Read First</a><a href="02-prototype-map.html">02 · Prototype Map →</a></div>
+<div class="foot"><span>Internal · TACEDGE Ground Engineering V2 · Prototype Walkthrough</span><span>Shared clarity for ground-engineering delivery.</span></div>
+</div></main></div></body></html>

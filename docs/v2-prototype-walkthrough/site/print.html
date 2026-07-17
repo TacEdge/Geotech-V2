@@ -1,0 +1,1137 @@
+<!doctype html><html lang="en-NZ"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TACEDGE V2 Prototype Walkthrough — Print</title><link rel="stylesheet" href="assets/site.css"></head><body>
+<main class="main"><div class="wrap">
+<div class="masthead"><span class="classified">Internal · Prototype interpretation</span><p class="eyebrow">TACEDGE Ground Engineering V2</p><h1>Prototype Walkthrough</h1><p>Configure · Capture · Confirm. A structured, visual interpretation of the current V2 prototype for the incoming Interim Development Technical Lead. Print to A4 landscape.</p></div>
+<div class="sec first"><h2><span class="n">00</span>Read First</h2>
+<p class="lead">This walkthrough interprets the current TACEDGE Ground Engineering V2 prototype for the incoming Interim Development Technical Lead. It exists so you can understand the prototype quickly, without reverse-engineering the navigation, the intended workflow, the role boundaries or the state model on your own.</p>
+<div class="callout"><span class="k">What is authoritative</span>The V2 Product Definition is authoritative for product intent. The prototype is a visual and interactive interpretation of that intent. Visual polish does not imply product, technical or delivery certainty.</div>
+<div class="meta"><div class="r"><span class="k">Purpose</span><span class="v">Interpret the current V2 prototype for the incoming Technical Lead</span></div><div class="r"><span class="k">Audience</span><span class="v">Interim Development Technical Lead; founders; scoping sprint</span></div><div class="r"><span class="k">Prototype baseline</span><span class="v"><span class="mono">claude/tacedge-v2-prototype-polish-4ny12f @ 2101478</span></span></div><div class="r"><span class="k">Inspection date</span><span class="v">17 July 2026</span></div><div class="r"><span class="k">Runtime status</span><span class="v">Served from a disposable read-only copy; all 52 routes returned 200</span></div><div class="r"><span class="k">Prototype data</span><span class="v">Local mock / sample only (Benmore + catalogue jobs). No database, no live data</span></div><div class="r"><span class="k">This document</span><span class="v">Prototype interpretation &amp; walkthrough — not a redesign, spec, or backlog</span></div></div>
+<h3>Status classifications</h3>
+<p>Each screen carries a <strong>fidelity</strong> label and an <strong>interaction</strong> label. A screen may hold both, e.g. <span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span>.</p>
+<div class="tbl-wrap"><table><thead><tr><th>Fidelity</th><th>Meaning</th></tr></thead><tbody>
+<tr><td><span class="pill hi">HIGH-FIDELITY</span></td><td>Visually mature; closely represents intended product behaviour.</td></tr>
+<tr><td><span class="pill med">MEDIUM-FIDELITY</span></td><td>Communicates structure and workflow; details or interactions incomplete.</td></tr>
+<tr><td><span class="pill con">CONCEPTUAL</span></td><td>Illustrates intent; not an implementation-ready specification.</td></tr>
+</tbody></table></div>
+<div class="tbl-wrap"><table><thead><tr><th>Interaction</th><th>Meaning</th></tr></thead><tbody>
+<tr><td><span class="pill fun">FUNCTIONAL</span></td><td>The interaction works in the current prototype (mostly navigation).</td></tr>
+<tr><td><span class="pill sim">SIMULATED</span></td><td>Changes local prototype state or uses mock behaviour; not production functionality.</td></tr>
+<tr><td><span class="pill sta">STATIC</span></td><td>Illustrative surface with little or no working interaction (e.g. printable reports).</td></tr>
+<tr><td><span class="pill par">PARTIAL</span></td><td>Some intended behaviour exists but the flow cannot be completed.</td></tr>
+<tr><td><span class="pill contra">CONTRADICTED</span></td><td>Prototype materially differs from a fixed Product Definition decision.</td></tr>
+<tr><td><span class="pill notrep">NOT REPRESENTED</span></td><td>The Product Definition specifies it, but it does not appear in the prototype.</td></tr>
+</tbody></table></div>
+<h3>How to navigate</h3>
+<ul>
+<li><strong>Sections 01–02</strong> give the fast orientation: the promise, the users, the spine, and the map.</li>
+<li><strong>Sections 03–07</strong> follow the product spine and each role in order, with screenshots.</li>
+<li><strong>Section 08</strong> explains the work-type model and what the prototype actually demonstrates.</li>
+<li><strong>Sections 09–13</strong> are reference: the full Screen Atlas, the Status Register, gaps, scoping questions and appendices.</li>
+</ul>
+<h3>How to run + print</h3>
+<div class="meta"><div class="r"><span class="k">Live prototype</span><span class="v"><span class="mono">https://tacedge.github.io/Geotech-V2/</span></span></div><div class="r"><span class="k">Run this site</span><span class="v"><span class="mono">cd /home/user/Geotech-V2 &amp;&amp; python3 -m http.server 8080</span> → open <span class="mono">/docs/v2-prototype-walkthrough/site/</span></span></div><div class="r"><span class="k">Rebuild</span><span class="v"><span class="mono">node docs/v2-prototype-walkthrough/build-site.mjs</span></span></div><div class="r"><span class="k">Print / PDF</span><span class="v">Open <span class="mono">/print</span> and use the browser&rsquo;s Print → Save as PDF (A4 landscape)</span></div></div>
+<h3>What is open to challenge</h3>
+<p>Everything the prototype <em>illustrates</em> about interaction and data is open to challenge; it is a clickable demonstration, not an implementation. What is <em>not</em> open to challenge here is the written product intent in the Product Definition — where the prototype and the Definition differ, this document records the difference rather than choosing one (see <a href="11-gaps.html">Section 11</a>).</p>
+</div><div class="sec "><h2><span class="n">01</span>Visual Executive Summary</h2>
+<p class="lead">TACEDGE Ground Engineering is a field-operations capture-and-trust system for frontline ground-engineering delivery. It carries one connected record from the operator who does the work to the engineer who must rely on it.</p>
+<div class="callout"><span class="k">The product model</span><strong>Configure. Capture. Confirm.</strong> The PM configures the job once and front-loads the decisions; the operator captures ground truth with minimal decision load; the PM confirms the submitted record. Only the confirmed record is released outward. Release is the outcome of Confirm, not a fourth stage.</div>
+<h3>The operator → PM → engineer chain</h3>
+<div class="flow"><div class="step"><span class="a">Operator</span><span class="t">Capture</span><span class="d">Records field reality on mobile, offline-first</span></div><span class="arr">&rarr;</span><div class="step"><span class="a">PM</span><span class="t">Confirm</span><span class="d">Reviews, resolves exceptions, confirms the record</span></div><span class="arr">&rarr;</span><div class="step"><span class="a">Engineer</span><span class="t">Rely</span><span class="d">Sees only confirmed work, read-only, glance-first</span></div></div>
+<h3>Primary users</h3>
+<div class="cards">
+<div class="card"><span class="rl">Primary adoption condition</span><h4>Operator</h4><p>Captures at the point of work. The make-or-break adopter; the field surface is the most mature part of the prototype.</p></div>
+<div class="card"><span class="rl">Single decision authority</span><h4>Project Manager</h4><p>Front-loads setup, monitors live status, confirms records, controls outward release.</p></div>
+<div class="card"><span class="rl">External read tier</span><h4>Engineer (client)</h4><p>Relies on the confirmed record. Read-only, confirmed-only, curated.</p></div>
+</div>
+<h3>Representative surfaces</h3>
+<div class="shot-row"><figure class="shot field ">
+    <img src="../../../public/v2-prototype-walkthrough/screenshots/field-home__field.png" alt="Field Home — Field / mobile" loading="lazy">
+    <figcaption><span class="t">Field Home</span> <span class="mono">screens/field-home.html</span> <span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span> </figcaption>
+  </figure><figure class="shot  ">
+    <img src="../../../public/v2-prototype-walkthrough/screenshots/qa-queue__pm.png" alt="QA Queue — Office / desktop" loading="lazy">
+    <figcaption><span class="t">QA Queue</span> <span class="mono">screens/qa-queue.html</span> <span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span> </figcaption>
+  </figure></div>
+<div class="shot-row"><figure class="shot  ">
+    <img src="../../../public/v2-prototype-walkthrough/screenshots/status-board__pm.png" alt="Status Board — Office / desktop" loading="lazy">
+    <figcaption><span class="t">Status Board</span> <span class="mono">screens/status-board.html</span> <span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span> </figcaption>
+  </figure><figure class="shot  ">
+    <img src="../../../public/v2-prototype-walkthrough/screenshots/engineer-view__pm.png" alt="Engineer View — Engineer / read-only" loading="lazy">
+    <figcaption><span class="t">Engineer View</span> <span class="mono">screens/engineer-view.html</span> <span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span> </figcaption>
+  </figure></div>
+<h3>What the prototype demonstrates well</h3>
+<ul>
+<li>The <strong>field capture surface</strong> (anchoring: drill, grout, test) is high-fidelity and coherent.</li>
+<li>The <strong>QA queue</strong> shows a compiled work-item record with requirements, evidence and reopen/approve controls.</li>
+<li>The <strong>Configure spine</strong> (projects → work types → templates → work plan → publish) reads as one continuous setup.</li>
+<li>The <strong>engineer view</strong> demonstrates confirmed-only, read-only visibility.</li>
+<li>The <strong>configurable engine</strong> idea is shown across six work types with per-type capture screens.</li>
+</ul>
+<h3>What remains incomplete</h3>
+<ul>
+<li><strong>Offline / sync</strong> — the load-bearing product condition — is asserted with Live/Offline chips only; the sync and conflict model is not represented.</li>
+<li><strong>State model</strong> — work phase, review state, testing flag and freshness are not cleanly separated in the UI.</li>
+<li>Interactions are <strong>simulated</strong> throughout; nothing persists and there is no backend.</li>
+<li>Scope: the prototype implements capture screens for <strong>all six work types</strong>, beyond the Product Definition&rsquo;s V2 proof pair of anchoring + piling.</li>
+</ul>
+<h3>The most important scoping questions</h3>
+<ol>
+<li>What is the <strong>offline capture + sync + conflict model</strong>? (Largest technical risk.)</li>
+<li>How is the <strong>review-state machine</strong> (submit → confirm → reopen) implemented, with operator edit-lock and confirmed-only-outward enforcement?</li>
+<li>What is the runtime shape of a <strong>work-type configuration</strong>, and is V2 scoped to anchoring + piling or all six?</li>
+</ol>
+<p>See <a href="12-scoping-questions.html">Section 12</a> for the full set.</p>
+</div><div class="sec "><h2><span class="n">02</span>Prototype Map</h2>
+<p class="lead">The prototype is a dependency-free, multi-page static site. Every screen is declared in one manifest (<span class="mono">prototype/config/screens.js</span>) with a stage (Configure / Capture / Confirm), a chrome (PM desktop / field mobile / report) and, for capture screens, a work type. Navigation is via a launcher and in-screen links; there is no SPA router.</p>
+<div class="meta"><div class="r"><span class="k">Total routes</span><span class="v">52 screens + launcher</span></div><div class="r"><span class="k">PM (desktop)</span><span class="v">17 screens</span></div><div class="r"><span class="k">Operator (field)</span><span class="v">26 screens</span></div><div class="r"><span class="k">Engineer</span><span class="v">1 screen</span></div><div class="r"><span class="k">Reports (print)</span><span class="v">8 documents</span></div><div class="r"><span class="k">Chrome split</span><span class="v"><span class="mono">pm</span> (office) · <span class="mono">field</span> (mobile) · <span class="mono">none</span> (report)</span></div></div>
+<h3>PM surfaces (Configure → monitor → Confirm)</h3>
+<div class="cards"><div class="card"><span class="rl">Configure</span><h4>Projects</h4><p>Create projects, clients and engineers.</p><div class="pills"><span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span></div></div><div class="card"><span class="rl">Platform</span><h4>Configurable Engine</h4><p>One core workflow, multiple work types.</p><div class="pills"><span class="pill hi">HIGH-FIDELITY</span> <span class="pill sta">STATIC</span></div></div><div class="card"><span class="rl">Configure</span><h4>Work Types</h4><p>Choose the work types this project runs.</p><div class="pills"><span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span></div></div><div class="card"><span class="rl">Configure</span><h4>Layout</h4><p>Define zones and locations.</p><div class="pills"><span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span></div></div><div class="card"><span class="rl">Configure</span><h4>Work Item Template</h4><p>Set reusable work item templates.</p><div class="pills"><span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span></div></div><div class="card"><span class="rl">Configure</span><h4>Testing Standards</h4><p>Set acceptance criteria once.</p><div class="pills"><span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span></div></div><div class="card"><span class="rl">Configure</span><h4>Evidence &amp; QA Requirements</h4><p>Define what makes a record confirmable.</p><div class="pills"><span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span></div></div><div class="card"><span class="rl">Configure</span><h4>Work Plan</h4><p>Place and commit the work items.</p><div class="pills"><span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span></div></div><div class="card"><span class="rl">Configure</span><h4>Safety &amp; Risk Controls</h4><p>Gate field sign-on with JSA and SWMS.</p><div class="pills"><span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span></div></div><div class="card"><span class="rl">Configure</span><h4>Team &amp; Publish</h4><p>Assign roles and publish to the field.</p><div class="pills"><span class="pill med">MEDIUM-FIDELITY</span> <span class="pill sim">SIMULATED</span></div></div><div class="card"><span class="rl">Capture</span><h4>Overview</h4><p>What needs the PM's attention.</p><div class="pills"><span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span></div></div><div class="card"><span class="rl">Capture</span><h4>Status Board</h4><p>Project status at a glance.</p><div class="pills"><span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span></div></div><div class="card"><span class="rl">Capture</span><h4>Spatial Map</h4><p>Every anchor on the site.</p><div class="pills"><span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span></div></div><div class="card"><span class="rl">Capture</span><h4>Reference Documents</h4><p>Approved project library.</p><div class="pills"><span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span></div></div><div class="card"><span class="rl">Confirm</span><h4>QA Queue</h4><p>Confirm a record, or reopen with a reason.</p><div class="pills"><span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span></div></div><div class="card"><span class="rl">Confirm</span><h4>Reporting</h4><p>Assemble and release confirmed work.</p><div class="pills"><span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span></div></div><div class="card"><span class="rl">Confirm</span><h4>Project Closeout</h4><p>Final checks before archive.</p><div class="pills"><span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span></div></div></div>
+<h3>Operator surfaces (field / mobile)</h3>
+<div class="cards"><div class="card"><span class="rl">shared</span><h4>Field Home</h4><p>The operator’s day at a glance.</p><div class="pills"><span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span></div></div><div class="card"><span class="rl">shared</span><h4>Crew Sign-On</h4><p>Individual sign-on and clearance.</p><div class="pills"><span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span></div></div><div class="card"><span class="rl">anchoring</span><h4>Drill Log</h4><p>Capture the actual drilling record.</p><div class="pills"><span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span></div></div><div class="card"><span class="rl">anchoring</span><h4>Grout Log</h4><p>Count bags; system computes variance.</p><div class="pills"><span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span></div></div><div class="card"><span class="rl">anchoring</span><h4>Anchor Test Record</h4><p>AI proposes; operator verifies and commits.</p><div class="pills"><span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span></div></div><div class="card"><span class="rl">shared</span><h4>Incident / Near-Miss</h4><p>Photo-first report, available anytime.</p><div class="pills"><span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span></div></div><div class="card"><span class="rl">piling</span><h4>Install / Torque Log</h4><p>Torque vs depth to founding.</p><div class="pills"><span class="pill med">MEDIUM-FIDELITY</span> <span class="pill sim">SIMULATED</span></div></div><div class="card"><span class="rl">piling</span><h4>Verticality &amp; Cut-off</h4><p>Two-axis tilt, cut-off and cap.</p><div class="pills"><span class="pill med">MEDIUM-FIDELITY</span> <span class="pill sim">SIMULATED</span></div></div><div class="card"><span class="rl">rockfall</span><h4>Pin Install Record</h4><p>Crest pin depth, grout, serial.</p><div class="pills"><span class="pill med">MEDIUM-FIDELITY</span> <span class="pill sim">SIMULATED</span></div></div><div class="card"><span class="rl">rockfall</span><h4>Pull Test Record</h4><p>Proof load, hold, result.</p><div class="pills"><span class="pill med">MEDIUM-FIDELITY</span> <span class="pill sim">SIMULATED</span></div></div><div class="card"><span class="rl">rockfall</span><h4>Panel Install Record</h4><p>Overlaps, serials, lot link.</p><div class="pills"><span class="pill med">MEDIUM-FIDELITY</span> <span class="pill sim">SIMULATED</span></div></div><div class="card"><span class="rl">rockfall</span><h4>Inspection Checklist</h4><p>Lot closeout walkdown.</p><div class="pills"><span class="pill med">MEDIUM-FIDELITY</span> <span class="pill sim">SIMULATED</span></div></div><div class="card"><span class="rl">shotcrete</span><h4>Substrate Inspection</h4><p>Prep, mesh, witness hold.</p><div class="pills"><span class="pill med">MEDIUM-FIDELITY</span> <span class="pill sim">SIMULATED</span></div></div><div class="card"><span class="rl">shotcrete</span><h4>Application Record</h4><p>Dockets, nozzleman, test panel.</p><div class="pills"><span class="pill med">MEDIUM-FIDELITY</span> <span class="pill sim">SIMULATED</span></div></div><div class="card"><span class="rl">shotcrete</span><h4>Thickness Check</h4><p>Probe readings vs 100 / 75 mm.</p><div class="pills"><span class="pill med">MEDIUM-FIDELITY</span> <span class="pill sim">SIMULATED</span></div></div><div class="card"><span class="rl">drilling</span><h4>Borehole Log</h4><p>Soils, SPT, runs, water.</p><div class="pills"><span class="pill med">MEDIUM-FIDELITY</span> <span class="pill sim">SIMULATED</span></div></div><div class="card"><span class="rl">drilling</span><h4>Core Photos</h4><p>Box register, wet and dry.</p><div class="pills"><span class="pill med">MEDIUM-FIDELITY</span> <span class="pill sim">SIMULATED</span></div></div><div class="card"><span class="rl">drilling</span><h4>Sample Register</h4><p>Depth, type, custody.</p><div class="pills"><span class="pill med">MEDIUM-FIDELITY</span> <span class="pill sim">SIMULATED</span></div></div><div class="card"><span class="rl">drainage</span><h4>Pipe Install</h4><p>Length, inclination, pipe, collar.</p><div class="pills"><span class="pill med">MEDIUM-FIDELITY</span> <span class="pill sim">SIMULATED</span></div></div><div class="card"><span class="rl">drainage</span><h4>Flow Test</h4><p>L/min at collar, zero permitted.</p><div class="pills"><span class="pill med">MEDIUM-FIDELITY</span> <span class="pill sim">SIMULATED</span></div></div><div class="card"><span class="rl">drainage</span><h4>Backfill Inspection</h4><p>Layers, before-backfill hold.</p><div class="pills"><span class="pill med">MEDIUM-FIDELITY</span> <span class="pill sim">SIMULATED</span></div></div><div class="card"><span class="rl">shared</span><h4>Daily Activity Sheet</h4><p>Default day; edit exceptions.</p><div class="pills"><span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span></div></div><div class="card"><span class="rl">shared</span><h4>Spatial Map · Field</h4><p>Identify anchors and continue work.</p><div class="pills"><span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span></div></div><div class="card"><span class="rl">shared</span><h4>Safety Docs</h4><p>Read and acknowledge active JSA/SWMS.</p><div class="pills"><span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span></div></div><div class="card"><span class="rl">shared</span><h4>Reference Documents · Field</h4><p>Read-only/offline library for crews.</p><div class="pills"><span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span></div></div><div class="card"><span class="rl">shared</span><h4>Module Preview</h4><p></p><div class="pills"><span class="pill con">CONCEPTUAL</span> <span class="pill sta">STATIC</span></div></div></div>
+<h3>Engineer + output surfaces</h3>
+<div class="cards"><div class="card"><span class="rl">Engineer (client)</span><h4>Engineer View</h4><p>Confirmed, released work only.</p><div class="pills"><span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span></div></div><div class="card"><span class="rl">Output (report)</span><h4>Anchor Test Report</h4><p>Printable report document.</p><div class="pills"><span class="pill hi">HIGH-FIDELITY</span> <span class="pill sta">STATIC</span></div></div><div class="card"><span class="rl">Output (report)</span><h4>Drill Summary Report</h4><p>Printable report document.</p><div class="pills"><span class="pill hi">HIGH-FIDELITY</span> <span class="pill sta">STATIC</span></div></div><div class="card"><span class="rl">Output (report)</span><h4>Pile Register Report</h4><p>Printable report document.</p><div class="pills"><span class="pill med">MEDIUM-FIDELITY</span> <span class="pill sta">STATIC</span></div></div><div class="card"><span class="rl">Output (report)</span><h4>Rockfall Register Report</h4><p>Printable report document.</p><div class="pills"><span class="pill med">MEDIUM-FIDELITY</span> <span class="pill sta">STATIC</span></div></div><div class="card"><span class="rl">Output (report)</span><h4>Shotcrete Register Report</h4><p>Printable report document.</p><div class="pills"><span class="pill med">MEDIUM-FIDELITY</span> <span class="pill sta">STATIC</span></div></div><div class="card"><span class="rl">Output (report)</span><h4>Borehole Log Report</h4><p>Printable report document.</p><div class="pills"><span class="pill med">MEDIUM-FIDELITY</span> <span class="pill sta">STATIC</span></div></div><div class="card"><span class="rl">Output (report)</span><h4>Drilling Schedule Report</h4><p>Printable report document.</p><div class="pills"><span class="pill med">MEDIUM-FIDELITY</span> <span class="pill sta">STATIC</span></div></div><div class="card"><span class="rl">Output (report)</span><h4>Drainage Register Report</h4><p>Printable report document.</p><div class="pills"><span class="pill med">MEDIUM-FIDELITY</span> <span class="pill sta">STATIC</span></div></div></div>
+<h3>Role boundaries + handoffs</h3>
+<div class="flow"><div class="step"><span class="a">PM · office</span><span class="t">Configure</span><span class="d">Project, work types, templates, work plan, publish</span></div><span class="arr">&rarr;</span><div class="step"><span class="a">Operator · field</span><span class="t">Capture</span><span class="d">Sign-on, locate, record, submit for QA</span></div><span class="arr">&rarr;</span><div class="step"><span class="a">PM · office</span><span class="t">Confirm</span><span class="d">QA queue: review, reopen or confirm</span></div><span class="arr">&rarr;</span><div class="step"><span class="a">Engineer · read-only</span><span class="t">Rely</span><span class="d">Confirmed records, reporting, closeout</span></div></div>
+<div class="callout"><span class="k">Two status surfaces, one truth</span>The <strong>Status Board</strong> renders work items schematically by zone; the <strong>Spatial Map</strong> renders the same items located on a site image. Both are intended to read the same work-phase state (the prototype shows them as separate mock views).</div>
+</div><div class="sec "><h2><span class="n">03</span>Configure · Capture · Confirm</h2>
+<p class="lead">The walkthrough is organised around the V2 operating spine. The prototype maps to it directly through the manifest <span class="mono">stage</span> field.</p>
+<div class="flow"><div class="step"><span class="a">PM</span><span class="t">Configure</span><span class="d">Front-load every decision into setup</span></div><span class="arr">&rarr;</span><div class="step"><span class="a">Operator</span><span class="t">Capture</span><span class="d">Record what physically varies + what is observed</span></div><span class="arr">&rarr;</span><div class="step"><span class="a">PM</span><span class="t">Confirm</span><span class="d">Review, resolve, confirm — release is the outcome</span></div></div>
+
+<h3>Configure — the PM front-loads decisions</h3>
+<div class="meta"><div class="r"><span class="k">Primary actor</span><span class="v">Project Manager</span></div><div class="r"><span class="k">Main screens</span><span class="v">Projects · Work Types · Layout · Work Item Template · Testing Standards · Evidence &amp; QA · Work Plan · Safety &amp; Risk · Team &amp; Publish</span></div><div class="r"><span class="k">Inputs</span><span class="v">Client + scope info, specifications, drawings</span></div><div class="r"><span class="k">Outputs</span><span class="v">A preset project the field inherits</span></div><div class="r"><span class="k">Prototype status</span><span class="v"><span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span></span></div></div>
+<div class="shot-row"><figure class="shot  ">
+    <img src="../../../public/v2-prototype-walkthrough/screenshots/projects__pm.png" alt="Projects — Office / desktop" loading="lazy">
+    <figcaption><span class="t">Projects</span> <span class="mono">screens/projects.html</span> <span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span> </figcaption>
+  </figure><figure class="shot  ">
+    <img src="../../../public/v2-prototype-walkthrough/screenshots/work-types__pm.png" alt="Work Types — Office / desktop" loading="lazy">
+    <figcaption><span class="t">Work Types</span> <span class="mono">screens/work-types.html</span> <span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span> </figcaption>
+  </figure></div>
+<div class="shot-row"><figure class="shot  ">
+    <img src="../../../public/v2-prototype-walkthrough/screenshots/work-item-design__pm.png" alt="Work Item Template — Office / desktop" loading="lazy">
+    <figcaption><span class="t">Work Item Template</span> <span class="mono">screens/work-item-design.html</span> <span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span> </figcaption>
+  </figure><figure class="shot  ">
+    <img src="../../../public/v2-prototype-walkthrough/screenshots/work-plan__pm.png" alt="Work Plan — Office / desktop" loading="lazy">
+    <figcaption><span class="t">Work Plan</span> <span class="mono">screens/work-plan.html</span> <span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span> </figcaption>
+  </figure></div>
+<p><strong>Product decision.</strong> A work type is a completion-criteria configuration on one spine — not a separate product. <strong>Prototype limitation.</strong> Nothing persists; specifications and templates are illustrative. <strong>Technical question.</strong> What is the runtime shape of a work-type declaration, and how do templates compose from specifications?</p>
+
+<h3>Capture — the operator records ground truth</h3>
+<div class="meta"><div class="r"><span class="k">Primary actor</span><span class="v">Operator</span></div><div class="r"><span class="k">Main screens</span><span class="v">Field Home · Crew Sign-On · Drill / Grout / Test · Daily Activity · Incident · Spatial Map (field)</span></div><div class="r"><span class="k">Inputs</span><span class="v">Planned work item + PM presets</span></div><div class="r"><span class="k">Outputs</span><span class="v">A submitted stage record</span></div><div class="r"><span class="k">Prototype status</span><span class="v"><span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span></span></div></div>
+<div class="shot-row"><figure class="shot field ">
+    <img src="../../../public/v2-prototype-walkthrough/screenshots/field-home__field.png" alt="Field Home — Field / mobile" loading="lazy">
+    <figcaption><span class="t">Field Home</span> <span class="mono">screens/field-home.html</span> <span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span> </figcaption>
+  </figure><figure class="shot field ">
+    <img src="../../../public/v2-prototype-walkthrough/screenshots/crew-sign-on__field.png" alt="Crew Sign-On — Field / mobile" loading="lazy">
+    <figcaption><span class="t">Crew Sign-On</span> <span class="mono">screens/crew-sign-on.html</span> <span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span> </figcaption>
+  </figure></div>
+<div class="shot-row"><figure class="shot field ">
+    <img src="../../../public/v2-prototype-walkthrough/screenshots/drill-log__field.png" alt="Drill Log — Field / mobile" loading="lazy">
+    <figcaption><span class="t">Drill Log</span> <span class="mono">screens/drill-log.html</span> <span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span> </figcaption>
+  </figure><figure class="shot field ">
+    <img src="../../../public/v2-prototype-walkthrough/screenshots/grout-log__field.png" alt="Grout Log — Field / mobile" loading="lazy">
+    <figcaption><span class="t">Grout Log</span> <span class="mono">screens/grout-log.html</span> <span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span> </figcaption>
+  </figure></div>
+<p><strong>Product decision.</strong> The operator primarily confirms and records what varies; records may be saved progressively and submitted for QA at an appropriate point. <strong>Prototype limitation.</strong> Save/submit change local state only; offline behaviour is asserted via chips. <strong>Technical question.</strong> Progressive save + submit-for-QA transition + offline write and resync.</p>
+
+<h3>Confirm — the PM reviews and confirms; release follows</h3>
+<div class="meta"><div class="r"><span class="k">Primary actor</span><span class="v">Project Manager</span></div><div class="r"><span class="k">Main screens</span><span class="v">QA Queue · Reporting · Closeout · (Engineer View is the outward result)</span></div><div class="r"><span class="k">Inputs</span><span class="v">Submitted stage records</span></div><div class="r"><span class="k">Outputs</span><span class="v">A confirmed record; released reporting</span></div><div class="r"><span class="k">Prototype status</span><span class="v"><span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span></span></div></div>
+<div class="shot-row"><figure class="shot  ">
+    <img src="../../../public/v2-prototype-walkthrough/screenshots/qa-queue__pm.png" alt="QA Queue — Office / desktop" loading="lazy">
+    <figcaption><span class="t">QA Queue</span> <span class="mono">screens/qa-queue.html</span> <span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span> </figcaption>
+  </figure><figure class="shot  ">
+    <img src="../../../public/v2-prototype-walkthrough/screenshots/reporting__pm.png" alt="Reporting — Office / desktop" loading="lazy">
+    <figcaption><span class="t">Reporting</span> <span class="mono">screens/reporting.html</span> <span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span> </figcaption>
+  </figure></div>
+<div class="callout"><span class="k">Release is the outcome of Confirm</span>Only the confirmed record is released outward to the engineer, client or contract. Reporting and closeout are assembled from the live confirmed record. Release is not a separate operational stage.</div>
+<p><strong>Prototype limitation.</strong> The submit → confirm → reopen transitions are shown as states but are not wired as a working state machine. <strong>Technical question.</strong> Review-state machine + operator edit-lock + confirmed-only-outward enforcement (load-bearing — see <a href="06-qa-confirm.html">Section 06</a>).</p>
+
+<h3>The four signals — kept distinct</h3>
+<p>The Product Definition keeps four signals separate. The prototype shows chips (Live/Offline, Ready/Provisional) but does not cleanly separate all four; this is a modelling question to resolve.</p>
+<div class="tbl-wrap"><table><thead><tr><th>Signal</th><th>What it answers</th><th>In the prototype</th></tr></thead><tbody>
+<tr><td>Work phase</td><td>Where the physical work is (Planned → Active → Complete)</td><td><span class="pill par">PARTIAL</span> shown on board/map</td></tr>
+<tr><td>Review state</td><td>Whether the record is trusted (In progress → Submitted → Confirmed → Re-opened)</td><td><span class="pill par">PARTIAL</span> shown in QA queue</td></tr>
+<tr><td>Testing flag</td><td>Whether the item is load-tested (independent boolean)</td><td><span class="pill con">CONCEPTUAL</span> implied only</td></tr>
+<tr><td>Freshness</td><td>How current the shown status is (Fresh / Ageing / Stale)</td><td><span class="pill con">CONCEPTUAL</span> Live/Offline chip only</td></tr>
+</tbody></table></div>
+</div><div class="sec "><h2><span class="n">04</span>Project Manager Walkthrough</h2>
+<div class="meta"><div class="r"><span class="k">Workflow ID</span><span class="v">WF-PM</span></div><div class="r"><span class="k">Primary actor</span><span class="v">Project Manager</span></div><div class="r"><span class="k">Supporting actors</span><span class="v">Operator (inherits setup), Engineer (receives release)</span></div><div class="r"><span class="k">Starting screen</span><span class="v">Projects</span></div><div class="r"><span class="k">End state</span><span class="v">Confirmed records released; closeout assembled</span></div><div class="r"><span class="k">Related PD IDs</span><span class="v">SET, DSN, PLAN, SAF, PMV, QA, RPT, CLO</span></div><div class="r"><span class="k">Prototype fidelity</span><span class="v"><span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span></span></div></div>
+<h3>A · Workflow at a glance</h3>
+<div class="flow"><div class="step"><span class="a">PM</span><span class="t">Open / create project</span><span class="d">Projects</span></div><span class="arr">&rarr;</span><div class="step"><span class="a">PM</span><span class="t">Configure job</span><span class="d">Work types → templates → plan</span></div><span class="arr">&rarr;</span><div class="step"><span class="a">PM</span><span class="t">Publish to field</span><span class="d">Team &amp;amp; Publish</span></div><span class="arr">&rarr;</span><div class="step"><span class="a">PM</span><span class="t">Monitor</span><span class="d">Overview / Status Board / Spatial Map</span></div><span class="arr">&rarr;</span><div class="step"><span class="a">PM</span><span class="t">Confirm</span><span class="d">QA Queue</span></div><span class="arr">&rarr;</span><div class="step"><span class="a">PM</span><span class="t">Release</span><span class="d">Reporting → Closeout</span></div></div>
+<h3>B · Step-by-step</h3>
+<p>The prototype presents the PM setup as a continuous Configure spine. Key steps, each with its route and status:</p>
+<figure class="shot  ">
+    <img src="../../../public/v2-prototype-walkthrough/screenshots/projects__pm.png" alt="Projects — Office / desktop" loading="lazy">
+    <figcaption><span class="t">Projects</span> <span class="mono">screens/projects.html</span> <span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span> · Open or create a project; the project shell carries client + engineer.</figcaption>
+  </figure>
+<figure class="shot  ">
+    <img src="../../../public/v2-prototype-walkthrough/screenshots/work-types__pm.png" alt="Work Types — Office / desktop" loading="lazy">
+    <figcaption><span class="t">Work Types</span> <span class="mono">screens/work-types.html</span> <span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span> · Declare which work types this project runs — the configurable-engine idea.</figcaption>
+  </figure>
+<figure class="shot  ">
+    <img src="../../../public/v2-prototype-walkthrough/screenshots/layout__pm.png" alt="Layout — Office / desktop" loading="lazy">
+    <figcaption><span class="t">Layout</span> <span class="mono">screens/layout.html</span> <span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span> · Define zones / work areas that group the plan and the board.</figcaption>
+  </figure>
+<figure class="shot  ">
+    <img src="../../../public/v2-prototype-walkthrough/screenshots/work-item-design__pm.png" alt="Work Item Template — Office / desktop" loading="lazy">
+    <figcaption><span class="t">Work Item Template</span> <span class="mono">screens/work-item-design.html</span> <span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span> · Build reusable Work Item Templates from specifications.</figcaption>
+  </figure>
+<figure class="shot  ">
+    <img src="../../../public/v2-prototype-walkthrough/screenshots/testing-standards__pm.png" alt="Testing Standards — Office / desktop" loading="lazy">
+    <figcaption><span class="t">Testing Standards</span> <span class="mono">screens/testing-standards.html</span> <span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span> · Set acceptance criteria once, applied at confirm.</figcaption>
+  </figure>
+<figure class="shot  ">
+    <img src="../../../public/v2-prototype-walkthrough/screenshots/evidence-qa__pm.png" alt="Evidence &amp; QA Requirements — Office / desktop" loading="lazy">
+    <figcaption><span class="t">Evidence &amp; QA Requirements</span> <span class="mono">screens/evidence-qa.html</span> <span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span> · Define the evidence that makes a record confirmable.</figcaption>
+  </figure>
+<figure class="shot  ">
+    <img src="../../../public/v2-prototype-walkthrough/screenshots/work-plan__pm.png" alt="Work Plan — Office / desktop" loading="lazy">
+    <figcaption><span class="t">Work Plan</span> <span class="mono">screens/work-plan.html</span> <span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span> · Place and commit work items by zone; AI plan-import is conceptual.</figcaption>
+  </figure>
+<figure class="shot  ">
+    <img src="../../../public/v2-prototype-walkthrough/screenshots/safety-risk-controls__pm.png" alt="Safety &amp; Risk Controls — Office / desktop" loading="lazy">
+    <figcaption><span class="t">Safety &amp; Risk Controls</span> <span class="mono">screens/safety-risk-controls.html</span> <span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span> · Gate field sign-on with JSA / SWMS.</figcaption>
+  </figure>
+<figure class="shot  ">
+    <img src="../../../public/v2-prototype-walkthrough/screenshots/team-publish__pm.png" alt="Team &amp; Publish — Office / desktop" loading="lazy">
+    <figcaption><span class="t">Team &amp; Publish</span> <span class="mono">screens/team-publish.html</span> <span class="pill med">MEDIUM-FIDELITY</span> <span class="pill sim">SIMULATED</span> · Assign roles and publish the configured workflow to the crew.</figcaption>
+  </figure>
+<figure class="shot  ">
+    <img src="../../../public/v2-prototype-walkthrough/screenshots/overview__pm.png" alt="Overview — Office / desktop" loading="lazy">
+    <figcaption><span class="t">Overview</span> <span class="mono">screens/overview.html</span> <span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span> · Monitor: what needs the PM&amp;rsquo;s attention.</figcaption>
+  </figure>
+<figure class="shot  ">
+    <img src="../../../public/v2-prototype-walkthrough/screenshots/status-board__pm.png" alt="Status Board — Office / desktop" loading="lazy">
+    <figcaption><span class="t">Status Board</span> <span class="mono">screens/status-board.html</span> <span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span> · Project status at a glance, by zone.</figcaption>
+  </figure>
+<figure class="shot  ">
+    <img src="../../../public/v2-prototype-walkthrough/screenshots/spatial-map__pm.png" alt="Spatial Map — Office / desktop" loading="lazy">
+    <figcaption><span class="t">Spatial Map</span> <span class="mono">screens/spatial-map.html</span> <span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span> · Every work item located on the site image.</figcaption>
+  </figure>
+<h3>C · Outcome</h3>
+<p>The workflow produces a preset project the field inherits, a live status picture, and — after QA — confirmed records assembled into reporting and closeout. The PM owns the record during QA and owns the release decision. In the prototype the flow is navigable and visually complete but not runnable end-to-end (no persistence).</p>
+<h3>D · Scoping relevance</h3>
+<ol><li>How is project + work-item identity stored, and how is derived project status computed and refreshed?</li><li>Plan-import (PDF → planned items) data flow with human approval.</li><li>How does &ldquo;publish to field&rdquo; commit a configuration the operator inherits offline?</li></ol>
+</div><div class="sec "><h2><span class="n">05</span>Operator Walkthrough</h2>
+<div class="meta"><div class="r"><span class="k">Workflow ID</span><span class="v">WF-OP</span></div><div class="r"><span class="k">Primary actor</span><span class="v">Operator</span></div><div class="r"><span class="k">Supporting actors</span><span class="v">Supervisor (sign-on, daily sheet), PM (receives submission)</span></div><div class="r"><span class="k">Starting screen</span><span class="v">Field Home</span></div><div class="r"><span class="k">End state</span><span class="v">Stage record submitted for QA</span></div><div class="r"><span class="k">Related PD IDs</span><span class="v">SOS, DRL, GRT, TST, DAS, INC, SAF, SPM</span></div><div class="r"><span class="k">Prototype fidelity</span><span class="v"><span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span></span></div></div>
+<div class="callout"><span class="k">Core operator principle</span>The operator should primarily confirm and record what physically varies and what they observe. Project-design decisions are front-loaded into setup. The field surface is built for gloves, sun and poor connectivity.</div>
+<h3>A · Workflow at a glance</h3>
+<div class="flow"><div class="step"><span class="a">Operator</span><span class="t">Sign on</span><span class="d">Crew Sign-On</span></div><span class="arr">&rarr;</span><div class="step"><span class="a">Operator</span><span class="t">Locate</span><span class="d">Spatial Map (field)</span></div><span class="arr">&rarr;</span><div class="step"><span class="a">Operator</span><span class="t">Capture</span><span class="d">Drill → Grout → Test</span></div><span class="arr">&rarr;</span><div class="step"><span class="a">Operator</span><span class="t">Declare</span><span class="d">Incident / redrill where needed</span></div><span class="arr">&rarr;</span><div class="step"><span class="a">Operator</span><span class="t">Submit</span><span class="d">For QA</span></div></div>
+<h3>B · Step-by-step (anchoring path)</h3>
+<div class="shot-row">
+<figure class="shot field ">
+    <img src="../../../public/v2-prototype-walkthrough/screenshots/field-home__field.png" alt="Field Home — Field / mobile" loading="lazy">
+    <figcaption><span class="t">Field Home</span> <span class="mono">screens/field-home.html</span> <span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span> · The operator&amp;rsquo;s day at a glance; sign-on gate.</figcaption>
+  </figure>
+<figure class="shot field ">
+    <img src="../../../public/v2-prototype-walkthrough/screenshots/crew-sign-on__field.png" alt="Crew Sign-On — Field / mobile" loading="lazy">
+    <figcaption><span class="t">Crew Sign-On</span> <span class="mono">screens/crew-sign-on.html</span> <span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span> · Individual, attributable sign-on and clearance.</figcaption>
+  </figure>
+<figure class="shot field ">
+    <img src="../../../public/v2-prototype-walkthrough/screenshots/spatial-map-operator__field.png" alt="Spatial Map · Field — Field / mobile" loading="lazy">
+    <figcaption><span class="t">Spatial Map · Field</span> <span class="mono">screens/spatial-map-operator.html</span> <span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span> · Locate and identify the exact work item.</figcaption>
+  </figure>
+<figure class="shot field ">
+    <img src="../../../public/v2-prototype-walkthrough/screenshots/drill-log__field.png" alt="Drill Log — Field / mobile" loading="lazy">
+    <figcaption><span class="t">Drill Log</span> <span class="mono">screens/drill-log.html</span> <span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span> · Record the actual drilling — depth, lithology, observations.</figcaption>
+  </figure>
+<figure class="shot field ">
+    <img src="../../../public/v2-prototype-walkthrough/screenshots/grout-log__field.png" alt="Grout Log — Field / mobile" loading="lazy">
+    <figcaption><span class="t">Grout Log</span> <span class="mono">screens/grout-log.html</span> <span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span> · Count bags; the system computes grout variance.</figcaption>
+  </figure>
+<figure class="shot field ">
+    <img src="../../../public/v2-prototype-walkthrough/screenshots/anchor-test__field.png" alt="Anchor Test Record — Field / mobile" loading="lazy">
+    <figcaption><span class="t">Anchor Test Record</span> <span class="mono">screens/anchor-test.html</span> <span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span> · AI proposes from the test sheet photo; the operator verifies and commits.</figcaption>
+  </figure>
+<figure class="shot field ">
+    <img src="../../../public/v2-prototype-walkthrough/screenshots/incident__field.png" alt="Incident / Near-Miss — Field / mobile" loading="lazy">
+    <figcaption><span class="t">Incident / Near-Miss</span> <span class="mono">screens/incident.html</span> <span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span> · Photo-first incident / near-miss, available offline anytime.</figcaption>
+  </figure>
+<figure class="shot field ">
+    <img src="../../../public/v2-prototype-walkthrough/screenshots/daily-activity__field.png" alt="Daily Activity Sheet — Field / mobile" loading="lazy">
+    <figcaption><span class="t">Daily Activity Sheet</span> <span class="mono">screens/daily-activity.html</span> <span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span> · Daily Activity Sheet: default day, edit the exceptions.</figcaption>
+  </figure>
+<figure class="shot field ">
+    <img src="../../../public/v2-prototype-walkthrough/screenshots/safety-docs__field.png" alt="Safety Docs — Field / mobile" loading="lazy">
+    <figcaption><span class="t">Safety Docs</span> <span class="mono">screens/safety-docs.html</span> <span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span> · Read and acknowledge the active JSA / SWMS.</figcaption>
+  </figure>
+</div>
+<h3>C · Outcome</h3>
+<p>Each capture produces a stage record owned by the operator while In progress, then submitted to the PM for QA. Ownership passes to the PM on submission. In the prototype, capture screens are the most mature area; save and submit change local state only.</p>
+<h3>D · Where the prototype tests the principle</h3>
+<p>The <strong>Anchor Test</strong> screen embodies &ldquo;AI proposes, a human approves, then it commits&rdquo;. The <strong>Grout Log</strong> embodies &ldquo;calculate the variance; declare the judgement call&rdquo;. No screen was found that pushes project-design decisions onto the operator, which is consistent with the principle. The chief weakness is that <strong>offline behaviour is asserted, not demonstrated</strong>.</p>
+<h3>E · Scoping relevance</h3>
+<ol><li>Offline-first capture + resync + conflict policy (largest risk).</li><li>Progressive save + submit-for-QA state transition + ownership handover.</li><li>AI extraction → human-verify → commit contract for the test record.</li></ol>
+</div><div class="sec "><h2><span class="n">06</span>QA &amp; Confirmation</h2>
+<div class="callout alert"><span class="k">Load-bearing section</span>Confirmation is the trust spine of the whole system. Work phase and review state are separate; only confirmed records are released outward; re-open removes a record from outward visibility until re-confirmed. These behaviours are illustrated in the prototype but are not wired as a working state machine.</div>
+<div class="meta"><div class="r"><span class="k">Workflow ID</span><span class="v">WF-QA</span></div><div class="r"><span class="k">Primary actor</span><span class="v">Project Manager</span></div><div class="r"><span class="k">Starting screen</span><span class="v">QA Queue</span></div><div class="r"><span class="k">End state</span><span class="v">Record confirmed (or re-opened)</span></div><div class="r"><span class="k">Related PD IDs</span><span class="v">QA-1..3, ALT-1/2, ENG</span></div><div class="r"><span class="k">Prototype fidelity</span><span class="v"><span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span></span></div></div>
+<h3>A · The review-state machine (intended)</h3>
+<div class="flow"><div class="step"><span class="a">Operator</span><span class="t">In progress</span><span class="d">Save at any stage</span></div><span class="arr">&rarr;</span><div class="step"><span class="a">Operator</span><span class="t">Submitted</span><span class="d">Ownership → PM, operator locked</span></div><span class="arr">&rarr;</span><div class="step"><span class="a">PM</span><span class="t">Confirmed</span><span class="d">Engineer-visible, emit-eligible</span></div><span class="arr">&rarr;</span><div class="step"><span class="a">PM</span><span class="t">Re-opened</span><span class="d">Withdrawn until re-confirmed</span></div></div>
+<h3>B · What the QA Queue shows</h3>
+<figure class="shot  ">
+    <img src="../../../public/v2-prototype-walkthrough/screenshots/qa-queue__pm.png" alt="QA Queue — Office / desktop" loading="lazy">
+    <figcaption><span class="t">QA Queue</span> <span class="mono">screens/qa-queue.html</span> <span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span> · Compiled record B17: design vs actual depth, variance, requirements 5/5, evidence, reopen/approve.</figcaption>
+  </figure>
+<p>The prototype QA queue is high-fidelity: a filterable list (Ready / Needs attention / Approved / Reopened), a compiled work-item record with design-vs-actual, a computed variance, a requirements checklist, evidence thumbnails, operator notes, and two controls — <strong>Reopen with reason</strong> and <strong>Approve record</strong>. This is the clearest illustration of the Confirm stage in the prototype.</p>
+<h3>C · What is illustrated vs missing</h3>
+<div class="tbl-wrap"><table><thead><tr><th>Behaviour</th><th>Prototype</th><th>Note</th></tr></thead><tbody>
+<tr><td>Compiled drill / grout / test record</td><td><span class="pill hi">HIGH-FIDELITY</span></td><td>Shown for anchoring (B-series).</td></tr>
+<tr><td>Requirements + evidence gate</td><td><span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span></td><td>5/5 shown; not wired to Evidence &amp; QA setup.</td></tr>
+<tr><td>Variance (computed) vs exception (declared)</td><td><span class="pill par">PARTIAL</span></td><td>Variance shown; declared-exception path thin.</td></tr>
+<tr><td>Operator edit-lock on submission</td><td><span class="pill notrep">NOT REPRESENTED</span></td><td>No lock behaviour demonstrable.</td></tr>
+<tr><td>Confirm → engineer visibility</td><td><span class="pill sim">SIMULATED</span></td><td>Engineer View is a separate mock, not gated by a live confirm.</td></tr>
+<tr><td>Re-open removes from outward view</td><td><span class="pill notrep">NOT REPRESENTED</span></td><td>Re-open control exists; withdrawal effect not shown.</td></tr>
+</tbody></table></div>
+<h3>D · Scoping relevance</h3>
+<ol><li>Implement the review-state machine with a single-owner rule per state.</li><li>Confirmed-only-outward enforcement + re-open withdrawal + re-confirmation + audit trail.</li><li>Bind the Evidence &amp; QA requirements to the confirm gate.</li></ol>
+</div><div class="sec "><h2><span class="n">07</span>Engineer &amp; Client Walkthrough</h2>
+<div class="meta"><div class="r"><span class="k">Workflow ID</span><span class="v">WF-ENG</span></div><div class="r"><span class="k">Primary actor</span><span class="v">Engineer (client)</span></div><div class="r"><span class="k">Starting screen</span><span class="v">Engineer View</span></div><div class="r"><span class="k">End state</span><span class="v">Trusted, read-only picture of confirmed work</span></div><div class="r"><span class="k">Related PD IDs</span><span class="v">ENG-1..4, RPT, CLO</span></div><div class="r"><span class="k">Prototype fidelity</span><span class="v"><span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span></span></div></div>
+<figure class="shot  ">
+    <img src="../../../public/v2-prototype-walkthrough/screenshots/engineer-view__pm.png" alt="Engineer View — Engineer / read-only" loading="lazy">
+    <figcaption><span class="t">Engineer View</span> <span class="mono">screens/engineer-view.html</span> <span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span> · Confirmed, released work only; read-only chrome; curated exceptions.</figcaption>
+  </figure>
+<h3>What the engineer can + cannot see</h3>
+<div class="tbl-wrap"><table><thead><tr><th>Can see</th><th>Cannot see</th></tr></thead><tbody>
+<tr><td>Confirmed work items + the status board</td><td>In-progress or submitted (unconfirmed) work</td></tr>
+<tr><td>Confirmed detail + testing results</td><td>Internal QA queue, operator notes not released</td></tr>
+<tr><td>Exceptions the PM has released</td><td>Contractor-performance issues under review</td></tr>
+<tr><td>Progressive reporting + closeout package</td><td>Any edit control — the view is read-only</td></tr>
+</tbody></table></div>
+<div class="callout"><span class="k">What makes the record trustworthy</span>Confirmed-only-outward: the engineer never sees unreviewed work. Provenance and confirmation are shown, not assumed. The PM curates exposure by the source of an issue — ground reality tends toward the client; contractor performance is resolved first.</div>
+<h3>Prototype limitations</h3>
+<p>The Engineer View is a high-fidelity mock of the read-only surface, but it is a standalone screen rather than a live projection of confirmed state — confirming a record in the QA queue does not currently drive what this view shows. Read-only enforcement is visual, not a permission boundary.</p>
+<h3>Scoping relevance</h3>
+<ol><li>Confirmed-only projection + curated-exception selection.</li><li>Read-only permission boundary + client identity / access.</li><li>Progressive reporting + closeout assembled from the live confirmed record.</li></ol>
+</div><div class="sec "><h2><span class="n">08</span>Work-Type Model</h2>
+<p class="lead">A work type is configuration on one fixed operational spine. It declares required stages, required fields, completion criteria and a report format — the runtime renders from that configuration, not from bespoke code per type.</p>
+<div class="callout"><span class="k">The V2 proof pair</span>Anchoring and piling are the V2 proof pair. Piling demonstrates that a <em>different done line</em> (a valid pile finishes at drilled) can operate on the same spine. The remaining catalogue — drilling, shotcrete, rockfall protection, drainage — should be reachable through configuration rather than duplicated workflow.</div>
+<h3>What the Product Definition specifies vs what the prototype demonstrates</h3>
+<div class="callout warn"><span class="k">Key discrepancy</span>The Product Definition fixes V2 depth at <strong>anchoring + piling</strong>, with the other four types onboarding as configuration. The prototype goes further: it ships <strong>capture screens for all six work types</strong>. This is the prototype running ahead of the written V2 scope — a scope decision to resolve, not a defect (see <a href="11-gaps.html">Section 11</a>).</div>
+<div class="tbl-wrap"><table><thead><tr><th>Work type</th><th>PD V2 status</th><th>Prototype capture screens</th><th>Fidelity</th></tr></thead><tbody>
+<tr><td><strong>Anchoring</strong></td><td>Proof pair (deep)</td><td>Drill Log · Grout Log · Anchor Test</td><td><span class="pill hi">HIGH-FIDELITY</span></td></tr><tr><td><strong>Piling / retaining</strong></td><td>Proof pair (2nd done-line)</td><td>Install / Torque Log · Verticality &amp; Cut-off</td><td><span class="pill med">MEDIUM-FIDELITY</span></td></tr><tr><td><strong>Drilling</strong></td><td>Roadmap (config)</td><td>Borehole Log · Core Photos · Sample Register</td><td><span class="pill med">MEDIUM-FIDELITY</span></td></tr><tr><td><strong>Shotcrete</strong></td><td>Roadmap (config)</td><td>Substrate · Application · Thickness Check</td><td><span class="pill med">MEDIUM-FIDELITY</span></td></tr><tr><td><strong>Rockfall protection</strong></td><td>Roadmap (config)</td><td>Pin · Pull Test · Panel · Inspection Checklist</td><td><span class="pill med">MEDIUM-FIDELITY</span></td></tr><tr><td><strong>Drainage</strong></td><td>Roadmap (config)</td><td>Pipe Install · Flow Test · Backfill Inspection</td><td><span class="pill med">MEDIUM-FIDELITY</span></td></tr>
+</tbody></table></div>
+<h3>The configurable engine, as the prototype frames it</h3>
+<div class="shot-row"><figure class="shot  ">
+    <img src="../../../public/v2-prototype-walkthrough/screenshots/platform__pm.png" alt="Configurable Engine — Office / desktop" loading="lazy">
+    <figcaption><span class="t">Configurable Engine</span> <span class="mono">screens/platform.html</span> <span class="pill hi">HIGH-FIDELITY</span> <span class="pill sta">STATIC</span> </figcaption>
+  </figure><figure class="shot field ">
+    <img src="../../../public/v2-prototype-walkthrough/screenshots/module-preview__field.png" alt="Module Preview — Field / mobile" loading="lazy">
+    <figcaption><span class="t">Module Preview</span> <span class="mono">screens/module-preview.html</span> <span class="pill con">CONCEPTUAL</span> <span class="pill sta">STATIC</span> </figcaption>
+  </figure></div>
+<p>The <strong>Configurable Engine</strong> explainer and the <strong>Module Preview</strong> present the one-spine-many-types idea. What the prototype does <em>not</em> demonstrate is the actual configuration mechanism — how a work type&rsquo;s required stages, fields and completion criteria are declared and read at runtime. That is the central work-type scoping question.</p>
+</div><div class="sec "><h2><span class="n">09</span>Screen Atlas</h2>
+<p class="lead">One sheet per prototype screen — every route in the manifest is accounted for (52 screens). Each sheet carries the screenshot, purpose, Product Definition references, fidelity + interaction status, known limitations and the open question it raises.</p>
+<h3>Project Manager surfaces</h3><div class="atlas-sheet" id="atlas-projects">
+    <div class="hd"><div><span class="id">projects · screens/projects.html</span><h4>Projects</h4></div>
+      <div class="pills"><span class="pill role">Project Manager</span> <span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span></div></div>
+    <div class="body">
+      <div class="pic "><img src="../../../public/v2-prototype-walkthrough/screenshots/projects__pm.png" alt="Projects" loading="lazy"></div>
+      <div class="info"><dl>
+        <dt>Surface</dt><dd>Office / desktop</dd>
+        <dt>Spine</dt><dd>Configure</dd>
+        
+        <dt>Purpose</dt><dd>Create projects, clients and engineers.</dd>
+        <dt>PD refs</dt><dd class="mono">SET-1 PLAT-7/11</dd>
+        <dt>Limitations</dt><dd>Project list + create is illustrative; no persistence.</dd>
+        <dt>Open question</dt><dd>How is project identity + Open/Closed lifecycle stored?</dd>
+        <dt>Source</dt><dd class="mono">prototype/screens/projects.html</dd>
+      </dl></div>
+    </div></div><div class="atlas-sheet" id="atlas-platform">
+    <div class="hd"><div><span class="id">platform · screens/platform.html</span><h4>Configurable Engine</h4></div>
+      <div class="pills"><span class="pill role">Project Manager</span> <span class="pill hi">HIGH-FIDELITY</span> <span class="pill sta">STATIC</span></div></div>
+    <div class="body">
+      <div class="pic "><img src="../../../public/v2-prototype-walkthrough/screenshots/platform__pm.png" alt="Configurable Engine" loading="lazy"></div>
+      <div class="info"><dl>
+        <dt>Surface</dt><dd>Office / desktop</dd>
+        <dt>Spine</dt><dd>Platform</dd>
+        
+        <dt>Purpose</dt><dd>One core workflow, multiple work types.</dd>
+        <dt>PD refs</dt><dd class="mono">PLAT-2/3/4/5</dd>
+        <dt>Limitations</dt><dd>Explainer surface, not an editable config screen.</dd>
+        <dt>Open question</dt><dd>Is the work-type config object authored in-product or in code?</dd>
+        <dt>Source</dt><dd class="mono">prototype/screens/platform.html</dd>
+      </dl></div>
+    </div></div><div class="atlas-sheet" id="atlas-work-types">
+    <div class="hd"><div><span class="id">work-types · screens/work-types.html</span><h4>Work Types</h4></div>
+      <div class="pills"><span class="pill role">Project Manager</span> <span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span></div></div>
+    <div class="body">
+      <div class="pic "><img src="../../../public/v2-prototype-walkthrough/screenshots/work-types__pm.png" alt="Work Types" loading="lazy"></div>
+      <div class="info"><dl>
+        <dt>Surface</dt><dd>Office / desktop</dd>
+        <dt>Spine</dt><dd>Configure</dd>
+        
+        <dt>Purpose</dt><dd>Choose the work types this project runs.</dd>
+        <dt>PD refs</dt><dd class="mono">PLAT-2 SET</dd>
+        <dt>Limitations</dt><dd>Selecting a type re-renders a preview; no saved state.</dd>
+        <dt>Open question</dt><dd>What is the runtime shape of a work-type declaration?</dd>
+        <dt>Source</dt><dd class="mono">prototype/screens/work-types.html</dd>
+      </dl></div>
+    </div></div><div class="atlas-sheet" id="atlas-layout">
+    <div class="hd"><div><span class="id">layout · screens/layout.html</span><h4>Layout</h4></div>
+      <div class="pills"><span class="pill role">Project Manager</span> <span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span></div></div>
+    <div class="body">
+      <div class="pic "><img src="../../../public/v2-prototype-walkthrough/screenshots/layout__pm.png" alt="Layout" loading="lazy"></div>
+      <div class="info"><dl>
+        <dt>Surface</dt><dd>Office / desktop</dd>
+        <dt>Spine</dt><dd>Configure</dd>
+        
+        <dt>Purpose</dt><dd>Define zones and locations.</dd>
+        <dt>PD refs</dt><dd class="mono">SET-2</dd>
+        <dt>Limitations</dt><dd>Zones/areas editing is simulated.</dd>
+        <dt>Open question</dt><dd>Zone + row-direction model and its effect on numbering.</dd>
+        <dt>Source</dt><dd class="mono">prototype/screens/layout.html</dd>
+      </dl></div>
+    </div></div><div class="atlas-sheet" id="atlas-work-item-design">
+    <div class="hd"><div><span class="id">work-item-design · screens/work-item-design.html</span><h4>Work Item Template</h4></div>
+      <div class="pills"><span class="pill role">Project Manager</span> <span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span></div></div>
+    <div class="body">
+      <div class="pic "><img src="../../../public/v2-prototype-walkthrough/screenshots/work-item-design__pm.png" alt="Work Item Template" loading="lazy"></div>
+      <div class="info"><dl>
+        <dt>Surface</dt><dd>Office / desktop</dd>
+        <dt>Spine</dt><dd>Configure</dd>
+        
+        <dt>Purpose</dt><dd>Set reusable work item templates.</dd>
+        <dt>PD refs</dt><dd class="mono">DSN-1 DSN-2 DSN-3</dd>
+        <dt>Limitations</dt><dd>Template builder is illustrative; specs not persisted.</dd>
+        <dt>Open question</dt><dd>How do templates compose from specifications at runtime?</dd>
+        <dt>Source</dt><dd class="mono">prototype/screens/work-item-design.html</dd>
+      </dl></div>
+    </div></div><div class="atlas-sheet" id="atlas-testing-standards">
+    <div class="hd"><div><span class="id">testing-standards · screens/testing-standards.html</span><h4>Testing Standards</h4></div>
+      <div class="pills"><span class="pill role">Project Manager</span> <span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span></div></div>
+    <div class="body">
+      <div class="pic "><img src="../../../public/v2-prototype-walkthrough/screenshots/testing-standards__pm.png" alt="Testing Standards" loading="lazy"></div>
+      <div class="info"><dl>
+        <dt>Surface</dt><dd>Office / desktop</dd>
+        <dt>Spine</dt><dd>Configure</dd>
+        
+        <dt>Purpose</dt><dd>Set acceptance criteria once.</dd>
+        <dt>PD refs</dt><dd class="mono">TST PDS-STD</dd>
+        <dt>Limitations</dt><dd>Acceptance criteria shown, not enforced.</dd>
+        <dt>Open question</dt><dd>Where do acceptance thresholds live and how are they versioned?</dd>
+        <dt>Source</dt><dd class="mono">prototype/screens/testing-standards.html</dd>
+      </dl></div>
+    </div></div><div class="atlas-sheet" id="atlas-evidence-qa">
+    <div class="hd"><div><span class="id">evidence-qa · screens/evidence-qa.html</span><h4>Evidence &amp; QA Requirements</h4></div>
+      <div class="pills"><span class="pill role">Project Manager</span> <span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span></div></div>
+    <div class="body">
+      <div class="pic "><img src="../../../public/v2-prototype-walkthrough/screenshots/evidence-qa__pm.png" alt="Evidence &amp; QA Requirements" loading="lazy"></div>
+      <div class="info"><dl>
+        <dt>Surface</dt><dd>Office / desktop</dd>
+        <dt>Spine</dt><dd>Configure</dd>
+        
+        <dt>Purpose</dt><dd>Define what makes a record confirmable.</dd>
+        <dt>PD refs</dt><dd class="mono">PDS-QAR</dd>
+        <dt>Limitations</dt><dd>Evidence rules shown; not wired to the QA gate.</dd>
+        <dt>Open question</dt><dd>How are evidence requirements authored and enforced at confirm?</dd>
+        <dt>Source</dt><dd class="mono">prototype/screens/evidence-qa.html</dd>
+      </dl></div>
+    </div></div><div class="atlas-sheet" id="atlas-work-plan">
+    <div class="hd"><div><span class="id">work-plan · screens/work-plan.html</span><h4>Work Plan</h4></div>
+      <div class="pills"><span class="pill role">Project Manager</span> <span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span></div></div>
+    <div class="body">
+      <div class="pic "><img src="../../../public/v2-prototype-walkthrough/screenshots/work-plan__pm.png" alt="Work Plan" loading="lazy"></div>
+      <div class="info"><dl>
+        <dt>Surface</dt><dd>Office / desktop</dd>
+        <dt>Spine</dt><dd>Configure</dd>
+        
+        <dt>Purpose</dt><dd>Place and commit the work items.</dd>
+        <dt>PD refs</dt><dd class="mono">PLAN-1 PLAN-2 PLAN-3 PDS-PLN</dd>
+        <dt>Limitations</dt><dd>Placement/commit is simulated; AI plan-import conceptual.</dd>
+        <dt>Open question</dt><dd>Plan-import (PDF -&gt; planned items) data flow and human approval.</dd>
+        <dt>Source</dt><dd class="mono">prototype/screens/work-plan.html</dd>
+      </dl></div>
+    </div></div><div class="atlas-sheet" id="atlas-safety-risk-controls">
+    <div class="hd"><div><span class="id">safety-risk-controls · screens/safety-risk-controls.html</span><h4>Safety &amp; Risk Controls</h4></div>
+      <div class="pills"><span class="pill role">Project Manager</span> <span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span></div></div>
+    <div class="body">
+      <div class="pic "><img src="../../../public/v2-prototype-walkthrough/screenshots/safety-risk-controls__pm.png" alt="Safety &amp; Risk Controls" loading="lazy"></div>
+      <div class="info"><dl>
+        <dt>Surface</dt><dd>Office / desktop</dd>
+        <dt>Spine</dt><dd>Configure</dd>
+        
+        <dt>Purpose</dt><dd>Gate field sign-on with JSA and SWMS.</dd>
+        <dt>PD refs</dt><dd class="mono">SAF-1 SOS PDS-SRC</dd>
+        <dt>Limitations</dt><dd>JSA/SWMS gating shown; upload is illustrative.</dd>
+        <dt>Open question</dt><dd>How does the safety gate bind to field sign-on?</dd>
+        <dt>Source</dt><dd class="mono">prototype/screens/safety-risk-controls.html</dd>
+      </dl></div>
+    </div></div><div class="atlas-sheet" id="atlas-team-publish">
+    <div class="hd"><div><span class="id">team-publish · screens/team-publish.html</span><h4>Team &amp; Publish</h4></div>
+      <div class="pills"><span class="pill role">Project Manager</span> <span class="pill med">MEDIUM-FIDELITY</span> <span class="pill sim">SIMULATED</span></div></div>
+    <div class="body">
+      <div class="pic "><img src="../../../public/v2-prototype-walkthrough/screenshots/team-publish__pm.png" alt="Team &amp; Publish" loading="lazy"></div>
+      <div class="info"><dl>
+        <dt>Surface</dt><dd>Office / desktop</dd>
+        <dt>Spine</dt><dd>Configure</dd>
+        
+        <dt>Purpose</dt><dd>Assign roles and publish to the field.</dd>
+        <dt>PD refs</dt><dd class="mono">(roles/authorisation §06)</dd>
+        <dt>Limitations</dt><dd>Roles table + publish-to-field; not in a numbered PDS.</dd>
+        <dt>Open question</dt><dd>Role -&gt; permission model and what "publish" commits.</dd>
+        <dt>Source</dt><dd class="mono">prototype/screens/team-publish.html</dd>
+      </dl></div>
+    </div></div><div class="atlas-sheet" id="atlas-overview">
+    <div class="hd"><div><span class="id">overview · screens/overview.html</span><h4>Overview</h4></div>
+      <div class="pills"><span class="pill role">Project Manager</span> <span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span></div></div>
+    <div class="body">
+      <div class="pic "><img src="../../../public/v2-prototype-walkthrough/screenshots/overview__pm.png" alt="Overview" loading="lazy"></div>
+      <div class="info"><dl>
+        <dt>Surface</dt><dd>Office / desktop</dd>
+        <dt>Spine</dt><dd>Capture</dd>
+        
+        <dt>Purpose</dt><dd>What needs the PM's attention.</dd>
+        <dt>PD refs</dt><dd class="mono">PDS-OVW PMV-1..6 PLAT-7</dd>
+        <dt>Limitations</dt><dd>Alerts/pulse are mock rollups.</dd>
+        <dt>Open question</dt><dd>Derived project status computation + refresh trigger.</dd>
+        <dt>Source</dt><dd class="mono">prototype/screens/overview.html</dd>
+      </dl></div>
+    </div></div><div class="atlas-sheet" id="atlas-status-board">
+    <div class="hd"><div><span class="id">status-board · screens/status-board.html</span><h4>Status Board</h4></div>
+      <div class="pills"><span class="pill role">Project Manager</span> <span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span></div></div>
+    <div class="body">
+      <div class="pic "><img src="../../../public/v2-prototype-walkthrough/screenshots/status-board__pm.png" alt="Status Board" loading="lazy"></div>
+      <div class="info"><dl>
+        <dt>Surface</dt><dd>Office / desktop</dd>
+        <dt>Spine</dt><dd>Capture</dd>
+        
+        <dt>Purpose</dt><dd>Project status at a glance.</dd>
+        <dt>PD refs</dt><dd class="mono">PDS-BRD SPM</dd>
+        <dt>Limitations</dt><dd>Zone grid renders mock state; filtering simulated.</dd>
+        <dt>Open question</dt><dd>Board reads which state dimensions, and how are they derived?</dd>
+        <dt>Source</dt><dd class="mono">prototype/screens/status-board.html</dd>
+      </dl></div>
+    </div></div><div class="atlas-sheet" id="atlas-spatial-map">
+    <div class="hd"><div><span class="id">spatial-map · screens/spatial-map.html</span><h4>Spatial Map</h4></div>
+      <div class="pills"><span class="pill role">Project Manager</span> <span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span></div></div>
+    <div class="body">
+      <div class="pic "><img src="../../../public/v2-prototype-walkthrough/screenshots/spatial-map__pm.png" alt="Spatial Map" loading="lazy"></div>
+      <div class="info"><dl>
+        <dt>Surface</dt><dd>Office / desktop</dd>
+        <dt>Spine</dt><dd>Capture</dd>
+        
+        <dt>Purpose</dt><dd>Every anchor on the site.</dd>
+        <dt>PD refs</dt><dd class="mono">PDS-SPM SPM-1 SPM-2 SPM-3 SPM-4 SPM-5</dd>
+        <dt>Limitations</dt><dd>Pins on an uploaded image; positions are mock.</dd>
+        <dt>Open question</dt><dd>Image-relative positioning + coordination-readiness geolocation seam.</dd>
+        <dt>Source</dt><dd class="mono">prototype/screens/spatial-map.html</dd>
+      </dl></div>
+    </div></div><div class="atlas-sheet" id="atlas-reference-documents">
+    <div class="hd"><div><span class="id">reference-documents · screens/reference-documents.html</span><h4>Reference Documents</h4></div>
+      <div class="pills"><span class="pill role">Project Manager</span> <span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span></div></div>
+    <div class="body">
+      <div class="pic "><img src="../../../public/v2-prototype-walkthrough/screenshots/reference-documents__pm.png" alt="Reference Documents" loading="lazy"></div>
+      <div class="info"><dl>
+        <dt>Surface</dt><dd>Office / desktop</dd>
+        <dt>Spine</dt><dd>Capture</dd>
+        
+        <dt>Purpose</dt><dd>Approved project library.</dd>
+        <dt>PD refs</dt><dd class="mono">DOC-1 DOC-2 DOC-3 PDS-DOC</dd>
+        <dt>Limitations</dt><dd>Offline library shown; upload/offline is illustrative.</dd>
+        <dt>Open question</dt><dd>Offline availability + provenance of reference docs.</dd>
+        <dt>Source</dt><dd class="mono">prototype/screens/reference-documents.html</dd>
+      </dl></div>
+    </div></div><div class="atlas-sheet" id="atlas-qa-queue">
+    <div class="hd"><div><span class="id">qa-queue · screens/qa-queue.html</span><h4>QA Queue</h4></div>
+      <div class="pills"><span class="pill role">Project Manager</span> <span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span></div></div>
+    <div class="body">
+      <div class="pic "><img src="../../../public/v2-prototype-walkthrough/screenshots/qa-queue__pm.png" alt="QA Queue" loading="lazy"></div>
+      <div class="info"><dl>
+        <dt>Surface</dt><dd>Office / desktop</dd>
+        <dt>Spine</dt><dd>Confirm</dd>
+        
+        <dt>Purpose</dt><dd>Confirm a record, or reopen with a reason.</dd>
+        <dt>PD refs</dt><dd class="mono">QA-1 QA-2 QA-3 ALT-1 ALT-2 PDS-QAQ</dd>
+        <dt>Limitations</dt><dd>Compiled record, requirements, reopen/approve shown; transitions simulated.</dd>
+        <dt>Open question</dt><dd>Review-state machine (submit/confirm/reopen) + operator edit-lock.</dd>
+        <dt>Source</dt><dd class="mono">prototype/screens/qa-queue.html</dd>
+      </dl></div>
+    </div></div><div class="atlas-sheet" id="atlas-reporting">
+    <div class="hd"><div><span class="id">reporting · screens/reporting.html</span><h4>Reporting</h4></div>
+      <div class="pills"><span class="pill role">Project Manager</span> <span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span></div></div>
+    <div class="body">
+      <div class="pic "><img src="../../../public/v2-prototype-walkthrough/screenshots/reporting__pm.png" alt="Reporting" loading="lazy"></div>
+      <div class="info"><dl>
+        <dt>Surface</dt><dd>Office / desktop</dd>
+        <dt>Spine</dt><dd>Confirm</dd>
+        
+        <dt>Purpose</dt><dd>Assemble and release confirmed work.</dd>
+        <dt>PD refs</dt><dd class="mono">RPT-1 RPT-2 RPT-3 RPT-4 RPT-5 PDS-RPT</dd>
+        <dt>Limitations</dt><dd>Assemble + release confirmed work; export illustrative.</dd>
+        <dt>Open question</dt><dd>Confirmed-only-outward release + curated client exposure.</dd>
+        <dt>Source</dt><dd class="mono">prototype/screens/reporting.html</dd>
+      </dl></div>
+    </div></div><div class="atlas-sheet" id="atlas-closeout">
+    <div class="hd"><div><span class="id">closeout · screens/closeout.html</span><h4>Project Closeout</h4></div>
+      <div class="pills"><span class="pill role">Project Manager</span> <span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span></div></div>
+    <div class="body">
+      <div class="pic "><img src="../../../public/v2-prototype-walkthrough/screenshots/closeout__pm.png" alt="Project Closeout" loading="lazy"></div>
+      <div class="info"><dl>
+        <dt>Surface</dt><dd>Office / desktop</dd>
+        <dt>Spine</dt><dd>Confirm</dd>
+        
+        <dt>Purpose</dt><dd>Final checks before archive.</dd>
+        <dt>PD refs</dt><dd class="mono">CLO-1 CLO-2 CLO-3 PDS-CLO</dd>
+        <dt>Limitations</dt><dd>Final checks before archive; assembly illustrative.</dd>
+        <dt>Open question</dt><dd>Closeout package assembled from the live confirmed record.</dd>
+        <dt>Source</dt><dd class="mono">prototype/screens/closeout.html</dd>
+      </dl></div>
+    </div></div><h3>Operator surfaces</h3><div class="atlas-sheet" id="atlas-field-home">
+    <div class="hd"><div><span class="id">field-home · screens/field-home.html</span><h4>Field Home</h4></div>
+      <div class="pills"><span class="pill role">Operator</span> <span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span></div></div>
+    <div class="body">
+      <div class="pic field"><img src="../../../public/v2-prototype-walkthrough/screenshots/field-home__field.png" alt="Field Home" loading="lazy"></div>
+      <div class="info"><dl>
+        <dt>Surface</dt><dd>Field / mobile</dd>
+        <dt>Spine</dt><dd>Capture</dd>
+        
+        <dt>Purpose</dt><dd>The operator’s day at a glance.</dd>
+        <dt>PD refs</dt><dd class="mono">(operator entry)</dd>
+        <dt>Limitations</dt><dd>Operator day view; sign-on gate simulated.</dd>
+        <dt>Open question</dt><dd>Not a numbered PDS — how does the operator home relate to the PDS set?</dd>
+        <dt>Source</dt><dd class="mono">prototype/screens/field-home.html</dd>
+      </dl></div>
+    </div></div><div class="atlas-sheet" id="atlas-crew-sign-on">
+    <div class="hd"><div><span class="id">crew-sign-on · screens/crew-sign-on.html</span><h4>Crew Sign-On</h4></div>
+      <div class="pills"><span class="pill role">Operator</span> <span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span></div></div>
+    <div class="body">
+      <div class="pic field"><img src="../../../public/v2-prototype-walkthrough/screenshots/crew-sign-on__field.png" alt="Crew Sign-On" loading="lazy"></div>
+      <div class="info"><dl>
+        <dt>Surface</dt><dd>Field / mobile</dd>
+        <dt>Spine</dt><dd>Capture</dd>
+        
+        <dt>Purpose</dt><dd>Individual sign-on and clearance.</dd>
+        <dt>PD refs</dt><dd class="mono">SOS-1 SOS-2 SOS-3 SOS-4 PDS-SON</dd>
+        <dt>Limitations</dt><dd>Individual sign-on gate; attribution simulated.</dd>
+        <dt>Open question</dt><dd>Attributable per-person sign-on via authenticated session.</dd>
+        <dt>Source</dt><dd class="mono">prototype/screens/crew-sign-on.html</dd>
+      </dl></div>
+    </div></div><div class="atlas-sheet" id="atlas-drill-log">
+    <div class="hd"><div><span class="id">drill-log · screens/drill-log.html</span><h4>Drill Log</h4></div>
+      <div class="pills"><span class="pill role">Operator</span> <span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span></div></div>
+    <div class="body">
+      <div class="pic field"><img src="../../../public/v2-prototype-walkthrough/screenshots/drill-log__field.png" alt="Drill Log" loading="lazy"></div>
+      <div class="info"><dl>
+        <dt>Surface</dt><dd>Field / mobile</dd>
+        <dt>Spine</dt><dd>Capture</dd>
+        <dt>Work type</dt><dd>anchoring</dd>
+        <dt>Purpose</dt><dd>Capture the actual drilling record.</dd>
+        <dt>PD refs</dt><dd class="mono">DRL-1 DRL-2 DRL-3 DRL-4 DRL-5 DRL-6 PDS-DRL</dd>
+        <dt>Limitations</dt><dd>Anchoring drill capture; save/submit simulated.</dd>
+        <dt>Open question</dt><dd>Progressive save + submit-for-QA state transition and offline write.</dd>
+        <dt>Source</dt><dd class="mono">prototype/screens/drill-log.html</dd>
+      </dl></div>
+    </div></div><div class="atlas-sheet" id="atlas-grout-log">
+    <div class="hd"><div><span class="id">grout-log · screens/grout-log.html</span><h4>Grout Log</h4></div>
+      <div class="pills"><span class="pill role">Operator</span> <span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span></div></div>
+    <div class="body">
+      <div class="pic field"><img src="../../../public/v2-prototype-walkthrough/screenshots/grout-log__field.png" alt="Grout Log" loading="lazy"></div>
+      <div class="info"><dl>
+        <dt>Surface</dt><dd>Field / mobile</dd>
+        <dt>Spine</dt><dd>Capture</dd>
+        <dt>Work type</dt><dd>anchoring</dd>
+        <dt>Purpose</dt><dd>Count bags; system computes variance.</dd>
+        <dt>PD refs</dt><dd class="mono">GRT-1 GRT-3 GRT-9 PDS-GRT</dd>
+        <dt>Limitations</dt><dd>Bag-count -&gt; volume variance shown; computation illustrative.</dd>
+        <dt>Open question</dt><dd>Grout variance computation (bags x mix vs expected) location.</dd>
+        <dt>Source</dt><dd class="mono">prototype/screens/grout-log.html</dd>
+      </dl></div>
+    </div></div><div class="atlas-sheet" id="atlas-anchor-test">
+    <div class="hd"><div><span class="id">anchor-test · screens/anchor-test.html</span><h4>Anchor Test Record</h4></div>
+      <div class="pills"><span class="pill role">Operator</span> <span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span></div></div>
+    <div class="body">
+      <div class="pic field"><img src="../../../public/v2-prototype-walkthrough/screenshots/anchor-test__field.png" alt="Anchor Test Record" loading="lazy"></div>
+      <div class="info"><dl>
+        <dt>Surface</dt><dd>Field / mobile</dd>
+        <dt>Spine</dt><dd>Capture</dd>
+        <dt>Work type</dt><dd>anchoring</dd>
+        <dt>Purpose</dt><dd>AI proposes; operator verifies and commits.</dd>
+        <dt>PD refs</dt><dd class="mono">TST-1 TST-2 TST-3 TST-4 PDS-TST</dd>
+        <dt>Limitations</dt><dd>AI-proposes-from-photo shown; extraction simulated.</dd>
+        <dt>Open question</dt><dd>AI extraction + human-verify-then-commit contract.</dd>
+        <dt>Source</dt><dd class="mono">prototype/screens/anchor-test.html</dd>
+      </dl></div>
+    </div></div><div class="atlas-sheet" id="atlas-incident">
+    <div class="hd"><div><span class="id">incident · screens/incident.html</span><h4>Incident / Near-Miss</h4></div>
+      <div class="pills"><span class="pill role">Operator</span> <span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span></div></div>
+    <div class="body">
+      <div class="pic field"><img src="../../../public/v2-prototype-walkthrough/screenshots/incident__field.png" alt="Incident / Near-Miss" loading="lazy"></div>
+      <div class="info"><dl>
+        <dt>Surface</dt><dd>Field / mobile</dd>
+        <dt>Spine</dt><dd>Capture</dd>
+        
+        <dt>Purpose</dt><dd>Photo-first report, available anytime.</dd>
+        <dt>PD refs</dt><dd class="mono">INC-1 INC-2 INC-3 PDS-INC</dd>
+        <dt>Limitations</dt><dd>Photo-first standalone report; offline shown.</dd>
+        <dt>Open question</dt><dd>Offline standalone capture + immediate PM alert path.</dd>
+        <dt>Source</dt><dd class="mono">prototype/screens/incident.html</dd>
+      </dl></div>
+    </div></div><div class="atlas-sheet" id="atlas-torque-log">
+    <div class="hd"><div><span class="id">torque-log · screens/torque-log.html</span><h4>Install / Torque Log</h4></div>
+      <div class="pills"><span class="pill role">Operator</span> <span class="pill med">MEDIUM-FIDELITY</span> <span class="pill sim">SIMULATED</span></div></div>
+    <div class="body">
+      <div class="pic field"><img src="../../../public/v2-prototype-walkthrough/screenshots/torque-log__field.png" alt="Install / Torque Log" loading="lazy"></div>
+      <div class="info"><dl>
+        <dt>Surface</dt><dd>Field / mobile</dd>
+        <dt>Spine</dt><dd>Capture</dd>
+        <dt>Work type</dt><dd>piling</dd>
+        <dt>Purpose</dt><dd>Torque vs depth to founding.</dd>
+        <dt>PD refs</dt><dd class="mono">PIL-1 PIL-2 PIL-3 PDS-PIL</dd>
+        <dt>Limitations</dt><dd>Piling proof-pair capture; less deeply populated than anchoring.</dd>
+        <dt>Open question</dt><dd>Piling done-line (drill-only) proving the spine on a second type.</dd>
+        <dt>Source</dt><dd class="mono">prototype/screens/torque-log.html</dd>
+      </dl></div>
+    </div></div><div class="atlas-sheet" id="atlas-verticality-cutoff">
+    <div class="hd"><div><span class="id">verticality-cutoff · screens/verticality-cutoff.html</span><h4>Verticality &amp; Cut-off</h4></div>
+      <div class="pills"><span class="pill role">Operator</span> <span class="pill med">MEDIUM-FIDELITY</span> <span class="pill sim">SIMULATED</span></div></div>
+    <div class="body">
+      <div class="pic field"><img src="../../../public/v2-prototype-walkthrough/screenshots/verticality-cutoff__field.png" alt="Verticality &amp; Cut-off" loading="lazy"></div>
+      <div class="info"><dl>
+        <dt>Surface</dt><dd>Field / mobile</dd>
+        <dt>Spine</dt><dd>Capture</dd>
+        <dt>Work type</dt><dd>piling</dd>
+        <dt>Purpose</dt><dd>Two-axis tilt, cut-off and cap.</dd>
+        <dt>PD refs</dt><dd class="mono">PIL PDS-PIL</dd>
+        <dt>Limitations</dt><dd>Piling secondary capture; illustrative.</dd>
+        <dt>Open question</dt><dd>Which piling stages are required for completion?</dd>
+        <dt>Source</dt><dd class="mono">prototype/screens/verticality-cutoff.html</dd>
+      </dl></div>
+    </div></div><div class="atlas-sheet" id="atlas-pin-install">
+    <div class="hd"><div><span class="id">pin-install · screens/pin-install.html</span><h4>Pin Install Record</h4></div>
+      <div class="pills"><span class="pill role">Operator</span> <span class="pill med">MEDIUM-FIDELITY</span> <span class="pill sim">SIMULATED</span></div></div>
+    <div class="body">
+      <div class="pic field"><img src="../../../public/v2-prototype-walkthrough/screenshots/pin-install__field.png" alt="Pin Install Record" loading="lazy"></div>
+      <div class="info"><dl>
+        <dt>Surface</dt><dd>Field / mobile</dd>
+        <dt>Spine</dt><dd>Capture</dd>
+        <dt>Work type</dt><dd>rockfall</dd>
+        <dt>Purpose</dt><dd>Crest pin depth, grout, serial.</dd>
+        <dt>PD refs</dt><dd class="mono">(rockfall — roadmap)</dd>
+        <dt>Limitations</dt><dd>Rockfall capture present in prototype but beyond PD V2 proof pair.</dd>
+        <dt>Open question</dt><dd>Prototype is BROADER than the PD V2 scope (see contradictions).</dd>
+        <dt>Source</dt><dd class="mono">prototype/screens/pin-install.html</dd>
+      </dl></div>
+    </div></div><div class="atlas-sheet" id="atlas-pull-test">
+    <div class="hd"><div><span class="id">pull-test · screens/pull-test.html</span><h4>Pull Test Record</h4></div>
+      <div class="pills"><span class="pill role">Operator</span> <span class="pill med">MEDIUM-FIDELITY</span> <span class="pill sim">SIMULATED</span></div></div>
+    <div class="body">
+      <div class="pic field"><img src="../../../public/v2-prototype-walkthrough/screenshots/pull-test__field.png" alt="Pull Test Record" loading="lazy"></div>
+      <div class="info"><dl>
+        <dt>Surface</dt><dd>Field / mobile</dd>
+        <dt>Spine</dt><dd>Capture</dd>
+        <dt>Work type</dt><dd>rockfall</dd>
+        <dt>Purpose</dt><dd>Proof load, hold, result.</dd>
+        <dt>PD refs</dt><dd class="mono">(rockfall — roadmap)</dd>
+        <dt>Limitations</dt><dd>Rockfall proof-load capture; beyond PD V2 depth.</dd>
+        <dt>Open question</dt><dd>Confirm scope: is rockfall a V2 type or roadmap config?</dd>
+        <dt>Source</dt><dd class="mono">prototype/screens/pull-test.html</dd>
+      </dl></div>
+    </div></div><div class="atlas-sheet" id="atlas-panel-install">
+    <div class="hd"><div><span class="id">panel-install · screens/panel-install.html</span><h4>Panel Install Record</h4></div>
+      <div class="pills"><span class="pill role">Operator</span> <span class="pill med">MEDIUM-FIDELITY</span> <span class="pill sim">SIMULATED</span></div></div>
+    <div class="body">
+      <div class="pic field"><img src="../../../public/v2-prototype-walkthrough/screenshots/panel-install__field.png" alt="Panel Install Record" loading="lazy"></div>
+      <div class="info"><dl>
+        <dt>Surface</dt><dd>Field / mobile</dd>
+        <dt>Spine</dt><dd>Capture</dd>
+        <dt>Work type</dt><dd>rockfall</dd>
+        <dt>Purpose</dt><dd>Overlaps, serials, lot link.</dd>
+        <dt>PD refs</dt><dd class="mono">(rockfall — roadmap)</dd>
+        <dt>Limitations</dt><dd>Rockfall panel capture; beyond PD V2 depth.</dd>
+        <dt>Open question</dt><dd>Same as above.</dd>
+        <dt>Source</dt><dd class="mono">prototype/screens/panel-install.html</dd>
+      </dl></div>
+    </div></div><div class="atlas-sheet" id="atlas-inspection-checklist">
+    <div class="hd"><div><span class="id">inspection-checklist · screens/inspection-checklist.html</span><h4>Inspection Checklist</h4></div>
+      <div class="pills"><span class="pill role">Operator</span> <span class="pill med">MEDIUM-FIDELITY</span> <span class="pill sim">SIMULATED</span></div></div>
+    <div class="body">
+      <div class="pic field"><img src="../../../public/v2-prototype-walkthrough/screenshots/inspection-checklist__field.png" alt="Inspection Checklist" loading="lazy"></div>
+      <div class="info"><dl>
+        <dt>Surface</dt><dd>Field / mobile</dd>
+        <dt>Spine</dt><dd>Capture</dd>
+        <dt>Work type</dt><dd>rockfall</dd>
+        <dt>Purpose</dt><dd>Lot closeout walkdown.</dd>
+        <dt>PD refs</dt><dd class="mono">(rockfall — roadmap)</dd>
+        <dt>Limitations</dt><dd>Rockfall lot closeout; beyond PD V2 depth.</dd>
+        <dt>Open question</dt><dd>Same as above.</dd>
+        <dt>Source</dt><dd class="mono">prototype/screens/inspection-checklist.html</dd>
+      </dl></div>
+    </div></div><div class="atlas-sheet" id="atlas-substrate-inspection">
+    <div class="hd"><div><span class="id">substrate-inspection · screens/substrate-inspection.html</span><h4>Substrate Inspection</h4></div>
+      <div class="pills"><span class="pill role">Operator</span> <span class="pill med">MEDIUM-FIDELITY</span> <span class="pill sim">SIMULATED</span></div></div>
+    <div class="body">
+      <div class="pic field"><img src="../../../public/v2-prototype-walkthrough/screenshots/substrate-inspection__field.png" alt="Substrate Inspection" loading="lazy"></div>
+      <div class="info"><dl>
+        <dt>Surface</dt><dd>Field / mobile</dd>
+        <dt>Spine</dt><dd>Capture</dd>
+        <dt>Work type</dt><dd>shotcrete</dd>
+        <dt>Purpose</dt><dd>Prep, mesh, witness hold.</dd>
+        <dt>PD refs</dt><dd class="mono">(shotcrete — roadmap)</dd>
+        <dt>Limitations</dt><dd>Shotcrete witness-hold capture; beyond PD V2 depth.</dd>
+        <dt>Open question</dt><dd>Witness/hold-point model on the shared spine.</dd>
+        <dt>Source</dt><dd class="mono">prototype/screens/substrate-inspection.html</dd>
+      </dl></div>
+    </div></div><div class="atlas-sheet" id="atlas-application-record">
+    <div class="hd"><div><span class="id">application-record · screens/application-record.html</span><h4>Application Record</h4></div>
+      <div class="pills"><span class="pill role">Operator</span> <span class="pill med">MEDIUM-FIDELITY</span> <span class="pill sim">SIMULATED</span></div></div>
+    <div class="body">
+      <div class="pic field"><img src="../../../public/v2-prototype-walkthrough/screenshots/application-record__field.png" alt="Application Record" loading="lazy"></div>
+      <div class="info"><dl>
+        <dt>Surface</dt><dd>Field / mobile</dd>
+        <dt>Spine</dt><dd>Capture</dd>
+        <dt>Work type</dt><dd>shotcrete</dd>
+        <dt>Purpose</dt><dd>Dockets, nozzleman, test panel.</dd>
+        <dt>PD refs</dt><dd class="mono">(shotcrete — roadmap)</dd>
+        <dt>Limitations</dt><dd>Shotcrete application capture; beyond PD V2 depth.</dd>
+        <dt>Open question</dt><dd>Same as above.</dd>
+        <dt>Source</dt><dd class="mono">prototype/screens/application-record.html</dd>
+      </dl></div>
+    </div></div><div class="atlas-sheet" id="atlas-thickness-check">
+    <div class="hd"><div><span class="id">thickness-check · screens/thickness-check.html</span><h4>Thickness Check</h4></div>
+      <div class="pills"><span class="pill role">Operator</span> <span class="pill med">MEDIUM-FIDELITY</span> <span class="pill sim">SIMULATED</span></div></div>
+    <div class="body">
+      <div class="pic field"><img src="../../../public/v2-prototype-walkthrough/screenshots/thickness-check__field.png" alt="Thickness Check" loading="lazy"></div>
+      <div class="info"><dl>
+        <dt>Surface</dt><dd>Field / mobile</dd>
+        <dt>Spine</dt><dd>Capture</dd>
+        <dt>Work type</dt><dd>shotcrete</dd>
+        <dt>Purpose</dt><dd>Probe readings vs 100 / 75 mm.</dd>
+        <dt>PD refs</dt><dd class="mono">(shotcrete — roadmap)</dd>
+        <dt>Limitations</dt><dd>Shotcrete thickness vs threshold; beyond PD V2 depth.</dd>
+        <dt>Open question</dt><dd>Threshold-rule config on the shared spine.</dd>
+        <dt>Source</dt><dd class="mono">prototype/screens/thickness-check.html</dd>
+      </dl></div>
+    </div></div><div class="atlas-sheet" id="atlas-borehole-log">
+    <div class="hd"><div><span class="id">borehole-log · screens/borehole-log.html</span><h4>Borehole Log</h4></div>
+      <div class="pills"><span class="pill role">Operator</span> <span class="pill med">MEDIUM-FIDELITY</span> <span class="pill sim">SIMULATED</span></div></div>
+    <div class="body">
+      <div class="pic field"><img src="../../../public/v2-prototype-walkthrough/screenshots/borehole-log__field.png" alt="Borehole Log" loading="lazy"></div>
+      <div class="info"><dl>
+        <dt>Surface</dt><dd>Field / mobile</dd>
+        <dt>Spine</dt><dd>Capture</dd>
+        <dt>Work type</dt><dd>drilling</dd>
+        <dt>Purpose</dt><dd>Soils, SPT, runs, water.</dd>
+        <dt>PD refs</dt><dd class="mono">(drilling — roadmap)</dd>
+        <dt>Limitations</dt><dd>Drilling investigation capture; beyond PD V2 depth.</dd>
+        <dt>Open question</dt><dd>Drilling (non-discrete-element) shape vs the spine.</dd>
+        <dt>Source</dt><dd class="mono">prototype/screens/borehole-log.html</dd>
+      </dl></div>
+    </div></div><div class="atlas-sheet" id="atlas-core-photos">
+    <div class="hd"><div><span class="id">core-photos · screens/core-photos.html</span><h4>Core Photos</h4></div>
+      <div class="pills"><span class="pill role">Operator</span> <span class="pill med">MEDIUM-FIDELITY</span> <span class="pill sim">SIMULATED</span></div></div>
+    <div class="body">
+      <div class="pic field"><img src="../../../public/v2-prototype-walkthrough/screenshots/core-photos__field.png" alt="Core Photos" loading="lazy"></div>
+      <div class="info"><dl>
+        <dt>Surface</dt><dd>Field / mobile</dd>
+        <dt>Spine</dt><dd>Capture</dd>
+        <dt>Work type</dt><dd>drilling</dd>
+        <dt>Purpose</dt><dd>Box register, wet and dry.</dd>
+        <dt>PD refs</dt><dd class="mono">(drilling — roadmap)</dd>
+        <dt>Limitations</dt><dd>Drilling core box register; beyond PD V2 depth.</dd>
+        <dt>Open question</dt><dd>Per-box photo evidence model.</dd>
+        <dt>Source</dt><dd class="mono">prototype/screens/core-photos.html</dd>
+      </dl></div>
+    </div></div><div class="atlas-sheet" id="atlas-sample-register">
+    <div class="hd"><div><span class="id">sample-register · screens/sample-register.html</span><h4>Sample Register</h4></div>
+      <div class="pills"><span class="pill role">Operator</span> <span class="pill med">MEDIUM-FIDELITY</span> <span class="pill sim">SIMULATED</span></div></div>
+    <div class="body">
+      <div class="pic field"><img src="../../../public/v2-prototype-walkthrough/screenshots/sample-register__field.png" alt="Sample Register" loading="lazy"></div>
+      <div class="info"><dl>
+        <dt>Surface</dt><dd>Field / mobile</dd>
+        <dt>Spine</dt><dd>Capture</dd>
+        <dt>Work type</dt><dd>drilling</dd>
+        <dt>Purpose</dt><dd>Depth, type, custody.</dd>
+        <dt>PD refs</dt><dd class="mono">(drilling — roadmap)</dd>
+        <dt>Limitations</dt><dd>Drilling sample custody; beyond PD V2 depth.</dd>
+        <dt>Open question</dt><dd>Chain-of-custody data model.</dd>
+        <dt>Source</dt><dd class="mono">prototype/screens/sample-register.html</dd>
+      </dl></div>
+    </div></div><div class="atlas-sheet" id="atlas-pipe-install">
+    <div class="hd"><div><span class="id">pipe-install · screens/pipe-install.html</span><h4>Pipe Install</h4></div>
+      <div class="pills"><span class="pill role">Operator</span> <span class="pill med">MEDIUM-FIDELITY</span> <span class="pill sim">SIMULATED</span></div></div>
+    <div class="body">
+      <div class="pic field"><img src="../../../public/v2-prototype-walkthrough/screenshots/pipe-install__field.png" alt="Pipe Install" loading="lazy"></div>
+      <div class="info"><dl>
+        <dt>Surface</dt><dd>Field / mobile</dd>
+        <dt>Spine</dt><dd>Capture</dd>
+        <dt>Work type</dt><dd>drainage</dd>
+        <dt>Purpose</dt><dd>Length, inclination, pipe, collar.</dd>
+        <dt>PD refs</dt><dd class="mono">(drainage — roadmap)</dd>
+        <dt>Limitations</dt><dd>Drainage pipe capture; beyond PD V2 depth.</dd>
+        <dt>Open question</dt><dd>Drainage type on the shared spine.</dd>
+        <dt>Source</dt><dd class="mono">prototype/screens/pipe-install.html</dd>
+      </dl></div>
+    </div></div><div class="atlas-sheet" id="atlas-flow-test">
+    <div class="hd"><div><span class="id">flow-test · screens/flow-test.html</span><h4>Flow Test</h4></div>
+      <div class="pills"><span class="pill role">Operator</span> <span class="pill med">MEDIUM-FIDELITY</span> <span class="pill sim">SIMULATED</span></div></div>
+    <div class="body">
+      <div class="pic field"><img src="../../../public/v2-prototype-walkthrough/screenshots/flow-test__field.png" alt="Flow Test" loading="lazy"></div>
+      <div class="info"><dl>
+        <dt>Surface</dt><dd>Field / mobile</dd>
+        <dt>Spine</dt><dd>Capture</dd>
+        <dt>Work type</dt><dd>drainage</dd>
+        <dt>Purpose</dt><dd>L/min at collar, zero permitted.</dd>
+        <dt>PD refs</dt><dd class="mono">(drainage — roadmap)</dd>
+        <dt>Limitations</dt><dd>Drainage flow capture; beyond PD V2 depth.</dd>
+        <dt>Open question</dt><dd>Same as above.</dd>
+        <dt>Source</dt><dd class="mono">prototype/screens/flow-test.html</dd>
+      </dl></div>
+    </div></div><div class="atlas-sheet" id="atlas-backfill-inspection">
+    <div class="hd"><div><span class="id">backfill-inspection · screens/backfill-inspection.html</span><h4>Backfill Inspection</h4></div>
+      <div class="pills"><span class="pill role">Operator</span> <span class="pill med">MEDIUM-FIDELITY</span> <span class="pill sim">SIMULATED</span></div></div>
+    <div class="body">
+      <div class="pic field"><img src="../../../public/v2-prototype-walkthrough/screenshots/backfill-inspection__field.png" alt="Backfill Inspection" loading="lazy"></div>
+      <div class="info"><dl>
+        <dt>Surface</dt><dd>Field / mobile</dd>
+        <dt>Spine</dt><dd>Capture</dd>
+        <dt>Work type</dt><dd>drainage</dd>
+        <dt>Purpose</dt><dd>Layers, before-backfill hold.</dd>
+        <dt>PD refs</dt><dd class="mono">(drainage — roadmap)</dd>
+        <dt>Limitations</dt><dd>Drainage backfill hold; beyond PD V2 depth.</dd>
+        <dt>Open question</dt><dd>Same as above.</dd>
+        <dt>Source</dt><dd class="mono">prototype/screens/backfill-inspection.html</dd>
+      </dl></div>
+    </div></div><div class="atlas-sheet" id="atlas-daily-activity">
+    <div class="hd"><div><span class="id">daily-activity · screens/daily-activity.html</span><h4>Daily Activity Sheet</h4></div>
+      <div class="pills"><span class="pill role">Operator</span> <span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span></div></div>
+    <div class="body">
+      <div class="pic field"><img src="../../../public/v2-prototype-walkthrough/screenshots/daily-activity__field.png" alt="Daily Activity Sheet" loading="lazy"></div>
+      <div class="info"><dl>
+        <dt>Surface</dt><dd>Field / mobile</dd>
+        <dt>Spine</dt><dd>Capture</dd>
+        
+        <dt>Purpose</dt><dd>Default day; edit exceptions.</dd>
+        <dt>PD refs</dt><dd class="mono">DAS-1 DAS-5 DAS-6 PDS-DAS</dd>
+        <dt>Limitations</dt><dd>Default-day sheet with exception edits; auto-totals illustrative.</dd>
+        <dt>Open question</dt><dd>Resourcing totals + edit trail for payment-facing records.</dd>
+        <dt>Source</dt><dd class="mono">prototype/screens/daily-activity.html</dd>
+      </dl></div>
+    </div></div><div class="atlas-sheet" id="atlas-spatial-map-operator">
+    <div class="hd"><div><span class="id">spatial-map-operator · screens/spatial-map-operator.html</span><h4>Spatial Map · Field</h4></div>
+      <div class="pills"><span class="pill role">Operator</span> <span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span></div></div>
+    <div class="body">
+      <div class="pic field"><img src="../../../public/v2-prototype-walkthrough/screenshots/spatial-map-operator__field.png" alt="Spatial Map · Field" loading="lazy"></div>
+      <div class="info"><dl>
+        <dt>Surface</dt><dd>Field / mobile</dd>
+        <dt>Spine</dt><dd>Capture</dd>
+        
+        <dt>Purpose</dt><dd>Identify anchors and continue work.</dd>
+        <dt>PD refs</dt><dd class="mono">PDS-SPM SPM-5</dd>
+        <dt>Limitations</dt><dd>Operator locate-and-continue variant of the map.</dd>
+        <dt>Open question</dt><dd>Tap-to-select into capture from the located map.</dd>
+        <dt>Source</dt><dd class="mono">prototype/screens/spatial-map-operator.html</dd>
+      </dl></div>
+    </div></div><div class="atlas-sheet" id="atlas-safety-docs">
+    <div class="hd"><div><span class="id">safety-docs · screens/safety-docs.html</span><h4>Safety Docs</h4></div>
+      <div class="pills"><span class="pill role">Operator</span> <span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span></div></div>
+    <div class="body">
+      <div class="pic field"><img src="../../../public/v2-prototype-walkthrough/screenshots/safety-docs__field.png" alt="Safety Docs" loading="lazy"></div>
+      <div class="info"><dl>
+        <dt>Surface</dt><dd>Field / mobile</dd>
+        <dt>Spine</dt><dd>Capture</dd>
+        
+        <dt>Purpose</dt><dd>Read and acknowledge active JSA/SWMS.</dd>
+        <dt>PD refs</dt><dd class="mono">SAF-1 PDS-SAF</dd>
+        <dt>Limitations</dt><dd>Read-and-acknowledge active JSA/SWMS.</dd>
+        <dt>Open question</dt><dd>Acknowledgement attribution + version currency.</dd>
+        <dt>Source</dt><dd class="mono">prototype/screens/safety-docs.html</dd>
+      </dl></div>
+    </div></div><div class="atlas-sheet" id="atlas-reference-documents-operator">
+    <div class="hd"><div><span class="id">reference-documents-operator · screens/reference-documents-operator.html</span><h4>Reference Documents · Field</h4></div>
+      <div class="pills"><span class="pill role">Operator</span> <span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span></div></div>
+    <div class="body">
+      <div class="pic field"><img src="../../../public/v2-prototype-walkthrough/screenshots/reference-documents-operator__field.png" alt="Reference Documents · Field" loading="lazy"></div>
+      <div class="info"><dl>
+        <dt>Surface</dt><dd>Field / mobile</dd>
+        <dt>Spine</dt><dd>Capture</dd>
+        
+        <dt>Purpose</dt><dd>Read-only/offline library for crews.</dd>
+        <dt>PD refs</dt><dd class="mono">DOC PDS-DOC</dd>
+        <dt>Limitations</dt><dd>Field read-only/offline library.</dd>
+        <dt>Open question</dt><dd>Offline availability guarantee.</dd>
+        <dt>Source</dt><dd class="mono">prototype/screens/reference-documents-operator.html</dd>
+      </dl></div>
+    </div></div><div class="atlas-sheet" id="atlas-module-preview">
+    <div class="hd"><div><span class="id">module-preview · screens/module-preview.html</span><h4>Module Preview</h4></div>
+      <div class="pills"><span class="pill role">Operator</span> <span class="pill con">CONCEPTUAL</span> <span class="pill sta">STATIC</span></div></div>
+    <div class="body">
+      <div class="pic field"><img src="../../../public/v2-prototype-walkthrough/screenshots/module-preview__field.png" alt="Module Preview" loading="lazy"></div>
+      <div class="info"><dl>
+        <dt>Surface</dt><dd>Field / mobile</dd>
+        <dt>Spine</dt><dd>Output</dd>
+        
+        <dt>Purpose</dt><dd>—</dd>
+        <dt>PD refs</dt><dd class="mono">PLAT</dd>
+        <dt>Limitations</dt><dd>Generic module preview reached from the explainer.</dd>
+        <dt>Open question</dt><dd>Illustrates the configurable-engine idea only.</dd>
+        <dt>Source</dt><dd class="mono">prototype/screens/module-preview.html</dd>
+      </dl></div>
+    </div></div><h3>Engineer (client) surfaces</h3><div class="atlas-sheet" id="atlas-engineer-view">
+    <div class="hd"><div><span class="id">engineer-view · screens/engineer-view.html</span><h4>Engineer View</h4></div>
+      <div class="pills"><span class="pill role">Engineer (client)</span> <span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span></div></div>
+    <div class="body">
+      <div class="pic "><img src="../../../public/v2-prototype-walkthrough/screenshots/engineer-view__pm.png" alt="Engineer View" loading="lazy"></div>
+      <div class="info"><dl>
+        <dt>Surface</dt><dd>Engineer / read-only</dd>
+        <dt>Spine</dt><dd>Confirm (outward)</dd>
+        
+        <dt>Purpose</dt><dd>Confirmed, released work only.</dd>
+        <dt>PD refs</dt><dd class="mono">ENG-1 ENG-2 ENG-3 ENG-4 PDS-ENG</dd>
+        <dt>Limitations</dt><dd>Confirmed-only read-only engineer surface.</dd>
+        <dt>Open question</dt><dd>Confirmed-only visibility + curated exceptions + read-only enforcement.</dd>
+        <dt>Source</dt><dd class="mono">prototype/screens/engineer-view.html</dd>
+      </dl></div>
+    </div></div><h3>Output (report) surfaces</h3><div class="atlas-sheet" id="atlas-report-anchor-test">
+    <div class="hd"><div><span class="id">report-anchor-test · screens/report-anchor-test.html</span><h4>Anchor Test Report</h4></div>
+      <div class="pills"><span class="pill role">Output (report)</span> <span class="pill hi">HIGH-FIDELITY</span> <span class="pill sta">STATIC</span></div></div>
+    <div class="body">
+      <div class="pic "><img src="../../../public/v2-prototype-walkthrough/screenshots/report-anchor-test__none.png" alt="Anchor Test Report" loading="lazy"></div>
+      <div class="info"><dl>
+        <dt>Surface</dt><dd>Printable report</dd>
+        <dt>Spine</dt><dd>Output</dd>
+        
+        <dt>Purpose</dt><dd>—</dd>
+        <dt>PD refs</dt><dd class="mono">RPT-5 TST</dd>
+        <dt>Limitations</dt><dd>Static printable anchor-test report.</dd>
+        <dt>Open question</dt><dd>Per-type report format binding.</dd>
+        <dt>Source</dt><dd class="mono">prototype/screens/report-anchor-test.html</dd>
+      </dl></div>
+    </div></div><div class="atlas-sheet" id="atlas-report-drill-summary">
+    <div class="hd"><div><span class="id">report-drill-summary · screens/report-drill-summary.html</span><h4>Drill Summary Report</h4></div>
+      <div class="pills"><span class="pill role">Output (report)</span> <span class="pill hi">HIGH-FIDELITY</span> <span class="pill sta">STATIC</span></div></div>
+    <div class="body">
+      <div class="pic "><img src="../../../public/v2-prototype-walkthrough/screenshots/report-drill-summary__none.png" alt="Drill Summary Report" loading="lazy"></div>
+      <div class="info"><dl>
+        <dt>Surface</dt><dd>Printable report</dd>
+        <dt>Spine</dt><dd>Output</dd>
+        
+        <dt>Purpose</dt><dd>—</dd>
+        <dt>PD refs</dt><dd class="mono">RPT-5 DRL</dd>
+        <dt>Limitations</dt><dd>Static printable drill summary.</dd>
+        <dt>Open question</dt><dd>Same as above.</dd>
+        <dt>Source</dt><dd class="mono">prototype/screens/report-drill-summary.html</dd>
+      </dl></div>
+    </div></div><div class="atlas-sheet" id="atlas-report-pile-register">
+    <div class="hd"><div><span class="id">report-pile-register · screens/report-pile-register.html</span><h4>Pile Register Report</h4></div>
+      <div class="pills"><span class="pill role">Output (report)</span> <span class="pill med">MEDIUM-FIDELITY</span> <span class="pill sta">STATIC</span></div></div>
+    <div class="body">
+      <div class="pic "><img src="../../../public/v2-prototype-walkthrough/screenshots/report-pile-register__none.png" alt="Pile Register Report" loading="lazy"></div>
+      <div class="info"><dl>
+        <dt>Surface</dt><dd>Printable report</dd>
+        <dt>Spine</dt><dd>Output</dd>
+        <dt>Work type</dt><dd>piling</dd>
+        <dt>Purpose</dt><dd>—</dd>
+        <dt>PD refs</dt><dd class="mono">RPT-5 PIL</dd>
+        <dt>Limitations</dt><dd>Static printable pile register.</dd>
+        <dt>Open question</dt><dd>Same as above.</dd>
+        <dt>Source</dt><dd class="mono">prototype/screens/report-pile-register.html</dd>
+      </dl></div>
+    </div></div><div class="atlas-sheet" id="atlas-report-rockfall-register">
+    <div class="hd"><div><span class="id">report-rockfall-register · screens/report-rockfall-register.html</span><h4>Rockfall Register Report</h4></div>
+      <div class="pills"><span class="pill role">Output (report)</span> <span class="pill med">MEDIUM-FIDELITY</span> <span class="pill sta">STATIC</span></div></div>
+    <div class="body">
+      <div class="pic "><img src="../../../public/v2-prototype-walkthrough/screenshots/report-rockfall-register__none.png" alt="Rockfall Register Report" loading="lazy"></div>
+      <div class="info"><dl>
+        <dt>Surface</dt><dd>Printable report</dd>
+        <dt>Spine</dt><dd>Output</dd>
+        <dt>Work type</dt><dd>rockfall</dd>
+        <dt>Purpose</dt><dd>—</dd>
+        <dt>PD refs</dt><dd class="mono">(rockfall — roadmap)</dd>
+        <dt>Limitations</dt><dd>Static report beyond PD V2 depth.</dd>
+        <dt>Open question</dt><dd>Scope of rockfall in V2.</dd>
+        <dt>Source</dt><dd class="mono">prototype/screens/report-rockfall-register.html</dd>
+      </dl></div>
+    </div></div><div class="atlas-sheet" id="atlas-report-shotcrete-register">
+    <div class="hd"><div><span class="id">report-shotcrete-register · screens/report-shotcrete-register.html</span><h4>Shotcrete Register Report</h4></div>
+      <div class="pills"><span class="pill role">Output (report)</span> <span class="pill med">MEDIUM-FIDELITY</span> <span class="pill sta">STATIC</span></div></div>
+    <div class="body">
+      <div class="pic "><img src="../../../public/v2-prototype-walkthrough/screenshots/report-shotcrete-register__none.png" alt="Shotcrete Register Report" loading="lazy"></div>
+      <div class="info"><dl>
+        <dt>Surface</dt><dd>Printable report</dd>
+        <dt>Spine</dt><dd>Output</dd>
+        <dt>Work type</dt><dd>shotcrete</dd>
+        <dt>Purpose</dt><dd>—</dd>
+        <dt>PD refs</dt><dd class="mono">(shotcrete — roadmap)</dd>
+        <dt>Limitations</dt><dd>Static report beyond PD V2 depth.</dd>
+        <dt>Open question</dt><dd>Scope of shotcrete in V2.</dd>
+        <dt>Source</dt><dd class="mono">prototype/screens/report-shotcrete-register.html</dd>
+      </dl></div>
+    </div></div><div class="atlas-sheet" id="atlas-report-borehole-log">
+    <div class="hd"><div><span class="id">report-borehole-log · screens/report-borehole-log.html</span><h4>Borehole Log Report</h4></div>
+      <div class="pills"><span class="pill role">Output (report)</span> <span class="pill med">MEDIUM-FIDELITY</span> <span class="pill sta">STATIC</span></div></div>
+    <div class="body">
+      <div class="pic "><img src="../../../public/v2-prototype-walkthrough/screenshots/report-borehole-log__none.png" alt="Borehole Log Report" loading="lazy"></div>
+      <div class="info"><dl>
+        <dt>Surface</dt><dd>Printable report</dd>
+        <dt>Spine</dt><dd>Output</dd>
+        <dt>Work type</dt><dd>drilling</dd>
+        <dt>Purpose</dt><dd>—</dd>
+        <dt>PD refs</dt><dd class="mono">(drilling — roadmap)</dd>
+        <dt>Limitations</dt><dd>Static report beyond PD V2 depth.</dd>
+        <dt>Open question</dt><dd>Scope of drilling in V2.</dd>
+        <dt>Source</dt><dd class="mono">prototype/screens/report-borehole-log.html</dd>
+      </dl></div>
+    </div></div><div class="atlas-sheet" id="atlas-report-drilling-schedule">
+    <div class="hd"><div><span class="id">report-drilling-schedule · screens/report-drilling-schedule.html</span><h4>Drilling Schedule Report</h4></div>
+      <div class="pills"><span class="pill role">Output (report)</span> <span class="pill med">MEDIUM-FIDELITY</span> <span class="pill sta">STATIC</span></div></div>
+    <div class="body">
+      <div class="pic "><img src="../../../public/v2-prototype-walkthrough/screenshots/report-drilling-schedule__none.png" alt="Drilling Schedule Report" loading="lazy"></div>
+      <div class="info"><dl>
+        <dt>Surface</dt><dd>Printable report</dd>
+        <dt>Spine</dt><dd>Output</dd>
+        <dt>Work type</dt><dd>drilling</dd>
+        <dt>Purpose</dt><dd>—</dd>
+        <dt>PD refs</dt><dd class="mono">(drilling — roadmap)</dd>
+        <dt>Limitations</dt><dd>Static report beyond PD V2 depth.</dd>
+        <dt>Open question</dt><dd>Scope of drilling in V2.</dd>
+        <dt>Source</dt><dd class="mono">prototype/screens/report-drilling-schedule.html</dd>
+      </dl></div>
+    </div></div><div class="atlas-sheet" id="atlas-report-drainage-register">
+    <div class="hd"><div><span class="id">report-drainage-register · screens/report-drainage-register.html</span><h4>Drainage Register Report</h4></div>
+      <div class="pills"><span class="pill role">Output (report)</span> <span class="pill med">MEDIUM-FIDELITY</span> <span class="pill sta">STATIC</span></div></div>
+    <div class="body">
+      <div class="pic "><img src="../../../public/v2-prototype-walkthrough/screenshots/report-drainage-register__none.png" alt="Drainage Register Report" loading="lazy"></div>
+      <div class="info"><dl>
+        <dt>Surface</dt><dd>Printable report</dd>
+        <dt>Spine</dt><dd>Output</dd>
+        <dt>Work type</dt><dd>drainage</dd>
+        <dt>Purpose</dt><dd>—</dd>
+        <dt>PD refs</dt><dd class="mono">(drainage — roadmap)</dd>
+        <dt>Limitations</dt><dd>Static report beyond PD V2 depth.</dd>
+        <dt>Open question</dt><dd>Scope of drainage in V2.</dd>
+        <dt>Source</dt><dd class="mono">prototype/screens/report-drainage-register.html</dd>
+      </dl></div>
+    </div></div>
+</div><div class="sec "><h2><span class="n">10</span>Prototype Status Register</h2>
+<p class="lead">High-level status across all major product areas. Prototype polish is not implementation readiness; interaction is simulated throughout unless noted.</p>
+<div class="tbl-wrap"><table><thead><tr><th>Product area</th><th>Main screen</th><th>Fidelity</th><th>Interaction</th><th>Certainty</th><th>Recommended scoping attention</th></tr></thead><tbody>
+<tr><td><strong>Project setup</strong></td><td class="mono">projects / configure</td><td><span class="pill hi">HIGH-FIDELITY</span></td><td><span class="pill sim">SIMULATED</span></td><td>Fixed product decision</td><td>Setup persistence + project identity</td></tr><tr><td><strong>Work-type config</strong></td><td class="mono">work-types / platform</td><td><span class="pill hi">HIGH-FIDELITY</span></td><td><span class="pill sta">STATIC</span></td><td>Directionally stable</td><td>Runtime config shape; V2 scope 2 vs 6</td></tr><tr><td><strong>Work Item Template</strong></td><td class="mono">work-item-design</td><td><span class="pill hi">HIGH-FIDELITY</span></td><td><span class="pill sim">SIMULATED</span></td><td>Directionally stable</td><td>Template ← specification composition</td></tr><tr><td><strong>Work Plan / spatial</strong></td><td class="mono">work-plan / spatial-map</td><td><span class="pill hi">HIGH-FIDELITY</span></td><td><span class="pill sim">SIMULATED</span></td><td>Directionally stable</td><td>Image-relative positioning + plan-import</td></tr><tr><td><strong>Field capture (anchoring)</strong></td><td class="mono">drill/grout/anchor-test</td><td><span class="pill hi">HIGH-FIDELITY</span></td><td><span class="pill sim">SIMULATED</span></td><td>Fixed product decision</td><td>Offline write + progressive save</td></tr><tr><td><strong>Field capture (other types)</strong></td><td class="mono">per-type screens</td><td><span class="pill con">CONCEPTUAL</span></td><td><span class="pill notrep">NOT REPRESENTED</span></td><td>Prototype ahead of PD</td><td>Confirm V2 scope; config vs bespoke</td></tr><tr><td><strong>Safety / sign-on</strong></td><td class="mono">crew-sign-on / safety</td><td><span class="pill hi">HIGH-FIDELITY</span></td><td><span class="pill sim">SIMULATED</span></td><td>Fixed product decision</td><td>Attributable auth session + gate</td></tr><tr><td><strong>QA &amp; confirm</strong></td><td class="mono">qa-queue</td><td><span class="pill hi">HIGH-FIDELITY</span></td><td><span class="pill sim">SIMULATED</span></td><td>Fixed product decision</td><td>Review-state machine (load-bearing)</td></tr><tr><td><strong>Reporting / release</strong></td><td class="mono">reporting</td><td><span class="pill hi">HIGH-FIDELITY</span></td><td><span class="pill sim">SIMULATED</span></td><td>Directionally stable</td><td>Confirmed-only-outward enforcement</td></tr><tr><td><strong>Closeout</strong></td><td class="mono">closeout</td><td><span class="pill hi">HIGH-FIDELITY</span></td><td><span class="pill sim">SIMULATED</span></td><td>Directionally stable</td><td>Package from live confirmed record</td></tr><tr><td><strong>Engineer view</strong></td><td class="mono">engineer-view</td><td><span class="pill hi">HIGH-FIDELITY</span></td><td><span class="pill sim">SIMULATED</span></td><td>Fixed product decision</td><td>Confirmed-only projection + read-only boundary</td></tr><tr><td><strong>Offline / sync</strong></td><td class="mono">field chips only</td><td><span class="pill hi">HIGH-FIDELITY</span></td><td><span class="pill sim">SIMULATED</span></td><td>Product definition complete, prototype incomplete</td><td>Largest technical risk — model + conflict policy</td></tr><tr><td><strong>State model (4 signals)</strong></td><td class="mono">board / qa-queue</td><td><span class="pill hi">HIGH-FIDELITY</span></td><td><span class="pill sim">SIMULATED</span></td><td>Interaction unresolved</td><td>Separate work-phase / review / testing / freshness</td></tr><tr><td><strong>Coordination seams</strong></td><td class="mono">not a screen</td><td><span class="pill con">CONCEPTUAL</span></td><td><span class="pill notrep">NOT REPRESENTED</span></td><td>Fixed product decision</td><td>Geolocation, org tier, addressable project (data model)</td></tr>
+</tbody></table></div>
+<p class="lead" style="margin-top:18px">Fidelity distribution across all 52 screens:</p>
+<div class="cards">
+<div class="card"><h4>29 <span class="pill hi">HIGH-FIDELITY</span></h4><p>Visually mature, close to intended behaviour.</p></div>
+<div class="card"><h4>22 <span class="pill med">MEDIUM-FIDELITY</span></h4><p>Structure + workflow clear; details incomplete.</p></div>
+<div class="card"><h4>1 <span class="pill con">CONCEPTUAL</span></h4><p>Illustrative only.</p></div>
+</div>
+</div><div class="sec "><h2><span class="n">11</span>Gaps &amp; Contradictions</h2>
+<p class="lead">Where the prototype and the Product Definition differ, the difference is stated, not resolved. Each item is classified so the Technical Lead and founders can route it correctly.</p>
+<div class="tbl-wrap"><table><thead><tr><th>Item</th><th>Type</th><th>Detail</th></tr></thead><tbody>
+<tr><td><strong>Work-type scope (6 vs 2)</strong></td><td><span class="pill contra">CONTRADICTED</span></td><td>Prototype ships capture for all six types; PD fixes V2 depth at anchoring + piling. Founder decision required.</td></tr><tr><td><strong>Screen count (52 vs 22)</strong></td><td><span class="pill contra">CONTRADICTED</span></td><td>Prototype has 52 routes; PD Page Definition Sheets define 22. Reconcile the canonical set.</td></tr><tr><td><strong>Offline / sync not represented</strong></td><td>Product-definition capability, prototype gap</td><td>The load-bearing offline + sync + conflict model is asserted via chips only. Technical question.</td></tr><tr><td><strong>State model not separated</strong></td><td>Workflow gap</td><td>Work phase, review state, testing flag, freshness are not cleanly separate in the UI.</td></tr><tr><td><strong>Operator edit-lock on submit</strong></td><td>Workflow gap</td><td>Submission → PM ownership + operator lock is not demonstrable.</td></tr><tr><td><strong>Re-open withdrawal effect</strong></td><td>Workflow gap</td><td>Re-open control exists; the withdraw-from-outward-view effect is not shown.</td></tr><tr><td><strong>Confirm → engineer projection</strong></td><td>Workflow gap</td><td>Engineer View is a standalone mock, not driven by a live confirm.</td></tr><tr><td><strong>Evidence gate not wired</strong></td><td>Workflow gap</td><td>Evidence &amp; QA setup is not bound to the confirm requirements checklist.</td></tr><tr><td><strong>AI plan-import</strong></td><td>Product-definition capability, prototype gap</td><td>Plan-import (PDF → planned items) is conceptual only.</td></tr><tr><td><strong>Coordination seams</strong></td><td>Product-definition gap (by design)</td><td>Geolocation / org tier / addressable project are data-model seams, not screens.</td></tr><tr><td><strong>&ldquo;Team &amp; Publish&rdquo; not in PDS</strong></td><td>Prototype ahead of PD</td><td>Roles + publish surface exists in the prototype but is not a numbered Page Definition Sheet.</td></tr><tr><td><strong>Terminology</strong></td><td>Consistent</td><td>&ldquo;Work Item Template&rdquo;, &ldquo;Groundline Civil&rdquo;, TACEDGE casing all align with the current PD; no stale &ldquo;Rock Control&rdquo; / mixed-case found.</td></tr>
+</tbody></table></div>
+<div class="callout"><span class="k">Not fabricated</span>No missing interaction has been invented to make a principle appear implemented. Where a behaviour is absent it is marked NOT REPRESENTED or the relevant gap, not shown as working.</div>
+</div><div class="sec "><h2><span class="n">12</span>V2 Technical Scoping Questions</h2>
+<p class="lead">A curated set of questions the prototype raises, grouped to help the Technical Lead focus the 30-hour scoping sprint. These are not answered here unless the Product Definition or prototype clearly resolves them.</p>
+<h3>01 · Offline &amp; sync</h3><p>What is the offline-first capture model, the two payload classes (record vs media), and the conflict policy? This is the single largest technical risk and is not represented in the prototype.</p><h3>02 · Review-state implementation</h3><p>How is the submit → confirm → reopen machine implemented, with a single-owner rule per state, operator edit-lock, and audit trail?</p><h3>03 · Confirmed-only-outward</h3><p>How is outward visibility gated so only confirmed records reach the engineer/contract, and re-open withdraws them until re-confirmed?</p><h3>04 · Work-type configuration</h3><p>What is the runtime shape of a work-type declaration (required stages, fields, completion criteria, report format)? Is V2 scoped to anchoring + piling or all six?</p><h3>05 · Work-item identity</h3><p>System identifier vs human reference (e.g. B17): how is identity assigned, and what keys off it externally?</p><h3>06 · Data model</h3><p>Entities (project, zone, work type, work item, stage record, finding, evidence) and the invariants — how are they persisted?</p><h3>07 · Spatial model</h3><p>Image-relative positioning of work items; the geolocation coordination-readiness seam.</p><h3>08 · AI-assisted workflows</h3><p>Plan-import (PDF → planned items) and test-record extraction: the propose → human-approve → commit contract.</p><h3>09 · Findings &amp; computation</h3><p>Where are system-computed variances (depth, grout) calculated vs operator-declared exceptions?</p><h3>10 · Permissions</h3><p>Role → permission model; how &ldquo;publish to field&rdquo; and read-only engineer access are enforced.</p><h3>11 · Reporting &amp; closeout</h3><p>Per-type report formats; assembling reporting/closeout from the live confirmed record.</p><h3>12 · Files &amp; evidence</h3><p>Evidence model (polymorphic parent, provenance), thumbnails, offline media sync.</p><h3>13 · Application architecture</h3><p>The V2 stack: the prototype is dependency-free static HTML; V2 needs a real application + data layer. Migration from the legacy V1 codebase.</p><h3>14 · Deployment</h3><p>Hosting, environments, build + release for a real application (prototype deploys to GitHub Pages).</p><h3>15 · Security</h3><p>Auth provider, attributable sign-on sessions, credential handling.</p>
+</div><div class="sec "><h2><span class="n">13</span>Appendices</h2>
+<p class="lead">Supporting registers and baselines. The CSV registers are machine-readable and live under <span class="mono">docs/v2-prototype-walkthrough/evidence/</span>.</p>
+<h3>Registers</h3>
+<div class="cards">
+<div class="card"><span class="rl">evidence/</span><h4 class="mono" style="font-size:12px">V2_Prototype_Inspection_Notes.md</h4><p>Repository baseline + boundary statement + method</p></div><div class="card"><span class="rl">evidence/</span><h4 class="mono" style="font-size:12px">V2_Product_Definition_Traceability.csv</h4><p>PD requirement → prototype route → status</p></div><div class="card"><span class="rl">evidence/</span><h4 class="mono" style="font-size:12px">V2_Prototype_Route_and_Screen_Inventory.csv</h4><p>Every route: role, surface, fidelity, interaction, PD refs</p></div><div class="card"><span class="rl">evidence/</span><h4 class="mono" style="font-size:12px">V2_Prototype_Screenshot_Capture_Plan.csv</h4><p>Planned captures per screen</p></div><div class="card"><span class="rl">evidence/</span><h4 class="mono" style="font-size:12px">V2_Prototype_Screenshot_Register.csv</h4><p>Every screenshot: filename, viewport, redaction, PD refs</p></div>
+</div>
+<h3>Full route inventory</h3>
+<div class="tbl-wrap"><table><thead><tr><th>ID</th><th>Screen</th><th>Route</th><th>Role</th><th>Spine</th><th>Fidelity</th><th>Interaction</th><th>PD refs</th></tr></thead><tbody>
+<tr><td class="mono">projects</td><td>Projects</td><td class="mono">screens/projects.html</td><td>Project Manager</td><td>Configure</td><td><span class="pill hi">HIGH-FIDELITY</span></td><td><span class="pill sim">SIMULATED</span></td><td class="mono" style="font-size:10px">SET-1 PLAT-7/11</td></tr><tr><td class="mono">platform</td><td>Configurable Engine</td><td class="mono">screens/platform.html</td><td>Project Manager</td><td>Platform</td><td><span class="pill hi">HIGH-FIDELITY</span></td><td><span class="pill sta">STATIC</span></td><td class="mono" style="font-size:10px">PLAT-2/3/4/5</td></tr><tr><td class="mono">work-types</td><td>Work Types</td><td class="mono">screens/work-types.html</td><td>Project Manager</td><td>Configure</td><td><span class="pill hi">HIGH-FIDELITY</span></td><td><span class="pill sim">SIMULATED</span></td><td class="mono" style="font-size:10px">PLAT-2 SET</td></tr><tr><td class="mono">layout</td><td>Layout</td><td class="mono">screens/layout.html</td><td>Project Manager</td><td>Configure</td><td><span class="pill hi">HIGH-FIDELITY</span></td><td><span class="pill sim">SIMULATED</span></td><td class="mono" style="font-size:10px">SET-2</td></tr><tr><td class="mono">work-item-design</td><td>Work Item Template</td><td class="mono">screens/work-item-design.html</td><td>Project Manager</td><td>Configure</td><td><span class="pill hi">HIGH-FIDELITY</span></td><td><span class="pill sim">SIMULATED</span></td><td class="mono" style="font-size:10px">DSN-1 DSN-2 DSN-3</td></tr><tr><td class="mono">testing-standards</td><td>Testing Standards</td><td class="mono">screens/testing-standards.html</td><td>Project Manager</td><td>Configure</td><td><span class="pill hi">HIGH-FIDELITY</span></td><td><span class="pill sim">SIMULATED</span></td><td class="mono" style="font-size:10px">TST PDS-STD</td></tr><tr><td class="mono">evidence-qa</td><td>Evidence &amp; QA Requirements</td><td class="mono">screens/evidence-qa.html</td><td>Project Manager</td><td>Configure</td><td><span class="pill hi">HIGH-FIDELITY</span></td><td><span class="pill sim">SIMULATED</span></td><td class="mono" style="font-size:10px">PDS-QAR</td></tr><tr><td class="mono">work-plan</td><td>Work Plan</td><td class="mono">screens/work-plan.html</td><td>Project Manager</td><td>Configure</td><td><span class="pill hi">HIGH-FIDELITY</span></td><td><span class="pill sim">SIMULATED</span></td><td class="mono" style="font-size:10px">PLAN-1 PLAN-2 PLAN-3 PDS-PLN</td></tr><tr><td class="mono">safety-risk-controls</td><td>Safety &amp; Risk Controls</td><td class="mono">screens/safety-risk-controls.html</td><td>Project Manager</td><td>Configure</td><td><span class="pill hi">HIGH-FIDELITY</span></td><td><span class="pill sim">SIMULATED</span></td><td class="mono" style="font-size:10px">SAF-1 SOS PDS-SRC</td></tr><tr><td class="mono">team-publish</td><td>Team &amp; Publish</td><td class="mono">screens/team-publish.html</td><td>Project Manager</td><td>Configure</td><td><span class="pill med">MEDIUM-FIDELITY</span></td><td><span class="pill sim">SIMULATED</span></td><td class="mono" style="font-size:10px">(roles/authorisation §06)</td></tr><tr><td class="mono">overview</td><td>Overview</td><td class="mono">screens/overview.html</td><td>Project Manager</td><td>Capture</td><td><span class="pill hi">HIGH-FIDELITY</span></td><td><span class="pill sim">SIMULATED</span></td><td class="mono" style="font-size:10px">PDS-OVW PMV-1..6 PLAT-7</td></tr><tr><td class="mono">status-board</td><td>Status Board</td><td class="mono">screens/status-board.html</td><td>Project Manager</td><td>Capture</td><td><span class="pill hi">HIGH-FIDELITY</span></td><td><span class="pill sim">SIMULATED</span></td><td class="mono" style="font-size:10px">PDS-BRD SPM</td></tr><tr><td class="mono">spatial-map</td><td>Spatial Map</td><td class="mono">screens/spatial-map.html</td><td>Project Manager</td><td>Capture</td><td><span class="pill hi">HIGH-FIDELITY</span></td><td><span class="pill sim">SIMULATED</span></td><td class="mono" style="font-size:10px">PDS-SPM SPM-1 SPM-2 SPM-3 SPM-4 SPM-5</td></tr><tr><td class="mono">reference-documents</td><td>Reference Documents</td><td class="mono">screens/reference-documents.html</td><td>Project Manager</td><td>Capture</td><td><span class="pill hi">HIGH-FIDELITY</span></td><td><span class="pill sim">SIMULATED</span></td><td class="mono" style="font-size:10px">DOC-1 DOC-2 DOC-3 PDS-DOC</td></tr><tr><td class="mono">field-home</td><td>Field Home</td><td class="mono">screens/field-home.html</td><td>Operator</td><td>Capture</td><td><span class="pill hi">HIGH-FIDELITY</span></td><td><span class="pill sim">SIMULATED</span></td><td class="mono" style="font-size:10px">(operator entry)</td></tr><tr><td class="mono">crew-sign-on</td><td>Crew Sign-On</td><td class="mono">screens/crew-sign-on.html</td><td>Operator</td><td>Capture</td><td><span class="pill hi">HIGH-FIDELITY</span></td><td><span class="pill sim">SIMULATED</span></td><td class="mono" style="font-size:10px">SOS-1 SOS-2 SOS-3 SOS-4 PDS-SON</td></tr><tr><td class="mono">drill-log</td><td>Drill Log</td><td class="mono">screens/drill-log.html</td><td>Operator</td><td>Capture</td><td><span class="pill hi">HIGH-FIDELITY</span></td><td><span class="pill sim">SIMULATED</span></td><td class="mono" style="font-size:10px">DRL-1 DRL-2 DRL-3 DRL-4 DRL-5 DRL-6 PDS-DRL</td></tr><tr><td class="mono">grout-log</td><td>Grout Log</td><td class="mono">screens/grout-log.html</td><td>Operator</td><td>Capture</td><td><span class="pill hi">HIGH-FIDELITY</span></td><td><span class="pill sim">SIMULATED</span></td><td class="mono" style="font-size:10px">GRT-1 GRT-3 GRT-9 PDS-GRT</td></tr><tr><td class="mono">anchor-test</td><td>Anchor Test Record</td><td class="mono">screens/anchor-test.html</td><td>Operator</td><td>Capture</td><td><span class="pill hi">HIGH-FIDELITY</span></td><td><span class="pill sim">SIMULATED</span></td><td class="mono" style="font-size:10px">TST-1 TST-2 TST-3 TST-4 PDS-TST</td></tr><tr><td class="mono">incident</td><td>Incident / Near-Miss</td><td class="mono">screens/incident.html</td><td>Operator</td><td>Capture</td><td><span class="pill hi">HIGH-FIDELITY</span></td><td><span class="pill sim">SIMULATED</span></td><td class="mono" style="font-size:10px">INC-1 INC-2 INC-3 PDS-INC</td></tr><tr><td class="mono">torque-log</td><td>Install / Torque Log</td><td class="mono">screens/torque-log.html</td><td>Operator</td><td>Capture</td><td><span class="pill med">MEDIUM-FIDELITY</span></td><td><span class="pill sim">SIMULATED</span></td><td class="mono" style="font-size:10px">PIL-1 PIL-2 PIL-3 PDS-PIL</td></tr><tr><td class="mono">verticality-cutoff</td><td>Verticality &amp; Cut-off</td><td class="mono">screens/verticality-cutoff.html</td><td>Operator</td><td>Capture</td><td><span class="pill med">MEDIUM-FIDELITY</span></td><td><span class="pill sim">SIMULATED</span></td><td class="mono" style="font-size:10px">PIL PDS-PIL</td></tr><tr><td class="mono">pin-install</td><td>Pin Install Record</td><td class="mono">screens/pin-install.html</td><td>Operator</td><td>Capture</td><td><span class="pill med">MEDIUM-FIDELITY</span></td><td><span class="pill sim">SIMULATED</span></td><td class="mono" style="font-size:10px">(rockfall — roadmap)</td></tr><tr><td class="mono">pull-test</td><td>Pull Test Record</td><td class="mono">screens/pull-test.html</td><td>Operator</td><td>Capture</td><td><span class="pill med">MEDIUM-FIDELITY</span></td><td><span class="pill sim">SIMULATED</span></td><td class="mono" style="font-size:10px">(rockfall — roadmap)</td></tr><tr><td class="mono">panel-install</td><td>Panel Install Record</td><td class="mono">screens/panel-install.html</td><td>Operator</td><td>Capture</td><td><span class="pill med">MEDIUM-FIDELITY</span></td><td><span class="pill sim">SIMULATED</span></td><td class="mono" style="font-size:10px">(rockfall — roadmap)</td></tr><tr><td class="mono">inspection-checklist</td><td>Inspection Checklist</td><td class="mono">screens/inspection-checklist.html</td><td>Operator</td><td>Capture</td><td><span class="pill med">MEDIUM-FIDELITY</span></td><td><span class="pill sim">SIMULATED</span></td><td class="mono" style="font-size:10px">(rockfall — roadmap)</td></tr><tr><td class="mono">substrate-inspection</td><td>Substrate Inspection</td><td class="mono">screens/substrate-inspection.html</td><td>Operator</td><td>Capture</td><td><span class="pill med">MEDIUM-FIDELITY</span></td><td><span class="pill sim">SIMULATED</span></td><td class="mono" style="font-size:10px">(shotcrete — roadmap)</td></tr><tr><td class="mono">application-record</td><td>Application Record</td><td class="mono">screens/application-record.html</td><td>Operator</td><td>Capture</td><td><span class="pill med">MEDIUM-FIDELITY</span></td><td><span class="pill sim">SIMULATED</span></td><td class="mono" style="font-size:10px">(shotcrete — roadmap)</td></tr><tr><td class="mono">thickness-check</td><td>Thickness Check</td><td class="mono">screens/thickness-check.html</td><td>Operator</td><td>Capture</td><td><span class="pill med">MEDIUM-FIDELITY</span></td><td><span class="pill sim">SIMULATED</span></td><td class="mono" style="font-size:10px">(shotcrete — roadmap)</td></tr><tr><td class="mono">borehole-log</td><td>Borehole Log</td><td class="mono">screens/borehole-log.html</td><td>Operator</td><td>Capture</td><td><span class="pill med">MEDIUM-FIDELITY</span></td><td><span class="pill sim">SIMULATED</span></td><td class="mono" style="font-size:10px">(drilling — roadmap)</td></tr><tr><td class="mono">core-photos</td><td>Core Photos</td><td class="mono">screens/core-photos.html</td><td>Operator</td><td>Capture</td><td><span class="pill med">MEDIUM-FIDELITY</span></td><td><span class="pill sim">SIMULATED</span></td><td class="mono" style="font-size:10px">(drilling — roadmap)</td></tr><tr><td class="mono">sample-register</td><td>Sample Register</td><td class="mono">screens/sample-register.html</td><td>Operator</td><td>Capture</td><td><span class="pill med">MEDIUM-FIDELITY</span></td><td><span class="pill sim">SIMULATED</span></td><td class="mono" style="font-size:10px">(drilling — roadmap)</td></tr><tr><td class="mono">pipe-install</td><td>Pipe Install</td><td class="mono">screens/pipe-install.html</td><td>Operator</td><td>Capture</td><td><span class="pill med">MEDIUM-FIDELITY</span></td><td><span class="pill sim">SIMULATED</span></td><td class="mono" style="font-size:10px">(drainage — roadmap)</td></tr><tr><td class="mono">flow-test</td><td>Flow Test</td><td class="mono">screens/flow-test.html</td><td>Operator</td><td>Capture</td><td><span class="pill med">MEDIUM-FIDELITY</span></td><td><span class="pill sim">SIMULATED</span></td><td class="mono" style="font-size:10px">(drainage — roadmap)</td></tr><tr><td class="mono">backfill-inspection</td><td>Backfill Inspection</td><td class="mono">screens/backfill-inspection.html</td><td>Operator</td><td>Capture</td><td><span class="pill med">MEDIUM-FIDELITY</span></td><td><span class="pill sim">SIMULATED</span></td><td class="mono" style="font-size:10px">(drainage — roadmap)</td></tr><tr><td class="mono">daily-activity</td><td>Daily Activity Sheet</td><td class="mono">screens/daily-activity.html</td><td>Operator</td><td>Capture</td><td><span class="pill hi">HIGH-FIDELITY</span></td><td><span class="pill sim">SIMULATED</span></td><td class="mono" style="font-size:10px">DAS-1 DAS-5 DAS-6 PDS-DAS</td></tr><tr><td class="mono">spatial-map-operator</td><td>Spatial Map · Field</td><td class="mono">screens/spatial-map-operator.html</td><td>Operator</td><td>Capture</td><td><span class="pill hi">HIGH-FIDELITY</span></td><td><span class="pill sim">SIMULATED</span></td><td class="mono" style="font-size:10px">PDS-SPM SPM-5</td></tr><tr><td class="mono">safety-docs</td><td>Safety Docs</td><td class="mono">screens/safety-docs.html</td><td>Operator</td><td>Capture</td><td><span class="pill hi">HIGH-FIDELITY</span></td><td><span class="pill sim">SIMULATED</span></td><td class="mono" style="font-size:10px">SAF-1 PDS-SAF</td></tr><tr><td class="mono">reference-documents-operator</td><td>Reference Documents · Field</td><td class="mono">screens/reference-documents-operator.html</td><td>Operator</td><td>Capture</td><td><span class="pill hi">HIGH-FIDELITY</span></td><td><span class="pill sim">SIMULATED</span></td><td class="mono" style="font-size:10px">DOC PDS-DOC</td></tr><tr><td class="mono">qa-queue</td><td>QA Queue</td><td class="mono">screens/qa-queue.html</td><td>Project Manager</td><td>Confirm</td><td><span class="pill hi">HIGH-FIDELITY</span></td><td><span class="pill sim">SIMULATED</span></td><td class="mono" style="font-size:10px">QA-1 QA-2 QA-3 ALT-1 ALT-2 PDS-QAQ</td></tr><tr><td class="mono">reporting</td><td>Reporting</td><td class="mono">screens/reporting.html</td><td>Project Manager</td><td>Confirm</td><td><span class="pill hi">HIGH-FIDELITY</span></td><td><span class="pill sim">SIMULATED</span></td><td class="mono" style="font-size:10px">RPT-1 RPT-2 RPT-3 RPT-4 RPT-5 PDS-RPT</td></tr><tr><td class="mono">closeout</td><td>Project Closeout</td><td class="mono">screens/closeout.html</td><td>Project Manager</td><td>Confirm</td><td><span class="pill hi">HIGH-FIDELITY</span></td><td><span class="pill sim">SIMULATED</span></td><td class="mono" style="font-size:10px">CLO-1 CLO-2 CLO-3 PDS-CLO</td></tr><tr><td class="mono">engineer-view</td><td>Engineer View</td><td class="mono">screens/engineer-view.html</td><td>Engineer (client)</td><td>Confirm (outward)</td><td><span class="pill hi">HIGH-FIDELITY</span></td><td><span class="pill sim">SIMULATED</span></td><td class="mono" style="font-size:10px">ENG-1 ENG-2 ENG-3 ENG-4 PDS-ENG</td></tr><tr><td class="mono">report-anchor-test</td><td>Anchor Test Report</td><td class="mono">screens/report-anchor-test.html</td><td>Output (report)</td><td>Output</td><td><span class="pill hi">HIGH-FIDELITY</span></td><td><span class="pill sta">STATIC</span></td><td class="mono" style="font-size:10px">RPT-5 TST</td></tr><tr><td class="mono">report-drill-summary</td><td>Drill Summary Report</td><td class="mono">screens/report-drill-summary.html</td><td>Output (report)</td><td>Output</td><td><span class="pill hi">HIGH-FIDELITY</span></td><td><span class="pill sta">STATIC</span></td><td class="mono" style="font-size:10px">RPT-5 DRL</td></tr><tr><td class="mono">report-pile-register</td><td>Pile Register Report</td><td class="mono">screens/report-pile-register.html</td><td>Output (report)</td><td>Output</td><td><span class="pill med">MEDIUM-FIDELITY</span></td><td><span class="pill sta">STATIC</span></td><td class="mono" style="font-size:10px">RPT-5 PIL</td></tr><tr><td class="mono">report-rockfall-register</td><td>Rockfall Register Report</td><td class="mono">screens/report-rockfall-register.html</td><td>Output (report)</td><td>Output</td><td><span class="pill med">MEDIUM-FIDELITY</span></td><td><span class="pill sta">STATIC</span></td><td class="mono" style="font-size:10px">(rockfall — roadmap)</td></tr><tr><td class="mono">report-shotcrete-register</td><td>Shotcrete Register Report</td><td class="mono">screens/report-shotcrete-register.html</td><td>Output (report)</td><td>Output</td><td><span class="pill med">MEDIUM-FIDELITY</span></td><td><span class="pill sta">STATIC</span></td><td class="mono" style="font-size:10px">(shotcrete — roadmap)</td></tr><tr><td class="mono">report-borehole-log</td><td>Borehole Log Report</td><td class="mono">screens/report-borehole-log.html</td><td>Output (report)</td><td>Output</td><td><span class="pill med">MEDIUM-FIDELITY</span></td><td><span class="pill sta">STATIC</span></td><td class="mono" style="font-size:10px">(drilling — roadmap)</td></tr><tr><td class="mono">report-drilling-schedule</td><td>Drilling Schedule Report</td><td class="mono">screens/report-drilling-schedule.html</td><td>Output (report)</td><td>Output</td><td><span class="pill med">MEDIUM-FIDELITY</span></td><td><span class="pill sta">STATIC</span></td><td class="mono" style="font-size:10px">(drilling — roadmap)</td></tr><tr><td class="mono">report-drainage-register</td><td>Drainage Register Report</td><td class="mono">screens/report-drainage-register.html</td><td>Output (report)</td><td>Output</td><td><span class="pill med">MEDIUM-FIDELITY</span></td><td><span class="pill sta">STATIC</span></td><td class="mono" style="font-size:10px">(drainage — roadmap)</td></tr><tr><td class="mono">module-preview</td><td>Module Preview</td><td class="mono">screens/module-preview.html</td><td>Operator</td><td>Output</td><td><span class="pill con">CONCEPTUAL</span></td><td><span class="pill sta">STATIC</span></td><td class="mono" style="font-size:10px">PLAT</td></tr>
+</tbody></table></div>
+<h3>Repository + runtime baseline</h3>
+<div class="meta"><div class="r"><span class="k">Repository</span><span class="v"><span class="mono">tacedge/geotech-v2</span> @ <span class="mono">2101478</span></span></div><div class="r"><span class="k">Prototype</span><span class="v">Dependency-free static HTML/CSS/JS; 52 routes; no backend/DB</span></div><div class="r"><span class="k">Runtime</span><span class="v">Served from a disposable read-only copy; all routes 200</span></div><div class="r"><span class="k">Data</span><span class="v">Mock/sample only; no PII or credentials; no redaction required</span></div><div class="r"><span class="k">Boundary</span><span class="v">Walkthrough confined to docs/, public/, working/ v2-prototype-walkthrough; prototype/ unchanged</span></div></div>
+</div>
+<div class="foot"><span>Internal · TACEDGE Ground Engineering V2 · Prototype Walkthrough</span><span>Shared clarity for ground-engineering delivery.</span></div>
+</div></main></body></html>
