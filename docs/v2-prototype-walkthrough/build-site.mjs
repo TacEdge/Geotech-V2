@@ -475,14 +475,64 @@ ${pageNav(id)}
 </div></main></div></body></html>`;
 }
 
-// print page: everything, no nav
+// TOC one-line descriptions
+const TOC_DESC = {
+  'index':'Purpose, baseline, runtime status, status classifications and how to navigate',
+  '01-executive-summary':'The promise, the users, the spine, what the prototype demonstrates and what remains open',
+  '02-prototype-map':'Every surface by role; primary navigation, handoffs and role boundaries',
+  '03-spine':'The operating spine and the four separate state signals',
+  '04-pm-walkthrough':'Setup, monitor, confirm and release — step by step with screenshots',
+  '05-operator-walkthrough':'The field capture journey on the anchoring path',
+  '06-qa-confirm':'The review-state machine and confirmed-only-outward (load-bearing)',
+  '07-engineer':'Confirmed-only, read-only, curated engineer visibility',
+  '08-work-types':'One spine, six work types; the anchoring + piling proof pair',
+  '09-screen-atlas':'One sheet per prototype screen (52), with status and PD references',
+  '10-status-register':'Fidelity and interaction status across all product areas',
+  '11-gaps':'Where the prototype and the Product Definition differ',
+  '12-scoping-questions':'Curated questions to focus the 30-hour scoping sprint',
+  '13-appendices':'Registers, full route inventory and repository baseline',
+};
+
+function coverBlock(){
+  const chips = NAV.filter(i=>i[0]!=='group'&&i[0]!=='print').map(i=>`<span>${esc(i[1])} · ${esc(i[2])}</span>`).join('');
+  return `<div class="sec cover first"><div class="cover-page"><div class="cover-inner">
+    <p class="ki">TACEDGE &nbsp;·&nbsp; Ground Engineering V2</p>
+    <span class="cls">Internal · Prototype interpretation</span>
+    <h1>Prototype Walkthrough</h1>
+    <p class="sub">A visual interpretation of the current V2 prototype</p>
+    <p class="lede">A structured, visual explanation of the current V2 prototype for the incoming Interim Development Technical Lead: the navigation, the intended product workflow, the purpose of each major screen, the role boundaries, the state transitions, what is directionally fixed and what remains open. Organised around Configure &middot; Capture &middot; Confirm.</p>
+    <div class="cover-set">${chips}</div>
+    <div class="cover-meta">
+      <div>STATUS<b>v1.0 · Prototype interpretation</b></div>
+      <div>CLASS<b>Internal</b></div>
+      <div>PREPARED FOR<b>Interim Development Technical Lead</b></div>
+      <div>PROTOTYPE BASELINE<b>tacedge/geotech-v2 @ 2101478</b></div>
+      <div>INSPECTION DATE<b>17 July 2026</b></div>
+      <div>PRODUCT MODEL<b>Configure · Capture · Confirm</b></div>
+    </div>
+  </div></div></div>`;
+}
+function contentsBlock(){
+  const items = NAV.filter(i=>i[0]!=='group'&&i[0]!=='print').map(i=>{
+    const [id,n,t]=i;
+    return `<li><span class="n">${esc(n)}</span><a href="#sec-${id}">${esc(t)}</a><span class="d">${esc(TOC_DESC[id]||'')}</span></li>`;
+  }).join('');
+  return `<div class="sec contents"><h2><span class="n">—</span>Contents</h2>
+    <p class="lead">Fourteen sections, from fast orientation to a full reference atlas. Each section begins on a new page in this document.</p>
+    <ul class="toc-list">${items}</ul>
+    <div class="foot" style="margin-top:22px"><span>Internal · TACEDGE Ground Engineering V2</span><span>Shared clarity for ground-engineering delivery.</span></div>
+  </div>`;
+}
+
+// print page: cover + contents + everything, no nav
 function printPage(){
   const order = NAV.filter(i=>i[0]!=='group' && i[0]!=='print').map(i=>i[0]);
-  const body = order.map((id,idx)=>{const s=sections[id];return `<div class="sec ${idx===0?'first':''}"><h2><span class="n">${esc(s.num)}</span>${esc(s.title)}</h2>${s.body}</div>`;}).join('');
+  const body = order.map((id)=>{const s=sections[id];return `<div class="sec" id="sec-${id}"><h2><span class="n">${esc(s.num)}</span>${esc(s.title)}</h2>${s.body}</div>`;}).join('');
   return `<!doctype html><html lang="en-NZ"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>TACEDGE V2 Prototype Walkthrough — Print</title><link rel="stylesheet" href="assets/site.css"></head><body>
+<title>TACEDGE V2 Prototype Walkthrough</title><link rel="stylesheet" href="assets/site.css"></head><body>
 <main class="main"><div class="wrap">
-<div class="masthead"><span class="classified">Internal · Prototype interpretation</span><p class="eyebrow">TACEDGE Ground Engineering V2</p><h1>Prototype Walkthrough</h1><p>Configure · Capture · Confirm. A structured, visual interpretation of the current V2 prototype for the incoming Interim Development Technical Lead. Print to A4 landscape.</p></div>
+${coverBlock()}
+${contentsBlock()}
 ${body}
 <div class="foot"><span>Internal · TACEDGE Ground Engineering V2 · Prototype Walkthrough</span><span>Shared clarity for ground-engineering delivery.</span></div>
 </div></main></body></html>`;
