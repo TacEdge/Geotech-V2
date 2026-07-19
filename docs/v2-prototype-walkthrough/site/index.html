@@ -1,0 +1,42 @@
+<!doctype html><html lang="en-NZ"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>00 · Read First — TACEDGE V2 Prototype Walkthrough</title>
+<link rel="stylesheet" href="assets/site.css"></head><body>
+<div class="shell">
+<nav class="nav noprint"><div class="brand"><img src="assets/tacedge-logo.png" alt="TACEDGE"></div><div class="kick">V2 Prototype Walkthrough</div><div class="grp">Orientation</div><a href="index.html" class="on"><span class="n">00</span>Read First</a><a href="01-executive-summary.html" class=""><span class="n">01</span>Visual Executive Summary</a><a href="02-prototype-map.html" class=""><span class="n">02</span>Prototype Map</a><div class="grp">The product spine</div><a href="03-spine.html" class=""><span class="n">03</span>Configure · Capture · Confirm</a><a href="04-pm-walkthrough.html" class=""><span class="n">04</span>Project Manager</a><a href="05-operator-walkthrough.html" class=""><span class="n">05</span>Operator</a><a href="06-qa-confirm.html" class=""><span class="n">06</span>QA &amp; Confirmation</a><a href="07-engineer.html" class=""><span class="n">07</span>Engineer &amp; Client</a><a href="08-work-types.html" class=""><span class="n">08</span>Work-Type Model</a><div class="grp">Reference</div><a href="09-screen-atlas.html" class=""><span class="n">09</span>Screen Atlas</a><a href="10-status-register.html" class=""><span class="n">10</span>Prototype Status Register</a><a href="11-gaps.html" class=""><span class="n">11</span>Gaps &amp; Contradictions</a><a href="12-scoping-questions.html" class=""><span class="n">12</span>Scoping Questions</a><a href="13-appendices.html" class=""><span class="n">13</span>Appendices</a><a href="print.html" class=""><span class="n">—</span>Print (A4 landscape)</a></nav>
+<main class="main"><div class="wrap">
+<div class="masthead"><span class="classified">Internal · Prototype interpretation</span><p class="eyebrow">TACEDGE Ground Engineering V2 · Prototype Walkthrough</p><h1>00 · Read First</h1><p>A structured, visual explanation of the current V2 prototype for the incoming Technical Lead.</p></div>
+<div class="sec first">
+<p class="lead">This walkthrough interprets the current TACEDGE Ground Engineering V2 prototype for the incoming Interim Development Technical Lead. It exists so you can understand the prototype quickly, without reverse-engineering the navigation, the intended workflow, the role boundaries or the state model on your own.</p>
+<div class="callout"><span class="k">What is authoritative</span>The V2 Product Definition is authoritative for product intent. The prototype is a visual and interactive interpretation of that intent. Visual polish does not imply product, technical or delivery certainty.</div>
+<div class="meta"><div class="r"><span class="k">Purpose</span><span class="v">Interpret the current V2 prototype for the incoming Technical Lead</span></div><div class="r"><span class="k">Audience</span><span class="v">Interim Development Technical Lead; founders; scoping sprint</span></div><div class="r"><span class="k">Prototype baseline</span><span class="v"><span class="mono">claude/tacedge-v2-prototype-polish-4ny12f @ 2101478</span></span></div><div class="r"><span class="k">Inspection date</span><span class="v">17 July 2026</span></div><div class="r"><span class="k">Runtime status</span><span class="v">Served from a disposable read-only copy; all 52 routes returned 200</span></div><div class="r"><span class="k">Prototype data</span><span class="v">Local mock / sample only (Benmore + catalogue jobs). No database, no live data</span></div><div class="r"><span class="k">This document</span><span class="v">Prototype interpretation &amp; walkthrough — not a redesign, spec, or backlog</span></div></div>
+<h3>Status classifications</h3>
+<p>Each screen carries a <strong>fidelity</strong> label and an <strong>interaction</strong> label. A screen may hold both, e.g. <span class="pill hi">HIGH-FIDELITY</span> <span class="pill sim">SIMULATED</span>.</p>
+<div class="tbl-wrap"><table><thead><tr><th>Fidelity</th><th>Meaning</th></tr></thead><tbody>
+<tr><td><span class="pill hi">HIGH-FIDELITY</span></td><td>Visually mature; closely represents intended product behaviour.</td></tr>
+<tr><td><span class="pill med">MEDIUM-FIDELITY</span></td><td>Communicates structure and workflow; details or interactions incomplete.</td></tr>
+<tr><td><span class="pill con">CONCEPTUAL</span></td><td>Illustrates intent; not an implementation-ready specification.</td></tr>
+</tbody></table></div>
+<div class="tbl-wrap"><table><thead><tr><th>Interaction</th><th>Meaning</th></tr></thead><tbody>
+<tr><td><span class="pill fun">FUNCTIONAL</span></td><td>The interaction works in the current prototype (mostly navigation).</td></tr>
+<tr><td><span class="pill sim">SIMULATED</span></td><td>Changes local prototype state or uses mock behaviour; not production functionality.</td></tr>
+<tr><td><span class="pill sta">STATIC</span></td><td>Illustrative surface with little or no working interaction (e.g. printable reports).</td></tr>
+<tr><td><span class="pill par">PARTIAL</span></td><td>Some intended behaviour exists but the flow cannot be completed.</td></tr>
+<tr><td><span class="pill contra">CONTRADICTED</span></td><td>Prototype materially differs from a fixed Product Definition decision.</td></tr>
+<tr><td><span class="pill notrep">NOT REPRESENTED</span></td><td>The Product Definition specifies it, but it does not appear in the prototype.</td></tr>
+</tbody></table></div>
+<h3>How to navigate</h3>
+<ul>
+<li><strong>Sections 01–02</strong> give the fast orientation: the promise, the users, the spine, and the map.</li>
+<li><strong>Sections 03–07</strong> follow the product spine and each role in order, with screenshots.</li>
+<li><strong>Section 08</strong> explains the work-type model and what the prototype actually demonstrates.</li>
+<li><strong>Sections 09–13</strong> are reference: the full Screen Atlas, the Status Register, gaps, scoping questions and appendices.</li>
+</ul>
+<h3>How to run + print</h3>
+<div class="meta"><div class="r"><span class="k">Live prototype</span><span class="v"><span class="mono">https://tacedge.github.io/Geotech-V2/</span></span></div><div class="r"><span class="k">Run this site</span><span class="v"><span class="mono">cd /home/user/Geotech-V2 &amp;&amp; python3 -m http.server 8080</span> → open <span class="mono">/docs/v2-prototype-walkthrough/site/</span></span></div><div class="r"><span class="k">Rebuild</span><span class="v"><span class="mono">node docs/v2-prototype-walkthrough/build-site.mjs</span></span></div><div class="r"><span class="k">Print / PDF</span><span class="v">Open <span class="mono">/print</span> and use the browser&rsquo;s Print → Save as PDF (A4 landscape)</span></div></div>
+<h3>What is open to challenge</h3>
+<p>Everything the prototype <em>illustrates</em> about interaction and data is open to challenge; it is a clickable demonstration, not an implementation. What is <em>not</em> open to challenge here is the written product intent in the Product Definition — where the prototype and the Definition differ, this document records the difference rather than choosing one (see <a href="11-gaps.html">Section 11</a>).</p>
+</div>
+<div class="pagenav"><span></span><a href="01-executive-summary.html">01 · Visual Executive Summary →</a></div>
+<div class="foot"><span>Internal · TACEDGE Ground Engineering V2 · Prototype Walkthrough</span><span>Shared clarity for ground-engineering delivery.</span></div>
+</div></main></div></body></html>

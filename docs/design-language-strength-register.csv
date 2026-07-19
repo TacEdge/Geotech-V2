@@ -1,0 +1,34 @@
+Route,Screen,Element,Interactive or static,Previous treatment,Updated treatment,Shared token/component,Mobile checked,Desktop checked,Accessibility checked,Notes
+drill-log.html,Operator Drill Capture,+1.0 m increment (default step),Interactive,Flat green fill,Primary pillow (deep-green front-facing lift),--ctl-primary-*/.qc.on,Yes,n/a,Yes,Default operational control; near-white label
+drill-log.html,Operator Drill Capture,+0.1 m / Undo,Interactive,Flat white bordered,Resting-light pillow + pressed inset,--ctl-surface/--ctl-shadow/.qc,Yes,n/a,Yes,48px+ targets
+drill-log.html,Operator Drill Capture,Lithology chips (Fill/Clay/…),Interactive,Pale tint/ochre/sage washes,Uniform warm pillow; selected=deep-green fill,--ctl-*/.lq,Yes,n/a,Yes,Fill-vs-outline is greyscale-safe selected cue
+drill-log.html,Operator Drill Capture,View details,Interactive,Flat bordered pill,Resting-light pillow (pill kept — compact),--ctl-*/.vad,Yes,n/a,Yes,Compact control
+drill-log.html,Operator Drill Capture,Submit dock (Complete/Submit),Interactive,Flat green / muted grey-green,Primary pillow; not-ready=disabled grammar,--ctl-primary-*/--ctl-disabled-*/.btn.subqa,Yes,n/a,Yes,Substantial planted lift; flatter than small controls
+drill-log.html,Operator Drill Capture,Sheet: material / photo / use-current,Interactive,Flat bordered,Resting-light / selected pillow,--ctl-*/.mopt/.pbtn/.ucd,Yes,n/a,Yes,In record-change bottom sheet
+drill-log.html,Operator Drill Capture,Current-depth hero + value,Static,Flat white panel,Unchanged (flat),--structural (implicit),Yes,n/a,Yes,Key value; hierarchy tier 1
+drill-log.html,Operator Drill Capture,Progress bar,Static,Flat,Unchanged (flat),—,Yes,n/a,Yes,Data
+drill-log.html,Operator Drill Capture,Design read-only panel,Static,Flat card,Unchanged (flat),—,Yes,n/a,Yes,Read-only design info
+drill-log.html,Operator Drill Capture,Lithology log / empty states,Static,Flat / dashed,Unchanged (flat),—,Yes,n/a,Yes,Information
+drill-log.html,Operator Drill Capture,Focus ring,Interactive,Olive 2.5px outline,Forest 2.5px outline outside border,--focus-ring-color,Yes,n/a,Yes,Higher contrast
+grout-log.html,Operator Grout Capture,+1 bag (default step),Interactive,Flat green fill,Primary pillow,--ctl-primary-*/.qc.on,Yes,n/a,Yes,Default operational control
+grout-log.html,Operator Grout Capture,+0.5 bag / Undo / Edit bags,Interactive,Flat white bordered,Resting-light pillow + pressed inset,--ctl-*/.qc,Yes,n/a,Yes,
+grout-log.html,Operator Grout Capture,View anchor details,Interactive,Flat bordered pill,Resting-light pillow (pill kept),--ctl-*/.vad,Yes,n/a,Yes,
+grout-log.html,Operator Grout Capture,Submit grout stage,Interactive,Flat green / muted,Primary pillow; not-ready=disabled grammar,--ctl-primary-*/--ctl-disabled-*,Yes,n/a,Yes,
+grout-log.html,Operator Grout Capture,Bags-used / usage / allowance panel,Static,Flat,Unchanged (flat),—,Yes,n/a,Yes,Within-allowance badge stays flat
+grout-log.html,Operator Grout Capture,Injection-pressure / grout-stage / Design panels,Static,Flat,Unchanged (flat),—,Yes,n/a,Yes,
+work-types.html,Configurable Engine (Work Types),Six work-type cards,Interactive,Flat card + directional shadow + hover lift,Resting-light pillow; selected=sage-tint + inset edge + check,--ctl-*/.wt-card,Yes,Yes,Yes,Selectable option cards; directional shadow removed
+work-types.html,Configurable Engine (Work Types),Detail panel,Static,White card + soft shadow,Flat: structural border no shadow,--structural-border/--r-structural/.wt-panel,Yes,Yes,Yes,Information container
+work-types.html,Configurable Engine (Work Types),Template tags / status badges / module rows,Static,Flat tags,Unchanged (flat),—,Yes,Yes,Yes,Non-clickable tags kept flat
+qa-queue.html,QA / Confirmation,Filter chips (All/Ready/…),Interactive,Flat bordered pill; active=flat green,Resting-light pillow; active=primary pillow,--ctl-*/.qchip,Yes,Yes,Yes,
+qa-queue.html,QA / Confirmation,Record list cards,Interactive,Flat card + status left-border,Subtle pillow; status left-border kept; selected=sage-tint,--ctl-*/.q-item,Yes,Yes,Yes,Left-border state cue preserved
+qa-queue.html,QA / Confirmation,Approve record (primary),Interactive,Flat green,Primary pillow; disabled=disabled grammar,--ctl-primary-*/--ctl-disabled-*/.da-p,Yes,Yes,Yes,Decisive confirmation action
+qa-queue.html,QA / Confirmation,Reopen with reason / resolve actions,Interactive,Flat bordered,Resting-light pillow (strong=ochre edge kept),--ctl-*/.da-o,Yes,Yes,Yes,
+qa-queue.html,QA / Confirmation,Requirements / Evidence / data columns,Static,Flat,Unchanged (flat),—,Yes,Yes,Yes,
+status-board.html,PM Status Board,Zone / State filters,Interactive,Flat bordered box,Resting-light pillow,--ctl-*/.sel,n/a,Yes,Yes,
+status-board.html,PM Status Board,Open Drill Log (primary),Interactive,Flat green,Primary pillow,--ctl-primary-*/.btn-primary,n/a,Yes,Yes,Side-panel action
+status-board.html,PM Status Board,View Evidence (secondary),Interactive,Flat bordered,Resting-light pillow,--ctl-*/.btn-ghost,n/a,Yes,Yes,
+status-board.html,PM Status Board,54-tile status matrix,Static (selectable),Flat state-coloured tiles,Kept flat (data); selected=strong ring,—,n/a,Yes,Yes,Operational density — not lifted; ring is the selection cue
+status-board.html,PM Status Board,Zone progress bars / Selected-Anchor info panel,Static,Flat,Unchanged (flat),—,n/a,Yes,Yes,
+tokens.css,Shared,Interactive control grammar tokens,n/a,Absent,Added (ctl/structural/focus/target/motion),tokens.css :root,n/a,n/a,Yes,Central vocabulary; wins the cascade
+components.css,Shared,.pillow grammar + tactile .te-btn family,Interactive,Flat te-btn,Six-state pillow grammar,components.css,Yes,Yes,Yes,Opt-in shared classes for Phase 3
+capture.css,Shared,.pilesel .ps / .dock .btn / .card,Mixed,Flat,Chips+dock=pillow; card=flat structural,capture.css,Yes,n/a,Yes,Field-capture shell primitives

@@ -89,6 +89,61 @@
   --shadow-md: 0 2px 10px rgba(27, 33, 23, 0.06);
   --shadow-lg: 0 8px 28px rgba(27, 33, 23, 0.1);
 
+  /* ======================================================================
+     INTERACTIVE CONTROL GRAMMAR — the "pillow" tactile treatment
+     ----------------------------------------------------------------------
+     A single, central vocabulary applied ONLY to elements that can be
+     clicked, tapped or selected (buttons, steppers, undo/edit, selectable
+     work-type / lithology / material controls, nav & "view details" cards,
+     primary submissions). Static information — value panels, progress bars,
+     data tables, badges, headers, read-only design panels — stays FLAT and
+     uses --structural-* below.
+
+     The lift is FRONT-FACING and symmetrical: the control face reads as
+     raised toward the viewer (faint upper-inner highlight + faint lower-edge
+     shade + a soft shadow that hugs the control), NOT a directional drop
+     shadow thrown down-and-to-one-side. Keep it subtle — a precision field
+     instrument, never neumorphism, gloss or a toy.
+     ====================================================================== */
+
+  /* Resting light control — warm off-white face */
+  --ctl-surface: #fbfaf3;
+  --ctl-surface-bottom: #f0ede1; /* convex foot for the face gradient */
+  --ctl-border: #cec8b6; /* crisp 1px perimeter, edges-before-shadows */
+  --ctl-highlight: rgba(255, 255, 255, 0.9); /* faint upper-inner highlight */
+  --ctl-shade: rgba(27, 33, 23, 0.1); /* faint lower-edge shade */
+  --ctl-shadow: 0 1px 2px rgba(27, 33, 23, 0.1),
+    0 2px 5px rgba(27, 33, 23, 0.05); /* soft, centred, hugs the control */
+  --ctl-shadow-pressed: inset 0 2px 4px rgba(27, 33, 23, 0.16); /* pressed inset */
+
+  /* Resting primary — deep TACEDGE green */
+  --ctl-primary-surface: var(--forest);
+  --ctl-primary-surface-bottom: #0c1d0c; /* darker foot */
+  --ctl-primary-border: #081408; /* darker perimeter */
+  --ctl-primary-highlight: rgba(255, 255, 255, 0.16); /* subtle inner highlight */
+  --ctl-primary-label: #f7f5ec; /* near-white label */
+
+  /* Selected — semantic fill + colour-independent edge cue */
+  --ctl-selected-surface: #e9eed8;
+  --ctl-selected-border: var(--forest);
+
+  /* Disabled — loses elevation, flatter, reduced contrast */
+  --ctl-disabled-surface: #eceadf;
+  --ctl-disabled-border: #ddd8cb;
+  --ctl-disabled-label: #9a9d90;
+
+  /* ---- Structure vs. control geometry ---------------------------------- */
+  --structural-border: #ddd7c8; /* crisp border for static panels/tables */
+  --r-structural: 12px; /* planted, rectangular panels */
+  --r-control: 12px; /* control corner radius (less rounded than before) */
+
+  /* ---- Focus, touch target, motion ------------------------------------- */
+  --focus-ring: 0 0 0 2.5px var(--forest); /* high-contrast ring OUTSIDE border */
+  --focus-ring-color: var(--forest);
+  --touch-target: 48px; /* gloved-tap floor */
+  --motion-dur: 0.14s;
+  --motion-ease: cubic-bezier(0.2, 0, 0, 1);
+
   /* ---- Shared geometry -------------------------------------------------- */
   --content-max: 1400px;
   --content-narrow: 1080px;

@@ -1,0 +1,5 @@
+# Raw, unsanitised working files for the V2 Prototype Walkthrough.
+# Nothing in this directory is committed except this .gitignore itself.
+# Sanitised, final screenshots live in public/v2-prototype-walkthrough/.
+*
+!.gitignore
