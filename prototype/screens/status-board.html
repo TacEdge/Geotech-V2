@@ -41,7 +41,12 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);font-size:16
 .tab:hover{color:var(--ink)}
 .tab.active{color:var(--forest);font-weight:700;border-bottom-color:var(--forest)}
 .filters{margin-left:auto;display:flex;align-items:center;gap:10px}
-.sel{display:flex;align-items:center;gap:8px;height:36px;padding:0 14px;border:1px solid var(--line-2);border-radius:7px;background:var(--card);font-size:13px;color:var(--ink-60);cursor:pointer;font-family:var(--ui)}
+.sel{display:flex;align-items:center;gap:8px;height:36px;padding:0 14px;border:1px solid var(--ctl-border);border-radius:var(--r-control);
+  background:linear-gradient(180deg,var(--ctl-surface),var(--ctl-surface-bottom));font-size:13px;color:var(--ink-60);cursor:pointer;font-family:var(--ui);
+  box-shadow:inset 0 1px 0 var(--ctl-highlight),inset 0 -1.5px 0 var(--ctl-shade),var(--ctl-shadow);
+  transition:box-shadow var(--motion-dur) var(--motion-ease),transform var(--motion-dur) var(--motion-ease),border-color var(--motion-dur) var(--motion-ease)}
+.sel:active{transform:translateY(1px);box-shadow:var(--ctl-shadow-pressed)}
+.sel:focus-visible{outline:2.5px solid var(--focus-ring-color);outline-offset:2px}
 .sel:hover{border-color:var(--olive)}
 .sel .k{font-family:var(--mono);font-size:10px;letter-spacing:.12em;color:var(--ink-40);text-transform:uppercase}
 .sel .v{color:var(--ink);font-weight:600}
@@ -147,9 +152,18 @@ body{font-family:var(--ui);color:var(--ink);background:var(--cream);font-size:16
 .sa-find li{font-size:13.5px;color:var(--ink-60);padding-left:16px;position:relative}
 .sa-find li::before{content:"";position:absolute;left:3px;top:8px;width:4px;height:4px;border-radius:50%;background:var(--olive)}
 .sa-actions{display:flex;flex-direction:column;gap:10px;padding:16px 0 4px;border-top:1px solid var(--line)}
-.btn-primary{height:46px;border:none;border-radius:8px;background:var(--forest);color:var(--cream);font-family:var(--ui);font-size:14px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px}
+.btn-primary{height:46px;border:1px solid var(--ctl-primary-border);border-radius:var(--r-control);background:linear-gradient(180deg,var(--ctl-primary-surface),var(--ctl-primary-surface-bottom));color:var(--cream);font-family:var(--ui);font-size:14px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;
+  box-shadow:inset 0 1px 0 var(--ctl-primary-highlight),inset 0 -1.5px 0 rgba(0,0,0,.22),var(--ctl-shadow);
+  transition:box-shadow var(--motion-dur) var(--motion-ease),transform var(--motion-dur) var(--motion-ease),background var(--motion-dur) var(--motion-ease)}
+.btn-primary:hover{background:linear-gradient(180deg,var(--forest-2),#0c1d0c)}
+.btn-primary:active{transform:translateY(1px);background:var(--forest-2);box-shadow:inset 0 2px 5px rgba(0,0,0,.28)}
+.btn-primary:focus-visible{outline:2.5px solid var(--focus-ring-color);outline-offset:2px}
 .btn-primary:hover{background:var(--forest-2)}
-.btn-ghost{height:46px;border:1px solid var(--line-2);border-radius:8px;background:var(--card);color:var(--ink);font-family:var(--ui);font-size:14px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px}
+.btn-ghost{height:46px;border:1px solid var(--ctl-border);border-radius:var(--r-control);background:linear-gradient(180deg,var(--ctl-surface),var(--ctl-surface-bottom));color:var(--ink);font-family:var(--ui);font-size:14px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;
+  box-shadow:inset 0 1px 0 var(--ctl-highlight),inset 0 -1.5px 0 var(--ctl-shade),var(--ctl-shadow);
+  transition:box-shadow var(--motion-dur) var(--motion-ease),transform var(--motion-dur) var(--motion-ease),border-color var(--motion-dur) var(--motion-ease)}
+.btn-ghost:active{transform:translateY(1px);box-shadow:var(--ctl-shadow-pressed)}
+.btn-ghost:focus-visible{outline:2.5px solid var(--focus-ring-color);outline-offset:2px}
 .btn-ghost:hover{border-color:var(--olive)}
 .ext{font-size:13px}
 .sa-pager{display:flex;align-items:center;justify-content:space-between;padding:14px 2px 2px;margin-top:8px;border-top:1px solid var(--line)}

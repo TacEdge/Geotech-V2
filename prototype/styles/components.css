@@ -61,7 +61,91 @@
   color: var(--ink-60);
 }
 
-/* Primary / secondary buttons — calm enterprise defaults */
+/* ============================================================================
+   PILLOW — the shared tactile grammar for genuine controls.
+   ----------------------------------------------------------------------------
+   Opt-in class (or the .te-btn primitives below, which bake it in). Apply
+   ONLY to things that can be clicked/tapped/selected. The face lifts forward
+   from the surface: faint upper-inner highlight + faint lower-edge shade +
+   a soft shadow that hugs the control. Never a directional drop shadow.
+   Depth is NEVER the only signal of interactivity — controls also carry a
+   real border, a pointer cursor and (where relevant) a label/icon.
+   States: resting light · resting primary · selected · pressed · disabled ·
+   focus — see below. Reduced-motion is honoured globally at the foot of this
+   file.
+   ========================================================================== */
+.pillow {
+  background: linear-gradient(
+    180deg,
+    var(--ctl-surface),
+    var(--ctl-surface-bottom)
+  );
+  border: 1px solid var(--ctl-border);
+  border-radius: var(--r-control);
+  box-shadow:
+    inset 0 1px 0 var(--ctl-highlight),
+    inset 0 -1.5px 0 var(--ctl-shade),
+    var(--ctl-shadow);
+  cursor: pointer;
+  transition:
+    box-shadow var(--motion-dur) var(--motion-ease),
+    transform var(--motion-dur) var(--motion-ease),
+    background var(--motion-dur) var(--motion-ease),
+    border-color var(--motion-dur) var(--motion-ease);
+}
+/* Resting primary — deep green, near-white label */
+.pillow.is-primary {
+  background: linear-gradient(
+    180deg,
+    var(--ctl-primary-surface),
+    var(--ctl-primary-surface-bottom)
+  );
+  border-color: var(--ctl-primary-border);
+  color: var(--ctl-primary-label);
+  box-shadow:
+    inset 0 1px 0 var(--ctl-primary-highlight),
+    inset 0 -1.5px 0 rgba(0, 0, 0, 0.22),
+    var(--ctl-shadow);
+}
+/* Selected — semantic fill + a colour-independent inset edge cue */
+.pillow.is-selected,
+.pillow[aria-pressed='true'],
+.pillow[aria-selected='true'] {
+  background: var(--ctl-selected-surface);
+  border-color: var(--ctl-selected-border);
+  box-shadow:
+    inset 0 0 0 1px var(--ctl-selected-border),
+    inset 0 1px 0 var(--ctl-highlight),
+    var(--ctl-shadow);
+}
+/* Pressed — sink ~1px, lose the lift, gain a light inset, darken slightly */
+.pillow:active {
+  transform: translateY(1px);
+  box-shadow: var(--ctl-shadow-pressed);
+  border-color: var(--ctl-border);
+}
+.pillow.is-primary:active {
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.28);
+  background: var(--forest-2);
+}
+/* Disabled — flat, reduced contrast, no lift, not tappable */
+.pillow:disabled,
+.pillow[aria-disabled='true'],
+.pillow.is-disabled {
+  background: var(--ctl-disabled-surface);
+  border-color: var(--ctl-disabled-border);
+  color: var(--ctl-disabled-label);
+  box-shadow: none;
+  cursor: not-allowed;
+  transform: none;
+}
+/* Focus — high-contrast ring OUTSIDE the border (never shadow-only) */
+.pillow:focus-visible {
+  outline: 2.5px solid var(--focus-ring-color);
+  outline-offset: 2px;
+}
+
+/* Primary / secondary buttons — calm enterprise defaults, now tactile */
 .te-btn {
   display: inline-flex;
   align-items: center;
@@ -69,27 +153,68 @@
   gap: 8px;
   height: 40px;
   padding: 0 18px;
-  border-radius: var(--r-md);
-  border: 1px solid transparent;
+  border-radius: var(--r-control);
+  border: 1px solid var(--ctl-border);
   font-family: var(--ui);
   font-size: var(--fs-base);
   font-weight: 600;
   cursor: pointer;
+  background: linear-gradient(
+    180deg,
+    var(--ctl-surface),
+    var(--ctl-surface-bottom)
+  );
+  color: var(--ink);
+  box-shadow:
+    inset 0 1px 0 var(--ctl-highlight),
+    inset 0 -1.5px 0 var(--ctl-shade),
+    var(--ctl-shadow);
   transition:
-    background 0.15s ease,
-    border-color 0.15s ease;
+    box-shadow var(--motion-dur) var(--motion-ease),
+    transform var(--motion-dur) var(--motion-ease),
+    background var(--motion-dur) var(--motion-ease),
+    border-color var(--motion-dur) var(--motion-ease);
+}
+.te-btn:active {
+  transform: translateY(1px);
+  box-shadow: var(--ctl-shadow-pressed);
+}
+.te-btn:focus-visible {
+  outline: 2.5px solid var(--focus-ring-color);
+  outline-offset: 2px;
+}
+.te-btn:disabled,
+.te-btn[aria-disabled='true'] {
+  background: var(--ctl-disabled-surface);
+  border-color: var(--ctl-disabled-border);
+  color: var(--ctl-disabled-label);
+  box-shadow: none;
+  cursor: not-allowed;
+  transform: none;
 }
 .te-btn-primary {
-  background: var(--forest);
-  color: var(--cream);
+  background: linear-gradient(
+    180deg,
+    var(--ctl-primary-surface),
+    var(--ctl-primary-surface-bottom)
+  );
+  border-color: var(--ctl-primary-border);
+  color: var(--ctl-primary-label);
+  box-shadow:
+    inset 0 1px 0 var(--ctl-primary-highlight),
+    inset 0 -1.5px 0 rgba(0, 0, 0, 0.22),
+    var(--ctl-shadow);
 }
 .te-btn-primary:hover {
+  background: linear-gradient(180deg, var(--forest-2), #0c1d0c);
+}
+.te-btn-primary:active {
+  transform: translateY(1px);
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.28);
   background: var(--forest-2);
 }
 .te-btn-ghost {
-  background: transparent;
   color: var(--ink-60);
-  border-color: var(--line-2);
 }
 .te-btn-ghost:hover {
   color: var(--ink);
