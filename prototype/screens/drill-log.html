@@ -353,6 +353,86 @@ body{font-family:var(--ui);color:var(--ink);background:var(--stage);min-height:1
 .spec .sg .c .k{color:var(--ink-40)}
 .spec .sg[hidden]{display:none}
 .curlith[hidden]{display:none}
+
+/* ====================================================================
+   PDS-DRL refined build v2 — matches the field reference mockup:
+   minimal identity row, unified depth hero, rounded lithology chips,
+   a live graphical Bore Profile, surfaced observation + submit.
+   ==================================================================== */
+/* identity row */
+.idrow2{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:2px 2px 4px}
+.idrow2 .bigid{font-family:var(--mono);font-weight:700;font-size:var(--fs-4xl);line-height:.9;color:var(--ink);letter-spacing:-.01em}
+.saved{display:inline-flex;align-items:center;gap:7px;font-size:var(--fs-base);font-weight:600;color:var(--forest-2)}
+.saved .sc{width:22px;height:22px;border-radius:50%;border:1.7px solid var(--forest);color:var(--forest);display:grid;place-items:center}
+
+/* unified depth hero card */
+.dcard{border:1px solid var(--structural-border);background:var(--card);border-radius:var(--r-2xl);padding:22px 15px 16px;text-align:center}
+.dcard .dh-val{display:flex;justify-content:center;align-items:baseline;gap:5px}
+.dcard .dh-val .n{font-family:var(--mono);font-weight:700;font-size:66px;line-height:.86;color:var(--forest);letter-spacing:-.02em}
+.dcard .dh-val .u{font-family:var(--mono);font-size:var(--fs-xl);color:var(--ink-40);font-weight:500}
+.dcard .d-of{font-size:var(--fs-lg);color:var(--ink-40);margin-top:6px}
+.dcard .pbar{height:12px;margin-top:16px;background:var(--line);border-radius:var(--r-pill);overflow:hidden}
+.dcard .pbar .pf{height:100%;background:var(--forest);border-radius:var(--r-pill)}
+.dcard .qadj{margin-top:16px}
+.dcard .qadj .qc{min-height:90px;border-radius:16px}
+.dcard .qadj .qc .cap{display:none}
+.dcard .qadj .qc{padding:10px 4px}
+.dcard .qadj .qc .big{font-size:21px;white-space:nowrap}
+.dcard .qadj .qc.undo .big{font-size:var(--fs-lg)}
+.dcard .qadj .qc.undo .ico{color:var(--ink-60)}
+
+/* rounded lithology chips (GROUND AT …) */
+.lqchips{align-items:stretch}
+.lqchips .lq{border-radius:var(--r-control);padding:12px 16px;min-height:54px;justify-content:center;text-align:center;line-height:1.15}
+.lqchips .lq[data-tone=ochre]{color:#9a6a1e}
+
+/* ---- Bore Profile (live) ------------------------------------------- */
+.bore{display:grid;grid-template-columns:54px 94px 1fr;position:relative;padding:6px 0 2px}
+.bore-axis,.bore-col,.bore-legend{height:340px}
+.bore-axis{position:relative}
+.bore-tick{position:absolute;right:12px;transform:translateY(-50%);font-family:var(--mono);font-size:var(--fs-xs);color:var(--ink-40);white-space:nowrap}
+.bore-tick.cur{color:var(--forest-2);font-weight:700}
+.bore-tick::after{content:"";position:absolute;right:-12px;top:50%;width:8px;height:1.5px;background:var(--line-2)}
+.bore-tick.cur::after{background:var(--forest)}
+.bore-col{position:relative}
+.bore-solid{position:absolute;left:6px;right:6px;top:0;border-radius:11px 11px 0 0;overflow:hidden;box-shadow:inset 0 0 0 1px rgba(27,33,23,.1)}
+.bore-band{position:absolute;left:0;right:0}
+.bore-band[data-mat=fill]{background:#e7ddc1;background-image:radial-gradient(circle at 28% 30%,rgba(255,255,255,.7) 0 1.6px,transparent 2.4px),radial-gradient(circle at 66% 64%,rgba(255,255,255,.5) 0 1.4px,transparent 2.2px);background-size:22px 22px}
+.bore-band[data-mat=clay]{background:#c9b58f;background-image:repeating-linear-gradient(0deg,rgba(120,92,60,.2) 0 1px,transparent 1px 8px),repeating-linear-gradient(0deg,rgba(120,92,60,.1) 0 1px,transparent 1px 4px)}
+.bore-band[data-mat=weathered-greywacke]{background:#9ba189;background-image:radial-gradient(circle at 30% 34%,rgba(58,68,48,.42) 0 1.9px,transparent 2.7px),radial-gradient(circle at 68% 62%,rgba(58,68,48,.34) 0 1.6px,transparent 2.4px),radial-gradient(circle at 50% 84%,rgba(58,68,48,.3) 0 1.4px,transparent 2.2px);background-size:21px 21px}
+.bore-band[data-mat=greywacke]{background:#828a78;background-image:radial-gradient(circle at 32% 32%,rgba(45,54,38,.4) 0 1.8px,transparent 2.6px),radial-gradient(circle at 70% 64%,rgba(45,54,38,.32) 0 1.6px,transparent 2.4px);background-size:20px 20px}
+.bore-band[data-mat=sandstone]{background:#cabd97}
+.bore-band[data-mat=argillite]{background:#5d6058}
+.bore-band[data-mat=siltstone]{background:#989a8d}
+.bore-band[data-mat=colluvium]{background:#8a7860}
+.bore-band[data-mat=fault-gouge]{background:#9a8a73}
+.bore-band[data-mat=other]{background:#cbd2c9}
+.bore-undrilled{position:absolute;left:6px;right:6px;border:1.5px dashed var(--line-2);border-top:none;border-radius:0 0 11px 11px;background:repeating-linear-gradient(45deg,transparent 0 7px,rgba(27,33,23,.05) 7px 8px)}
+.bore-marker{position:absolute;right:6px;width:15px;height:15px;border-radius:50%;background:var(--forest);border:3px solid var(--cream);box-shadow:0 0 0 1px var(--forest);transform:translate(50%,-50%);z-index:4}
+.bore-conn{position:absolute;height:1.5px;background:var(--forest);z-index:2}
+.bore-legend{position:relative;padding-left:14px}
+.bore-leg{position:absolute;left:14px;right:0;transform:translateY(-50%);display:flex;align-items:center;gap:10px;font-size:var(--fs-base);color:var(--ink);white-space:nowrap}
+.bore-leg .ld{width:11px;height:11px;border-radius:50%;flex-shrink:0;box-shadow:inset 0 0 0 1px rgba(27,33,23,.12)}
+.bore-leg.cur{color:var(--forest-2);font-weight:700}
+.bore-leg.des{color:var(--ink-40)}
+.bore-leg.des .ld{background:var(--line)}
+
+/* surfaced observation / photo action */
+.addobs{width:100%;display:flex;align-items:center;justify-content:center;gap:11px;padding:14px 16px;margin-top:4px;
+  border:1px solid var(--ctl-border);border-radius:var(--r-control);
+  background:linear-gradient(180deg,var(--ctl-surface),var(--ctl-surface-bottom));
+  box-shadow:inset 0 1px 0 var(--ctl-highlight),inset 0 -1.5px 0 var(--ctl-shade),var(--ctl-shadow);
+  font-family:var(--ui);font-size:var(--fs-base);font-weight:600;color:var(--forest-2);cursor:pointer;
+  transition:box-shadow var(--motion-dur) var(--motion-ease),transform var(--motion-dur) var(--motion-ease)}
+.addobs:active{transform:translateY(1px);box-shadow:var(--ctl-shadow-pressed)}
+.addobs:focus-visible{outline:2.5px solid var(--focus-ring-color);outline-offset:2px}
+.addobs .cam{width:30px;height:30px;border-radius:50%;background:var(--sage-tint);color:var(--forest);display:grid;place-items:center;flex-shrink:0}
+
+/* simplified submit dock */
+.dock .btn.subqa{justify-content:center;gap:0;position:relative}
+.dock .btn.subqa .bt{flex:0 1 auto;align-items:center}
+.dock .btn.subqa .bt1{font-size:var(--fs-lg)}
+.dock .btn.subqa .bchev{position:absolute;right:20px;opacity:1}
 </style>
 <link rel="manifest" href="../manifest.json">
 <meta name="theme-color" content="#112411">
@@ -371,85 +451,58 @@ body{font-family:var(--ui);color:var(--ink);background:var(--stage);min-height:1
     <header></header>
   <script>TE_HEADER.fill('drill-log')</script>
 
-    <!-- gate satisfied -->
-    <div class="signed">
-      <span class="tick"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>
-      <span>Signed on <b>06:42</b> &middot; cleared to drill</span><span class="jsa">JSA-118 ACK</span>
-    </div>
-
     <div class="scroll"><div class="pad">
 
       <!-- identity -->
-      <div class="hero">
-        <div class="idrow">
-          <span class="idref">B12</span>
-          <span class="idmeta"><span class="wtype">Spillway Face <span class="stg">· Drill stage 2 of 3</span></span><span class="phase"><span class="pd"></span>Active</span></span>
-          <button class="vad">View details <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></button>
-        </div>
-        <span class="heropos">Row 2 · 14 of 18 drilled in this zone</span>
+      <div class="idrow2">
+        <span class="bigid">B12</span>
+        <span class="saved"><span class="sc"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Saved</span>
       </div>
 
-      <!-- current depth (hero) -->
-      <div class="sec">
-        <div class="sl">Current depth</div>
-        <div class="dcard">
-          <div class="dh-val"><span class="n" id="depthVal">0.0</span><span class="u">m</span></div>
-          <div class="des" id="depthSub">Design 12.0 m · 0% complete</div>
-          <div class="pbar dpb"><span class="pf" id="depthBar" style="width:0%"></span></div>
-          <div class="qadj" id="qadj">
-            <button class="qc on" data-step="1" aria-label="Add 1.0 m"><span class="big">+1.0 m</span><span class="cap">Add 1.0 m</span></button>
-            <button class="qc" data-step="0.1" aria-label="Add 0.1 m"><span class="big">+0.1 m</span><span class="cap">Add 0.1 m</span></button>
-            <button class="qc undo" id="undoBtn" aria-label="Undo last change"><span class="ico"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7v6h6"/><path d="M3.51 13a9 9 0 1 0 2.13-9.36L3 7"/></svg></span><span class="big">Undo</span><span class="cap">Last change</span></button>
-          </div>
+      <!-- depth hero -->
+      <div class="dcard">
+        <div class="dh-val"><span class="n" id="depthVal">4.6</span><span class="u">m</span></div>
+        <div class="d-of" id="depthSub">of 12.0 m</div>
+        <div class="pbar"><span class="pf" id="depthBar" style="width:0%"></span></div>
+        <div class="qadj" id="qadj">
+          <button class="qc on" data-step="1" aria-label="Add 1.0 m"><span class="big">+1.0 m</span><span class="cap">Add 1.0 m</span></button>
+          <button class="qc" data-step="0.1" aria-label="Add 0.1 m"><span class="big">+0.1 m</span><span class="cap">Add 0.1 m</span></button>
+          <button class="qc undo" id="undoBtn" aria-label="Undo last change"><span class="ico"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7v6h6"/><path d="M3.51 13a9 9 0 1 0 2.13-9.36L3 7"/></svg></span><span class="big">Undo</span><span class="cap">Last change</span></button>
         </div>
       </div>
 
       <!-- lithology -->
       <div class="sec">
-        <div class="sl">Lithology <span class="sub" id="curAt">at 0.0 m</span></div>
+        <div class="sl">Ground <span class="sub" id="curAt">at 4.6 m</span></div>
         <div class="lqchips" id="lqchips">
           <button class="lq" data-tone="tint" data-lith="Fill">Fill</button>
           <button class="lq" data-tone="ochre" data-lith="Clay">Clay</button>
           <button class="lq" data-tone="sage" data-lith="Weathered Greywacke">Weathered Greywacke</button>
           <button class="lq" data-lith="Greywacke">Greywacke</button>
         </div>
-        <div class="lithstate" id="lithState">
-          <span class="lst-ic" id="lstIc"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l9 5-9 5-9-5z"/><path d="M3 12l9 5 9-5"/></svg></span>
-          <div class="lst-tx"><b id="lstT">No lithology logged yet</b><span id="lstS">Tap a material above to start the first layer.</span></div>
-        </div>
-        <button class="curlith" id="curlith" hidden><span class="sw lg" data-mat="other"></span><span class="nm">Selected: <span id="curName">None yet</span></span><span class="car"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span></button>
       </div>
 
-      <!-- lithology log -->
+      <!-- bore profile (live) -->
       <div class="sec">
-        <div class="sl">Lithology log <button class="act open" id="viewToggle"><span id="vtLabel">0 intervals</span><svg class="chev" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 15l-6-6-6 6"/></svg></button></div>
-        <div class="lithlog" id="lithlog"><div class="llempty"><span class="lle-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 3.5h6v2H9z"/><path d="M8.5 10h7M8.5 14h5"/></svg></span><div class="lle-tx"><b>No intervals recorded yet.</b><span>Depth down, then tap a material to log the first layer.</span></div></div></div>
+        <div class="sl">Bore profile</div>
+        <div class="bore" id="bore">
+          <div class="bore-axis" id="boreAxis"></div>
+          <div class="bore-col" id="boreCol"></div>
+          <div class="bore-legend" id="boreLegend"></div>
+        </div>
       </div>
 
-      <!-- design context (secondary) -->
-      <div class="spec">
-        <div class="sh"><span class="t">Design</span><span class="lock">read-only</span><button class="sh-act" id="designToggle" aria-expanded="false">View design details <svg class="chev" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button></div>
-        <div class="dsum">
-          <div class="dcell"><svg class="dci" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="2" width="8" height="20" rx="1.5"/><path d="M8 6h3M8 10h3M8 14h3M8 18h3"/></svg><div class="dcx"><span class="dv">12.0 <i>m</i></span><span class="dk">Design depth</span></div></div>
-          <div class="dcell"><svg class="dci" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V3h6v1M9 10h6M9 14h4"/></svg><div class="dcx"><span class="dv">WSP-A2</span><span class="dk">Specification</span></div></div>
-          <div class="dcell"><svg class="dci" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3v18M12 3v18M16 3v18"/></svg><div class="dcx"><span class="dv">32 mm / 6.0 m</span><span class="dk">Bar · bond</span></div></div>
-          <div class="dcell"><svg class="dci" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 19l6-9 4 5 3-4 5 8z"/></svg><div class="dcx"><span class="dv">Greywacke</span><span class="dk">Expected</span></div></div>
-        </div>
-        <div class="sg" id="sg" hidden>
-          <div class="c"><span class="k">Design depth</span><span class="v">12.0 m</span></div>
-          <div class="c"><span class="k">Specification</span><span class="v">WSP-A2</span></div>
-          <div class="c"><span class="k">Bar · bond</span><span class="v">32 mm · 6.0 m</span></div>
-          <div class="c"><span class="k">Lithology expected</span><span class="v">Greywacke</span></div>
-          <div class="c"><span class="k">Drill angle</span><span class="v">15&deg;</span></div>
-          <div class="c"><span class="k">Grout mix</span><span class="v">GP-2</span></div>
-        </div>
-      </div>
+      <!-- observation / photo -->
+      <button class="addobs" id="addObs">
+        <span class="cam"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></span>
+        + Add observation or photo
+      </button>
 
     </div></div>
 
     <!-- dock -->
     <div class="dock one">
-      <button class="btn prim subqa muted" id="submitQA"><svg class="bico" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg><span class="bt"><span class="bt1" id="dockT">Complete drill log</span><span class="bt2" id="dockS">Depth, lithology and observations required</span></span><svg class="bchev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></button>
+      <button class="btn prim subqa" id="submitQA"><span class="bt"><span class="bt1" id="dockT">Submit for QA</span></span><svg class="bchev" width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
     </div>
 
     <!-- record lithology change · bottom sheet -->
@@ -496,60 +549,83 @@ body{font-family:var(--ui);color:var(--ink);background:var(--stage);min-height:1
   function sw(m,sz){return '<span class="sw '+sz+'" data-mat="'+slug(m)+'"></span>';}
   function tick(){return '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>';}
 
-  var layers=[];            /* start of drilling, no lithology logged yet */
-  var pickMat='Greywacke';
+  /* B12 opens mid-drill at 4.6 m with three layers already logged */
+  var layers=[
+    {from:0,   to:0.7,  lith:'Fill'},
+    {from:0.7, to:3.2,  lith:'Clay'},
+    {from:3.2, to:null, lith:'Weathered Greywacke'}
+  ];
+  var pickMat='Weathered Greywacke';
+  var H=340; /* bore-profile column height, px (matches .bore-*{height} in CSS) */
 
-  function setLithState(act){
-    var st=document.getElementById('lithState');
-    if(!st) return;
-    var t=document.getElementById('lstT'), s=document.getElementById('lstS');
-    if(!act){ st.classList.remove('active'); t.textContent='No lithology logged yet'; s.textContent='Tap a material above to start the first layer.'; }
-    else { st.classList.add('active'); t.textContent='Current layer: '+act.lith; s.textContent='Started at '+fmt(act.from)+' m'; }
-  }
   function updateDock(){
     var ready = curDepth()>0 && layers.length>0;
     var b=document.getElementById('submitQA'); if(!b) return;
     b.classList.toggle('muted',!ready);
-    document.getElementById('dockT').textContent = ready ? 'Submit to QA' : 'Complete drill log';
-    document.getElementById('dockS').textContent = ready ? 'Depth, lithology and observations complete' : 'Depth, lithology and observations required';
+    var t=document.getElementById('dockT'); if(t) t.textContent = ready ? 'Submit for QA' : 'Complete drill log';
   }
   function recompute(){
     var a=curDepth();
     var pct=Math.min(100,Math.round(a/DESIGN*100)), over=+(a-DESIGN).toFixed(1);
     var ds=document.getElementById('depthSub');
-    if(ds){ ds.textContent = over>0 ? ('Design '+fmt(DESIGN)+' m · +'+over.toFixed(1)+' m over design')
-                                    : ('Design '+fmt(DESIGN)+' m · '+pct+'% complete'); }
+    if(ds){ ds.textContent = over>0 ? ('of '+fmt(DESIGN)+' m · +'+over.toFixed(1)+' m over')
+                                    : ('of '+fmt(DESIGN)+' m'); }
     var db=document.getElementById('depthBar'); if(db) db.style.width=pct+'%';
-    document.getElementById('curAt').textContent='at '+fmt(a)+' m';
+    var ca=document.getElementById('curAt'); if(ca) ca.textContent='at '+fmt(a)+' m';
     var dc=document.getElementById('dacCur'); if(dc) dc.textContent='Current depth: '+fmt(a)+' m';
-    renderLog();
+    renderProfile();
     updateDock();
   }
 
-  function renderLog(){
-    var d=curDepth(), c=document.getElementById('lithlog'), h='';
-    var chips=document.querySelectorAll('#lqchips .lq');
-    if(!layers.length){
-      c.innerHTML='<div class="llempty"><span class="lle-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 3.5h6v2H9z"/><path d="M8.5 10h7M8.5 14h5"/></svg></span><div class="lle-tx"><b>No intervals recorded yet.</b><span>Depth down, then tap a material to log the first layer.</span></div></div>';
-      setLithState(null);
-      document.getElementById('vtLabel').textContent='0 intervals';
-      [].forEach.call(chips,function(x){x.classList.remove('on');});
-      return;
-    }
+  /* live bore profile \u2014 a stratigraphic column built from the logged layers,
+     the current drilling level and the design depth. Rebuilds on every change. */
+  function renderProfile(){
+    var cur=curDepth();
+    var scaleMax=Math.max(DESIGN,cur)||DESIGN;
+    function y(d){ return Math.max(0,Math.min(H, d/scaleMax*H)); }
+    var col=document.getElementById('boreCol'),
+        axis=document.getElementById('boreAxis'),
+        leg=document.getElementById('boreLegend');
+    if(!col||!axis||!leg) return;
+
+    /* solid drilled column + undrilled remainder + current marker */
+    var solid='<div class="bore-solid" style="height:'+y(cur)+'px">';
     for(var i=0;i<layers.length;i++){
-      var L=layers[i], active=L.to===null, to=active?d:L.to, thk=Math.max(0,to-L.from);
-      h+='<div class="llrow'+(active?' active':'')+'">'
-        +'<span class="llspine" style="background:'+(SPINE[slug(L.lith)]||'#cbd2c9')+'"></span>'
-        +'<div class="llrange2"><span class="r">'+fmt(L.from)+'\u2013'+fmt(to)+' m</span></div>'
-        +'<div class="llmat">'+sw(L.lith,'md')+'<span class="nm">'+L.lith+'</span></div>'
-        +'<span class="llthk">'+fmt(thk)+' m'+(active?' (current)':'')+'</span>'
-        +'</div>';
+      var L=layers[i], active=L.to===null, to=active?cur:L.to;
+      if(to<=L.from) continue;
+      solid+='<div class="bore-band" data-mat="'+slug(L.lith)+'" style="top:'+y(L.from)+'px;height:'+(y(to)-y(L.from))+'px"></div>';
     }
-    c.innerHTML=h;
-    var act=layers[layers.length-1];
-    setLithState(act);
-    document.getElementById('vtLabel').textContent=layers.length+' interval'+(layers.length===1?'':'s');
-    [].forEach.call(chips,function(x){x.classList.toggle('on',x.dataset.lith===act.lith);});
+    solid+='</div>';
+    var und = DESIGN>cur ? '<div class="bore-undrilled" style="top:'+y(cur)+'px;height:'+(y(DESIGN)-y(cur))+'px"></div>' : '';
+    col.innerHTML = solid + und + '<div class="bore-marker" style="top:'+y(cur)+'px"></div>';
+
+    /* depth axis ticks (0, each boundary, current, design) */
+    var ticks=[0];
+    for(var j=0;j<layers.length;j++){ if(layers[j].to!==null) ticks.push(layers[j].to); }
+    ticks.push(cur, DESIGN);
+    ticks=ticks.filter(function(v,ix,arr){return arr.indexOf(v)===ix;}).sort(function(a,b){return a-b;});
+    axis.innerHTML=ticks.map(function(d){
+      var isCur=Math.abs(d-cur)<0.001;
+      return '<span class="bore-tick'+(isCur?' cur':'')+'" style="top:'+y(d)+'px">'+fmt(d)+' m</span>';
+    }).join('');
+
+    /* legend \u2014 material rows at band centres, then current level + design */
+    var lh='';
+    for(var k=0;k<layers.length;k++){
+      var Lk=layers[k], toK=Lk.to===null?cur:Lk.to, mid=(Lk.from+toK)/2;
+      lh+='<div class="bore-leg" style="top:'+y(mid)+'px"><span class="ld" style="background:'+(SPINE[slug(Lk.lith)]||'#cbd2c9')+'"></span>'+Lk.lith+'</div>';
+    }
+    lh+='<div class="bore-leg cur" style="top:'+y(cur)+'px"><span class="ld" style="background:var(--forest)"></span>Current drilling level</div>';
+    lh+='<div class="bore-leg des" style="top:'+y(DESIGN)+'px"><span class="ld"></span>Design depth</div>';
+    leg.innerHTML=lh;
+    var conn=document.createElement('div');
+    conn.className='bore-conn'; conn.style.top=y(cur)+'px'; conn.style.left='-9px'; conn.style.width='23px';
+    leg.appendChild(conn);
+
+    /* reflect the active layer on the chip row */
+    var chips=document.querySelectorAll('#lqchips .lq');
+    var act=layers.length?layers[layers.length-1]:null;
+    [].forEach.call(chips,function(x){ x.classList.toggle('on', !!act && x.dataset.lith===act.lith); });
   }
 
   function step(n){ setDepth(Math.max(0,curDepth()+n)); recompute(); }
@@ -584,21 +660,6 @@ body{font-family:var(--ui);color:var(--ink);background:var(--stage);min-height:1
     addLithology(b.dataset.lith);
   });
 
-  /* log collapse toggle */
-  document.getElementById('viewToggle').addEventListener('click',function(){
-    var open=this.classList.toggle('open');
-    document.getElementById('lithlog').classList.toggle('collapsed',!open);
-  });
-
-  /* design details toggle */
-  var dtog=document.getElementById('designToggle'), sg=document.getElementById('sg');
-  if(dtog&&sg)dtog.addEventListener('click',function(){
-    var open=sg.hasAttribute('hidden');
-    if(open){sg.removeAttribute('hidden');}else{sg.setAttribute('hidden','');}
-    dtog.setAttribute('aria-expanded',open?'true':'false');
-    dtog.classList.toggle('open',open);
-  });
-
   /* state-aware submit */
   var sub=document.getElementById('submitQA');
   if(sub)sub.addEventListener('click',function(){
@@ -616,7 +677,7 @@ body{font-family:var(--ui);color:var(--ink);background:var(--stage);min-height:1
   }
   function openSheet(){ pickMat=layers.length?layers[layers.length-1].lith:MATS[0]; document.getElementById('dacVal').textContent=fmt(curDepth()); renderMats(); sheet.classList.add('open'); }
   function closeSheet(){ sheet.classList.remove('open'); }
-  document.getElementById('curlith').addEventListener('click',openSheet);
+  var _addObs=document.getElementById('addObs'); if(_addObs) _addObs.addEventListener('click',openSheet);
   document.getElementById('sheetX').addEventListener('click',closeSheet);
   document.getElementById('sheetOv').addEventListener('click',closeSheet);
   document.getElementById('useCur').addEventListener('click',function(){ document.getElementById('dacVal').textContent=fmt(curDepth()); });
