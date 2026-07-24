@@ -268,25 +268,25 @@ body{font-size:15px}
 <div class="content2">
   <div class="qa-head">
     <div class="qa-title">QA Queue <span class="badge" id="qa-total">8</span></div>
-    <div class="qa-sub">Review submitted records and approve or reopen them.</div>
+    <div class="qa-sub">Review records that need your decision.</div>
   </div>
 
   <div class="qa-filter">
-    <button class="qchip active" data-filter="all">All</button>
+    <button class="qchip active" data-filter="all">To review <span class="n" id="cnt-all">8</span></button>
     <button class="qchip" data-filter="ready">Ready <span class="n">5</span></button>
     <button class="qchip" data-filter="attn">Needs attention <span class="n">3</span></button>
     <button class="qchip" data-filter="approved">Approved</button>
     <button class="qchip" data-filter="reopened">Reopened</button>
     <label class="qa-search">
       <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="9" r="6"/><path d="m14 14 4 4"/></svg>
-      <input type="text" id="qa-find" placeholder="Find record" autocomplete="off">
+      <input type="text" id="qa-find" placeholder="Find work item…" autocomplete="off">
     </label>
   </div>
 
   <div class="qa-grid">
     <div class="queue">
   <section class="q-sec" id="grp-ready">
-    <div class="q-sec-h">Ready to confirm <span class="q-sec-c" id="cnt-ready">5</span></div>
+    <div class="q-sec-h">Ready to approve <span class="q-sec-c" id="cnt-ready">5</span></div>
     <button class="q-item bd-ready is-sel" data-target="B17">
       <div class="qi-top"><span class="qi-id">B17</span><span class="qi-pill ready">Ready</span></div>
       <div class="qi-zone">Spillway Face · J. Smith · 2h ago</div>
@@ -909,6 +909,193 @@ import { activeProject } from '../config/projects.js';
       var pill = d && d.querySelector('.pq-pill'); if (pill){ pill.textContent = 'Reopened'; pill.className = 'pq-pill attn'; }
     });
   });
+})();
+</script>
+<style>
+/* ============================================================
+   QA Queue — refined decision surface (matches field mockup).
+   A layer over the existing markup: status header block, a
+   3-signal summary band, restructured requirement + evidence
+   cards, and a tidier queue list. Behaviour is unchanged.
+   ============================================================ */
+/* queue list: needs-attention first, chevron affordance, status dot */
+.q-item{position:relative;padding-right:34px}
+.q-item::after{content:"";position:absolute;right:16px;top:50%;width:7px;height:7px;border-right:2px solid var(--ink-40);border-top:2px solid var(--ink-40);transform:translateY(-50%) rotate(45deg);opacity:.45}
+.qi-pill{display:inline-flex;align-items:center;gap:6px}
+.qi-pill.attn::before,.qi-pill.fail::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor;flex-shrink:0}
+.qi-pill.fail{color:var(--brick)}
+.qi-pill.ready::before{content:"";width:14px;height:14px;flex-shrink:0;background:var(--forest);border-radius:50%;
+  -webkit-mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.4' stroke-linecap='round' stroke-linejoin='round'><path d='M20 6L9 17l-5-5'/></svg>") center/11px no-repeat;
+  mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.4' stroke-linecap='round' stroke-linejoin='round'><path d='M20 6L9 17l-5-5'/></svg>") center/11px no-repeat}
+.qi-pill.ready{background:transparent;color:var(--forest-2);padding-left:0}
+
+/* detail: hide the raw pills + metric strip (data reused by the layer) */
+.qa-grid.qa2 .d-head{align-items:center}
+.qa-grid.qa2 .d-head .d-pill,.qa-grid.qa2 .d-head .d-approved-by{display:none}
+.qa-grid.qa2 .d-metrics{display:none}
+
+/* status header block */
+.qa2-status{display:flex;align-items:center;gap:13px;margin:4px 0 2px}
+.qa2-status .qs-ic{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;flex-shrink:0}
+.qa2-status.ok .qs-ic{background:var(--forest);color:var(--cream)}
+.qa2-status.warn .qs-ic{background:var(--ochre-tint);color:#9a6a16;box-shadow:inset 0 0 0 1.5px #e6cd93}
+.qa2-status.fail .qs-ic{background:var(--brick-tint);color:var(--brick)}
+.qa2-status .qs-t{font-family:var(--ui);font-weight:700;font-size:15px;letter-spacing:.03em;line-height:1.1}
+.qa2-status.ok .qs-t{color:var(--forest-2)}
+.qa2-status.warn .qs-t{color:#8a5f1e}
+.qa2-status.fail .qs-t{color:var(--brick)}
+.qa2-status .qs-s{font-size:13px;color:var(--ink-60);margin-top:2px}
+
+/* 3-signal summary band */
+.qa2-signal{display:grid;grid-template-columns:1fr 1fr 1fr;background:var(--sage-tint);border:1px solid var(--olive-edge);border-radius:13px;padding:16px 2px;margin:14px 0 2px}
+.qa2-sig{display:flex;align-items:center;gap:13px;padding:0 20px;border-left:1px solid rgba(110,125,92,.3)}
+.qa2-sig:first-child{border-left:none}
+.qa2-sig .sg-ic{color:var(--forest);flex-shrink:0;display:flex}
+.qa2-sig .sg-k{font-size:12px;color:var(--ink-60)}
+.qa2-sig .sg-v{font-size:17px;font-weight:700;color:var(--ink);margin-top:2px;line-height:1.05}
+.qa2-sig .sg-v.warn{color:var(--ochre)}
+.qa2-sig .sg-v.ok{color:var(--forest-2)}
+.qa2-sig .sg-sub{font-size:11.5px;color:var(--ink-40);margin-top:2px}
+
+/* requirements card: summary + collapsible list + data grid */
+.qa-grid.qa2 .reqcard .rc-h{align-items:center;gap:10px;cursor:default}
+.qa2-rqh{display:flex;align-items:center;gap:10px;width:100%}
+.qa2-rqh .rqh-ic{width:26px;height:26px;border-radius:50%;background:var(--forest);color:var(--cream);display:grid;place-items:center;flex-shrink:0}
+.qa2-rqh.part .rqh-ic{background:var(--ochre-tint);color:#9a6a16;box-shadow:inset 0 0 0 1.5px #e6cd93}
+.qa2-rqh .rqh-t{font-size:14.5px;font-weight:700;color:var(--ink)}
+.qa2-rqh .rqh-tog{margin-left:auto;display:inline-flex;align-items:center;gap:5px;background:none;border:none;font-family:var(--ui);font-size:13px;font-weight:600;color:var(--ink-60);cursor:pointer}
+.qa2-rqh .rqh-tog .cv{transition:transform .15s}
+.reqcard.open .qa2-rqh .rqh-tog .cv{transform:rotate(180deg)}
+.qa-grid.qa2 .reqcard .rc-list{display:none;margin-top:6px}
+.qa-grid.qa2 .reqcard.open .rc-list{display:block}
+.qa2-dgrid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px 16px;margin-top:16px}
+.qa2-dcell .dg-k{font-size:12px;color:var(--ink-40)}
+.qa2-dcell .dg-v{font-family:var(--mono);font-size:16px;font-weight:700;color:var(--ink);margin-top:3px}
+.qa2-dcell .dg-v.warn{color:var(--ochre)}
+.qa2-more{display:flex;align-items:center;justify-content:center;gap:6px;margin-top:16px;padding-top:14px;border-top:1px solid var(--line);font-size:13px;font-weight:600;color:var(--forest);cursor:pointer}
+
+/* evidence card: heading + lead photo + thumbs */
+.qa-grid.qa2 .evcard .ev-tabs{display:none}
+.qa2-evh{display:flex;align-items:baseline;gap:10px;margin-bottom:12px}
+.qa2-evh .eh-t{font-size:14.5px;font-weight:700;color:var(--ink)}
+.qa2-evh .eh-c{font-size:12.5px;color:var(--forest-2);font-weight:600}
+.qa-grid.qa2 .evcard .thumbs{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:14px}
+.qa-grid.qa2 .evcard .thumbs .thumb{width:calc(33.333% - 6px);height:74px;border-radius:10px;background-size:cover;background-position:center;box-shadow:inset 0 0 0 1px rgba(27,33,23,.08)}
+.qa-grid.qa2 .evcard .thumbs .thumb:first-child{width:100%;height:200px}
+.qa-grid.qa2 .evcard .thumbs .thumb:nth-child(n+4){display:none}
+.qa-grid.qa2 .evcard .ev-all{display:inline-flex;margin-bottom:14px}
+
+/* actions: approve carries the id + a check */
+.da-p{display:inline-flex;align-items:center;justify-content:center;gap:9px}
+.da-p .ap-ic{display:flex}
+
+@media (max-width:900px){
+  .qa-grid.qa2 .qa2-signal{grid-template-columns:1fr}
+  .qa-grid.qa2 .qa2-sig{border-left:none;border-top:1px solid rgba(110,125,92,.3);padding:12px 18px}
+  .qa-grid.qa2 .qa2-sig:first-child{border-top:none}
+  .qa-grid.qa2 .qa2-dgrid{grid-template-columns:1fr 1fr}
+}
+</style>
+<script>
+(function(){
+  var grid=document.querySelector('.qa-grid'); if(!grid) return;
+  grid.classList.add('qa2');
+
+  /* needs-attention first */
+  var q=grid.querySelector('.queue'), gr=document.getElementById('grp-ready'), ga=document.getElementById('grp-attn');
+  if(q&&gr&&ga) q.insertBefore(ga,gr);
+
+  function svg(p,w){ return '<svg width="'+(w||18)+'" height="'+(w||18)+'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">'+p+'</svg>'; }
+  var IC={
+    check:'<path d="M20 6L9 17l-5-5"/>',
+    warn:'<path d="M12 4 21 19H3z"/><path d="M12 10v4"/><path d="M12 16.5v.01"/>',
+    depth:'<circle cx="12" cy="12" r="8"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/><circle cx="12" cy="12" r="2"/>',
+    grout:'<path d="M12 3s6 7 6 11a6 6 0 0 1-12 0c0-4 6-11 6-11z"/>',
+    test:'<path d="M12 3 19 6v5c0 5-3 7.6-7 9-4-1.4-7-4-7-9V6z"/><path d="m9 12 2 2 4-4"/>'
+  };
+
+  function metrics(d){
+    var m={};
+    d.querySelectorAll('.d-metrics .mx').forEach(function(mx){
+      var k=mx.querySelector('.mx-k'), v=mx.querySelector('.mx-v');
+      if(k&&v) m[k.textContent.trim()]={v:v.textContent.trim(), warn:v.classList.contains('warn'), neg:v.classList.contains('neg')};
+    });
+    return m;
+  }
+  function statusInfo(d){
+    var st=d.querySelector('[data-status]'); var txt=st?st.textContent.trim():'';
+    if(st&&st.classList.contains('pl-fail')) return {cls:'fail',title:'TEST FAILURE',sub:txt+' — retest and re-sign before approving'};
+    if(st&&st.classList.contains('pl-attn')) return {cls:'warn',title:'NEEDS ATTENTION',sub:txt+' — resolve before approving'};
+    if(/^Approved/.test(txt)) return {cls:'ok',title:'APPROVED',sub:txt};
+    return {cls:'ok',title:'READY TO APPROVE',sub:'All required records complete · No issues outside tolerance'};
+  }
+
+  function applyDetail(d){
+    d.querySelectorAll('.qa2-status,.qa2-signal').forEach(function(n){n.remove();});
+    var m=metrics(d), si=statusInfo(d);
+    var scroll=d.querySelector('.d-scroll'), head=d.querySelector('.d-head'), sub=d.querySelector('.d-sub');
+
+    /* status header (after .d-head) */
+    var sh=document.createElement('div'); sh.className='qa2-status '+si.cls;
+    sh.innerHTML='<span class="qs-ic">'+svg(si.cls==='ok'?IC.check:IC.warn,18)+'</span><div><div class="qs-t">'+si.title+'</div><div class="qs-s">'+si.sub+'</div></div>';
+    if(head&&head.parentNode) head.parentNode.insertBefore(sh, head.nextSibling);
+
+    /* 3-signal band (after .d-sub) */
+    var varc=m['Variance']||{v:'—'}, within=!(varc.warn)&&!(Math.abs(parseFloat(String(varc.v).replace('+',''))||0)>0.2);
+    var testM=m['Test result']||m['Test sheet']||{v:'—'};
+    var testTxt=testM.v==='Pass'?'Passed':(testM.v==='Fail'?'Failed':testM.v);
+    var testTone=testM.v==='Pass'?'ok':(testM.warn||testM.neg||testM.v==='Fail'||testM.v==='Unsigned'?'warn':'');
+    var band=document.createElement('div'); band.className='qa2-signal';
+    band.innerHTML=
+      '<div class="qa2-sig"><span class="sg-ic">'+svg(IC.depth,22)+'</span><div><div class="sg-k">Depth</div><div class="sg-v '+(within?'':'warn')+'">'+varc.v+'</div><div class="sg-sub">'+(within?'Within tolerance':'Outside tolerance')+'</div></div></div>'+
+      '<div class="qa2-sig"><span class="sg-ic">'+svg(IC.grout,22)+'</span><div><div class="sg-k">Grout</div><div class="sg-v ok">'+((m['Grout']||{v:'—'}).v)+'</div></div></div>'+
+      '<div class="qa2-sig"><span class="sg-ic">'+svg(IC.test,22)+'</span><div><div class="sg-k">Test</div><div class="sg-v '+testTone+'">'+testTxt+'</div></div></div>';
+    if(sub&&sub.parentNode) sub.parentNode.insertBefore(band, sub.nextSibling);
+
+    /* requirements card: summary header + toggle + data grid */
+    var rc=d.querySelector('.reqcard'), rch=rc&&rc.querySelector('.rc-h'), rcc=rc&&rc.querySelector('.rc-c');
+    if(rc&&rch&&!rch.dataset.enh){
+      rch.dataset.enh='1';
+      var parts=(rcc?rcc.textContent:'').match(/(\d+)\s*\/\s*(\d+)/)||[0,'0','0'];
+      var met=+parts[1], tot=+parts[2], full=met>=tot;
+      rch.innerHTML='<div class="qa2-rqh'+(full?'':' part')+'"><span class="rqh-ic">'+svg(full?IC.check:IC.warn,15)+'</span><span class="rqh-t">'+(full?('All '+tot+' requirements met'):(met+' of '+tot+' requirements met'))+'</span><button class="rqh-tog" type="button">View requirements '+svg('<path d="M6 9l6 6 6-6"/>',15).replace('<svg','<svg class="cv"')+'</button></div>';
+      var grid2=document.createElement('div'); grid2.className='qa2-dgrid';
+      var cells=[['Design depth',m['Design depth']],['Actual depth',m['Actual depth']],['Variance',m['Variance']],['Lithology',m['Lithology']]];
+      grid2.innerHTML=cells.filter(function(c){return c[1];}).map(function(c){return '<div class="qa2-dcell"><div class="dg-k">'+c[0]+'</div><div class="dg-v '+(c[1].warn?'warn':'')+'">'+c[1].v+'</div></div>';}).join('');
+      var list=rc.querySelector('.rc-list'); if(list) rc.insertBefore(grid2, list);
+      var more=document.createElement('div'); more.className='qa2-more'; more.innerHTML='View full record details '+svg('<path d="M9 6l6 6-6 6"/>',15);
+      rc.appendChild(more);
+      rch.querySelector('.rqh-tog').addEventListener('click',function(){ rc.classList.toggle('open'); });
+    }
+
+    /* evidence card: heading + N of N */
+    var ev=d.querySelector('.evcard');
+    if(ev&&!ev.querySelector('.qa2-evh')){
+      var pane=ev.querySelector('.ev-pane[data-pane="ev"]');
+      var nthumb=ev.querySelectorAll('.thumbs .thumb').length||3;
+      var eh=document.createElement('div'); eh.className='qa2-evh';
+      eh.innerHTML='<span class="eh-t">Evidence</span><span class="eh-c">'+nthumb+' of '+nthumb+' required</span>';
+      if(pane) pane.insertBefore(eh, pane.firstChild);
+    }
+
+    /* approve button carries the id + a check */
+    var ap=d.querySelector('[data-approve]');
+    if(ap&&!ap.dataset.enh){ ap.dataset.enh='1'; ap.innerHTML='<span class="ap-ic">'+svg(IC.check,17)+'</span>Approve '+ap.getAttribute('data-approve'); }
+  }
+
+  document.querySelectorAll('.detail').forEach(applyDetail);
+
+  /* re-sync a detail after the existing resolve/approve handlers run */
+  document.addEventListener('click',function(e){
+    var b=e.target.closest&&e.target.closest('[data-resolve],[data-approve]'); if(!b) return;
+    var id=b.getAttribute('data-resolve')||b.getAttribute('data-approve');
+    setTimeout(function(){ var d=document.querySelector('.detail[data-id="'+id+'"]'); if(d){ var ap=d.querySelector('[data-approve]'); if(ap) delete ap.dataset.enh; applyDetail(d); } },0);
+  },true);
+
+  /* keep the "To review" count in step */
+  function tot(){ var n=document.querySelectorAll('#grp-ready .q-item, #grp-attn .q-item').length; var c=document.getElementById('cnt-all'); if(c) c.textContent=n; }
+  tot();
+  document.querySelectorAll('[data-approve],[data-resolve]').forEach(function(b){ b.addEventListener('click',function(){ setTimeout(tot,0); }); });
 })();
 </script>
   <script defer src="../js/build.js"></script>
